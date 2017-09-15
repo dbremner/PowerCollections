@@ -9,7 +9,7 @@
     <RootNamespace>Wintellect.PowerCollections</RootNamespace>
     <AssemblyName>PowerCollections</AssemblyName>
     <WarningLevel>4</WarningLevel>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
