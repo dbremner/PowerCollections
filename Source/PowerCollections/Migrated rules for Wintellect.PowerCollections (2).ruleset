@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Migrated rules for Wintellect.PowerCollections (2).ruleset" Description="This rule set was created from the CodeAnalysisRules property for the &quot;Release (Any CPU)&quot; configuration in project &quot;C:\src\newest\PowerCollections\Source\PowerCollections\Wintellect.PowerCollections.csproj&quot;." ToolsVersion="15.0">
+  <IncludeAll Action="Warning" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="Wintellect1000" Action="None" />
+    <Rule Id="Wintellect2000" Action="None" />
+    <Rule Id="Wintellect2001" Action="None" />
+    <Rule Id="Wintellect2002" Action="None" />
+    <Rule Id="Wintellect2003" Action="None" />
+    <Rule Id="Wintellect2004" Action="None" />
+    <Rule Id="Wintellect2005" Action="None" />
+    <Rule Id="Wintellect2006" Action="None" />
+    <Rule Id="Wintellect3000" Action="None" />
+    <Rule Id="Wintellect3001" Action="None" />
+    <Rule Id="Wintellect3002" Action="None" />
+    <Rule Id="Wintellect3003" Action="None" />
+    <Rule Id="Wintellect3004" Action="None" />
+    <Rule Id="Wintellect3005" Action="None" />
+  </Rules>
+</RuleSet>
