@@ -190,7 +190,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The first item that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, the default value for T is returned.</returns>
         /// <seealso cref="TryFind"/>
-        public virtual T Find(Func<T, bool> predicate)
+        public virtual T FirstOrDefault(Func<T, bool> predicate)
         {
             return Enumerable.FirstOrDefault(this, predicate);
         }
@@ -221,7 +221,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The last item that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, the default value for T is returned.</returns>
         /// <seealso cref="TryFindLast"/>
-        public virtual T FindLast(Func<T, bool> predicate)
+        public virtual T LastOrDefault(Func<T, bool> predicate)
         {
             return Enumerable.LastOrDefault(this, predicate);
         }

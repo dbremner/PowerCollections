@@ -694,36 +694,36 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(1, list1.Find(delegate(int x) { return (x & 1) == 1; }));
+            Assert.AreEqual(1, list1.FirstOrDefault(delegate(int x) { return (x & 1) == 1; }));
             found = list1.TryFind(delegate(int x) { return (x & 1) == 1; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(1, result);
 
-            Assert.AreEqual(4, list1.Find(delegate(int x) { return (x & 1) == 0; }));
+            Assert.AreEqual(4, list1.FirstOrDefault(delegate(int x) { return (x & 1) == 0; }));
             found = list1.TryFind(delegate(int x) { return (x & 1) == 0; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(4, result);
 
-            Assert.AreEqual(0, list1.Find(delegate(int x) { return x > 10; }));
+            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x > 10; }));
             found = list1.TryFind(delegate(int x) { return x > 10; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadWriteArrayList<int>(new int[] { 4, 0, 1, 3, 4, 9 });
 
-            Assert.AreEqual(0, list1.Find(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x < 3; }));
             found = list1.TryFind(delegate(int x) { return x < 3; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, list1.Find(delegate(int x) { return x > 10; }));
+            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x > 10; }));
             found = list1.TryFind(delegate(int x) { return x > 10; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadWriteArrayList<int>(new int[0]);
 
-            Assert.AreEqual(0, list1.Find(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x < 3; }));
             found = list1.TryFind(delegate(int x) { return x < 3; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
@@ -736,36 +736,36 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(9, list1.FindLast(delegate(int x) { return (x & 1) == 1; }));
+            Assert.AreEqual(9, list1.LastOrDefault(delegate(int x) { return (x & 1) == 1; }));
             found = list1.TryFindLast(delegate(int x) { return (x & 1) == 1; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(9, result);
 
-            Assert.AreEqual(2, list1.FindLast(delegate(int x) { return (x & 1) == 0; }));
+            Assert.AreEqual(2, list1.LastOrDefault(delegate(int x) { return (x & 1) == 0; }));
             found = list1.TryFindLast(delegate(int x) { return (x & 1) == 0; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(2, result);
 
-            Assert.AreEqual(0, list1.FindLast(delegate(int x) { return x > 10; }));
+            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x > 10; }));
             found = list1.TryFindLast(delegate(int x) { return x > 10; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 0, 9 });
 
-            Assert.AreEqual(0, list1.FindLast(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x < 3; }));
             found = list1.TryFindLast(delegate(int x) { return x < 3; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, list1.FindLast(delegate(int x) { return x > 10; }));
+            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x > 10; }));
             found = list1.TryFindLast(delegate(int x) { return x > 10; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadWriteArrayList<int>(new int[0]);
 
-            Assert.AreEqual(0, list1.FindLast(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x < 3; }));
             found = list1.TryFindLast(delegate(int x) { return x < 3; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
@@ -777,20 +777,20 @@ namespace Wintellect.PowerCollections.Tests
             ReadWriteArrayList<int> list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
             IEnumerable<int> found;
 
-            found = list1.FindAll(delegate(int x) { return (x & 1) == 1; });
+            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
             InterfaceTests.TestEnumerableElements(found, new int[] { 1, 3, 9 });
 
-            found = list1.FindAll(delegate(int x) { return (x & 1) == 0; });
+            found = list1.Where(delegate(int x) { return (x & 1) == 0; });
             InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 6 });
 
-            found = list1.FindAll(delegate(int x) { return x > 10; });
+            found = list1.Where(delegate(int x) { return x > 10; });
             InterfaceTests.TestEnumerableElements(found, new int[] { });
 
-            found = list1.FindAll(delegate(int x) { return x < 10; });
+            found = list1.Where(delegate(int x) { return x < 10; });
             InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 1, 3, 6, 9 });
 
             list1 = new ReadWriteArrayList<int>(new int[0]);
-            found = list1.FindAll(delegate(int x) { return (x & 1) == 1; });
+            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
             InterfaceTests.TestEnumerableElements(found, new int[] { });
         }
 
@@ -1044,36 +1044,36 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(1, list1.Find(delegate(int x) { return (x & 1) == 1; }));
+            Assert.AreEqual(1, list1.FirstOrDefault(delegate(int x) { return (x & 1) == 1; }));
             found = list1.TryFind(delegate(int x) { return (x & 1) == 1; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(1, result);
 
-            Assert.AreEqual(4, list1.Find(delegate(int x) { return (x & 1) == 0; }));
+            Assert.AreEqual(4, list1.FirstOrDefault(delegate(int x) { return (x & 1) == 0; }));
             found = list1.TryFind(delegate(int x) { return (x & 1) == 0; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(4, result);
 
-            Assert.AreEqual(0, list1.Find(delegate(int x) { return x > 10; }));
+            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x > 10; }));
             found = list1.TryFind(delegate(int x) { return x > 10; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadOnlyArrayList<int>(new int[] { 4, 0, 1, 3, 4, 9 });
 
-            Assert.AreEqual(0, list1.Find(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x < 3; }));
             found = list1.TryFind(delegate(int x) { return x < 3; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, list1.Find(delegate(int x) { return x > 10; }));
+            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x > 10; }));
             found = list1.TryFind(delegate(int x) { return x > 10; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadOnlyArrayList<int>(new int[0]);
 
-            Assert.AreEqual(0, list1.Find(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x < 3; }));
             found = list1.TryFind(delegate(int x) { return x < 3; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
@@ -1086,36 +1086,36 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(9, list1.FindLast(delegate(int x) { return (x & 1) == 1; }));
+            Assert.AreEqual(9, list1.LastOrDefault(delegate(int x) { return (x & 1) == 1; }));
             found = list1.TryFindLast(delegate(int x) { return (x & 1) == 1; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(9, result);
 
-            Assert.AreEqual(2, list1.FindLast(delegate(int x) { return (x & 1) == 0; }));
+            Assert.AreEqual(2, list1.LastOrDefault(delegate(int x) { return (x & 1) == 0; }));
             found = list1.TryFindLast(delegate(int x) { return (x & 1) == 0; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(2, result);
 
-            Assert.AreEqual(0, list1.FindLast(delegate(int x) { return x > 10; }));
+            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x > 10; }));
             found = list1.TryFindLast(delegate(int x) { return x > 10; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 0, 9 });
 
-            Assert.AreEqual(0, list1.FindLast(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x < 3; }));
             found = list1.TryFindLast(delegate(int x) { return x < 3; }, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, list1.FindLast(delegate(int x) { return x > 10; }));
+            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x > 10; }));
             found = list1.TryFindLast(delegate(int x) { return x > 10; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadOnlyArrayList<int>(new int[0]);
 
-            Assert.AreEqual(0, list1.FindLast(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x < 3; }));
             found = list1.TryFindLast(delegate(int x) { return x < 3; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
@@ -1127,20 +1127,20 @@ namespace Wintellect.PowerCollections.Tests
             ReadOnlyArrayList<int> list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
             IEnumerable<int> found;
 
-            found = list1.FindAll(delegate(int x) { return (x & 1) == 1; });
+            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
             InterfaceTests.TestEnumerableElements(found, new int[] { 1, 3, 9 });
 
-            found = list1.FindAll(delegate(int x) { return (x & 1) == 0; });
+            found = list1.Where(delegate(int x) { return (x & 1) == 0; });
             InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 6 });
 
-            found = list1.FindAll(delegate(int x) { return x > 10; });
+            found = list1.Where(delegate(int x) { return x > 10; });
             InterfaceTests.TestEnumerableElements(found, new int[] { });
 
-            found = list1.FindAll(delegate(int x) { return x < 10; });
+            found = list1.Where(delegate(int x) { return x < 10; });
             InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 1, 3, 6, 9 });
 
             list1 = new ReadOnlyArrayList<int>(new int[0]);
-            found = list1.FindAll(delegate(int x) { return (x & 1) == 1; });
+            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
             InterfaceTests.TestEnumerableElements(found, new int[] { });
         }
 

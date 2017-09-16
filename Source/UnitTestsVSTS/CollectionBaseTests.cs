@@ -212,19 +212,19 @@ namespace Wintellect.PowerCollections.Tests
         {
             ReadWriteTestCollection<double> coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
-            Assert.IsTrue(coll1.Exists(delegate(double d) { return d > 100; }));
-            Assert.IsTrue(coll1.Exists(delegate(double d) { return Math.Abs(d) == 0.04; }));
-            Assert.IsFalse(coll1.Exists(delegate(double d) { return d < -10.0; }));
+            Assert.IsTrue(coll1.Any(delegate(double d) { return d > 100; }));
+            Assert.IsTrue(coll1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsFalse(coll1.Any(delegate(double d) { return d < -10.0; }));
             coll1.Clear();
-            Assert.IsFalse(coll1.Exists(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsFalse(coll1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
 
             ReadOnlyTestCollection<double> coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
-            Assert.IsTrue(coll2.Exists(delegate(double d) { return d > 100; }));
-            Assert.IsTrue(coll2.Exists(delegate(double d) { return Math.Abs(d) == 0.04; }));
-            Assert.IsFalse(coll2.Exists(delegate(double d) { return d < -10.0; }));
+            Assert.IsTrue(coll2.Any(delegate(double d) { return d > 100; }));
+            Assert.IsTrue(coll2.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsFalse(coll2.Any(delegate(double d) { return d < -10.0; }));
             coll2 = new ReadOnlyTestCollection<double>(new double[] {  });
-            Assert.IsFalse(coll2.Exists(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsFalse(coll2.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
         }
 
         [TestMethod]
@@ -232,21 +232,21 @@ namespace Wintellect.PowerCollections.Tests
         {
             ReadWriteTestCollection<double> coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
-            Assert.IsFalse(coll1.TrueForAll(delegate(double d) { return d > 100; }));
-            Assert.IsFalse(coll1.TrueForAll(delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.IsTrue(coll1.TrueForAll(delegate(double d) { return d > -10; }));
-            Assert.IsTrue(coll1.TrueForAll(delegate(double d) { return Math.Abs(d) < 200; }));
+            Assert.IsFalse(coll1.All(delegate(double d) { return d > 100; }));
+            Assert.IsFalse(coll1.All(delegate(double d) { return Math.Abs(d) < 10; }));
+            Assert.IsTrue(coll1.All(delegate(double d) { return d > -10; }));
+            Assert.IsTrue(coll1.All(delegate(double d) { return Math.Abs(d) < 200; }));
             coll1.Clear();
-            Assert.IsTrue(coll1.TrueForAll(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsTrue(coll1.All(delegate(double d) { return Math.Abs(d) == 0.04; }));
 
             ReadOnlyTestCollection<double> coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
-            Assert.IsFalse(coll2.TrueForAll(delegate(double d) { return d > 100; }));
-            Assert.IsFalse(coll2.TrueForAll(delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.IsTrue(coll2.TrueForAll(delegate(double d) { return d > -10; }));
-            Assert.IsTrue(coll2.TrueForAll(delegate(double d) { return Math.Abs(d) < 200; }));
+            Assert.IsFalse(coll2.All(delegate(double d) { return d > 100; }));
+            Assert.IsFalse(coll2.All(delegate(double d) { return Math.Abs(d) < 10; }));
+            Assert.IsTrue(coll2.All(delegate(double d) { return d > -10; }));
+            Assert.IsTrue(coll2.All(delegate(double d) { return Math.Abs(d) < 200; }));
             coll2 = new ReadOnlyTestCollection<double>(new double[] { });
-            Assert.IsTrue(coll2.TrueForAll(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsTrue(coll2.All(delegate(double d) { return Math.Abs(d) == 0.04; }));
         }
 
         [TestMethod]
@@ -279,7 +279,7 @@ namespace Wintellect.PowerCollections.Tests
             int i;
 
             i = 0;
-            foreach (double x in coll1.FindAll(delegate(double d) { return Math.Abs(d) > 5; })) {
+            foreach (double x in coll1.Where(delegate(double d) { return Math.Abs(d) > 5; })) {
                 Assert.AreEqual(expected[i], x);
                 ++i;
             }
@@ -289,7 +289,7 @@ namespace Wintellect.PowerCollections.Tests
             expected = new double[] { 7.6, -7.6, 10.11, 187.4 };
 
             i = 0;
-            foreach (double x in coll2.FindAll(delegate(double d) { return Math.Abs(d) > 5; })) {
+            foreach (double x in coll2.Where(delegate(double d) { return Math.Abs(d) > 5; })) {
                 Assert.AreEqual(expected[i], x);
                 ++i;
             }
@@ -322,24 +322,24 @@ namespace Wintellect.PowerCollections.Tests
             ReadWriteTestCollection<int> coll1 = new ReadWriteTestCollection<int>(array);
             IEnumerable<string> result1;
 
-            result1 = coll1.ConvertAll<string>(delegate(int x) { return (x * 2).ToString(); });
+            result1 = coll1.Select<string>(delegate(int x) { return (x * 2).ToString(); });
             string[] expected = new string[400];
             for (int i = 0; i < 400; ++i)
                 expected[i] = (2 * i).ToString();
             InterfaceTests.TestEnumerableElements<string>(result1, expected);
 
             coll1 = new ReadWriteTestCollection<int>(new int[0]);
-            result1 = coll1.ConvertAll<string>(delegate(int x) { return (x * 2).ToString(); });
+            result1 = coll1.Select<string>(delegate(int x) { return (x * 2).ToString(); });
             InterfaceTests.TestEnumerableElements<string>(result1, new string[0]);
 
             ReadOnlyTestCollection<int> coll2 = new ReadOnlyTestCollection<int>(array);
             IEnumerable<string> result2;
 
-            result2 = coll2.ConvertAll<string>(delegate(int x) { return (x * 2).ToString(); });
+            result2 = coll2.Select<string>(delegate(int x) { return (x * 2).ToString(); });
             InterfaceTests.TestEnumerableElements<string>(result2, expected);
 
             coll2 = new ReadOnlyTestCollection<int>(new int[0]);
-            result2 = coll2.ConvertAll<string>(delegate(int x) { return (x * 2).ToString(); });
+            result2 = coll2.Select<string>(delegate(int x) { return (x * 2).ToString(); });
             InterfaceTests.TestEnumerableElements<string>(result2, new string[0]);
         }
 

@@ -228,11 +228,11 @@ namespace Wintellect.PowerCollections.Tests
         {
             Set<double> set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
-            Assert.IsTrue(set1.Exists(delegate(double d) { return d > 100; }));
-            Assert.IsTrue(set1.Exists(delegate(double d) { return Math.Abs(d) == 0.04; }));
-            Assert.IsFalse(set1.Exists(delegate(double d) { return d < -10.0; }));
+            Assert.IsTrue(set1.Any(delegate(double d) { return d > 100; }));
+            Assert.IsTrue(set1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsFalse(set1.Any(delegate(double d) { return d < -10.0; }));
             set1.Clear();
-            Assert.IsFalse(set1.Exists(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsFalse(set1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
         }
 
         [TestMethod]
@@ -240,12 +240,12 @@ namespace Wintellect.PowerCollections.Tests
         {
             Set<double> set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
-            Assert.IsFalse(set1.TrueForAll(delegate(double d) { return d > 100; }));
-            Assert.IsFalse(set1.TrueForAll(delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.IsTrue(set1.TrueForAll(delegate(double d) { return d > -10; }));
-            Assert.IsTrue(set1.TrueForAll(delegate(double d) { return Math.Abs(d) < 200; }));
+            Assert.IsFalse(set1.All(delegate(double d) { return d > 100; }));
+            Assert.IsFalse(set1.All(delegate(double d) { return Math.Abs(d) < 10; }));
+            Assert.IsTrue(set1.All(delegate(double d) { return d > -10; }));
+            Assert.IsTrue(set1.All(delegate(double d) { return Math.Abs(d) < 200; }));
             set1.Clear();
-            Assert.IsTrue(set1.TrueForAll(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsTrue(set1.All(delegate(double d) { return Math.Abs(d) == 0.04; }));
         }
 
         [TestMethod]
@@ -286,7 +286,7 @@ namespace Wintellect.PowerCollections.Tests
             int i;
 
             i = 0;
-            foreach (double x in set1.FindAll(delegate(double d) { return Math.Abs(d) > 5; })) {
+            foreach (double x in set1.Where(delegate(double d) { return Math.Abs(d) > 5; })) {
                 int index = Array.IndexOf(expected, x);
                 Assert.IsTrue(index >= 0);
                 Assert.AreEqual(expected[index], x);

@@ -353,11 +353,11 @@ namespace Wintellect.PowerCollections.Tests
         {
             Bag<double> bag1 = new Bag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
 
-            Assert.IsTrue(bag1.Exists(delegate(double d) { return d > 100; }));
-            Assert.IsTrue(bag1.Exists(delegate(double d) { return Math.Abs(d) == 0.04; }));
-            Assert.IsFalse(bag1.Exists(delegate(double d) { return d < -10.0; }));
+            Assert.IsTrue(bag1.Any(delegate(double d) { return d > 100; }));
+            Assert.IsTrue(bag1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsFalse(bag1.Any(delegate(double d) { return d < -10.0; }));
             bag1.Clear();
-            Assert.IsFalse(bag1.Exists(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsFalse(bag1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
         }
 
         [TestMethod]
@@ -365,12 +365,12 @@ namespace Wintellect.PowerCollections.Tests
         {
             Bag<double> bag1 = new Bag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
 
-            Assert.IsFalse(bag1.TrueForAll(delegate(double d) { return d > 100; }));
-            Assert.IsFalse(bag1.TrueForAll(delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.IsTrue(bag1.TrueForAll(delegate(double d) { return d > -10; }));
-            Assert.IsTrue(bag1.TrueForAll(delegate(double d) { return Math.Abs(d) < 200; }));
+            Assert.IsFalse(bag1.All(delegate(double d) { return d > 100; }));
+            Assert.IsFalse(bag1.All(delegate(double d) { return Math.Abs(d) < 10; }));
+            Assert.IsTrue(bag1.All(delegate(double d) { return d > -10; }));
+            Assert.IsTrue(bag1.All(delegate(double d) { return Math.Abs(d) < 200; }));
             bag1.Clear();
-            Assert.IsTrue(bag1.TrueForAll(delegate(double d) { return Math.Abs(d) == 0.04; }));
+            Assert.IsTrue(bag1.All(delegate(double d) { return Math.Abs(d) == 0.04; }));
         }
 
         [TestMethod]
@@ -409,7 +409,7 @@ namespace Wintellect.PowerCollections.Tests
             Bag<double> bag1 = new Bag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
             double[] expected = { -7.6, 7.6, 10.11, 187.4, 187.4 };
 
-            InterfaceTests.TestEnumerableElementsAnyOrder(bag1.FindAll(delegate(double d) { return Math.Abs(d) > 5; }), expected);
+            InterfaceTests.TestEnumerableElementsAnyOrder(bag1.Where(delegate(double d) { return Math.Abs(d) > 5; }), expected);
         }
 
         [TestMethod]

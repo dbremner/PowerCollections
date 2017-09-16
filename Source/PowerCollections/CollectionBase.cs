@@ -194,7 +194,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if the collection contains one or more items that satisfy the condition
         /// defined by <paramref name="predicate"/>. False if the collection does not contain
         /// an item that satisfies <paramref name="predicate"/>.</returns>
-        public virtual bool Exists(Func<T, bool> predicate)
+        public virtual bool Any(Func<T, bool> predicate)
         {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
@@ -210,7 +210,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if all of the items in the collection satisfy the condition
         /// defined by <paramref name="predicate"/>, or if the collection is empty. False if one or more items
         /// in the collection do not satisfy <paramref name="predicate"/>.</returns>
-        public virtual bool TrueForAll(Func<T, bool> predicate)
+        public virtual bool All(Func<T, bool> predicate)
         {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
@@ -238,7 +238,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <param name="predicate">A delegate that defines the condition to check for.</param>
         /// <returns>An IEnumerable&lt;T&gt; that enumerates the items that satisfy the condition.</returns>
-        public virtual IEnumerable<T> FindAll(Func<T, bool> predicate)
+        public virtual IEnumerable<T> Where(Func<T, bool> predicate)
         {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
@@ -270,7 +270,7 @@ namespace Wintellect.PowerCollections
         /// <returns>An IEnumerable&lt;TOutput^gt; that enumerates the resulting collection from applying <paramref name="converter"/> to each item in this collection in
         /// order.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="converter"/> is null.</exception>
-        public virtual IEnumerable<TOutput> ConvertAll<TOutput>(Func<T, TOutput> converter)
+        public virtual IEnumerable<TOutput> Select<TOutput>(Func<T, TOutput> converter)
         {
             if (converter == null)
                 throw new ArgumentNullException(nameof(converter));
