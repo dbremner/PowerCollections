@@ -1201,7 +1201,7 @@ namespace Wintellect.PowerCollections
                 if (array == null)
                     throw new ArgumentNullException(nameof(array));
                 if (array.Length < wrappedArray.Length)
-                    throw new ArgumentException("array is too short", nameof(array));
+                    throw new ArgumentException(Strings.ArrayTooSmall, nameof(array));
                 if (arrayIndex < 0 || arrayIndex >= array.Length)
                     throw new ArgumentOutOfRangeException(nameof(arrayIndex));
                 if (array.Length + arrayIndex < wrappedArray.Length)
