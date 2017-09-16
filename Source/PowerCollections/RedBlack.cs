@@ -272,7 +272,7 @@ namespace Wintellect.PowerCollections
         public T GetItemByIndex(int index)
         {
             if (index < 0 || index >= count)
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
 
 			Node current = root;			// current search location in the tree
 

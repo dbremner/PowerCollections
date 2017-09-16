@@ -87,7 +87,7 @@ namespace Wintellect.PowerCollections
         void IDictionary<TKey, ICollection<TValue>>.Add(TKey key, ICollection<TValue> values)
         {
             if (ContainsKey(key)) {
-                throw new ArgumentException(Strings.KeyAlreadyPresent, "key");
+                throw new ArgumentException(Strings.KeyAlreadyPresent, nameof(key));
             }
             else {
                 AddMany(key, values);

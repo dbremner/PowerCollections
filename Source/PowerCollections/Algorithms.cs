@@ -88,7 +88,7 @@ namespace Wintellect.PowerCollections
             public override void Insert(int index, T item)
             {
                 if (index < 0 || index > count)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 wrappedList.Insert(start + index, item);
                 ++count;
@@ -97,7 +97,7 @@ namespace Wintellect.PowerCollections
             public override void RemoveAt(int index)
             {
                 if (index < 0 || index >= count)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 wrappedList.RemoveAt(start + index);
                 --count;
@@ -116,14 +116,14 @@ namespace Wintellect.PowerCollections
                 get
                 {
                     if (index < 0 || index >= count)
-                        throw new ArgumentOutOfRangeException("index");
+                        throw new ArgumentOutOfRangeException(nameof(index));
 
                     return wrappedList[start + index];
                 }
                 set
                 {
                     if (index < 0 || index >= count)
-                        throw new ArgumentOutOfRangeException("index");
+                        throw new ArgumentOutOfRangeException(nameof(index));
 
                     wrappedList[start + index] = value;
                 }
@@ -159,11 +159,11 @@ namespace Wintellect.PowerCollections
         public static IList<T> Range<T>(IList<T> list, int start, int count)
         {
             if (list == null)
-                throw new ArgumentOutOfRangeException("list");
+                throw new ArgumentOutOfRangeException(nameof(list));
             if (start < 0 || start > list.Count || (start == list.Count && count != 0))
-                throw new ArgumentOutOfRangeException("start");
+                throw new ArgumentOutOfRangeException(nameof(start));
             if (count < 0 || count > list.Count || count + start > list.Count)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             return new ListRange<T>(list, start, count);
         }
@@ -214,7 +214,7 @@ namespace Wintellect.PowerCollections
             public override void Insert(int index, T item)
             {
                 if (index < 0 || index > count)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 int i = start + index;
 
@@ -230,7 +230,7 @@ namespace Wintellect.PowerCollections
             public override void RemoveAt(int index)
             {
                 if (index < 0 || index >= count)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 int i = start + index;
 
@@ -246,14 +246,14 @@ namespace Wintellect.PowerCollections
                 get
                 {
                     if (index < 0 || index >= count)
-                        throw new ArgumentOutOfRangeException("index");
+                        throw new ArgumentOutOfRangeException(nameof(index));
 
                     return wrappedArray[start + index];
                 }
                 set
                 {
                     if (index < 0 || index >= count)
-                        throw new ArgumentOutOfRangeException("index");
+                        throw new ArgumentOutOfRangeException(nameof(index));
 
                     wrappedArray[start + index] = value;
                 }
@@ -281,11 +281,11 @@ namespace Wintellect.PowerCollections
         public static IList<T> Range<T>(T[] array, int start, int count)
         {
             if (array == null)
-                throw new ArgumentOutOfRangeException("array");
+                throw new ArgumentOutOfRangeException(nameof(array));
             if (start < 0 || start > array.Length || (start == array.Length && count != 0))
-                throw new ArgumentOutOfRangeException("start");
+                throw new ArgumentOutOfRangeException(nameof(start));
             if (count < 0 || count > array.Length || count + start > array.Length)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             return new ArrayRange<T>(array, start, count);
         }
@@ -904,13 +904,13 @@ namespace Wintellect.PowerCollections
             public void CopyTo(Array array, int index)
             {
                 if (array == null)
-                    throw new ArgumentNullException("array");
+                    throw new ArgumentNullException(nameof(array));
 
                 int i = 0;
                 int count = wrappedCollection.Count;
 
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException("index", index, Strings.ArgMustNotBeNegative);
+                    throw new ArgumentOutOfRangeException(nameof(index), index, Strings.ArgMustNotBeNegative);
                 if (index >= array.Length || count > array.Length - index)
                     throw new ArgumentException("index", Strings.ArrayTooSmall);
 
@@ -1061,13 +1061,13 @@ namespace Wintellect.PowerCollections
             public void CopyTo(Array array, int index)
             {
                 if (array == null)
-                    throw new ArgumentNullException("array");
+                    throw new ArgumentNullException(nameof(array));
 
                 int i = 0;
                 int count = wrappedList.Count;
 
                 if (index < 0)
-                    throw new ArgumentOutOfRangeException("index", index, Strings.ArgMustNotBeNegative);
+                    throw new ArgumentOutOfRangeException(nameof(index), index, Strings.ArgMustNotBeNegative);
                 if (index >= array.Length || count > array.Length - index)
                     throw new ArgumentException("index", Strings.ArrayTooSmall);
 
@@ -1160,7 +1160,7 @@ namespace Wintellect.PowerCollections
             public override void Insert(int index, T item)
             {
                 if (index < 0 || index > wrappedArray.Length)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 if (index + 1 < wrappedArray.Length)
                     Array.Copy(wrappedArray, index, wrappedArray, index + 1, wrappedArray.Length - index - 1);
@@ -1171,7 +1171,7 @@ namespace Wintellect.PowerCollections
             public override void RemoveAt(int index)
             {
                 if (index < 0 || index >= wrappedArray.Length)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 if (index < wrappedArray.Length - 1)
                     Array.Copy(wrappedArray, index + 1, wrappedArray, index, wrappedArray.Length - index - 1);
@@ -1183,14 +1183,14 @@ namespace Wintellect.PowerCollections
                 get
                 {
                     if (index < 0 || index >= wrappedArray.Length)
-                        throw new ArgumentOutOfRangeException("index");
+                        throw new ArgumentOutOfRangeException(nameof(index));
 
                     return wrappedArray[index];
                 }
                 set
                 {
                     if (index < 0 || index >= wrappedArray.Length)
-                        throw new ArgumentOutOfRangeException("index");
+                        throw new ArgumentOutOfRangeException(nameof(index));
 
                     wrappedArray[index] = value;
                 }
@@ -1199,13 +1199,13 @@ namespace Wintellect.PowerCollections
             public override void CopyTo(T[] array, int arrayIndex)
             {
                 if (array == null)
-                    throw new ArgumentNullException("array");
+                    throw new ArgumentNullException(nameof(array));
                 if (array.Length < wrappedArray.Length)
-                    throw new ArgumentException("array is too short", "array");
+                    throw new ArgumentException("array is too short", nameof(array));
                 if (arrayIndex < 0 || arrayIndex >= array.Length)
-                    throw new ArgumentOutOfRangeException("arrayIndex");
+                    throw new ArgumentOutOfRangeException(nameof(arrayIndex));
                 if (array.Length + arrayIndex < wrappedArray.Length)
-                    throw new ArgumentOutOfRangeException("arrayIndex");
+                    throw new ArgumentOutOfRangeException(nameof(arrayIndex));
 
                 Array.Copy(wrappedArray, 0, array, arrayIndex, wrappedArray.Length);
             }
@@ -1250,7 +1250,7 @@ namespace Wintellect.PowerCollections
         public static IList<T> ReadWriteList<T>(T[] array)
         {
             if (array == null)
-                throw new ArgumentNullException("array");
+                throw new ArgumentNullException(nameof(array));
 
             return new ArrayWrapper<T>(array);
         }
@@ -1287,9 +1287,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> Replace<T>(IEnumerable<T> collection, T itemFind, T replaceWith, IEqualityComparer<T> equalityComparer)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             foreach (T item in collection) {
                 if (equalityComparer.Equals(item, itemFind))
@@ -1311,9 +1311,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> Replace<T>(IEnumerable<T> collection, Predicate<T> predicate, T replaceWith)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             foreach (T item in collection) {
                 if (predicate(item))
@@ -1353,13 +1353,13 @@ namespace Wintellect.PowerCollections
         public static void ReplaceInPlace<T>(IList<T> list, T itemFind, T replaceWith, IEqualityComparer<T> equalityComparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
             if (list is T[])
                 list = new ArrayWrapper<T>((T[])list);
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             int listCount = list.Count;
             for (int index = 0; index < listCount; ++index) {
@@ -1381,13 +1381,13 @@ namespace Wintellect.PowerCollections
         public static void ReplaceInPlace<T>(IList<T> list, Predicate<T> predicate, T replaceWith)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
             if (list is T[])
                 list = new ArrayWrapper<T>((T[])list);
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             int listCount = list.Count;
             for (int index = 0; index < listCount; ++index) {
@@ -1428,7 +1428,7 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> RemoveDuplicates<T>(IEnumerable<T> collection, IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             return RemoveDuplicates(collection, equalityComparer.Equals);
 
@@ -1448,9 +1448,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> RemoveDuplicates<T>(IEnumerable<T> collection, BinaryPredicate<T> predicate)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             T current = default(T);
             bool atBeginning = true;
@@ -1494,7 +1494,7 @@ namespace Wintellect.PowerCollections
         public static void RemoveDuplicatesInPlace<T>(IList<T> list, IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             RemoveDuplicatesInPlace(list, equalityComparer.Equals);
 
@@ -1513,14 +1513,14 @@ namespace Wintellect.PowerCollections
         public static void RemoveDuplicatesInPlace<T>(IList<T> list, BinaryPredicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             if (list is T[])
                 list = new ArrayWrapper<T>((T[])list);
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             T current = default(T);
             T item;
@@ -1582,7 +1582,7 @@ namespace Wintellect.PowerCollections
         public static int FirstConsecutiveEqual<T>(IList<T> list, int count, IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             return FirstConsecutiveEqual(list, count, equalityComparer.Equals);
         }
@@ -1599,11 +1599,11 @@ namespace Wintellect.PowerCollections
         public static int FirstConsecutiveEqual<T>(IList<T> list, int count, BinaryPredicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
             if (count < 1)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             int listCount = list.Count;
             if (listCount < count)
@@ -1646,11 +1646,11 @@ namespace Wintellect.PowerCollections
         public static int FirstConsecutiveWhere<T>(IList<T> list, int count, Predicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
             if (count < 1)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             int listCount = list.Count;
             if (count > listCount)
@@ -1718,9 +1718,9 @@ namespace Wintellect.PowerCollections
         public static bool TryFindFirstWhere<T>(IEnumerable<T> collection, Predicate<T> predicate, out T foundItem)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             foreach (T item in collection) {
                 if (predicate(item)) {
@@ -1772,9 +1772,9 @@ namespace Wintellect.PowerCollections
         public static bool TryFindLastWhere<T>(IEnumerable<T> collection, Predicate<T> predicate, out T foundItem)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             IList<T> list = collection as IList<T>;
             if (list != null) {
@@ -1817,9 +1817,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> FindWhere<T>(IEnumerable<T> collection, Predicate<T> predicate)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             foreach (T item in collection) {
                 if (predicate(item)) {
@@ -1838,9 +1838,9 @@ namespace Wintellect.PowerCollections
         public static int FindFirstIndexWhere<T>(IList<T> list, Predicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             int index = 0;
             foreach (T item in list) {
@@ -1864,9 +1864,9 @@ namespace Wintellect.PowerCollections
         public static int FindLastIndexWhere<T>(IList<T> list, Predicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             for (int index = list.Count - 1; index >= 0; --index) {
                 if (predicate(list[index])) {
@@ -1888,9 +1888,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<int> FindIndicesWhere<T>(IList<T> list, Predicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             int index = 0;
             foreach (T item in list) {
@@ -1925,9 +1925,9 @@ namespace Wintellect.PowerCollections
         public static int FirstIndexOf<T>(IList<T> list, T item, IEqualityComparer<T> equalityComparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             int index = 0;
             foreach (T x in list) {
@@ -1965,9 +1965,9 @@ namespace Wintellect.PowerCollections
         public static int LastIndexOf<T>(IList<T> list, T item, IEqualityComparer<T> equalityComparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             for (int index = list.Count - 1; index >= 0; --index) {
                 if (equalityComparer.Equals(list[index], item)) {
@@ -2003,9 +2003,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<int> IndicesOf<T>(IList<T> list, T item, IEqualityComparer<T> equalityComparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             int index = 0;
             foreach (T x in list) {
@@ -2043,11 +2043,11 @@ namespace Wintellect.PowerCollections
         public static int FirstIndexOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor, IEqualityComparer<T> equalityComparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (itemsToLookFor == null)
-                throw new ArgumentNullException("itemsToLookFor");
+                throw new ArgumentNullException(nameof(itemsToLookFor));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             // Create a set of the items we are looking for, for efficient lookup.
             Set<T> setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
@@ -2080,11 +2080,11 @@ namespace Wintellect.PowerCollections
         public static int FirstIndexOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor, BinaryPredicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (itemsToLookFor == null)
-                throw new ArgumentNullException("itemsToLookFor");
+                throw new ArgumentNullException(nameof(itemsToLookFor));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             // Scan the list for the items.
             int index = 0;
@@ -2128,11 +2128,11 @@ namespace Wintellect.PowerCollections
         public static int LastIndexOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor, IEqualityComparer<T> equalityComparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (itemsToLookFor == null)
-                throw new ArgumentNullException("itemsToLookFor");
+                throw new ArgumentNullException(nameof(itemsToLookFor));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             // Create a set of the items we are looking for, for efficient lookup.
             Set<T> setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
@@ -2163,11 +2163,11 @@ namespace Wintellect.PowerCollections
         public static int LastIndexOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor, BinaryPredicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (itemsToLookFor == null)
-                throw new ArgumentNullException("itemsToLookFor");
+                throw new ArgumentNullException(nameof(itemsToLookFor));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             // Scan the list
             for (int index = list.Count - 1; index >= 0; --index) {
@@ -2208,11 +2208,11 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<int> IndicesOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor, IEqualityComparer<T> equalityComparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (itemsToLookFor == null)
-                throw new ArgumentNullException("itemsToLookFor");
+                throw new ArgumentNullException(nameof(itemsToLookFor));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             // Create a set of the items we are looking for, for efficient lookup.
             Set<T> setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
@@ -2242,11 +2242,11 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<int> IndicesOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor, BinaryPredicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (itemsToLookFor == null)
-                throw new ArgumentNullException("itemsToLookFor");
+                throw new ArgumentNullException(nameof(itemsToLookFor));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             // Scan the list for the items.
             int index = 0;
@@ -2295,11 +2295,11 @@ namespace Wintellect.PowerCollections
         public static int SearchForSubsequence<T>(IList<T> list, IEnumerable<T> pattern, BinaryPredicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (pattern == null)
-                throw new ArgumentNullException("pattern");
+                throw new ArgumentNullException(nameof(pattern));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             // Put the pattern into an array for performance (don't keep allocating enumerators).
             T[] patternArray = Algorithms.ToArray(pattern);
@@ -2342,7 +2342,7 @@ namespace Wintellect.PowerCollections
         public static int SearchForSubsequence<T>(IList<T> list, IEnumerable<T> pattern, IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             return SearchForSubsequence(list, pattern, equalityComparer.Equals);
         }
@@ -2388,9 +2388,9 @@ namespace Wintellect.PowerCollections
         public static bool IsSubsetOf<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
                 throw new ArgumentException("equalityComparer");
 
@@ -2439,9 +2439,9 @@ namespace Wintellect.PowerCollections
         public static bool IsProperSubsetOf<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
                 throw new ArgumentException("equalityComparer");
 
@@ -2488,9 +2488,9 @@ namespace Wintellect.PowerCollections
         public static bool DisjointSets<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
                 throw new ArgumentException("equalityComparer");
 
@@ -2540,9 +2540,9 @@ namespace Wintellect.PowerCollections
         public static bool EqualSets<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
                 throw new ArgumentException("equalityComparer");
 
@@ -2599,9 +2599,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> SetIntersection<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
                 throw new ArgumentException("equalityComparer");
 
@@ -2658,9 +2658,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> SetUnion<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
                 throw new ArgumentException("equalityComparer");
 
@@ -2724,9 +2724,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> SetDifference<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
                 throw new ArgumentException("equalityComparer");
 
@@ -2784,9 +2784,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> SetSymmetricDifference<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
                 throw new ArgumentException("equalityComparer");
 
@@ -2815,9 +2815,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<Pair<TFirst, TSecond>> CartesianProduct<TFirst, TSecond>(IEnumerable<TFirst> first, IEnumerable<TSecond> second)
         {
             if (first == null)
-                throw new ArgumentNullException("first");
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException("second");
+                throw new ArgumentNullException(nameof(second));
 
             foreach (TFirst itemFirst in first)
                 foreach (TSecond itemSecond in second)
@@ -2860,11 +2860,11 @@ namespace Wintellect.PowerCollections
         public static string ToString<T>(IEnumerable<T> collection, bool recursive, string start, string separator, string end)
         {
             if (start == null)
-                throw new ArgumentNullException("start");
+                throw new ArgumentNullException(nameof(start));
             if (separator == null)
-                throw new ArgumentNullException("separator");
+                throw new ArgumentNullException(nameof(separator));
             if (end == null)
-                throw new ArgumentNullException("end");
+                throw new ArgumentNullException(nameof(end));
 
             if (collection == null)
                 return "null";
@@ -2992,9 +2992,9 @@ namespace Wintellect.PowerCollections
             // We have to copy all items anyway, and there isn't a way to produce the items
             // on the fly that is linear. So copying to an array and shuffling it is an efficient as we can get.
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (randomGenerator == null)
-                throw new ArgumentNullException("randomGenerator");
+                throw new ArgumentNullException(nameof(randomGenerator));
 
             T[] array = Algorithms.ToArray(collection);
 
@@ -3033,13 +3033,13 @@ namespace Wintellect.PowerCollections
         public static void RandomShuffleInPlace<T>(IList<T> list, Random randomGenerator)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (randomGenerator == null)
-                throw new ArgumentNullException("randomGenerator");
+                throw new ArgumentNullException(nameof(randomGenerator));
             if (list is T[])
                 list = new ArrayWrapper<T>((T[])list);
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             int count = list.Count;
             for (int i = count - 1; i >= 1; --i) {
@@ -3085,9 +3085,9 @@ namespace Wintellect.PowerCollections
         public static T[] RandomSubset<T>(IEnumerable<T> collection, int count, Random randomGenerator)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (randomGenerator == null)
-                throw new ArgumentNullException("randomGenerator");
+                throw new ArgumentNullException(nameof(randomGenerator));
 
             // We need random access to the items in the collection. If it's not already an 
             // IList<T>, copy to a temporary list.
@@ -3098,7 +3098,7 @@ namespace Wintellect.PowerCollections
 
             int listCount = list.Count;
             if (count < 0 || count > listCount)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             T[] result = new T[count];  // the result array.
             Dictionary<int, T> swappedValues = new Dictionary<int, T>(count);   // holds swapped values from the list.
@@ -3142,7 +3142,7 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T[]> GeneratePermutations<T>(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             T[] array = Algorithms.ToArray(collection);
 
@@ -3228,9 +3228,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T[]> GenerateSortedPermutations<T>(IEnumerable<T> collection, IComparer<T> comparer)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             T[] array = Algorithms.ToArray(collection);
             int length = array.Length;
@@ -3333,9 +3333,9 @@ namespace Wintellect.PowerCollections
         public static T Maximum<T>(IEnumerable<T> collection, IComparer<T> comparer)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             T maxSoFar = default(T);
             bool foundOne = false;
@@ -3400,9 +3400,9 @@ namespace Wintellect.PowerCollections
         public static T Minimum<T>(IEnumerable<T> collection, IComparer<T> comparer)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             T minSoFar = default(T);
             bool foundOne = false;
@@ -3467,9 +3467,9 @@ namespace Wintellect.PowerCollections
         public static int IndexOfMaximum<T>(IList<T> list, IComparer<T> comparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             T maxSoFar = default(T);
             int indexSoFar = -1;
@@ -3534,9 +3534,9 @@ namespace Wintellect.PowerCollections
         public static int IndexOfMinimum<T>(IList<T> list, IComparer<T> comparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             T minSoFar = default(T);
             int indexSoFar = -1;
@@ -3601,9 +3601,9 @@ namespace Wintellect.PowerCollections
             T[] array;
 
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             array = Algorithms.ToArray(collection);
 
@@ -3653,9 +3653,9 @@ namespace Wintellect.PowerCollections
         public static void SortInPlace<T>(IList<T> list, IComparer<T> comparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             // If we have an array, use the built-in array sort (faster than going through IList accessors
             // with virtual calls).
@@ -3665,7 +3665,7 @@ namespace Wintellect.PowerCollections
             }
 
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             // Instead of a recursive procedure, we use an explicit stack to hold
             // ranges that we still need to sort.
@@ -3822,9 +3822,9 @@ namespace Wintellect.PowerCollections
             T[] array;
 
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             array = Algorithms.ToArray(collection);
 
@@ -3877,13 +3877,13 @@ namespace Wintellect.PowerCollections
         public static void StableSortInPlace<T>(IList<T> list, IComparer<T> comparer)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
             if (list is T[])
                 list = new ArrayWrapper<T>((T[])list);
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             // The stable sort algorithms also uses QuickSort. An additional array of indices (order) is
             // used to maintain the original order of items in the array, and that array is used
@@ -4064,9 +4064,9 @@ namespace Wintellect.PowerCollections
         public static int BinarySearch<T>(IList<T> list, T item, IComparer<T> comparer, out int index)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             int l = 0;
             int r = list.Count;
@@ -4178,9 +4178,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> MergeSorted<T>(IComparer<T> comparer, params IEnumerable<T>[] collections)
         {
             if (collections == null)
-                throw new ArgumentNullException("collections");
+                throw new ArgumentNullException(nameof(collections));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             IEnumerator<T>[] enumerators = new IEnumerator<T>[collections.Length];
             bool[] more = new bool[collections.Length];
@@ -4309,11 +4309,11 @@ namespace Wintellect.PowerCollections
         public static int LexicographicalCompare<T>(IEnumerable<T> sequence1, IEnumerable<T> sequence2, IComparer<T> comparer)
         {
             if (sequence1 == null)
-                throw new ArgumentNullException("sequence1");
+                throw new ArgumentNullException(nameof(sequence1));
             if (sequence2 == null)
-                throw new ArgumentNullException("sequence2");
+                throw new ArgumentNullException(nameof(sequence2));
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             using (IEnumerator<T> enum1 = sequence1.GetEnumerator(), enum2 = sequence2.GetEnumerator()) {
                 bool continue1, continue2;
@@ -4410,7 +4410,7 @@ namespace Wintellect.PowerCollections
         public static IComparer<IEnumerable<T>> GetLexicographicalComparer<T>(IComparer<T> comparer)
         {
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             return new LexicographicalComparerClass<T>(comparer);
         }
@@ -4426,7 +4426,7 @@ namespace Wintellect.PowerCollections
         public static IComparer<IEnumerable<T>> GetLexicographicalComparer<T>(Comparison<T> comparison)
         {
             if (comparison == null)
-                throw new ArgumentNullException("comparison");
+                throw new ArgumentNullException(nameof(comparison));
 
             return new LexicographicalComparerClass<T>(Comparers.ComparerFromComparison(comparison));
         }
@@ -4480,7 +4480,7 @@ namespace Wintellect.PowerCollections
         public static IComparer<T> GetReverseComparer<T>(IComparer<T> comparer)
         {
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             return new ReverseComparerClass<T>(comparer);
         }
@@ -4540,7 +4540,7 @@ namespace Wintellect.PowerCollections
         public static Comparison<T> GetReverseComparison<T>(Comparison<T> comparison)
         {
             if (comparison == null)
-                throw new ArgumentNullException("comparison");
+                throw new ArgumentNullException(nameof(comparison));
 
             return delegate(T x, T y) { return -comparison(x, y); };
         }
@@ -4555,7 +4555,7 @@ namespace Wintellect.PowerCollections
         public static IComparer<T> GetComparerFromComparison<T>(Comparison<T> comparison)
         {
             if (comparison == null)
-                throw new ArgumentNullException("comparison");
+                throw new ArgumentNullException(nameof(comparison));
 
             return Comparers.ComparerFromComparison(comparison);
         }
@@ -4570,7 +4570,7 @@ namespace Wintellect.PowerCollections
         public static Comparison<T> GetComparisonFromComparer<T>(IComparer<T> comparer)
         {
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             return comparer.Compare;
         }
@@ -4652,7 +4652,7 @@ namespace Wintellect.PowerCollections
         public static IEqualityComparer<IEnumerable<T>> GetCollectionEqualityComparer<T>(IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             return new CollectionEqualityComparer<T>(equalityComparer);
         }
@@ -4733,7 +4733,7 @@ namespace Wintellect.PowerCollections
         public static IEqualityComparer<IEnumerable<T>> GetSetEqualityComparer<T>(IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             return new SetEqualityComparer<T>(equalityComparer);
         }
@@ -4754,9 +4754,9 @@ namespace Wintellect.PowerCollections
         public static bool Exists<T>(IEnumerable<T> collection, Predicate<T> predicate)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             foreach (T item in collection) {
                 if (predicate(item))
@@ -4778,9 +4778,9 @@ namespace Wintellect.PowerCollections
         public static bool TrueForAll<T>(IEnumerable<T> collection, Predicate<T> predicate)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             foreach (T item in collection) {
                 if (!predicate(item))
@@ -4800,9 +4800,9 @@ namespace Wintellect.PowerCollections
         public static int CountWhere<T>(IEnumerable<T> collection, Predicate<T> predicate)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             int count = 0;
             foreach (T item in collection) {
@@ -4829,13 +4829,13 @@ namespace Wintellect.PowerCollections
         public static ICollection<T> RemoveWhere<T>(ICollection<T> collection, Predicate<T> predicate)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
             if (collection is T[])
                 collection = new ArrayWrapper<T>((T[])collection);
             if (collection.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "collection");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(collection));
 
             IList<T> list = collection as IList<T>;
             if (list != null) {
@@ -4909,9 +4909,9 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<TDest> Convert<TSource, TDest>(IEnumerable<TSource> sourceCollection, Converter<TSource, TDest> converter)
         {
             if (sourceCollection == null)
-                throw new ArgumentNullException("sourceCollection");
+                throw new ArgumentNullException(nameof(sourceCollection));
             if (converter == null)
-                throw new ArgumentNullException("converter");
+                throw new ArgumentNullException(nameof(converter));
 
             foreach (TSource sourceItem in sourceCollection)
                 yield return converter(sourceItem);
@@ -4943,7 +4943,7 @@ namespace Wintellect.PowerCollections
         public static Converter<TKey, TValue> GetDictionaryConverter<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TValue defaultValue)
         {
             if (dictionary == null)
-                throw new ArgumentNullException("dictionary");
+                throw new ArgumentNullException(nameof(dictionary));
 
             return delegate(TKey key) {
                 TValue value;
@@ -4962,9 +4962,9 @@ namespace Wintellect.PowerCollections
         public static void ForEach<T>(IEnumerable<T> collection, Action<T> action)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (action == null)
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
 
             foreach (T item in collection)
                 action(item);
@@ -4984,13 +4984,13 @@ namespace Wintellect.PowerCollections
         public static int Partition<T>(IList<T> list, Predicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
             if (list is T[])
                 list = new ArrayWrapper<T>((T[])list);
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             // Move from opposite ends of the list, swapping when necessary.
             int i = 0, j = list.Count - 1;
@@ -5031,13 +5031,13 @@ namespace Wintellect.PowerCollections
         public static int StablePartition<T>(IList<T> list, Predicate<T> predicate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
             if (list is T[])
                 list = new ArrayWrapper<T>((T[])list);
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             int listCount = list.Count;
             if (listCount == 0)
@@ -5080,7 +5080,7 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> Concatenate<T>(params IEnumerable<T>[] collections)
         {
             if (collections == null)
-                throw new ArgumentNullException("collections");
+                throw new ArgumentNullException(nameof(collections));
 
             foreach (IEnumerable<T> coll in collections) {
                 foreach (T item in coll)
@@ -5118,11 +5118,11 @@ namespace Wintellect.PowerCollections
         public static bool EqualCollections<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             using (IEnumerator<T> enum1 = collection1.GetEnumerator(), enum2 = collection2.GetEnumerator()) {
                 bool continue1, continue2;
@@ -5168,11 +5168,11 @@ namespace Wintellect.PowerCollections
         public static bool EqualCollections<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, BinaryPredicate<T> predicate)
         {
             if (collection1 == null)
-                throw new ArgumentNullException("collection1");
+                throw new ArgumentNullException(nameof(collection1));
             if (collection2 == null)
-                throw new ArgumentNullException("collection2");
+                throw new ArgumentNullException(nameof(collection2));
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             using (IEnumerator<T> enum1 = collection1.GetEnumerator(), enum2 = collection2.GetEnumerator()) {
                 bool continue1, continue2;
@@ -5205,7 +5205,7 @@ namespace Wintellect.PowerCollections
         public static T[] ToArray<T>(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             ICollection<T> coll = collection as ICollection<T>;
             if (coll != null) {
@@ -5239,7 +5239,7 @@ namespace Wintellect.PowerCollections
         public static int Count<T>(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             // If it's really an ICollection, use that Count property as it is much faster.
             if (collection is ICollection<T>)
@@ -5282,7 +5282,7 @@ namespace Wintellect.PowerCollections
             if (collection == null)
                 throw new ArgumentException("collection");
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             int count = 0;
             foreach (T item in collection) {
@@ -5309,7 +5309,7 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> NCopiesOf<T>(int n, T item)
         {
             if (n < 0)
-                throw new ArgumentOutOfRangeException("n", n, Strings.ArgMustNotBeNegative);
+                throw new ArgumentOutOfRangeException(nameof(n), n, Strings.ArgMustNotBeNegative);
 
             while (n-- > 0) {
                 yield return item;
@@ -5331,9 +5331,9 @@ namespace Wintellect.PowerCollections
         public static void Fill<T>(IList<T> list, T value)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
             
             int count = list.Count;
             for (int i = 0; i < count; ++i) {
@@ -5350,7 +5350,7 @@ namespace Wintellect.PowerCollections
         public static void Fill<T>(T[] array, T value)
         {
             if (array == null)
-                throw new ArgumentNullException("array");
+                throw new ArgumentNullException(nameof(array));
 
             for (int i = 0; i < array.Length; ++i) {
                 array[i] = value;
@@ -5372,16 +5372,16 @@ namespace Wintellect.PowerCollections
         public static void FillRange<T>(IList<T> list, int start, int count, T value)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             if (count == 0)
                 return;
             if (start < 0 || start >= list.Count)
-                throw new ArgumentOutOfRangeException("start");
+                throw new ArgumentOutOfRangeException(nameof(start));
             if (count < 0 || count > list.Count || start > list.Count - count)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
             
             for (int i = start; i < count + start; ++i) {
                 list[i] = value;
@@ -5401,14 +5401,14 @@ namespace Wintellect.PowerCollections
         public static void FillRange<T>(T[] array, int start, int count, T value)
         {
             if (array == null)
-                throw new ArgumentNullException("array");
+                throw new ArgumentNullException(nameof(array));
 
             if (count == 0)
                 return;
             if (start < 0 || start >= array.Length)
-                throw new ArgumentOutOfRangeException("start");
+                throw new ArgumentOutOfRangeException(nameof(start));
             if (count < 0 || count > array.Length || start > array.Length - count)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             for (int i = start; i < count + start; ++i) {
                 array[i] = value;
@@ -5445,18 +5445,18 @@ namespace Wintellect.PowerCollections
         public static void Copy<T>(IEnumerable<T> source, T[] dest, int destIndex)
         {
             if (source == null)
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             if (dest == null)
-                throw new ArgumentNullException("dest");
+                throw new ArgumentNullException(nameof(dest));
 
             if (destIndex < 0 || destIndex > dest.Length)
-                throw new ArgumentOutOfRangeException("destIndex");
+                throw new ArgumentOutOfRangeException(nameof(destIndex));
 
             using (IEnumerator<T> sourceEnum = source.GetEnumerator()) {
                 // Overwrite items to the end of the destination array. If we hit the end, throw.
                 while (sourceEnum.MoveNext()) {
                     if (destIndex >= dest.Length)
-                        throw new ArgumentException(Strings.ArrayTooSmall, "dest");
+                        throw new ArgumentException(Strings.ArrayTooSmall, nameof(dest));
                     dest[destIndex++] = sourceEnum.Current;
                 }
             }
@@ -5478,18 +5478,18 @@ namespace Wintellect.PowerCollections
         public static void Copy<T>(IEnumerable<T> source, IList<T> dest, int destIndex, int count)
         {
             if (source == null)
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             if (dest == null)
-                throw new ArgumentNullException("dest");
+                throw new ArgumentNullException(nameof(dest));
             if (dest.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "dest");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(dest));
 
             int destCount = dest.Count;
 
             if (destIndex < 0 || destIndex > destCount)
-                throw new ArgumentOutOfRangeException("destIndex");
+                throw new ArgumentOutOfRangeException(nameof(destIndex));
             if (count < 0)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             using (IEnumerator<T> sourceEnum = source.GetEnumerator()) {
                 // First, overwrite items to the end of the destination list.
@@ -5523,16 +5523,16 @@ namespace Wintellect.PowerCollections
         public static void Copy<T>(IEnumerable<T> source, T[] dest, int destIndex, int count)
         {
             if (source == null)
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             if (dest == null)
-                throw new ArgumentNullException("dest");
+                throw new ArgumentNullException(nameof(dest));
 
             int destCount = dest.Length;
 
             if (destIndex < 0 || destIndex > destCount)
-                throw new ArgumentOutOfRangeException("destIndex");
+                throw new ArgumentOutOfRangeException(nameof(destIndex));
             if (count < 0 || destIndex + count > destCount)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             using (IEnumerator<T> sourceEnum = source.GetEnumerator()) {
                 // First, overwrite items to the end of the destination array.
@@ -5562,21 +5562,21 @@ namespace Wintellect.PowerCollections
         public static void Copy<T>(IList<T> source, int sourceIndex, IList<T> dest, int destIndex, int count)
         {
             if (source == null)
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             if (dest == null)
-                throw new ArgumentNullException("dest");
+                throw new ArgumentNullException(nameof(dest));
             if (dest.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "dest");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(dest));
 
             int sourceCount = source.Count;
             int destCount = dest.Count;
 
             if (sourceIndex < 0 || sourceIndex >= sourceCount)
-                throw new ArgumentOutOfRangeException("sourceIndex");
+                throw new ArgumentOutOfRangeException(nameof(sourceIndex));
             if (destIndex < 0 || destIndex > destCount)
-                throw new ArgumentOutOfRangeException("destIndex");
+                throw new ArgumentOutOfRangeException(nameof(destIndex));
             if (count < 0)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
             if (count > sourceCount - sourceIndex)
                 count = sourceCount - sourceIndex;
 
@@ -5630,19 +5630,19 @@ namespace Wintellect.PowerCollections
         public static void Copy<T>(IList<T> source, int sourceIndex, T[] dest, int destIndex, int count)
         {
             if (source == null)
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             if (dest == null)
-                throw new ArgumentNullException("dest");
+                throw new ArgumentNullException(nameof(dest));
 
             int sourceCount = source.Count;
             int destCount = dest.Length;
 
             if (sourceIndex < 0 || sourceIndex >= sourceCount)
-                throw new ArgumentOutOfRangeException("sourceIndex");
+                throw new ArgumentOutOfRangeException(nameof(sourceIndex));
             if (destIndex < 0 || destIndex > destCount)
-                throw new ArgumentOutOfRangeException("destIndex");
+                throw new ArgumentOutOfRangeException(nameof(destIndex));
             if (count < 0 || destIndex + count > destCount)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             if (count > sourceCount - sourceIndex)
                 count = sourceCount - sourceIndex;
@@ -5670,7 +5670,7 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> Reverse<T>(IList<T> source)
         {
             if (source == null)
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
 
             for (int i = source.Count - 1; i >= 0; --i)
                 yield return source[i];
@@ -5687,11 +5687,11 @@ namespace Wintellect.PowerCollections
         public static void ReverseInPlace<T>(IList<T> list)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (list is T[])
                 list = new ArrayWrapper<T>((T[])list);
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             int i, j;
             i = 0;
@@ -5717,7 +5717,7 @@ namespace Wintellect.PowerCollections
         public static IEnumerable<T> Rotate<T>(IList<T> source, int amountToRotate)
         {
             if (source == null)
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
 
             int count = source.Count;
             if (count != 0) {
@@ -5746,11 +5746,11 @@ namespace Wintellect.PowerCollections
         public static void RotateInPlace<T>(IList<T> list, int amountToRotate)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (list is T[])
                 list = new ArrayWrapper<T>((T[])list);
             if (list.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, "list");
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
             int count = list.Count;
             if (count != 0) {

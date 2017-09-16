@@ -57,7 +57,7 @@ namespace Wintellect.PowerCollections
         public Set(IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             this.equalityComparer = equalityComparer;
             hash = new Hash<T>(equalityComparer);
@@ -302,7 +302,7 @@ namespace Wintellect.PowerCollections
         public void AddMany(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             // If we're adding ourselves, then there is nothing to do.
             if (object.ReferenceEquals(collection, this))
@@ -346,7 +346,7 @@ namespace Wintellect.PowerCollections
         public int RemoveMany(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             int count = 0;
 
@@ -389,7 +389,7 @@ namespace Wintellect.PowerCollections
         private void CheckConsistentComparison(Set<T> otherSet)
         {
             if (otherSet == null)
-                throw new ArgumentNullException("otherSet");
+                throw new ArgumentNullException(nameof(otherSet));
 
             if (!object.Equals(equalityComparer, otherSet.equalityComparer))
                 throw new InvalidOperationException(Strings.InconsistentComparisons);

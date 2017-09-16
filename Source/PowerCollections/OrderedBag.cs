@@ -76,7 +76,7 @@ namespace Wintellect.PowerCollections
         public OrderedBag(IComparer<T> comparer)
         {
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
 
             this.comparer = comparer;
             tree = new RedBlackTree<T>(comparer);
@@ -336,7 +336,7 @@ namespace Wintellect.PowerCollections
             get
             {
                 if (index < 0 || index >= Count)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 return tree.GetItemByIndex(index);
             }
@@ -401,7 +401,7 @@ namespace Wintellect.PowerCollections
         public void AddMany(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             // If we're adding ourselves, we need to copy to a separate array to avoid modification
             // during enumeration.
@@ -464,7 +464,7 @@ namespace Wintellect.PowerCollections
         public int RemoveMany(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             int count = 0;
 
@@ -585,7 +585,7 @@ namespace Wintellect.PowerCollections
         private void CheckConsistentComparison(OrderedBag<T> otherBag)
         {
             if (otherBag == null)
-                throw new ArgumentNullException("otherBag");
+                throw new ArgumentNullException(nameof(otherBag));
 
             if (!object.Equals(comparer, otherBag.comparer))
                 throw new InvalidOperationException(Strings.InconsistentComparisons);
@@ -1192,7 +1192,7 @@ namespace Wintellect.PowerCollections
                         int firstIndex = myBag.tree.FirstItemInRange(rangeTester, out dummy);
                         int lastIndex = myBag.tree.LastItemInRange(rangeTester, out dummy);
                         if (firstIndex < 0 || lastIndex < 0 || index < 0 || index >= (lastIndex - firstIndex + 1))
-                            throw new ArgumentOutOfRangeException("index");
+                            throw new ArgumentOutOfRangeException(nameof(index));
 
                         if (reversed)
                             return myBag[lastIndex - index];
@@ -1463,7 +1463,7 @@ namespace Wintellect.PowerCollections
             public sealed override void Add(T item)
             {
                 if (!ItemInView(item))
-                    throw new ArgumentException(Strings.OutOfViewRange, "item");
+                    throw new ArgumentException(Strings.OutOfViewRange, nameof(item));
                 else
                     myBag.Add(item);
             }
@@ -1625,7 +1625,7 @@ namespace Wintellect.PowerCollections
                         int firstIndex = myBag.tree.FirstItemInRange(rangeTester, out dummy);
                         int lastIndex = myBag.tree.LastItemInRange(rangeTester, out dummy);
                         if (firstIndex < 0 || lastIndex < 0 || index < 0 || index >= (lastIndex - firstIndex + 1))
-                            throw new ArgumentOutOfRangeException("index");
+                            throw new ArgumentOutOfRangeException(nameof(index));
 
                         if (reversed)
                             return myBag[lastIndex - index];

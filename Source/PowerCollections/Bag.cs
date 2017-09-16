@@ -91,7 +91,7 @@ namespace Wintellect.PowerCollections
         public Bag(IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             this.keyEqualityComparer = equalityComparer;
             this.equalityComparer = Comparers.EqualityComparerKeyValueFromComparerKey<T, int>(equalityComparer);
@@ -405,7 +405,7 @@ namespace Wintellect.PowerCollections
         public void AddMany(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             // If we're adding ourselves, we need to copy to a separate array to avoid modification
             // during enumeration.
@@ -485,7 +485,7 @@ namespace Wintellect.PowerCollections
         public int RemoveMany(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             int removeCount = 0;
 
@@ -529,7 +529,7 @@ namespace Wintellect.PowerCollections
         private void CheckConsistentComparison(Bag<T> otherBag)
         {
             if (otherBag == null)
-                throw new ArgumentNullException("otherBag");
+                throw new ArgumentNullException(nameof(otherBag));
 
             if (!object.Equals(equalityComparer, otherBag.equalityComparer))
                 throw new InvalidOperationException(Strings.InconsistentComparisons);

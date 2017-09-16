@@ -174,7 +174,7 @@ namespace Wintellect.PowerCollections
             if (obj is Triple<TFirst, TSecond, TThird>)
                 return CompareTo((Triple<TFirst, TSecond,TThird>)obj);
             else
-                throw new ArgumentException(Strings.BadComparandType, "obj");
+                throw new ArgumentException(Strings.BadComparandType, nameof(obj));
         }
 
         /// <summary>

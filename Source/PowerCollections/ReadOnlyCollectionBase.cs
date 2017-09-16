@@ -61,7 +61,7 @@ namespace Wintellect.PowerCollections
         public virtual bool Exists(Predicate<T> predicate)
         {
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             return Algorithms.Exists(this, predicate);
         }
@@ -77,7 +77,7 @@ namespace Wintellect.PowerCollections
         public virtual bool TrueForAll(Predicate<T> predicate)
         {
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             return Algorithms.TrueForAll(this, predicate);
         }
@@ -91,7 +91,7 @@ namespace Wintellect.PowerCollections
         public virtual int CountWhere(Predicate<T> predicate)
         {
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             return Algorithms.CountWhere(this, predicate);
         }
@@ -105,7 +105,7 @@ namespace Wintellect.PowerCollections
         public IEnumerable<T> FindAll(Predicate<T> predicate)
         {
             if (predicate == null)
-                throw new ArgumentNullException("predicate");
+                throw new ArgumentNullException(nameof(predicate));
 
             return Algorithms.FindWhere(this, predicate);
         }
@@ -117,7 +117,7 @@ namespace Wintellect.PowerCollections
         public virtual void ForEach(Action<T> action)
         {
             if (action == null)
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
 
             Algorithms.ForEach(this, action);
         }
@@ -135,7 +135,7 @@ namespace Wintellect.PowerCollections
         public virtual IEnumerable<TOutput> ConvertAll<TOutput>(Converter<T, TOutput> converter)
         {
             if (converter == null)
-                throw new ArgumentNullException("converter");
+                throw new ArgumentNullException(nameof(converter));
 
             return Algorithms.Convert(this, converter);
         }
@@ -212,11 +212,11 @@ namespace Wintellect.PowerCollections
                 return;
 
             if (array == null)
-                throw new ArgumentNullException("array");
+                throw new ArgumentNullException(nameof(array));
             if (count < 0)
                 throw new IndexOutOfRangeException(Strings.ArgMustNotBeNegative);
             if (arrayIndex < 0)
-                throw new ArgumentOutOfRangeException("arrayIndex", arrayIndex, Strings.ArgMustNotBeNegative);
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex), arrayIndex, Strings.ArgMustNotBeNegative);
             if (arrayIndex >= array.Length || count > array.Length - arrayIndex)
                 throw new ArgumentException("arrayIndex", Strings.ArrayTooSmall);
 
@@ -292,11 +292,11 @@ namespace Wintellect.PowerCollections
                 return;
 
             if (array == null)
-                throw new ArgumentNullException("array");
+                throw new ArgumentNullException(nameof(array));
             if (count < 0)
                 throw new IndexOutOfRangeException(Strings.ArgMustNotBeNegative);
             if (index < 0)
-                throw new ArgumentOutOfRangeException("index", index, Strings.ArgMustNotBeNegative);
+                throw new ArgumentOutOfRangeException(nameof(index), index, Strings.ArgMustNotBeNegative);
             if (index >= array.Length || count > array.Length - index)
                 throw new ArgumentException("index", Strings.ArrayTooSmall);
 

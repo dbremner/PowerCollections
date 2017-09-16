@@ -168,9 +168,9 @@ namespace Wintellect.PowerCollections
         public MultiDictionary(bool allowDuplicateValues, IEqualityComparer<TKey> keyEqualityComparer, IEqualityComparer<TValue> valueEqualityComparer)
         {
             if (keyEqualityComparer == null)
-                throw new ArgumentNullException("keyEqualityComparer");
+                throw new ArgumentNullException(nameof(keyEqualityComparer));
             if (valueEqualityComparer == null)
-                throw new ArgumentNullException("valueEqualityComparer");
+                throw new ArgumentNullException(nameof(valueEqualityComparer));
 
             this.allowDuplicateValues = allowDuplicateValues;
             this.keyEqualityComparer = keyEqualityComparer;
@@ -185,9 +185,9 @@ namespace Wintellect.PowerCollections
         private MultiDictionary(bool allowDuplicateValues, IEqualityComparer<TKey> keyEqualityComparer, IEqualityComparer<TValue> valueEqualityComparer, IEqualityComparer<KeyAndValues> equalityComparer, Hash<KeyAndValues> hash)
         {
             if (keyEqualityComparer == null)
-                throw new ArgumentNullException("keyEqualityComparer");
+                throw new ArgumentNullException(nameof(keyEqualityComparer));
             if (valueEqualityComparer == null)
-                throw new ArgumentNullException("valueEqualityComparer");
+                throw new ArgumentNullException(nameof(valueEqualityComparer));
 
             this.allowDuplicateValues = allowDuplicateValues;
             this.keyEqualityComparer = keyEqualityComparer;

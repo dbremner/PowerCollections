@@ -64,7 +64,7 @@ namespace Wintellect.PowerCollections
         public virtual void Add(TKey key, TValue value)
         {
             if (ContainsKey(key)) {
-                throw new ArgumentException(Strings.KeyAlreadyPresent, "key");
+                throw new ArgumentException(Strings.KeyAlreadyPresent, nameof(key));
             }
             else {
                 this[key] = value;

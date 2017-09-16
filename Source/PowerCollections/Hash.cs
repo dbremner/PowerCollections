@@ -369,7 +369,7 @@ namespace Wintellect.PowerCollections
             {
                 // Don't allow hopelessly inefficient load factors.
                 if (value < 0.25 || value > 0.95)
-                    throw new ArgumentOutOfRangeException("value", value, Strings.InvalidLoadFactor);
+                    throw new ArgumentOutOfRangeException(nameof(value), value, Strings.InvalidLoadFactor);
 
                 StopEnumerations();
 
@@ -608,7 +608,7 @@ namespace Wintellect.PowerCollections
         void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (info == null)
-                throw new ArgumentNullException("info");
+                throw new ArgumentNullException(nameof(info));
 
             info.AddValue("equalityComparer", equalityComparer, typeof(IEqualityComparer<T>));
             info.AddValue("loadFactor", loadFactor, typeof(float));

@@ -111,7 +111,7 @@ namespace Wintellect.PowerCollections
         public BigList(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             root = NodeFromEnumerable(collection);
             CheckBalance();
         }
@@ -128,7 +128,7 @@ namespace Wintellect.PowerCollections
         public BigList(IEnumerable<T> collection, int copies)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             root = NCopiesOfNode(copies, NodeFromEnumerable(collection));
             CheckBalance();
         }
@@ -144,7 +144,7 @@ namespace Wintellect.PowerCollections
         public BigList(BigList<T> list)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (list.root == null)
                 root = null;
             else {
@@ -166,7 +166,7 @@ namespace Wintellect.PowerCollections
         public BigList(BigList<T> list, int copies)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if (list.root == null)
                 root = null;
             else {
@@ -222,7 +222,7 @@ namespace Wintellect.PowerCollections
                 // It is recoded as an interative algorithm for performance.
 
                 if (root == null || index < 0 || index >= root.Count)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 Node current = root;
                 ConcatNode curConcat = current as ConcatNode;
@@ -249,7 +249,7 @@ namespace Wintellect.PowerCollections
                 // It is recoded as an interative algorithm for performance.
 
                 if (root == null || index < 0 || index >= root.Count)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 // Like List<T>, we stop enumerations after a set operation. This could be made
                 // to not happen, but it would be complex, because set operations on a shared node
@@ -325,7 +325,7 @@ namespace Wintellect.PowerCollections
                 else if (index == Count)
                     Add(item);
                 else
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
             }
             else {
                 if (root == null)
@@ -360,7 +360,7 @@ namespace Wintellect.PowerCollections
             StopEnumerations();
 
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             if (index <= 0 || index >= Count) {
                 if (index == 0)
@@ -368,7 +368,7 @@ namespace Wintellect.PowerCollections
                 else if (index == Count)
                     AddRange(collection);
                 else
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
             }
             else {
                 Node node = NodeFromEnumerable(collection);
@@ -410,7 +410,7 @@ namespace Wintellect.PowerCollections
             StopEnumerations();
 
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if ((uint)Count + (uint)list.Count > MAXITEMS)
                 throw new InvalidOperationException(Strings.CollectionTooLarge);
 
@@ -420,7 +420,7 @@ namespace Wintellect.PowerCollections
                 else if (index == Count)
                     AddRange(list);
                 else
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
             }
             else {
                 if (list.Count == 0)
@@ -479,9 +479,9 @@ namespace Wintellect.PowerCollections
             if (count == 0)
                 return;              // nothing to do.
             if (index < 0 || index >= Count)
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
             if (count < 0 || count > Count - index)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             StopEnumerations();
 
@@ -552,7 +552,7 @@ namespace Wintellect.PowerCollections
         public void AddRange(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             StopEnumerations();
 
@@ -587,7 +587,7 @@ namespace Wintellect.PowerCollections
         public void AddRangeToFront(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             StopEnumerations();
 
@@ -686,7 +686,7 @@ namespace Wintellect.PowerCollections
         public void AddRange(BigList<T> list)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if ((uint)Count + (uint)list.Count > MAXITEMS)
                 throw new InvalidOperationException(Strings.CollectionTooLarge);
 
@@ -722,7 +722,7 @@ namespace Wintellect.PowerCollections
         public void AddRangeToFront(BigList<T> list)
         {
             if (list == null)
-                throw new ArgumentNullException("list");
+                throw new ArgumentNullException(nameof(list));
             if ((uint)Count + (uint)list.Count > MAXITEMS)
                 throw new InvalidOperationException(Strings.CollectionTooLarge);
 
@@ -759,9 +759,9 @@ namespace Wintellect.PowerCollections
         public static BigList<T> operator +(BigList<T> first, BigList<T> second)
         {
             if (first == null)
-                throw new ArgumentNullException("first");
+                throw new ArgumentNullException(nameof(first));
             if (second == null)
-                throw new ArgumentNullException("second");
+                throw new ArgumentNullException(nameof(second));
             if ((uint)first.Count + (uint)second.Count > MAXITEMS)
                 throw new InvalidOperationException(Strings.CollectionTooLarge);
 
@@ -795,9 +795,9 @@ namespace Wintellect.PowerCollections
                 return new BigList<T>();
 
             if (index < 0 || index >= Count)
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
             if (count < 0 || count > Count - index)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             return new BigList<T>(root.Subrange(index, index + count - 1));
         }
@@ -822,9 +822,9 @@ namespace Wintellect.PowerCollections
         public sealed override IList<T> Range(int index, int count)
         {
             if (index < 0 || index > this.Count || (index == this.Count && count != 0))
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
             if (count < 0 || count > this.Count || count + index > this.Count)
-                throw new ArgumentOutOfRangeException("count");
+                throw new ArgumentOutOfRangeException(nameof(count));
 
             return new BigListRange(this, index, count);
         }
@@ -860,7 +860,7 @@ namespace Wintellect.PowerCollections
                     // Set current to the node containing start, and set startIndex to
                     // the index within that node.
                     if (start < 0 || start >= root.Count)
-                        throw new ArgumentOutOfRangeException("start");
+                        throw new ArgumentOutOfRangeException(nameof(start));
 
                     currentConcat = current as ConcatNode;
                     startIndex = start;
@@ -1015,7 +1015,7 @@ namespace Wintellect.PowerCollections
         private static  Node NCopiesOfNode(int copies, Node node)
         {
             if (copies < 0)
-                throw new ArgumentOutOfRangeException("copies", Strings.ArgMustNotBeNegative);
+                throw new ArgumentOutOfRangeException(nameof(copies), Strings.ArgMustNotBeNegative);
 
             // Do the simple cases.
             if (copies == 0 || node == null)
@@ -2749,7 +2749,7 @@ namespace Wintellect.PowerCollections
             public override void Insert(int index, T item)
             {
                 if (index < 0 || index > count)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 wrappedList.Insert(start + index, item);
                 ++count;
@@ -2758,7 +2758,7 @@ namespace Wintellect.PowerCollections
             public override void RemoveAt(int index)
             {
                 if (index < 0 || index >= count)
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 wrappedList.RemoveAt(start + index);
                 --count;
@@ -2769,14 +2769,14 @@ namespace Wintellect.PowerCollections
                 get
                 {
                     if (index < 0 || index >= count)
-                        throw new ArgumentOutOfRangeException("index");
+                        throw new ArgumentOutOfRangeException(nameof(index));
 
                     return wrappedList[start + index];
                 }
                 set
                 {
                     if (index < 0 || index >= count)
-                        throw new ArgumentOutOfRangeException("index");
+                        throw new ArgumentOutOfRangeException(nameof(index));
 
                     wrappedList[start + index] = value;
                 }

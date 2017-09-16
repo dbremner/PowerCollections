@@ -45,7 +45,7 @@ namespace Wintellect.PowerCollections.Tests
                 if (index >= 0 && index < array.Length)
                     return array[index];
                 else
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
             }
 
             set
@@ -53,7 +53,7 @@ namespace Wintellect.PowerCollections.Tests
                 if (index >= 0 && index < array.Length)
                     array[index] = value;
                 else
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
             }
         }
 
@@ -67,7 +67,7 @@ namespace Wintellect.PowerCollections.Tests
                 array = newArray;
             }
             else
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
         }
 
         public override void RemoveAt(int index)
@@ -79,7 +79,7 @@ namespace Wintellect.PowerCollections.Tests
                 array = newArray;
             }
             else
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
         }
     }
 
@@ -105,7 +105,7 @@ namespace Wintellect.PowerCollections.Tests
                 if (index >= 0 && index < array.Length)
                     return array[index];
                 else
-                    throw new ArgumentOutOfRangeException("index");
+                    throw new ArgumentOutOfRangeException(nameof(index));
             }
         }
     }

@@ -83,7 +83,7 @@ namespace Wintellect.PowerCollections
             this(null, comparer, Comparers.ComparerKeyValueFromComparerKey<TKey, TValue>(comparer))
 		{
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Wintellect.PowerCollections
             : this(keysAndValues, comparer, Comparers.ComparerKeyValueFromComparerKey<TKey, TValue>(comparer))
         {
             if (comparer == null)
-                throw new ArgumentNullException("comparer");
+                throw new ArgumentNullException(nameof(comparer));
         }
 
         /// <summary>
@@ -442,7 +442,7 @@ namespace Wintellect.PowerCollections
 
             bool added = tree.Insert(pair, DuplicatePolicy.DoNothing, out dummy);
             if (! added) 
-                throw new ArgumentException(Strings.KeyAlreadyPresent, "key");
+                throw new ArgumentException(Strings.KeyAlreadyPresent, nameof(key));
         }
 
         /// <summary>
@@ -480,7 +480,7 @@ namespace Wintellect.PowerCollections
         public void AddMany(IEnumerable<KeyValuePair<TKey, TValue>> keysAndValues)
         {
             if (keysAndValues == null)
-                throw new ArgumentNullException("keysAndValues");
+                throw new ArgumentNullException(nameof(keysAndValues));
 
             foreach (KeyValuePair<TKey, TValue> pair in keysAndValues) {
                 this[pair.Key] = pair.Value;
@@ -498,7 +498,7 @@ namespace Wintellect.PowerCollections
         public int RemoveMany(IEnumerable<TKey> keyCollectionToRemove)
         {
             if (keyCollectionToRemove == null)
-                throw new ArgumentNullException("keyCollectionToRemove");
+                throw new ArgumentNullException(nameof(keyCollectionToRemove));
 
             int count = 0;
 
@@ -750,7 +750,7 @@ namespace Wintellect.PowerCollections
                  set
                 {
                     if (!KeyInView(key))
-                        throw new ArgumentException(Strings.OutOfViewRange, "key");
+                        throw new ArgumentException(Strings.OutOfViewRange, nameof(key));
                     else
                         myDictionary[key] = value;
                 }

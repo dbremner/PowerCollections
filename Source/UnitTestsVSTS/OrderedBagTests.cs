@@ -50,7 +50,7 @@ namespace Wintellect.PowerCollections.Tests
                         return 0;
                 }
                 else
-                    throw new ArgumentException("Argument of wrong type.", "other");
+                    throw new ArgumentException("Argument of wrong type.", nameof(other));
             }
         }
 

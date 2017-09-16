@@ -165,7 +165,7 @@ namespace Wintellect.PowerCollections
             if (obj is Pair<TFirst, TSecond>)
                 return CompareTo((Pair<TFirst, TSecond>)obj);
             else
-                throw new ArgumentException(Strings.BadComparandType, "obj");
+                throw new ArgumentException(Strings.BadComparandType, nameof(obj));
         }
 
         /// <summary>

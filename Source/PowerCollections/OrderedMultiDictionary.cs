@@ -242,9 +242,9 @@ namespace Wintellect.PowerCollections
         public OrderedMultiDictionary(bool allowDuplicateValues, IComparer<TKey> keyComparer, IComparer<TValue> valueComparer)
         {
             if (keyComparer == null)
-                throw new ArgumentNullException("keyComparer");
+                throw new ArgumentNullException(nameof(keyComparer));
             if (valueComparer == null)
-                throw new ArgumentNullException("valueComparer");
+                throw new ArgumentNullException(nameof(valueComparer));
 
             this.allowDuplicateValues = allowDuplicateValues;
             this.keyComparer = keyComparer;
@@ -923,7 +923,7 @@ namespace Wintellect.PowerCollections
             public sealed override void Add(TKey key, TValue value)
             {
                 if (!KeyInView(key))
-                    throw new ArgumentException(Strings.OutOfViewRange, "key");
+                    throw new ArgumentException(Strings.OutOfViewRange, nameof(key));
                 else
                     myDictionary.Add(key, value);
             }
