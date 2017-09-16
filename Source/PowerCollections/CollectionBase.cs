@@ -123,7 +123,7 @@ namespace Wintellect.PowerCollections
             if (array == null)
                 throw new ArgumentNullException(nameof(array));
             if (count < 0)
-                throw new IndexOutOfRangeException(Strings.ArgMustNotBeNegative);
+                throw new ArgumentOutOfRangeException(nameof(count), Strings.ArgMustNotBeNegative);
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex), arrayIndex, Strings.ArgMustNotBeNegative);
             if (arrayIndex >= array.Length || count > array.Length - arrayIndex)
