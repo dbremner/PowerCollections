@@ -38,8 +38,8 @@ namespace Wintellect.PowerCollections
 
             public override bool Equals(object obj)
             {
-                if (obj is KeyValueEqualityComparer<TKey, TValue>)
-                    return object.Equals(keyEqualityComparer, ((KeyValueEqualityComparer<TKey, TValue>)obj).keyEqualityComparer);
+                if (obj is KeyValueEqualityComparer<TKey, TValue> comparer)
+                    return object.Equals(keyEqualityComparer, comparer.keyEqualityComparer);
                 else
                     return false;
             }
@@ -67,8 +67,8 @@ namespace Wintellect.PowerCollections
 
             public override bool Equals(object obj)
             {
-                if (obj is KeyValueComparer<TKey, TValue>)
-                    return object.Equals(keyComparer, ((KeyValueComparer<TKey, TValue>)obj).keyComparer);
+                if (obj is KeyValueComparer<TKey, TValue> comparer)
+                    return object.Equals(keyComparer, comparer.keyComparer);
                 else
                     return false;
             }
@@ -107,9 +107,9 @@ namespace Wintellect.PowerCollections
 
             public override bool Equals(object obj)
             {
-                if (obj is PairComparer<TKey, TValue>)
-                    return object.Equals(keyComparer, ((PairComparer<TKey, TValue>)obj).keyComparer) &&
-                        object.Equals(valueComparer, ((PairComparer<TKey, TValue>)obj).valueComparer);
+                if (obj is PairComparer<TKey, TValue> comparer)
+                    return object.Equals(keyComparer, comparer.keyComparer) &&
+                        object.Equals(valueComparer, comparer.valueComparer);
                 else
                     return false;
             }
@@ -136,8 +136,8 @@ namespace Wintellect.PowerCollections
 
             public override bool Equals(object obj)
             {
-                if (obj is ComparisonComparer<T>)
-                    return comparison.Equals(((ComparisonComparer<T>)obj).comparison);
+                if (obj is ComparisonComparer<T> comparer)
+                    return comparison.Equals(comparer.comparison);
                 else
                     return false;
             }
@@ -165,8 +165,8 @@ namespace Wintellect.PowerCollections
 
             public override bool Equals(object obj)
             {
-                if (obj is ComparisonKeyValueComparer<TKey, TValue>)
-                    return comparison.Equals(((ComparisonKeyValueComparer<TKey, TValue>)obj).comparison);
+                if (obj is ComparisonKeyValueComparer<TKey, TValue> comparer)
+                    return comparison.Equals(comparer.comparison);
                 else
                     return false;
             }

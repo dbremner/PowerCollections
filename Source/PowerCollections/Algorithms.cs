@@ -678,8 +678,8 @@ namespace Wintellect.PowerCollections
         {
             if (untypedCollection == null)
                 return null;
-            else if (untypedCollection is IEnumerable<T>)
-                return (IEnumerable<T>)untypedCollection;
+            else if (untypedCollection is IEnumerable<T> enumerable)
+                return enumerable;
             else
                 return new TypedEnumerable<T>(untypedCollection);
         }
@@ -774,8 +774,8 @@ namespace Wintellect.PowerCollections
         {
             if (untypedCollection == null)
                 return null;
-            else if (untypedCollection is ICollection<T>)
-                return (ICollection<T>) untypedCollection;
+            else if (untypedCollection is ICollection<T> collection)
+                return collection;
             else
                 return new TypedCollection<T>(untypedCollection);
         }
@@ -875,8 +875,8 @@ namespace Wintellect.PowerCollections
         {
             if (untypedList == null)
                 return null;
-            else if (untypedList is IList<T>)
-                return (IList<T>)untypedList;
+            else if (untypedList is IList<T> list)
+                return list;
             else
                 return new TypedList<T>(untypedList);
         }
@@ -962,8 +962,8 @@ namespace Wintellect.PowerCollections
         {
             if (typedCollection == null)
                 return null;
-            else if (typedCollection is ICollection)
-                return (ICollection)typedCollection;
+            else if (typedCollection is ICollection collection)
+                return collection;
             else
                 return new UntypedCollection<T>(typedCollection);
         }
@@ -1117,8 +1117,8 @@ namespace Wintellect.PowerCollections
         {
             if (typedList == null)
                 return null;
-            else if (typedList is IList)
-                return (IList)typedList;
+            else if (typedList is IList list)
+                return list;
             else
                 return new UntypedList<T>(typedList);
         }
@@ -1356,8 +1356,8 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(list));
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
-            if (list is T[])
-                list = new ArrayWrapper<T>((T[])list);
+            if (list is T[] array)
+                list = new ArrayWrapper<T>(array);
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
@@ -1384,8 +1384,8 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(list));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            if (list is T[])
-                list = new ArrayWrapper<T>((T[])list);
+            if (list is T[] array)
+                list = new ArrayWrapper<T>(array);
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
@@ -1517,8 +1517,8 @@ namespace Wintellect.PowerCollections
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            if (list is T[])
-                list = new ArrayWrapper<T>((T[])list);
+            if (list is T[] array)
+                list = new ArrayWrapper<T>(array);
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
@@ -1542,7 +1542,7 @@ namespace Wintellect.PowerCollections
             ++i;
             if (i < listCount) {
                 // remove items from the end.
-                if (list is ArrayWrapper<T> || (list is IList && ((IList)list).IsFixedSize)) {
+                if (list is ArrayWrapper<T> || ((list as IList)?.IsFixedSize == true)) {
                     // An array or similar. Null out the last elements.
                     while (i < listCount)
                         list[i++] = default(T);
@@ -2882,8 +2882,8 @@ namespace Wintellect.PowerCollections
 
                 if (item == null)
                     builder.Append("null");
-                else if (recursive && item is IEnumerable && !(item is string))
-                    builder.Append(Algorithms.ToString(Algorithms.TypedAs<object>((IEnumerable)item), recursive, start, separator, end));
+                else if (recursive && item is IEnumerable enumerable && !(item is string))
+                    builder.Append(Algorithms.ToString(Algorithms.TypedAs<object>(enumerable), recursive, start, separator, end));
                 else
                     builder.Append(item.ToString());
 
@@ -3036,8 +3036,8 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(list));
             if (randomGenerator == null)
                 throw new ArgumentNullException(nameof(randomGenerator));
-            if (list is T[])
-                list = new ArrayWrapper<T>((T[])list);
+            if (list is T[] array)
+                list = new ArrayWrapper<T>(array);
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
@@ -3659,8 +3659,8 @@ namespace Wintellect.PowerCollections
 
             // If we have an array, use the built-in array sort (faster than going through IList accessors
             // with virtual calls).
-            if (list is T[]) {
-                Array.Sort((T[])list, comparer);
+            if (list is T[] array) {
+                Array.Sort(array, comparer);
                 return;
             }
 
@@ -3880,8 +3880,8 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(list));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
-            if (list is T[])
-                list = new ArrayWrapper<T>((T[])list);
+            if (list is T[] array)
+                list = new ArrayWrapper<T>(array);
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
@@ -4372,8 +4372,8 @@ namespace Wintellect.PowerCollections
 
             public override bool Equals(object obj)
             {
-                if (obj is LexicographicalComparerClass<T>)
-                    return this.itemComparer.Equals(((LexicographicalComparerClass<T>)obj).itemComparer);
+                if (obj is LexicographicalComparerClass<T> lexicographicalComparer)
+                    return this.itemComparer.Equals(lexicographicalComparer.itemComparer);
                 else
                     return false;
             }
@@ -4457,8 +4457,8 @@ namespace Wintellect.PowerCollections
 
             public override bool Equals(object obj)
             {
-                if (obj is ReverseComparerClass<T>)
-                    return this.comparer.Equals(((ReverseComparerClass<T>)obj).comparer);
+                if (obj is ReverseComparerClass<T> reverseComparer)
+                    return this.comparer.Equals(reverseComparer.comparer);
                 else
                     return false;
             }
@@ -4832,8 +4832,8 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(collection));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            if (collection is T[])
-                collection = new ArrayWrapper<T>((T[])collection);
+            if (collection is T[] array)
+                collection = new ArrayWrapper<T>(array);
             if (collection.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(collection));
 
@@ -4862,7 +4862,7 @@ namespace Wintellect.PowerCollections
                 ++i;
                 if (i < listCount) {
                     // remove items from the end.
-                    if (list is IList && ((IList)list).IsFixedSize) {
+                    if ((list as IList)?.IsFixedSize == true) {
                         // An array or similar. Null out the last elements.
                         while (i < listCount)
                             list[i++] = default(T);
@@ -4987,8 +4987,8 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(list));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            if (list is T[])
-                list = new ArrayWrapper<T>((T[])list);
+            if (list is T[] array)
+                list = new ArrayWrapper<T>(array);
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
@@ -5034,8 +5034,8 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(list));
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
-            if (list is T[])
-                list = new ArrayWrapper<T>((T[])list);
+            if (list is T[] array)
+                list = new ArrayWrapper<T>(array);
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
@@ -5242,8 +5242,8 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(collection));
 
             // If it's really an ICollection, use that Count property as it is much faster.
-            if (collection is ICollection<T>)
-                return ((ICollection<T>)collection).Count;
+            if (collection is ICollection<T> iCollection)
+                return iCollection.Count;
 
             // Traverse the collection and count the elements.
             int count = 0;
@@ -5647,9 +5647,9 @@ namespace Wintellect.PowerCollections
             if (count > sourceCount - sourceIndex)
                 count = sourceCount - sourceIndex;
 
-            if (source is T[]) {
+            if (source is T[] array) {
                 // Array.Copy is probably faster, and also handles any overlapping issues.
-                Array.Copy((T[])source, sourceIndex, dest, destIndex, count);
+                Array.Copy(array, sourceIndex, dest, destIndex, count);
             }
             else {
                 int si = sourceIndex;
@@ -5688,8 +5688,8 @@ namespace Wintellect.PowerCollections
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
-            if (list is T[])
-                list = new ArrayWrapper<T>((T[])list);
+            if (list is T[] array)
+                list = new ArrayWrapper<T>(array);
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
@@ -5747,8 +5747,8 @@ namespace Wintellect.PowerCollections
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
-            if (list is T[])
-                list = new ArrayWrapper<T>((T[])list);
+            if (list is T[] array)
+                list = new ArrayWrapper<T>(array);
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 

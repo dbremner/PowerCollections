@@ -408,8 +408,8 @@ namespace Wintellect.PowerCollections
             // We need an ICollection, because we need the count of the collection.
             // If needed, copy the items to a temporary list.
             ICollection<T> coll;
-            if (collection is ICollection<T>)
-                coll = (ICollection<T>) collection;
+            if (collection is ICollection<T> iCollection)
+                coll = iCollection;
             else {
                 coll = new List<T>(collection);
             }
