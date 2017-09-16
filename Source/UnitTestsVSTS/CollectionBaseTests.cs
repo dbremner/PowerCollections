@@ -314,30 +314,6 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void ForEach()
-        {
-            ReadWriteTestCollection<string> coll1 = new ReadWriteTestCollection<string>(new string[] { "foo", "bar", "hello", "sailor" });
-            string s = "";
-            coll1.ForEach(delegate(string x) { s += "!" + x; });
-            Assert.AreEqual(s, "!foo!bar!hello!sailor");
-
-            ReadOnlyTestCollection<string> coll2 = new ReadOnlyTestCollection<string>(new string[] { "foo", "bar", "hello", "sailor" });
-            s = "";
-            coll2.ForEach(delegate(string x) { s += "!" + x; });
-            Assert.AreEqual(s, "!foo!bar!hello!sailor");
-
-            coll1 = new ReadWriteTestCollection<string>(new string[] {  });
-            s = "";
-            coll1.ForEach(delegate(string x) { s += "!" + x; });
-            Assert.AreEqual(s, "");
-
-            coll2 = new ReadOnlyTestCollection<string>(new string[] { });
-            s = "";
-            coll2.ForEach(delegate(string x) { s += "!" + x; });
-            Assert.AreEqual(s, "");
-        }
-
-        [TestMethod]
         public void ConvertAll()
         {
             int[] array = new int[400];

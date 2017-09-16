@@ -260,18 +260,6 @@ namespace Wintellect.PowerCollections
         }
 
         /// <summary>
-        /// Performs the specified action on each item in this collection.
-        /// </summary>
-        /// <param name="action">An Action delegate which is invoked for each item in this collection.</param>
-        public virtual void ForEach(Action<T> action)
-        {
-            if (action == null)
-                throw new ArgumentNullException(nameof(action));
-
-            Algorithms.ForEach(this, action);
-        }
-
-        /// <summary>
         /// Convert this collection of items by applying a delegate to each item in the collection. The resulting enumeration
         /// contains the result of applying <paramref name="converter"/> to each item in this collection, in
         /// order.

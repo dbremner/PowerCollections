@@ -157,20 +157,6 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void ForEach()
-        {
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[] { "foo", "bar", "hello", "sailor" });
-            string s = "";
-            Algorithms.ForEach(coll1, delegate(string x) { s += "!" + x; });
-            Assert.AreEqual(s, "!foo!bar!hello!sailor");
-
-            IEnumerable<string> coll2 = EnumerableFromArray(new string[0]);
-            s = "";
-            Algorithms.ForEach(coll2, delegate(string x) { s += "!" + x; });
-            Assert.AreEqual(s, "");
-        }
-
-        [TestMethod]
         public void Partition()
         {
             List<double> list;

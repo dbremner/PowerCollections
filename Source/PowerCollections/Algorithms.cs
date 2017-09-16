@@ -4955,22 +4955,6 @@ namespace Wintellect.PowerCollections
         }
 
         /// <summary>
-        /// Performs the specified action on each item in a collection.
-        /// </summary>
-        /// <param name="collection">The collection to process.</param>
-        /// <param name="action">An Action delegate which is invoked for each item in <paramref name="collection"/>.</param>
-        public static void ForEach<T>(IEnumerable<T> collection, Action<T> action)
-        {
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-            if (action == null)
-                throw new ArgumentNullException(nameof(action));
-
-            foreach (T item in collection)
-                action(item);
-        }
-
-        /// <summary>
         /// Partition a list or array based on a predicate. After partitioning, all items for which
         /// the predicate returned true precede all items for which the predicate returned false.
         /// </summary>

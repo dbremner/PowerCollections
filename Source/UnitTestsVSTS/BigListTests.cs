@@ -2381,20 +2381,6 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void ForEach()
-        {
-            BigList<string> list1 = new BigList<string>(new string[] { "foo", "bar", "hello", "sailor" });
-            string s = "";
-            list1.ForEach(delegate(string x) { s += "!" + x; });
-            Assert.AreEqual(s, "!foo!bar!hello!sailor");
-
-            BigList<string> list2 = new BigList<string>();
-            s = "";
-            list2.ForEach(delegate(string x) { s += "!" + x; });
-            Assert.AreEqual(s, "");
-        }
-
-        [TestMethod]
         public void RemoveAll()
         {
             BigList<double> d_list = new BigList<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
