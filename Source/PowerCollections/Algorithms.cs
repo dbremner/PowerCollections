@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 #pragma warning disable 419  // Ambigious cref in XML comment
 
@@ -1699,11 +1700,7 @@ namespace Wintellect.PowerCollections
         /// <seealso cref="Algorithms.TryFindFirstWhere{T}"/>
         public static T FindFirstWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
-            T retval;
-            if (Algorithms.TryFindFirstWhere(collection, predicate, out retval))
-                return retval;
-            else
-                return default(T);
+            return Enumerable.FirstOrDefault(collection, predicate);
         }
 
         /// <summary>
@@ -1751,11 +1748,7 @@ namespace Wintellect.PowerCollections
         /// <seealso cref="TryFindLastWhere{T}"/>
         public static T FindLastWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
-            T retval;
-            if (Algorithms.TryFindLastWhere(collection, predicate, out retval))
-                return retval;
-            else
-                return default(T);
+            return Enumerable.LastOrDefault(collection, predicate);
         }
 
         /// <summary>
@@ -1816,16 +1809,7 @@ namespace Wintellect.PowerCollections
         /// <returns>An IEnumerable&lt;T&gt; that enumerates the items that satisfy the condition.</returns>
         public static IEnumerable<T> FindWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-            if (predicate == null)
-                throw new ArgumentNullException(nameof(predicate));
-
-            foreach (T item in collection) {
-                if (predicate(item)) {
-                    yield return item;
-                }
-            }
+            return Enumerable.Where(collection, predicate);
         }
 
         /// <summary>
@@ -4753,17 +4737,7 @@ namespace Wintellect.PowerCollections
         /// an item that satisfies <paramref name="predicate"/>.</returns>
         public static bool Exists<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-            if (predicate == null)
-                throw new ArgumentNullException(nameof(predicate));
-
-            foreach (T item in collection) {
-                if (predicate(item))
-                    return true;
-            }
-
-            return false;
+            return Enumerable.Any(collection, predicate);
         }
 
         /// <summary>
@@ -4777,17 +4751,7 @@ namespace Wintellect.PowerCollections
         /// in the collection do not satisfy <paramref name="predicate"/>.</returns>
         public static bool TrueForAll<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-            if (predicate == null)
-                throw new ArgumentNullException(nameof(predicate));
-
-            foreach (T item in collection) {
-                if (!predicate(item))
-                    return false;
-            }
-
-            return true;
+            return Enumerable.All(collection, predicate);
         }
 
         /// <summary>
@@ -4799,18 +4763,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The number of items in the collection that satisfy <paramref name="predicate"/>.</returns>
         public static int CountWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-            if (predicate == null)
-                throw new ArgumentNullException(nameof(predicate));
-
-            int count = 0;
-            foreach (T item in collection) {
-                if (predicate(item))
-                    ++count;
-            }
-
-            return count;
+            return Enumerable.Count(collection, predicate);
         }
 
         /// <summary>
@@ -5188,25 +5141,7 @@ namespace Wintellect.PowerCollections
         /// <exception cref="ArgumentNullException"><paramref name="collection"/> is null.</exception>
         public static T[] ToArray<T>(IEnumerable<T> collection)
         {
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-
-            ICollection<T> coll = collection as ICollection<T>;
-            if (coll != null) {
-                // Use ICollection methods to do it more efficiently.
-                T[] array = new T[coll.Count];
-                coll.CopyTo(array, 0);
-                return array;
-            }
-            else {
-                // We can't allocate the correct size array now, because IEnumerable doesn't
-                // have a Count property. We could enumerate twice, once to count and once
-                // to copy. Or we could enumerate once, copying to a List, then copy the list
-                // to the correct size array. The latter algorithm seems more efficient, although
-                // it allocates extra memory for the list which is then discarded.
-                List<T> list = new List<T>(collection);
-                return list.ToArray();
-            }
+            return Enumerable.ToArray(collection);
         }
 
         /// <summary>
@@ -5222,20 +5157,7 @@ namespace Wintellect.PowerCollections
         /// <exception cref="ArgumentNullException"><paramref name="collection"/> is null.</exception>
         public static int Count<T>(IEnumerable<T> collection)
         {
-            if (collection == null)
-                throw new ArgumentNullException(nameof(collection));
-
-            // If it's really an ICollection, use that Count property as it is much faster.
-            if (collection is ICollection<T> iCollection)
-                return iCollection.Count;
-
-            // Traverse the collection and count the elements.
-            int count = 0;
-
-            foreach (T item in collection)
-                ++count;
-
-            return count;
+            return Enumerable.Count(collection);
         }
 
         /// <summary>
@@ -5292,12 +5214,7 @@ namespace Wintellect.PowerCollections
         /// <exception cref="ArgumentOutOfRangeException">The argument <paramref name="n"/> is less than zero.</exception>
         public static IEnumerable<T> NCopiesOf<T>(int n, T item)
         {
-            if (n < 0)
-                throw new ArgumentOutOfRangeException(nameof(n), n, Strings.ArgMustNotBeNegative);
-
-            while (n-- > 0) {
-                yield return item;
-            }
+            return Enumerable.Repeat(item, n);
         }
 
         #endregion Miscellaneous operations on IEnumerable
