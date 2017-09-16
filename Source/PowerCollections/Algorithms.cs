@@ -159,7 +159,7 @@ namespace Wintellect.PowerCollections
         public static IList<T> Range<T>(IList<T> list, int start, int count)
         {
             if (list == null)
-                throw new ArgumentOutOfRangeException(nameof(list));
+                throw new ArgumentNullException(nameof(list));
             if (start < 0 || start > list.Count || (start == list.Count && count != 0))
                 throw new ArgumentOutOfRangeException(nameof(start));
             if (count < 0 || count > list.Count || count + start > list.Count)
@@ -281,7 +281,7 @@ namespace Wintellect.PowerCollections
         public static IList<T> Range<T>(T[] array, int start, int count)
         {
             if (array == null)
-                throw new ArgumentOutOfRangeException(nameof(array));
+                throw new ArgumentNullException(nameof(array));
             if (start < 0 || start > array.Length || (start == array.Length && count != 0))
                 throw new ArgumentOutOfRangeException(nameof(start));
             if (count < 0 || count > array.Length || count + start > array.Length)
