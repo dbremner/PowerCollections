@@ -2392,7 +2392,7 @@ namespace Wintellect.PowerCollections
             if (collection2 == null)
                 throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
             Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
@@ -2443,7 +2443,7 @@ namespace Wintellect.PowerCollections
             if (collection2 == null)
                 throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
             Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
@@ -2492,7 +2492,7 @@ namespace Wintellect.PowerCollections
             if (collection2 == null)
                 throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             Set<T> set1 = new Set<T>(collection1, equalityComparer);
 
@@ -2544,7 +2544,7 @@ namespace Wintellect.PowerCollections
             if (collection2 == null)
                 throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
             Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
@@ -2603,7 +2603,7 @@ namespace Wintellect.PowerCollections
             if (collection2 == null)
                 throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
             Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
@@ -2662,7 +2662,7 @@ namespace Wintellect.PowerCollections
             if (collection2 == null)
                 throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
             Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
@@ -2728,7 +2728,7 @@ namespace Wintellect.PowerCollections
             if (collection2 == null)
                 throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
             Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
@@ -2788,7 +2788,7 @@ namespace Wintellect.PowerCollections
             if (collection2 == null)
                 throw new ArgumentNullException(nameof(collection2));
             if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
+                throw new ArgumentNullException(nameof(equalityComparer));
 
             Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
             Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
@@ -5280,7 +5280,7 @@ namespace Wintellect.PowerCollections
         public static int CountEqual<T>(IEnumerable<T> collection, T find, IEqualityComparer<T> equalityComparer)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
