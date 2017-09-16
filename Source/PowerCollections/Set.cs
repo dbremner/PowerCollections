@@ -450,9 +450,13 @@ namespace Wintellect.PowerCollections
         /// <remarks>IsSubsetOf is computed in time O(N), where N is the size of the this set.</remarks>
         /// <param name="otherSet">Set to compare to.</param>
         /// <returns>True if this is a subset of <paramref name="otherSet"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="otherSet"/> is null</exception>
         /// <exception cref="InvalidOperationException">This set and <paramref name="otherSet"/> don't use the same method for comparing items.</exception>
         public bool IsSubsetOf(Set<T> otherSet)
         {
+            if (otherSet == null) {
+                throw new ArgumentNullException(nameof(otherSet));
+            }
             return otherSet.IsSupersetOf(this);
         }
 
@@ -465,9 +469,13 @@ namespace Wintellect.PowerCollections
         /// <remarks>IsProperSubsetOf is computed in time O(N), where N is the size of the this set.</remarks>
         /// <param name="otherSet">Set to compare to.</param>
         /// <returns>True if this is a proper subset of <paramref name="otherSet"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="otherSet"/> is null</exception>
         /// <exception cref="InvalidOperationException">This set and <paramref name="otherSet"/> don't use the same method for comparing items.</exception>
         public bool IsProperSubsetOf(Set<T> otherSet)
         {
+            if (otherSet == null) {
+                throw new ArgumentNullException(nameof(otherSet));
+            }
             return otherSet.IsProperSupersetOf(this);
         }
 
