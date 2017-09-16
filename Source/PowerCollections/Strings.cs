@@ -38,6 +38,7 @@ namespace Wintellect.PowerCollections
         public static readonly string CollectionTooLarge = "The collection has become too large.";
         public static readonly string InvalidLoadFactor = "The load factor must be between 0.25 and 0.95.";
         public static readonly string CapacityLessThanCount = "The capacity may not be less than Count.";
+	    public static readonly string CountReturnedANegative = "Count returned a negative number.";
         public static readonly string ListIsReadOnly = "The list may not be read only.";
         public static readonly string CollectionIsReadOnly = "The collection may not be read only.";
         public static readonly string IdentityComparerNoCompare = "The Compare method is not supported on an identity comparer.";
