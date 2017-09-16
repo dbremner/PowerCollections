@@ -163,7 +163,7 @@ namespace Wintellect.PowerCollections
             set
             {
                 if (value < Count)
-                    throw new ArgumentOutOfRangeException(nameof(value), Strings.CapacityLessThanCount);
+                    throw new ArgumentOutOfRangeException(nameof(value), value, Strings.CapacityLessThanCount);
                 if (value > int.MaxValue - 1)
                     throw new ArgumentOutOfRangeException(nameof(value));
                 if (value == Capacity)
