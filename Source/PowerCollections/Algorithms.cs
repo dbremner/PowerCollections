@@ -912,7 +912,7 @@ namespace Wintellect.PowerCollections
                 if (index < 0)
                     throw new ArgumentOutOfRangeException(nameof(index), index, Strings.ArgMustNotBeNegative);
                 if (index >= array.Length || count > array.Length - index)
-                    throw new ArgumentException("index", Strings.ArrayTooSmall);
+                    throw new ArgumentException(Strings.ArrayTooSmall, nameof(index));
 
                 foreach (T item in wrappedCollection) {
                     if (i >= count)
@@ -1069,7 +1069,7 @@ namespace Wintellect.PowerCollections
                 if (index < 0)
                     throw new ArgumentOutOfRangeException(nameof(index), index, Strings.ArgMustNotBeNegative);
                 if (index >= array.Length || count > array.Length - index)
-                    throw new ArgumentException("index", Strings.ArrayTooSmall);
+                    throw new ArgumentException(Strings.ArrayTooSmall, nameof(index));
 
                 foreach (T item in wrappedList) {
                     if (i >= count)
