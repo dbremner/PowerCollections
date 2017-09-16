@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Wintellect.PowerCollections
 {
@@ -128,7 +129,7 @@ namespace Wintellect.PowerCollections
         /// <seealso cref="TryFind"/>
         public virtual T Find(Func<T, bool> predicate)
         {
-            return Algorithms.FindFirstWhere(this, predicate);
+            return Enumerable.FirstOrDefault(this, predicate);
         }
 
         /// <summary>
@@ -159,7 +160,7 @@ namespace Wintellect.PowerCollections
         /// <seealso cref="TryFindLast"/>
         public virtual T FindLast(Func<T, bool> predicate)
         {
-            return Algorithms.FindLastWhere(this, predicate);
+            return Enumerable.LastOrDefault(this, predicate);
         }
 
         /// <summary>

@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -52,7 +53,7 @@ namespace Wintellect.PowerCollections.Tests {
                     if (enum1 == null || enum2 == null)
                         return (enum1 == enum2);
 
-                    T[] expected = Algorithms.ToArray(enum2);
+                    T[] expected = Enumerable.ToArray(enum2);
                     bool[] found = new bool[expected.Length];
                     int i = 0;
                     foreach (T item in enum1) {

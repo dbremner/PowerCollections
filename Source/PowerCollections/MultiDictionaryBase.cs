@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Wintellect.PowerCollections
 {
@@ -741,7 +742,7 @@ namespace Wintellect.PowerCollections
             {
                 if (values == null)
                     return false;
-                TValue[] valueArray = Algorithms.ToArray(values);
+                TValue[] valueArray = Enumerable.ToArray(values);
 
                 foreach (ICollection<TValue> v in this) {
                     if (v.Count != valueArray.Length)

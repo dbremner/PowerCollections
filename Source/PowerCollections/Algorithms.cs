@@ -1684,25 +1684,6 @@ namespace Wintellect.PowerCollections
 
         #region Find and SearchForSubsequence
 
-
-        /// <summary>
-        /// Finds the first item in a collection that satisfies the condition
-        /// defined by <paramref name="predicate"/>.
-        /// </summary>
-        /// <remarks>If the default value for T could be present in the collection, and 
-        /// would be matched by the predicate, then this method is inappropriate, because
-        /// you cannot disguish whether the default value for T was actually present in the collection,
-        /// or no items matched the predicate. In this case, use TryFindFirstWhere.</remarks>
-        /// <param name="collection">The collection to search.</param>
-        /// <param name="predicate">A delegate that defined the condition to check for.</param>
-        /// <returns>The first item in the collection that matches the condition, or the default value for T (0 or null) if no
-        /// item that matches the condition is found.</returns>
-        /// <seealso cref="Algorithms.TryFindFirstWhere{T}"/>
-        public static T FindFirstWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
-        {
-            return Enumerable.FirstOrDefault(collection, predicate);
-        }
-
         /// <summary>
         /// Finds the first item in a collection that satisfies the condition
         /// defined by <paramref name="predicate"/>.
@@ -1711,7 +1692,6 @@ namespace Wintellect.PowerCollections
         /// <param name="predicate">A delegate that defined the condition to check for.</param>
         /// <param name="foundItem">Outputs the first item in the collection that matches the condition, if the method returns true.</param>
         /// <returns>True if an item satisfying the condition was found. False if no such item exists in the collection.</returns>
-        /// <seealso cref="FindFirstWhere{T}"/>
         public static bool TryFindFirstWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate, out T foundItem)
         {
             if (collection == null)
@@ -1735,33 +1715,12 @@ namespace Wintellect.PowerCollections
         /// Finds the last item in a collection that satisfies the condition
         /// defined by <paramref name="predicate"/>.
         /// </summary>
-        /// <remarks><para>If the collection implements IList&lt;T&gt;, then the list is scanned in reverse until a 
-        /// matching item is found. Otherwise, the entire collection is iterated in the forward direction.</para>
-        /// <para>If the default value for T could be present in the collection, and 
-        /// would be matched by the predicate, then this method is inappropriate, because
-        /// you cannot disguish whether the default value for T was actually present in the collection,
-        /// or no items matched the predicate. In this case, use TryFindFirstWhere.</para></remarks>
-        /// <param name="collection">The collection to search.</param>
-        /// <param name="predicate">A delegate that defined the condition to check for.</param>
-        /// <returns>The last item in the collection that matches the condition, or the default value for T (0 or null) if no
-        /// item that matches the condition is found.</returns>
-        /// <seealso cref="TryFindLastWhere{T}"/>
-        public static T FindLastWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
-        {
-            return Enumerable.LastOrDefault(collection, predicate);
-        }
-
-        /// <summary>
-        /// Finds the last item in a collection that satisfies the condition
-        /// defined by <paramref name="predicate"/>.
-        /// </summary>
         /// <remarks>If the collection implements IList&lt;T&gt;, then the list is scanned in reverse until a 
         /// matching item is found. Otherwise, the entire collection is iterated in the forward direction.</remarks>
         /// <param name="collection">The collection to search.</param>
         /// <param name="predicate">A delegate that defined the condition to check for.</param>
         /// <param name="foundItem">Outputs the last item in the collection that matches the condition, if the method returns true.</param>
         /// <returns>True if an item satisfying the condition was found. False if no such item exists in the collection.</returns>
-        /// <seealso cref="FindLastWhere{T}"/>
         public static bool TryFindLastWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate, out T foundItem)
         {
             if (collection == null)
@@ -1798,18 +1757,6 @@ namespace Wintellect.PowerCollections
 
                 return found;
             }
-        }
-
-        /// <summary>
-        /// Enumerates all the items in <paramref name="collection"/> that satisfy the condition defined
-        /// by <paramref name="predicate"/>.
-        /// </summary>
-        /// <param name="collection">The collection to check all the items in.</param>
-        /// <param name="predicate">A delegate that defines the condition to check for.</param>
-        /// <returns>An IEnumerable&lt;T&gt; that enumerates the items that satisfy the condition.</returns>
-        public static IEnumerable<T> FindWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
-        {
-            return Enumerable.Where(collection, predicate);
         }
 
         /// <summary>
@@ -2286,9 +2233,9 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(predicate));
 
             // Put the pattern into an array for performance (don't keep allocating enumerators).
-            T[] patternArray = Algorithms.ToArray(pattern);
+            var patternArray = Enumerable.ToList(pattern);
 
-            int listCount = list.Count, patternCount = patternArray.Length;
+            int listCount = list.Count, patternCount = patternArray.Count;
             if (patternCount == 0)
                 return 0;              // A zero-length pattern occurs anywhere.
             if (listCount == 0)
@@ -2980,7 +2927,7 @@ namespace Wintellect.PowerCollections
             if (randomGenerator == null)
                 throw new ArgumentNullException(nameof(randomGenerator));
 
-            T[] array = Algorithms.ToArray(collection);
+            T[] array = Enumerable.ToArray(collection);
 
             int count = array.Length;
             for (int i = count - 1; i >= 1; --i) {
@@ -3128,7 +3075,7 @@ namespace Wintellect.PowerCollections
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
 
-            T[] array = Algorithms.ToArray(collection);
+            T[] array = Enumerable.ToArray(collection);
 
             if (array.Length == 0)
                 yield break;
@@ -3216,7 +3163,7 @@ namespace Wintellect.PowerCollections
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            T[] array = Algorithms.ToArray(collection);
+            T[] array = Enumerable.ToArray(collection);
             int length = array.Length;
             if (length == 0)
                 yield break;
@@ -3589,7 +3536,7 @@ namespace Wintellect.PowerCollections
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            array = Algorithms.ToArray(collection);
+            array = Enumerable.ToArray(collection);
 
             Array.Sort(array, comparer);
             return array;
@@ -3810,7 +3757,7 @@ namespace Wintellect.PowerCollections
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            array = Algorithms.ToArray(collection);
+            array = Enumerable.ToArray(collection);
 
             StableSortInPlace(Algorithms.ReadWriteList(array), comparer);
             return array;
@@ -4725,47 +4672,6 @@ namespace Wintellect.PowerCollections
         #endregion Sorting
 
         #region Predicate operations
-
-        /// <summary>
-        /// Determines if a collection contains any item that satisfies the condition
-        /// defined by <paramref name="predicate"/>.
-        /// </summary>
-        /// <param name="collection">The collection to check all the items in.</param>
-        /// <param name="predicate">A delegate that defines the condition to check for.</param>
-        /// <returns>True if the collection contains one or more items that satisfy the condition
-        /// defined by <paramref name="predicate"/>. False if the collection does not contain
-        /// an item that satisfies <paramref name="predicate"/>.</returns>
-        public static bool Exists<T>(IEnumerable<T> collection, Func<T, bool> predicate)
-        {
-            return Enumerable.Any(collection, predicate);
-        }
-
-        /// <summary>
-        /// Determines if all of the items in the collection satisfy the condition
-        /// defined by <paramref name="predicate"/>.
-        /// </summary>
-        /// <param name="collection">The collection to check all the items in.</param>
-        /// <param name="predicate">A delegate that defines the condition to check for.</param>
-        /// <returns>True if all of the items in the collection satisfy the condition
-        /// defined by <paramref name="predicate"/>, or if the collection is empty. False if one or more items
-        /// in the collection do not satisfy <paramref name="predicate"/>.</returns>
-        public static bool TrueForAll<T>(IEnumerable<T> collection, Func<T, bool> predicate)
-        {
-            return Enumerable.All(collection, predicate);
-        }
-
-        /// <summary>
-        /// Counts the number of items in the collection that satisfy the condition
-        /// defined by <paramref name="predicate"/>.
-        /// </summary>
-        /// <param name="collection">The collection to count items in.</param>
-        /// <param name="predicate">A delegate that defines the condition to check for.</param>
-        /// <returns>The number of items in the collection that satisfy <paramref name="predicate"/>.</returns>
-        public static int CountWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
-        {
-            return Enumerable.Count(collection, predicate);
-        }
-
         /// <summary>
         /// Removes all the items in the collection that satisfy the condition
         /// defined by <paramref name="predicate"/>.
@@ -4848,29 +4754,6 @@ namespace Wintellect.PowerCollections
         }
 
         /// <summary>
-        /// Convert a collection of items by applying a delegate to each item in the collection. The resulting collection
-        /// contains the result of applying <paramref name="converter"/> to each item in <paramref name="sourceCollection"/>, in
-        /// order.
-        /// </summary>
-        /// <typeparam name="TSource">The type of items in the collection to convert.</typeparam>
-        /// <typeparam name="TDest">The type each item is being converted to.</typeparam>
-        /// <param name="sourceCollection">The collection of item being converted.</param>
-        /// <param name="converter">A delegate to the method to call, passing each item in <paramref name="sourceCollection"/>.</param>
-        /// <returns>The resulting collection from applying <paramref name="converter"/> to each item in <paramref name="sourceCollection"/>, in
-        /// order.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="sourceCollection"/> or <paramref name="converter"/> is null.</exception>
-        public static IEnumerable<TDest> Convert<TSource, TDest>(IEnumerable<TSource> sourceCollection, Converter<TSource, TDest> converter)
-        {
-            if (sourceCollection == null)
-                throw new ArgumentNullException(nameof(sourceCollection));
-            if (converter == null)
-                throw new ArgumentNullException(nameof(converter));
-
-            foreach (TSource sourceItem in sourceCollection)
-                yield return converter(sourceItem);
-        }
-
-        /// <summary>
         /// Creates a delegate that converts keys to values by used a dictionary to map values. Keys
         /// that a not present in the dictionary are converted to the default value (zero or null).
         /// </summary>
@@ -4878,7 +4761,7 @@ namespace Wintellect.PowerCollections
         /// entire collections.</remarks>
         /// <param name="dictionary">The dictionary used to perform the conversion.</param>
         /// <returns>A delegate to a method that converts keys to values. </returns>
-        public static Converter<TKey, TValue> GetDictionaryConverter<TKey, TValue>(IDictionary<TKey, TValue> dictionary)
+        public static Func<TKey, TValue> GetDictionaryConverter<TKey, TValue>(IDictionary<TKey, TValue> dictionary)
         {
             return GetDictionaryConverter(dictionary, default(TValue));
         }
@@ -4893,7 +4776,7 @@ namespace Wintellect.PowerCollections
         /// <param name="defaultValue">The result of the conversion for keys that are not present in the dictionary.</param>
         /// <returns>A delegate to a method that converts keys to values. </returns>
         /// <exception cref="ArgumentNullException"><paramref name="dictionary"/> is null.</exception>
-        public static Converter<TKey, TValue> GetDictionaryConverter<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TValue defaultValue)
+        public static Func<TKey, TValue> GetDictionaryConverter<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TValue defaultValue)
         {
             if (dictionary == null)
                 throw new ArgumentNullException(nameof(dictionary));
@@ -5130,37 +5013,6 @@ namespace Wintellect.PowerCollections
         }
 
         /// <summary>
-        /// Create an array with the items in a collection.
-        /// </summary>
-        /// <remarks>If <paramref name="collection"/> implements ICollection&lt;T&gt;T, then 
-        /// ICollection&lt;T&gt;.CopyTo() is used to fill the array. Otherwise, the IEnumerable&lt;T&gt;.GetEnumerator()
-        /// is used to fill the array.</remarks>
-        /// <typeparam name="T">Element type of the collection.</typeparam>
-        /// <param name="collection">Collection to create array from.</param>
-        /// <returns>An array with the items from the collection, in enumeration order.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is null.</exception>
-        public static T[] ToArray<T>(IEnumerable<T> collection)
-        {
-            return Enumerable.ToArray(collection);
-        }
-
-        /// <summary>
-        /// Count the number of items in an IEnumerable&lt;T&gt; collection. If 
-        /// a more specific collection type is being used, it is more efficient to use
-        /// the Count property, if one is provided.
-        /// </summary>
-        /// <remarks>If the collection implements ICollection&lt;T&gt;, this method
-        /// simply returns ICollection&lt;T&gt;.Count. Otherwise, it enumerates all items
-        /// and counts them.</remarks>
-        /// <param name="collection">The collection to count items in.</param>
-        /// <returns>The number of items in the collection.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="collection"/> is null.</exception>
-        public static int Count<T>(IEnumerable<T> collection)
-        {
-            return Enumerable.Count(collection);
-        }
-
-        /// <summary>
         /// Counts the number of items in the collection that are equal to <paramref name="find"/>.
         /// </summary>
         /// <remarks>The default sense of equality for T is used, as defined by T's
@@ -5198,25 +5050,6 @@ namespace Wintellect.PowerCollections
 
             return count;
         }
-
-        /// <summary>
-        /// Creates an IEnumerator that enumerates a given item <paramref name="n"/> times.
-        /// </summary>
-        /// <example>
-        /// The following creates a list consisting of 1000 copies of the double 1.0.
-        /// <code>
-        /// List&lt;double&gt; list = new List&lt;double&gt;(Algorithms.NCopiesOf(1000, 1.0));
-        /// </code></example>
-        /// <param name="n">The number of times to enumerate the item.</param>
-        /// <param name="item">The item that should occur in the enumeration.</param>
-        /// <returns>An IEnumerable&lt;T&gt; that yields <paramref name="n"/> copies
-        /// of <paramref name="item"/>.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">The argument <paramref name="n"/> is less than zero.</exception>
-        public static IEnumerable<T> NCopiesOf<T>(int n, T item)
-        {
-            return Enumerable.Repeat(item, n);
-        }
-
         #endregion Miscellaneous operations on IEnumerable
 
         #region Miscellaneous operations on IList

@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Wintellect.PowerCollections
 {
@@ -198,7 +199,7 @@ namespace Wintellect.PowerCollections
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            return Algorithms.Exists(this, predicate);
+            return Enumerable.Any(this, predicate);
         }
 
         /// <summary>
@@ -214,7 +215,7 @@ namespace Wintellect.PowerCollections
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            return Algorithms.TrueForAll(this, predicate);
+            return Enumerable.All(this, predicate);
         }
 
         /// <summary>
@@ -228,7 +229,7 @@ namespace Wintellect.PowerCollections
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            return Algorithms.CountWhere(this, predicate);
+            return Enumerable.Count(this, predicate);
         }
 
         /// <summary>
@@ -242,7 +243,7 @@ namespace Wintellect.PowerCollections
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            return Algorithms.FindWhere(this, predicate);
+            return Enumerable.Where(this, predicate);
         }
 
         /// <summary>
@@ -269,12 +270,12 @@ namespace Wintellect.PowerCollections
         /// <returns>An IEnumerable&lt;TOutput^gt; that enumerates the resulting collection from applying <paramref name="converter"/> to each item in this collection in
         /// order.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="converter"/> is null.</exception>
-        public virtual IEnumerable<TOutput> ConvertAll<TOutput>(Converter<T, TOutput> converter)
+        public virtual IEnumerable<TOutput> ConvertAll<TOutput>(Func<T, TOutput> converter)
         {
             if (converter == null)
                 throw new ArgumentNullException(nameof(converter));
 
-            return Algorithms.Convert(this, converter);
+            return Enumerable.Select(this, converter);
         }
 
         #endregion

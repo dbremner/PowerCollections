@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 // CONSIDER: provide more efficient implementation of CopyTo.
 
@@ -662,13 +663,15 @@ namespace Wintellect.PowerCollections
                     return Clone();
 
                 // Create a new list by converting each item in this list via cloning.
-                return new BigList<T>(Algorithms.Convert<T, T>(this, delegate(T item)
+                T Converter(T item)
                 {
                     if (item == null)
-                        return default(T);    // Really null, because we know T is a reference type
+                        return default(T); // Really null, because we know T is a reference type
                     else
-                        return (T)(((ICloneable)item).Clone());
-                }));
+                        return (T) (((ICloneable) item).Clone());
+                }
+
+                return new BigList<T>(Enumerable.Select(this, Converter));
             }
         }
 
@@ -1197,9 +1200,9 @@ namespace Wintellect.PowerCollections
         /// <param name="converter">A delegate to the method to call, passing each item in <type name="BigList&lt;T&gt;"/>.</param>
         /// <returns>The resulting BigList from applying <paramref name="converter"/> to each item in this list.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="converter"/> is null.</exception>
-        public new BigList<TDest> ConvertAll<TDest>(Converter<T, TDest> converter)
+        public new BigList<TDest> ConvertAll<TDest>(Func<T, TDest> converter)
         {
-            return new BigList<TDest>(Algorithms.Convert(this, converter));
+            return new BigList<TDest>(Enumerable.Select(this, converter));
         }
 
         /// <summary>

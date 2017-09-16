@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Wintellect.PowerCollections
 {
@@ -590,10 +591,10 @@ namespace Wintellect.PowerCollections
             {
                 if (values == null)
                     return false;
-                TValue[] valueArray = Algorithms.ToArray(values);
+                var valueArray = Enumerable.ToList(values);
 
                 foreach (ICollection<TValue> v in this) {
-                    if (v.Count != valueArray.Length)
+                    if (v.Count != valueArray.Count)
                         continue;
 
                     // First check in order for efficiency.
@@ -603,9 +604,9 @@ namespace Wintellect.PowerCollections
                     // Now check not in order. We can't use Algorithms.EqualSets, because we don't 
                     // have an IEqualityComparer, just the ability to compare for equality. Unfortunately this is N squared,
                     // but there isn't a good choice here. We don't really expect this method to be used much.
-                    bool[] found = new bool[valueArray.Length];
+                    bool[] found = new bool[valueArray.Count];
                     foreach (TValue x in v) {
-                        for (int i = 0; i < valueArray.Length; ++i) {
+                        for (int i = 0; i < valueArray.Count; ++i) {
                             if (!found[i] && myDictionary.EqualValues(x, valueArray[i])) 
                                 found[i] = true;
                         }

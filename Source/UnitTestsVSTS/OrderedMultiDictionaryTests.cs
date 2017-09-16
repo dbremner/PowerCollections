@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections.Tests;
 
@@ -528,9 +529,9 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict1.ContainsKey("foo"));
             Assert.IsFalse(dict1.ContainsKey("z"));
             Assert.IsFalse(dict1.ContainsKey(null));
-            Assert.AreEqual(0, Algorithms.Count(dict1.Keys));
-            Assert.AreEqual(0, Algorithms.Count(dict1.Values));
-            Assert.AreEqual(0, Algorithms.Count(dict1.KeyValuePairs));
+            Assert.AreEqual(0, Enumerable.Count(dict1.Keys));
+            Assert.AreEqual(0, Enumerable.Count(dict1.Values));
+            Assert.AreEqual(0, Enumerable.Count(dict1.KeyValuePairs));
 
             CheckOrderedMultiDictionaryContents(dict1, new string[0], new int[0][], "foo", 4, null, null);
         }

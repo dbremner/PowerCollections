@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -23,58 +24,6 @@ namespace Wintellect.PowerCollections.Tests
         {
             foreach (T t in array)
                 yield return t;
-        }
-
-        [TestMethod]
-        public void Exists()
-        {
-            IEnumerable<double> coll1 = EnumerableFromArray(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
-            IEnumerable<double> coll2 = EnumerableFromArray(new double[] {  });
-
-            Assert.IsTrue(Algorithms.Exists(coll1, delegate(double d) { return d > 100; }));
-            Assert.IsTrue(Algorithms.Exists(coll1, delegate(double d) { return Math.Abs(d) == 0.04; }));
-            Assert.IsFalse(Algorithms.Exists(coll1, delegate(double d) { return d < -10.0; }));
-            Assert.IsFalse(Algorithms.Exists(coll2, delegate(double d) { return Math.Abs(d) == 0.04; }));
-        }
-
-        [TestMethod]
-        public void TrueForAll()
-        {
-            IEnumerable<double> coll1 = EnumerableFromArray(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
-            IEnumerable<double> coll2 = EnumerableFromArray(new double[] {  });
-
-            Assert.IsFalse(Algorithms.TrueForAll(coll1, delegate(double d) { return d > 100; }));
-            Assert.IsFalse(Algorithms.TrueForAll(coll1, delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.IsTrue(Algorithms.TrueForAll(coll1, delegate(double d) { return d > -10; }));
-            Assert.IsTrue(Algorithms.TrueForAll(coll1, delegate(double d) { return Math.Abs(d) < 200; }));
-            Assert.IsTrue(Algorithms.TrueForAll(coll2, delegate(double d) { return Math.Abs(d) == 0.04; }));
-        }
-
-        [TestMethod]
-        public void CountWhere()
-        {
-            IEnumerable<double> coll1 = EnumerableFromArray(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
-            IEnumerable<double> coll2 = EnumerableFromArray(new double[] {  });
-
-            Assert.AreEqual(0, Algorithms.CountWhere(coll1, delegate(double d) { return d > 200; }));
-            Assert.AreEqual(6, Algorithms.CountWhere(coll1, delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.AreEqual(8, Algorithms.CountWhere(coll1, delegate(double d) { return d > -10; }));
-            Assert.AreEqual(4, Algorithms.CountWhere(coll1, delegate(double d) { return Math.Abs(d) > 5; }));
-            Assert.AreEqual(0, Algorithms.CountWhere(coll2, delegate(double d) { return Math.Abs(d) < 10; }));
-        }
-
-        [TestMethod]
-        public void Count()
-        {
-            IEnumerable<double> coll1 = EnumerableFromArray(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
-            IEnumerable<double> coll2 = EnumerableFromArray(new double[] { });
-            IEnumerable<double> coll3 = new List<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
-            IEnumerable<double> coll4 = new List<double>(new double[] { });
-
-            Assert.AreEqual(8, Algorithms.Count(coll1));
-            Assert.AreEqual(0, Algorithms.Count(coll2));
-            Assert.AreEqual(8, Algorithms.Count(coll3));
-            Assert.AreEqual(0, Algorithms.Count(coll4));
         }
 
         [TestMethod]
@@ -123,37 +72,6 @@ namespace Wintellect.PowerCollections.Tests
             removed = Algorithms.RemoveWhere<double>(d_list, delegate(double d) { return Math.Abs(d) > 5; });
             InterfaceTests.TestEnumerableElements<double>(d_list, new double[] { 4.5, 1.2, -0.04, 1.78, 0, 0, 0, 0 });
             InterfaceTests.TestReadWriteCollectionGeneric<double>(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true);
-        }
-
-        [TestMethod]
-        public void FindAll()
-        {
-            IEnumerable<double> coll1 = EnumerableFromArray(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            double[] expected = { 7.6, -7.6, 10.11, 187.4 };
-            int i;
-
-            i = 0;
-            foreach (double x in Algorithms.FindWhere(coll1, delegate(double d) { return Math.Abs(d) > 5; })) {
-                Assert.AreEqual(expected[i], x);
-                ++i;
-            }
-            Assert.AreEqual(expected.Length, i);
-        }
-
-        [TestMethod]
-        public void Convert()
-        {
-            IEnumerable<double> coll1 = EnumerableFromArray(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            IEnumerable<int> result1 = Algorithms.Convert<double, int>(coll1, delegate(double x) { return (int)Math.Round(x); });
-            InterfaceTests.TestEnumerableElements(result1, new int[] { 4, 1, 8, 0, -8, 2, 10, 187 });
-
-            IEnumerable<double> coll2 = EnumerableFromArray(new double[0]);
-            IEnumerable<int> result2 = Algorithms.Convert<double, int>(coll2, delegate(double x) { return (int)Math.Round(x); });
-            InterfaceTests.TestEnumerableElements(result2, new int[0]);
-
-            IEnumerable<double> coll3 = EnumerableFromArray(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            IEnumerable<double> result3 = Algorithms.Convert<double, double>(coll3, Math.Abs);
-            InterfaceTests.TestEnumerableElements(result3, new double[] { 4.5, 1.2, 7.6, 0.04, 7.6, 1.78, 10.11, 187.4 });
         }
 
         [TestMethod]
@@ -291,30 +209,6 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void ToArrayEnumerable()
-        {
-            IEnumerable<double> coll1 = EnumerableFromArray(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            double[] array1 = Algorithms.ToArray(coll1);
-            double[] expected = { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 };
-            Assert.AreEqual(expected.Length, array1.Length);
-            for (int i = 0; i < array1.Length; ++i) {
-                Assert.AreEqual(expected[i], array1[i]);
-            }
-        }
-
-        [TestMethod]
-        public void ToArrayCollection()
-        {
-            ICollection<double> coll1 = new List<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            double[] array1 = Algorithms.ToArray(coll1);
-            double[] expected = { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 };
-            Assert.AreEqual(expected.Length, array1.Length);
-            for (int i = 0; i < array1.Length; ++i) {
-                Assert.AreEqual(expected[i], array1[i]);
-            }
-        }
-
-        [TestMethod]
         public void CountEqual()
         {
             IEnumerable<string> coll1 = EnumerableFromArray(new string[] { "foo", "bar", "eric", "Eric", "BAR", "ERIC", "eric" });
@@ -329,32 +223,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(0, Algorithms.CountEqual(coll2, 4));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void NCopiesOfFailure()
-        {
-            IEnumerable<double> coll1 = Algorithms.NCopiesOf(-1, 3.4);
-            foreach (double d in coll1)
-                ;
-        }
-
-        [TestMethod]
-        public void NCopiesOf()
-        {
-            IEnumerable<double> coll1 = Algorithms.NCopiesOf(17, 3.4);
-
-            int count = 0;
-            foreach (double d in coll1) {
-                ++count;
-                Assert.AreEqual(3.4, d);
-            }
-            Assert.AreEqual(17, count);
-
-            IEnumerable<int> coll2 = Algorithms.NCopiesOf(0, 4);
-            foreach (int i in coll2) {
-                Assert.Fail();
-            }
-        }
-
         [TestMethod]
         public void Concatenate()
         {
@@ -364,7 +232,7 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.IsTrue(Algorithms.EqualCollections<string>(Algorithms.Concatenate<string>(coll1, new string[0], coll2, coll3, coll1),
                 new string[] { "hello", "there", "sailor", "eric", "clapton", "abc", "ghi", "xyz", "hello", "there", "sailor" }));
-            Assert.AreEqual(0, Algorithms.ToArray(Algorithms.Concatenate<string>()).Length);
+            Assert.AreEqual(0, Enumerable.ToArray(Algorithms.Concatenate<string>()).Length);
             Assert.IsTrue(Algorithms.EqualCollections<string>(Algorithms.Concatenate(coll3),
                 new string[] { "abc", "ghi", "xyz" }));
         }
@@ -3037,27 +2905,6 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void FindFirstWhere()
-        {
-            IEnumerable<int> coll1 = EnumerableFromArray(new int[] { 4, 8, 1, 3, 4, 9 });
-            int result;
-
-            result = Algorithms.FindFirstWhere(coll1, delegate(int x) { return (x & 1) == 1; });
-            Assert.AreEqual(1, result);
-
-            result = Algorithms.FindFirstWhere(coll1, delegate(int x) { return (x & 1) == 0; });
-            Assert.AreEqual(4, result);
-
-            result = Algorithms.FindFirstWhere(coll1, delegate(int x) { return x > 10; });
-            Assert.AreEqual(0, result);
-
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[] { });
-            result = Algorithms.FindFirstWhere(coll2, delegate(int x) { return (x & 1) == 1; });
-            Assert.AreEqual(0, result);
-        }
-
-
-        [TestMethod]
         public void TryFindFirstWhere()
         {
             IEnumerable<int> coll1 = EnumerableFromArray(new int[] { 4, 8, 1, 3, 4, 9 });
@@ -3131,69 +2978,6 @@ namespace Wintellect.PowerCollections.Tests
             found = Algorithms.TryFindLastWhere(list2, delegate(int x) { return (x & 1) == 1; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
-        }
-
-        [TestMethod]
-        public void FindLastWhere1()
-        {
-            IEnumerable<int> coll1 = EnumerableFromArray(new int[] { 4, 8, 1, 3, 6, 9 });
-            int result;
-
-            result = Algorithms.FindLastWhere(coll1, delegate(int x) { return (x & 1) == 1; });
-            Assert.AreEqual(9, result);
-
-            result = Algorithms.FindLastWhere(coll1, delegate(int x) { return (x & 1) == 0; });
-            Assert.AreEqual(6, result);
-
-            result = Algorithms.FindLastWhere(coll1, delegate(int x) { return x > 10; });
-            Assert.AreEqual(0, result);
-
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[] { });
-            result = Algorithms.FindLastWhere(coll2, delegate(int x) { return (x & 1) == 1; });
-            Assert.AreEqual(0, result);
-        }
-
-        [TestMethod]
-        public void FindLastWhere2()
-        {
-            IList<int> list1 = new List<int>(new int[] { 4, 8, 1, 3, 6, 9 });
-            int result;
-
-            result = Algorithms.FindLastWhere(list1, delegate(int x) { return (x & 1) == 1; });
-            Assert.AreEqual(9, result);
-
-            result = Algorithms.FindLastWhere(list1, delegate(int x) { return (x & 1) == 0; });
-            Assert.AreEqual(6, result);
-
-            result = Algorithms.FindLastWhere(list1, delegate(int x) { return x > 10; });
-            Assert.AreEqual(0, result);
-
-            IList<int> list2 = new List<int>(new int[] { });
-            result = Algorithms.FindLastWhere(list2, delegate(int x) { return (x & 1) == 1; });
-            Assert.AreEqual(0, result);
-        }
-
-        [TestMethod]
-        public void FindAll2()
-        {
-            IEnumerable<int> coll1 = EnumerableFromArray(new int[] { 4, 8, 1, 3, 6, 9 });
-            IEnumerable<int> found;
-
-            found = Algorithms.FindWhere(coll1, delegate(int x) { return (x & 1) == 1; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 1, 3, 9 });
-
-            found = Algorithms.FindWhere(coll1, delegate(int x) { return (x & 1) == 0; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 6 });
-
-            found = Algorithms.FindWhere(coll1, delegate(int x) { return x > 10; });
-            InterfaceTests.TestEnumerableElements(found, new int[] {  });
-
-            found = Algorithms.FindWhere(coll1, delegate(int x) { return x < 10; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 1, 3, 6, 9 });
-
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[] { });
-            found = Algorithms.FindWhere(coll2, delegate(int x) { return (x & 1) == 1; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { });
         }
 
         [TestMethod]
@@ -3709,14 +3493,14 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<int> enum3 = EnumerableFromArray(new int[] { 2, 6, 15, 29 });
             IEnumerable<int> merged = Algorithms.MergeSorted(enum1, enum2, enum3);
             IEnumerable<int> sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3));
-            InterfaceTests.TestEnumerableElements(merged, Algorithms.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
 
             enum1 = EnumerableFromArray(new int[] { 1, 7, 9, 11, 13, 1002 });
             enum2 = EnumerableFromArray(new int[] { });
             enum3 = EnumerableFromArray(new int[] { 15, 17, 19});
             merged = Algorithms.MergeSorted(enum1, enum2, enum3);
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3));
-            InterfaceTests.TestEnumerableElements(merged, Algorithms.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
 
             enum1 = EnumerableFromArray(new int[] {  });
             enum2 = EnumerableFromArray(new int[] { });
@@ -3740,16 +3524,16 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<int> enum4 = Algorithms.Sort((IEnumerable<int>)a4);
             merged = Algorithms.MergeSorted(enum1, enum2, enum3, enum4);
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3, enum4));
-            InterfaceTests.TestEnumerableElements(merged, Algorithms.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
 
             enum1 = EnumerableFromArray(new int[] { 3, 6, 7, 7, 8, 10, 17, 18 });
             enum2 = EnumerableFromArray(new int[] { 7, 9, 17, 18, 19, 27 });
             merged = Algorithms.MergeSorted(enum1, enum2);
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2));
-            InterfaceTests.TestEnumerableElements(merged, Algorithms.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
 
             merged = Algorithms.MergeSorted(enum1);
-            InterfaceTests.TestEnumerableElements(merged, Algorithms.ToArray(enum1));
+            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(enum1));
 
             merged = Algorithms.MergeSorted<int>();
             InterfaceTests.TestEnumerableElements(merged, new int[] {});
@@ -3770,7 +3554,7 @@ namespace Wintellect.PowerCollections.Tests
             enum4 = Algorithms.Sort((IEnumerable<int>)a4, comp);
             merged = Algorithms.MergeSorted(comp, enum1, enum2, enum3, enum4);
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3, enum4), comp);
-            InterfaceTests.TestEnumerableElements(merged, Algorithms.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
 
             IEnumerable<string> str1 = EnumerableFromArray<string>(new string[] { "foo", "fiddle", "g1", "igloo"});
             IEnumerable<string> str2 = EnumerableFromArray<string>(new string[] { "fast", "gross", "g3", "horse", "splurge" });
@@ -3794,7 +3578,7 @@ namespace Wintellect.PowerCollections.Tests
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(rand.Next(MAX));
-                int[] copy = Algorithms.ToArray(list);
+                int[] copy = Enumerable.ToArray(list);
 
                 Algorithms.SortInPlace(list);
                 Array.Sort(copy);
@@ -3822,7 +3606,7 @@ namespace Wintellect.PowerCollections.Tests
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(rand.NextDouble() - 0.5);
-                double[] copy = Algorithms.ToArray(list);
+                double[] copy = Enumerable.ToArray(list);
 
                 Algorithms.SortInPlace(list, comp);
                 Array.Sort(copy, comp);
@@ -3847,7 +3631,7 @@ namespace Wintellect.PowerCollections.Tests
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(strings[rand.Next(strings.Length)]);
-                string[] copy = Algorithms.ToArray(list);
+                string[] copy = Enumerable.ToArray(list);
 
                 Algorithms.SortInPlace(list, comp);
                 Array.Sort(copy, comp);
@@ -3877,7 +3661,7 @@ namespace Wintellect.PowerCollections.Tests
                 for (int i = 0; i < size; ++i)
                     array[i] = rand.NextDouble() - 0.5;
                 IList<double> list = new List<double> (array);
-                double[] copy = Algorithms.ToArray(list);
+                double[] copy = Enumerable.ToArray(list);
 
                 Algorithms.SortInPlace(list, comp);
                 Array.Sort(copy, comp);
@@ -4269,10 +4053,10 @@ namespace Wintellect.PowerCollections.Tests
 
             IEnumerable<string> coll1 = EnumerableFromArray<string>(new string[] { "FOO", "hi", null, "bar", "hello", "7" });
 
-            IEnumerable<int> result1 = Algorithms.Convert(coll1, Algorithms.GetDictionaryConverter(dict1));
+            IEnumerable<int> result1 = Enumerable.Select(coll1, Algorithms.GetDictionaryConverter(dict1));
             InterfaceTests.TestEnumerableElements(result1, new int[] { 7, 0, 0, 11, 18, 0 });
 
-            IEnumerable<int> result2 = Algorithms.Convert(coll1, Algorithms.GetDictionaryConverter(dict1, -42));
+            IEnumerable<int> result2 = Enumerable.Select(coll1, Algorithms.GetDictionaryConverter(dict1, -42));
             InterfaceTests.TestEnumerableElements(result2, new int[] { 7, -42, -42, 11, 18, -42 });
         }
 

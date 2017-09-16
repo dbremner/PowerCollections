@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections.Tests;
 
@@ -489,9 +490,9 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict1.ContainsKey("foo"));
             Assert.IsFalse(dict1.ContainsKey("z"));
             Assert.IsFalse(dict1.ContainsKey(null));
-            Assert.AreEqual(0, Algorithms.Count(dict1.Keys));
-            Assert.AreEqual(0, Algorithms.Count(dict1.Values));
-            Assert.AreEqual(0, Algorithms.Count(dict1.KeyValuePairs));
+            Assert.AreEqual(0, Enumerable.Count(dict1.Keys));
+            Assert.AreEqual(0, Enumerable.Count(dict1.Values));
+            Assert.AreEqual(0, Enumerable.Count(dict1.KeyValuePairs));
 
             CheckMultiDictionaryContents(dict1, new string[0], new int[0][], "foo", 4, null, null);
         }
@@ -1006,7 +1007,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<KeyValuePair<K, V>> e1 = d1.KeyValuePairs;
             IEnumerable<KeyValuePair<K, V>> e2 = d2.KeyValuePairs;
-            KeyValuePair<K, V>[] pairs1 = Algorithms.ToArray<KeyValuePair<K, V>>(e1), pairs2 = Algorithms.ToArray<KeyValuePair<K, V>>(e2);
+            KeyValuePair<K, V>[] pairs1 = Enumerable.ToArray(e1), pairs2 = Enumerable.ToArray(e2);
             bool[] found = new bool[pairs2.Length];
 
             // Check that the arrays are equal, but not reference equals (e.g., have been cloned).
@@ -1090,7 +1091,7 @@ namespace Wintellect.PowerCollections.Tests
 
             IEnumerable<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>> e1 = dict5.KeyValuePairs;
             IEnumerable<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>> e2 = dict6.KeyValuePairs;
-            KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>[] pairs1 = Algorithms.ToArray<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>>(e1), pairs2 = Algorithms.ToArray<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>>(e2);
+            KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>[] pairs1 = Enumerable.ToArray(e1), pairs2 = Enumerable.ToArray(e2);
             bool[] found = new bool[pairs2.Length];
 
             // Check that the arrays are equal, but not reference equals (e.g., have been cloned).
