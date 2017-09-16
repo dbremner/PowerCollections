@@ -145,7 +145,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <param name="array">The array to copy to. This array must have a size
         /// that is greater than or equal to Count.</param>
-        public virtual void CopyTo(T[] array)
+        public void CopyTo(T[] array)
         {
             this.CopyTo(array, 0);
         }

@@ -237,7 +237,7 @@ namespace Wintellect.PowerCollections
         /// collection into the array, by calling CopyTo.
         /// </summary>
         /// <returns>An array containing all the elements in the collection, in order.</returns>
-        public virtual T[] ToArray()
+        public T[] ToArray()
         {
             int count = this.Count;
 
