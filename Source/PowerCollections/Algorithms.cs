@@ -1603,7 +1603,7 @@ namespace Wintellect.PowerCollections
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
             if (count < 1)
-                throw new ArgumentOutOfRangeException(nameof(count));
+                throw new ArgumentOutOfRangeException(nameof(count), count, Strings.ArgMustNotBeLessThanOne);
 
             int listCount = list.Count;
             if (listCount < count)
@@ -1650,7 +1650,7 @@ namespace Wintellect.PowerCollections
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
             if (count < 1)
-                throw new ArgumentOutOfRangeException(nameof(count));
+                throw new ArgumentOutOfRangeException(nameof(count), count, Strings.ArgMustNotBeLessThanOne);
 
             int listCount = list.Count;
             if (count > listCount)

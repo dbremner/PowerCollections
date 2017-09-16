@@ -18,6 +18,7 @@ namespace Wintellect.PowerCollections
 	internal static class Strings
 	{
 		public static readonly string UncomparableType = "Type \"{0}\" does not implement IComparable<{0}> or IComparable.";
+	    public static readonly string ArgMustNotBeLessThanOne = "The argument may not be less than one.";
         public static readonly string ArgMustNotBeNegative = "The argument may not be less than zero.";
         public static readonly string ArrayTooSmall = "The array is too small to hold all of the items.";
         public static readonly string KeyNotFound = "The key was not found in the collection.";
