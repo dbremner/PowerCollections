@@ -161,7 +161,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             List<double> list;
             int index;
-            Predicate<double> isNegative = delegate(double x) { return x < 0; };
+            Func<double, bool> isNegative = delegate(double x) { return x < 0; };
 
             list = new List<double>();
             index = Algorithms.Partition(list, isNegative);
@@ -222,7 +222,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             List<double> list;
             int index;
-            Predicate<double> isNegative = delegate(double x) { return x < 0; };
+            Func<double, bool> isNegative = delegate(double x) { return x < 0; };
 
             list = new List<double>();
             index = Algorithms.StablePartition(list, isNegative);
@@ -1295,8 +1295,8 @@ namespace Wintellect.PowerCollections.Tests
         {
             int index;
 
-            Predicate<int> isOdd = delegate(int x) { return (x & 1) == 1; };
-            Predicate<int> isEven = delegate(int x) { return (x & 1) == 0; };
+            Func<int, bool> isOdd = delegate(int x) { return (x & 1) == 1; };
+            Func<int, bool> isEven = delegate(int x) { return (x & 1) == 0; };
 
             IList<int> list1 = new List<int>();
             index = Algorithms.FirstConsecutiveWhere(list1, 1, isOdd);

@@ -58,7 +58,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if the collection contains one or more items that satisfy the condition
         /// defined by <paramref name="predicate"/>. False if the collection does not contain
         /// an item that satisfies <paramref name="predicate"/>.</returns>
-        public virtual bool Exists(Predicate<T> predicate)
+        public virtual bool Exists(Func<T, bool> predicate)
         {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
@@ -74,7 +74,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if all of the items in the collection satisfy the condition
         /// defined by <paramref name="predicate"/>, or if the collection is empty. False if one or more items
         /// in the collection do not satisfy <paramref name="predicate"/>.</returns>
-        public virtual bool TrueForAll(Predicate<T> predicate)
+        public virtual bool TrueForAll(Func<T, bool> predicate)
         {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
@@ -88,7 +88,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <param name="predicate">A delegate that defines the condition to check for.</param>
         /// <returns>The number of items in the collection that satisfy <paramref name="predicate"/>.</returns>
-        public virtual int CountWhere(Predicate<T> predicate)
+        public virtual int CountWhere(Func<T, bool> predicate)
         {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
@@ -102,7 +102,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <param name="predicate">A delegate that defines the condition to check for.</param>
         /// <returns>An IEnumerable&lt;T&gt; that enumerates the items that satisfy the condition.</returns>
-        public IEnumerable<T> FindAll(Predicate<T> predicate)
+        public IEnumerable<T> FindAll(Func<T, bool> predicate)
         {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));

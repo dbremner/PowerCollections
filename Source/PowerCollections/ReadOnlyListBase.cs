@@ -126,7 +126,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The first item that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, the default value for T is returned.</returns>
         /// <seealso cref="TryFind"/>
-        public virtual T Find(Predicate<T> predicate)
+        public virtual T Find(Func<T, bool> predicate)
         {
             return Algorithms.FindFirstWhere(this, predicate);
         }
@@ -140,7 +140,7 @@ namespace Wintellect.PowerCollections
         /// that satifies the condition defined by <paramref name="predicate"/>.</param>
         /// <returns>True if an item that  satisfies the condition <paramref name="predicate"/> was found. False 
         /// if no item in the list satisfies that condition.</returns>
-        public virtual bool TryFind(Predicate<T> predicate, out T foundItem)
+        public virtual bool TryFind(Func<T, bool> predicate, out T foundItem)
         {
             return Algorithms.TryFindFirstWhere(this, predicate, out foundItem);
         }
@@ -157,7 +157,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The last item that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, the default value for T is returned.</returns>
         /// <seealso cref="TryFindLast"/>
-        public virtual T FindLast(Predicate<T> predicate)
+        public virtual T FindLast(Func<T, bool> predicate)
         {
             return Algorithms.FindLastWhere(this, predicate);
         }
@@ -171,7 +171,7 @@ namespace Wintellect.PowerCollections
         /// that satifies the condition defined by <paramref name="predicate"/>.</param>
         /// <returns>True if an item that  satisfies the condition <paramref name="predicate"/> was found. False 
         /// if no item in the list satisfies that condition.</returns>
-        public virtual bool TryFindLast(Predicate<T> predicate, out T foundItem)
+        public virtual bool TryFindLast(Func<T, bool> predicate, out T foundItem)
         {
             return Algorithms.TryFindLastWhere(this, predicate, out foundItem);
         }
@@ -183,7 +183,7 @@ namespace Wintellect.PowerCollections
         /// <param name="predicate">A delegate that defined the condition to check for.</param>
         /// <returns>The index of the first item that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, -1 is returned.</returns>
-        public virtual int FindIndex(Predicate<T> predicate)
+        public virtual int FindIndex(Func<T, bool> predicate)
         {
             return Algorithms.FindFirstIndexWhere(this, predicate);
         }
@@ -196,7 +196,7 @@ namespace Wintellect.PowerCollections
         /// <param name="index">The starting index of the range to check.</param>
         /// <returns>The index of the first item in the given range that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, -1 is returned.</returns>
-        public virtual int FindIndex(int index, Predicate<T> predicate)
+        public virtual int FindIndex(int index, Func<T, bool> predicate)
         {
             int foundIndex = Algorithms.FindFirstIndexWhere(Range(index, Count - index), predicate);
             if (foundIndex < 0)
@@ -214,7 +214,7 @@ namespace Wintellect.PowerCollections
         /// <param name="count">The number of items in range to check.</param>
         /// <returns>The index of the first item in the given range that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, -1 is returned.</returns>
-        public virtual int FindIndex(int index, int count, Predicate<T> predicate)
+        public virtual int FindIndex(int index, int count, Func<T, bool> predicate)
         {
             int foundIndex = Algorithms.FindFirstIndexWhere(Range(index, count), predicate);
             if (foundIndex < 0)
@@ -230,7 +230,7 @@ namespace Wintellect.PowerCollections
         /// <param name="predicate">A delegate that defined the condition to check for.</param>
         /// <returns>The index of the last item that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, -1 is returned.</returns>
-        public virtual int FindLastIndex(Predicate<T> predicate)
+        public virtual int FindLastIndex(Func<T, bool> predicate)
         {
             return Algorithms.FindLastIndexWhere(this, predicate);
         }
@@ -244,7 +244,7 @@ namespace Wintellect.PowerCollections
         /// <param name="index">The ending index of the range to check.</param>
         /// <returns>The index of the last item in the given range that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, -1 is returned.</returns>
-        public virtual int FindLastIndex(int index, Predicate<T> predicate)
+        public virtual int FindLastIndex(int index, Func<T, bool> predicate)
         {
             return Algorithms.FindLastIndexWhere(Range(0, index + 1), predicate);
         }
@@ -258,7 +258,7 @@ namespace Wintellect.PowerCollections
         /// <param name="count">The number of items in range to check.</param>
         /// <returns>The index of the last item in the given range that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
         /// condition, -1 is returned.</returns>
-        public virtual int FindLastIndex(int index, int count, Predicate<T> predicate)
+        public virtual int FindLastIndex(int index, int count, Func<T, bool> predicate)
         {
             int foundIndex = Algorithms.FindLastIndexWhere(Range(index - count + 1, count), predicate);
 

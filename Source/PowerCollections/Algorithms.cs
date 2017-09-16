@@ -1308,7 +1308,7 @@ namespace Wintellect.PowerCollections
         /// <param name="replaceWith">The new value to replace with.</param>
         /// <returns>An new collection with the items from <paramref name="collection"/>, in the same order, 
         /// with the appropriate replacements made.</returns>
-        public static IEnumerable<T> Replace<T>(IEnumerable<T> collection, Predicate<T> predicate, T replaceWith)
+        public static IEnumerable<T> Replace<T>(IEnumerable<T> collection, Func<T, bool> predicate, T replaceWith)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
@@ -1378,7 +1378,7 @@ namespace Wintellect.PowerCollections
         /// <param name="predicate">The predicate used to evaluate items with the collection. If the predicate returns true for a particular
         /// item, the item is replaces with <paramref name="replaceWith"/>.</param>
         /// <param name="replaceWith">The new value to replace with.</param>
-        public static void ReplaceInPlace<T>(IList<T> list, Predicate<T> predicate, T replaceWith)
+        public static void ReplaceInPlace<T>(IList<T> list, Func<T, bool> predicate, T replaceWith)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
@@ -1643,7 +1643,7 @@ namespace Wintellect.PowerCollections
         /// <param name="predicate">The predicate used to test each item.</param>
         /// <returns>The index of the first item in the first run of <paramref name="count"/> items where <paramref name="predicate"/>
         /// returns true for all items in the run, or -1 if no such run exists.</returns>
-        public static int FirstConsecutiveWhere<T>(IList<T> list, int count, Predicate<T> predicate)
+        public static int FirstConsecutiveWhere<T>(IList<T> list, int count, Func<T, bool> predicate)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
@@ -1697,7 +1697,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The first item in the collection that matches the condition, or the default value for T (0 or null) if no
         /// item that matches the condition is found.</returns>
         /// <seealso cref="Algorithms.TryFindFirstWhere{T}"/>
-        public static T FindFirstWhere<T>(IEnumerable<T> collection, Predicate<T> predicate)
+        public static T FindFirstWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
             T retval;
             if (Algorithms.TryFindFirstWhere(collection, predicate, out retval))
@@ -1715,7 +1715,7 @@ namespace Wintellect.PowerCollections
         /// <param name="foundItem">Outputs the first item in the collection that matches the condition, if the method returns true.</param>
         /// <returns>True if an item satisfying the condition was found. False if no such item exists in the collection.</returns>
         /// <seealso cref="FindFirstWhere{T}"/>
-        public static bool TryFindFirstWhere<T>(IEnumerable<T> collection, Predicate<T> predicate, out T foundItem)
+        public static bool TryFindFirstWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate, out T foundItem)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
@@ -1749,7 +1749,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The last item in the collection that matches the condition, or the default value for T (0 or null) if no
         /// item that matches the condition is found.</returns>
         /// <seealso cref="TryFindLastWhere{T}"/>
-        public static T FindLastWhere<T>(IEnumerable<T> collection, Predicate<T> predicate)
+        public static T FindLastWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
             T retval;
             if (Algorithms.TryFindLastWhere(collection, predicate, out retval))
@@ -1769,7 +1769,7 @@ namespace Wintellect.PowerCollections
         /// <param name="foundItem">Outputs the last item in the collection that matches the condition, if the method returns true.</param>
         /// <returns>True if an item satisfying the condition was found. False if no such item exists in the collection.</returns>
         /// <seealso cref="FindLastWhere{T}"/>
-        public static bool TryFindLastWhere<T>(IEnumerable<T> collection, Predicate<T> predicate, out T foundItem)
+        public static bool TryFindLastWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate, out T foundItem)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
@@ -1814,7 +1814,7 @@ namespace Wintellect.PowerCollections
         /// <param name="collection">The collection to check all the items in.</param>
         /// <param name="predicate">A delegate that defines the condition to check for.</param>
         /// <returns>An IEnumerable&lt;T&gt; that enumerates the items that satisfy the condition.</returns>
-        public static IEnumerable<T> FindWhere<T>(IEnumerable<T> collection, Predicate<T> predicate)
+        public static IEnumerable<T> FindWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
@@ -1835,7 +1835,7 @@ namespace Wintellect.PowerCollections
         /// <param name="list">The list to search.</param>
         /// <param name="predicate">A delegate that defined the condition to check for.</param>
         /// <returns>The index of the first item satisfying the condition. -1 if no such item exists in the list.</returns>
-        public static int FindFirstIndexWhere<T>(IList<T> list, Predicate<T> predicate)
+        public static int FindFirstIndexWhere<T>(IList<T> list, Func<T, bool> predicate)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
@@ -1861,7 +1861,7 @@ namespace Wintellect.PowerCollections
         /// <param name="list">The list to search.</param>
         /// <param name="predicate">A delegate that defined the condition to check for.</param>
         /// <returns>The index of the last item satisfying the condition. -1 if no such item exists in the list.</returns>
-        public static int FindLastIndexWhere<T>(IList<T> list, Predicate<T> predicate)
+        public static int FindLastIndexWhere<T>(IList<T> list, Func<T, bool> predicate)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
@@ -1885,7 +1885,7 @@ namespace Wintellect.PowerCollections
         /// <param name="list">The list to check all the items in.</param>
         /// <param name="predicate">A delegate that defines the condition to check for.</param>
         /// <returns>An IEnumerable&lt;T&gt; that enumerates the indices of items that satisfy the condition.</returns>
-        public static IEnumerable<int> FindIndicesWhere<T>(IList<T> list, Predicate<T> predicate)
+        public static IEnumerable<int> FindIndicesWhere<T>(IList<T> list, Func<T, bool> predicate)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
@@ -4751,7 +4751,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if the collection contains one or more items that satisfy the condition
         /// defined by <paramref name="predicate"/>. False if the collection does not contain
         /// an item that satisfies <paramref name="predicate"/>.</returns>
-        public static bool Exists<T>(IEnumerable<T> collection, Predicate<T> predicate)
+        public static bool Exists<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
@@ -4775,7 +4775,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if all of the items in the collection satisfy the condition
         /// defined by <paramref name="predicate"/>, or if the collection is empty. False if one or more items
         /// in the collection do not satisfy <paramref name="predicate"/>.</returns>
-        public static bool TrueForAll<T>(IEnumerable<T> collection, Predicate<T> predicate)
+        public static bool TrueForAll<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
@@ -4797,7 +4797,7 @@ namespace Wintellect.PowerCollections
         /// <param name="collection">The collection to count items in.</param>
         /// <param name="predicate">A delegate that defines the condition to check for.</param>
         /// <returns>The number of items in the collection that satisfy <paramref name="predicate"/>.</returns>
-        public static int CountWhere<T>(IEnumerable<T> collection, Predicate<T> predicate)
+        public static int CountWhere<T>(IEnumerable<T> collection, Func<T, bool> predicate)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
@@ -4826,7 +4826,7 @@ namespace Wintellect.PowerCollections
         /// <param name="predicate">A delegate that defines the condition to check for.</param>
         /// <returns>Returns a collection of the items that were removed. This collection contains the
         /// items in the same order that they orginally appeared in <paramref name="collection"/>.</returns>
-        public static ICollection<T> RemoveWhere<T>(ICollection<T> collection, Predicate<T> predicate)
+        public static ICollection<T> RemoveWhere<T>(ICollection<T> collection, Func<T, bool> predicate)
         {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
@@ -4965,7 +4965,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The index of the first item in the second half of the partition; i.e., the first item for
         /// which <paramref name="predicate"/> returned false. If the predicate was true for all items
         /// in the list, list.Count is returned.</returns>
-        public static int Partition<T>(IList<T> list, Predicate<T> predicate)
+        public static int Partition<T>(IList<T> list, Func<T, bool> predicate)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
@@ -5012,7 +5012,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The index of the first item in the second half of the partition; i.e., the first item for
         /// which <paramref name="predicate"/> returned false. If the predicate was true for all items
         /// in the list, list.Count is returned.</returns>
-        public static int StablePartition<T>(IList<T> list, Predicate<T> predicate)
+        public static int StablePartition<T>(IList<T> list, Func<T, bool> predicate)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
