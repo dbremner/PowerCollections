@@ -867,20 +867,20 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 1, 3, 4, 6, 14, 22 }, true, null);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
         public void ViewAddException1()
         {
             var set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
 
-            set1.Range(3, true, 8, false).Add(8);
+            Throws<ArgumentException>(() => set1.Range(3, true, 8, false).Add(8));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
         public void ViewAddException2()
         {
             var set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
 
-            set1.Range(3, true, 8, false).Add(2);
+            Throws<ArgumentException>(() => set1.Range(3, true, 8, false).Add(2));
         }
 
         [TestMethod]
