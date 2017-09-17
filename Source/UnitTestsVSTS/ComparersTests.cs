@@ -222,9 +222,9 @@ namespace Wintellect.PowerCollections.Tests
         public static bool FirstCharEqual(string s1, string s2)
         {
             if (s1 == null || s2 == null || s1.Length == 0 || s2.Length == 0) {
-                if (s1 != null && s1.Length > 0)
+                if (!string.IsNullOrEmpty(s1))
                     return false;
-                if (s2 != null && s2.Length > 0)
+                if (!string.IsNullOrEmpty(s2))
                     return false;
                 return true;
             }
