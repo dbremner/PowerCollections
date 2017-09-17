@@ -1008,7 +1008,7 @@ namespace Wintellect.PowerCollections
             public int Add(object value)
             {  
                 // We assume that Add always adds to the end. Is this true?
-                wrappedList.Add(ConvertToItemType("value", value));
+                wrappedList.Add(ConvertToItemType(nameof(value), value));
                 return wrappedList.Count - 1;
             }
 
@@ -1032,7 +1032,7 @@ namespace Wintellect.PowerCollections
             }
 
             public void Insert(int index, object value)
-            { wrappedList.Insert(index, ConvertToItemType("value", value)); }
+            { wrappedList.Insert(index, ConvertToItemType(nameof(value), value)); }
 
             public bool IsFixedSize
             {
@@ -1056,7 +1056,7 @@ namespace Wintellect.PowerCollections
             public object this[int index]
             {
                 get { return wrappedList[index]; }
-                set { wrappedList[index] = ConvertToItemType("value", value); }
+                set { wrappedList[index] = ConvertToItemType(nameof(value), value); }
             }
 
             public void CopyTo(Array array, int index)

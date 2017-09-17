@@ -449,7 +449,7 @@ namespace Wintellect.PowerCollections
         int IList.Add(object value)
         {
             int count = Count;
-            Insert(count, ConvertToItemType("value", value));
+            Insert(count, ConvertToItemType(nameof(value), value));
             return count;
         }
 
@@ -509,7 +509,7 @@ namespace Wintellect.PowerCollections
         /// <exception cref="ArgumentException"><paramref name="value"/> cannot be converted to T.</exception>
         void IList.Insert(int index, object value)
         {
-            Insert(index, ConvertToItemType("value", value));
+            Insert(index, ConvertToItemType(nameof(value), value));
         }
 
         /// <summary>
@@ -579,7 +579,7 @@ namespace Wintellect.PowerCollections
 
             set
             {
-                this[index] = ConvertToItemType("value", value);
+                this[index] = ConvertToItemType(nameof(value), value);
             }
         }
     }
