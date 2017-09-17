@@ -590,7 +590,7 @@ namespace Wintellect.PowerCollections.Tests {
                 int[] a = CreateRandomArray(iter, LENGTH, LENGTH * 10, false);
                 InsertArray(a, DuplicatePolicy.InsertLast);
 
-                string[] strs = Array.ConvertAll<int, string>(a, StringFromInt);
+                string[] strs = Array.ConvertAll(a, StringFromInt);
                 Array.Sort(strs);
 
                 for (int k = 0; k < 10; ++k) {

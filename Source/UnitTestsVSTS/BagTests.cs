@@ -75,7 +75,7 @@ namespace Wintellect.PowerCollections.Tests
                 bag1.Add(s);
 
             Array.Sort(s_array);
-            InterfaceTests.TestCollection<string>((ICollection)bag1, s_array, false);
+            InterfaceTests.TestCollection((ICollection)bag1, s_array, false);
         }
 
 
@@ -89,7 +89,7 @@ namespace Wintellect.PowerCollections.Tests
                 bag1.Add(s);
 
             Array.Sort(s_array);
-            InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)bag1, s_array, false);
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)bag1, s_array, false);
         }
 
         [TestMethod]
@@ -911,7 +911,7 @@ namespace Wintellect.PowerCollections.Tests
                 13,
                 17
             };
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(bag1, new int[] { 3, 3, 3, 9, 12, 12 }, false);
+            InterfaceTests.TestReadWriteCollectionGeneric(bag1, new int[] { 3, 3, 3, 9, 12, 12 }, false);
         }
 
         [TestMethod]
@@ -933,8 +933,8 @@ namespace Wintellect.PowerCollections.Tests
             var set1 = new Bag<int>(list);
             var set2 = new Bag<int>(list, new ModularComparer(6));
 
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(set1, new int[] { 3, 8, 9, 9, 12 }, false);
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(set2, new int[] { 3, 3, 3, 8, 12 }, false);
+            InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 3, 8, 9, 9, 12 }, false);
+            InterfaceTests.TestReadWriteCollectionGeneric(set2, new int[] { 3, 3, 3, 8, 12 }, false);
         }
 
         [TestMethod]
@@ -979,7 +979,7 @@ namespace Wintellect.PowerCollections.Tests
             var result = (Bag<string>)InterfaceTests.SerializeRoundTrip(d);
 
 
-            InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "elvis", "elvis", "hello", "foo", "foo", "WORLD", null, "7", "8", "9", "1", "2", "3" }, false, StringComparer.InvariantCultureIgnoreCase.Equals);
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "elvis", "elvis", "hello", "foo", "foo", "WORLD", null, "7", "8", "9", "1", "2", "3" }, false, StringComparer.InvariantCultureIgnoreCase.Equals);
 
         }
 
@@ -1016,7 +1016,7 @@ namespace Wintellect.PowerCollections.Tests
 
             result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
 
-            InterfaceTests.TestReadWriteCollectionGeneric<InterfaceTests.Unique>(result.bag, result.objects, false);
+            InterfaceTests.TestReadWriteCollectionGeneric(result.bag, result.objects, false);
 
             for (int i = 0; i < result.objects.Length; ++i) {
                 if (result.objects[i] != null)

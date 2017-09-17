@@ -65,13 +65,13 @@ namespace Wintellect.PowerCollections.Tests
 
             d_list = new List<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             removed = Algorithms.RemoveWhere(d_list, delegate(double d) { return d < 200; });
-            InterfaceTests.TestReadWriteCollectionGeneric<double>(removed, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true);
+            InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true);
             Assert.AreEqual(0, d_list.Count);
 
             d_list = new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 };
-            removed = Algorithms.RemoveWhere<double>(d_list, delegate(double d) { return Math.Abs(d) > 5; });
-            InterfaceTests.TestEnumerableElements<double>(d_list, new double[] { 4.5, 1.2, -0.04, 1.78, 0, 0, 0, 0 });
-            InterfaceTests.TestReadWriteCollectionGeneric<double>(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true);
+            removed = Algorithms.RemoveWhere(d_list, delegate(double d) { return Math.Abs(d) > 5; });
+            InterfaceTests.TestEnumerableElements(d_list, new double[] { 4.5, 1.2, -0.04, 1.78, 0, 0, 0, 0 });
+            InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true);
         }
 
         [TestMethod]
@@ -230,10 +230,10 @@ namespace Wintellect.PowerCollections.Tests
             var coll2 = new List<string>(new string[] { "eric", "clapton" });
             var coll3 = new OrderedSet<string>(new string[] { "ghi", "xyz", "abc" });
 
-            Assert.IsTrue(Algorithms.EqualCollections<string>(Algorithms.Concatenate<string>(coll1, new string[0], coll2, coll3, coll1),
+            Assert.IsTrue(Algorithms.EqualCollections(Algorithms.Concatenate(coll1, new string[0], coll2, coll3, coll1),
                 new string[] { "hello", "there", "sailor", "eric", "clapton", "abc", "ghi", "xyz", "hello", "there", "sailor" }));
             Assert.AreEqual(0, Enumerable.ToArray(Algorithms.Concatenate<string>()).Length);
-            Assert.IsTrue(Algorithms.EqualCollections<string>(Algorithms.Concatenate(coll3),
+            Assert.IsTrue(Algorithms.EqualCollections(Algorithms.Concatenate(coll3),
                 new string[] { "abc", "ghi", "xyz" }));
         }
 
@@ -1063,7 +1063,7 @@ namespace Wintellect.PowerCollections.Tests
             Algorithms.RemoveDuplicatesInPlace(list16, StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestListGeneric(list16, new string[] { "foo", "bar" });
 
-            IList<string> list21 = Algorithms.ReadWriteList<string>(new string[] { "foo", "foo", "foo", "big", "foo", "super", "super", null, null, null, "hello", "there", "sailor", "sailor" });
+            IList<string> list21 = Algorithms.ReadWriteList(new string[] { "foo", "foo", "foo", "big", "foo", "super", "super", null, null, null, "hello", "there", "sailor", "sailor" });
             Algorithms.RemoveDuplicatesInPlace(list21);
             InterfaceTests.TestEnumerableElements(list21, new string[] { "foo", "big", "foo", "super", null, "hello", "there", "sailor", null, null, null, null, null, null});
 
@@ -1226,7 +1226,7 @@ namespace Wintellect.PowerCollections.Tests
             IList<string> list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             IEnumerable<string> enum1 = EnumerableFromArray(new string[] { "hello", "Sailor" });
             Algorithms.Copy(enum1, list1, 3);
-            InterfaceTests.TestListGeneric<string>(list1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             IEnumerable<string> enum2 = EnumerableFromArray(new string[0]);
             Algorithms.Copy(enum2, list1, 1);
@@ -1254,7 +1254,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             IEnumerable<string> enum1 = EnumerableFromArray(new string[] { "hello", "Sailor" });
             Algorithms.Copy(enum1, array1, 3);
-            InterfaceTests.TestEnumerableElements<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            InterfaceTests.TestEnumerableElements(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             IEnumerable<string> enum2 = EnumerableFromArray(new string[0]);
             Algorithms.Copy(enum2, array1, 1);
@@ -1288,7 +1288,7 @@ namespace Wintellect.PowerCollections.Tests
             IList<string> list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             IEnumerable<string> enum1 = EnumerableFromArray(new string[] { "hello", "Sailor" });
             Algorithms.Copy(enum1, list1, 3, 2);
-            InterfaceTests.TestListGeneric<string>(list1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             IEnumerable<string> enum2 = EnumerableFromArray(new string[0]);
             Algorithms.Copy(enum2, list1, 1, 5);
@@ -1319,7 +1319,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             IEnumerable<string> enum1 = EnumerableFromArray(new string[] { "hello", "Sailor" });
             Algorithms.Copy(enum1, array1, 3, 2);
-            InterfaceTests.TestEnumerableElements<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            InterfaceTests.TestEnumerableElements(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             IEnumerable<string> enum2 = EnumerableFromArray(new string[0]);
             Algorithms.Copy(enum2, array1, 1, 5);
@@ -1356,38 +1356,38 @@ namespace Wintellect.PowerCollections.Tests
             IList<string> list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             IList<string> list2 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             Algorithms.Copy(list1, 1, list2, 2, 4);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "a1", "a2", "bar", "baz", "smell", "the" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "a1", "a2", "bar", "baz", "smell", "the" });
 
             list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.Copy(list1, 1, list1, 2, 5);
-            InterfaceTests.TestListGeneric<string>(list1, new string[] { "foo", "bar", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "bar", "baz", "smell", "the", "glove" });
 
             list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.Copy(list1, 0, list1, 2, 3);
-            InterfaceTests.TestListGeneric<string>(list1, new string[] { "foo", "bar", "foo", "bar", "baz", "glove" });
+            InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "foo", "bar", "baz", "glove" });
 
             list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.Copy(list1, 1, list1, 0, 5);
-            InterfaceTests.TestListGeneric<string>(list1, new string[] { "bar", "baz", "smell", "the", "glove", "glove" });
+            InterfaceTests.TestListGeneric(list1, new string[] { "bar", "baz", "smell", "the", "glove", "glove" });
 
             list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.Copy(list1, 1, list1, 2, 3);
-            InterfaceTests.TestListGeneric<string>(list1, new string[] { "foo", "bar", "bar", "baz", "smell", "glove" });
+            InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "bar", "baz", "smell", "glove" });
 
             list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             list2 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             Algorithms.Copy(list1, 1, list2, 4, 7);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "a1", "a2", "a3", "a4", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "a1", "a2", "a3", "a4", "bar", "baz", "smell", "the", "glove" });
 
             list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             list2 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             Algorithms.Copy(list1, 3, list2, 0, 7);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "smell", "the", "glove", "a4" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "smell", "the", "glove", "a4" });
 
             list1 = new List<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             list2 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             Algorithms.Copy(list1, 3, list2, 0, 1);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "smell", "a2", "a3", "a4" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "smell", "a2", "a3", "a4" });
         }
 
         [TestMethod]
@@ -1396,33 +1396,33 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             string[] array2 = { "a1", "a2", "a3", "a4" };
             Algorithms.Copy(array1, 1, array2, 2, 2);
-            InterfaceTests.TestListGeneric<string>(array2, new string[] { "a1", "a2", "bar", "baz" });
+            InterfaceTests.TestListGeneric(array2, new string[] { "a1", "a2", "bar", "baz" });
 
             array1 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.Copy(array1, 1, array1, 2, 3);
-            InterfaceTests.TestListGeneric<string>(array1, new string[] { "foo", "bar", "bar", "baz", "smell",  "glove" });
+            InterfaceTests.TestListGeneric(array1, new string[] { "foo", "bar", "bar", "baz", "smell",  "glove" });
 
             array1 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.Copy(array1, 0, array1, 2, 3);
-            InterfaceTests.TestListGeneric<string>(array1, new string[] { "foo", "bar", "foo", "bar", "baz", "glove" });
+            InterfaceTests.TestListGeneric(array1, new string[] { "foo", "bar", "foo", "bar", "baz", "glove" });
 
             array1 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.Copy(array1, 1, array1, 0, 5);
-            InterfaceTests.TestListGeneric<string>(array1, new string[] { "bar", "baz", "smell", "the", "glove", "glove" });
+            InterfaceTests.TestListGeneric(array1, new string[] { "bar", "baz", "smell", "the", "glove", "glove" });
 
             array1 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.Copy(array1, 1, array1, 2, 3);
-            InterfaceTests.TestListGeneric<string>(array1, new string[] { "foo", "bar", "bar", "baz", "smell", "glove" });
+            InterfaceTests.TestListGeneric(array1, new string[] { "foo", "bar", "bar", "baz", "smell", "glove" });
 
             array1 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
             array2 = new string[] { "a1", "a2", "a3", "a4" };
             Algorithms.Copy(array1, 3, array2, 0, 4);
-            InterfaceTests.TestListGeneric<string>(array2, new string[] { "smell", "the", "glove", "a4" });
+            InterfaceTests.TestListGeneric(array2, new string[] { "smell", "the", "glove", "a4" });
 
             array1 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
             array2 = new string[] { "a1", "a2", "a3", "a4" };
             Algorithms.Copy(array1, 3, array2, 0, 1);
-            InterfaceTests.TestListGeneric<string>(array2, new string[] { "smell", "a2", "a3", "a4" });
+            InterfaceTests.TestListGeneric(array2, new string[] { "smell", "a2", "a3", "a4" });
         }
 
         [TestMethod]
@@ -1431,17 +1431,17 @@ namespace Wintellect.PowerCollections.Tests
             var list1 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             string[] array2 = { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.Copy(list1, 1, array2, 2, 2);
-            InterfaceTests.TestListGeneric<string>(array2, new string[] { "foo", "bar", "a2", "a3", "the", "glove" });
+            InterfaceTests.TestListGeneric(array2, new string[] { "foo", "bar", "a2", "a3", "the", "glove" });
 
             list1 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             array2 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.Copy(list1, 1, array2, 2, 4);
-            InterfaceTests.TestListGeneric<string>(array2, new string[] { "foo", "bar", "a2", "a3", "a4", "glove" });
+            InterfaceTests.TestListGeneric(array2, new string[] { "foo", "bar", "a2", "a3", "a4", "glove" });
 
             list1 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             array2 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.Copy(list1, 1, array2, 4, 2);
-            InterfaceTests.TestListGeneric<string>(array2, new string[] { "foo", "bar", "baz", "smell", "a2", "a3" });
+            InterfaceTests.TestListGeneric(array2, new string[] { "foo", "bar", "baz", "smell", "a2", "a3" });
 
             list1 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             array2 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
@@ -1462,11 +1462,11 @@ namespace Wintellect.PowerCollections.Tests
 
             IList<string> list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             InterfaceTests.TestEnumerableElements(Algorithms.Reverse(list2), new string[] { "glove", "the", "smell", "baz", "bar", "foo" });
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
 
             IList<string> list3 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
             InterfaceTests.TestEnumerableElements(Algorithms.Reverse(list3), new string[] { "glove", "the", "smell", "baz", "foo" });
-            InterfaceTests.TestListGeneric<string>(list3, new string[] { "foo", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list3, new string[] { "foo", "baz", "smell", "the", "glove" });
         }
 
         [TestMethod]
@@ -1478,15 +1478,15 @@ namespace Wintellect.PowerCollections.Tests
 
             IList<string> list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.ReverseInPlace(list2);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "glove", "the", "smell", "baz", "bar", "foo" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "glove", "the", "smell", "baz", "bar", "foo" });
 
             IList<string> list3 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
             Algorithms.ReverseInPlace(list3);
-            InterfaceTests.TestListGeneric<string>(list3, new string[] { "glove", "the", "smell", "baz", "foo" });
+            InterfaceTests.TestListGeneric(list3, new string[] { "glove", "the", "smell", "baz", "foo" });
 
             string[] array1 =  { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.ReverseInPlace(array1);
-            InterfaceTests.TestEnumerableElements<string>(list2, new string[] { "glove", "the", "smell", "baz", "bar", "foo" });
+            InterfaceTests.TestEnumerableElements(list2, new string[] { "glove", "the", "smell", "baz", "bar", "foo" });
 
         }
 
@@ -1500,21 +1500,21 @@ namespace Wintellect.PowerCollections.Tests
 
             IList<string> list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             InterfaceTests.TestEnumerableElements(Algorithms.Rotate(list2, 1), new string[] { "bar", "baz", "smell", "the", "glove", "foo" });
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             InterfaceTests.TestEnumerableElements(Algorithms.Rotate(list2, 0), new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             InterfaceTests.TestEnumerableElements(Algorithms.Rotate(list2, 10), new string[] { "the", "glove", "foo", "bar", "baz", "smell"});
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             InterfaceTests.TestEnumerableElements(Algorithms.Rotate(list2, -2), new string[] { "the", "glove", "foo", "bar", "baz", "smell" });
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             InterfaceTests.TestEnumerableElements(Algorithms.Rotate(list2, -13), new string[] { "glove", "foo", "bar", "baz", "smell", "the" });
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             InterfaceTests.TestEnumerableElements(Algorithms.Rotate(list2, 6), new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
 
             IList<string> list3 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
             InterfaceTests.TestEnumerableElements(Algorithms.Rotate(list3, -3), new string[] { "smell", "the", "glove", "foo", "baz" });
-            InterfaceTests.TestListGeneric<string>(list3, new string[] { "foo", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list3, new string[] { "foo", "baz", "smell", "the", "glove" });
         }
 
         [TestMethod]
@@ -1522,43 +1522,43 @@ namespace Wintellect.PowerCollections.Tests
         {
             IList<string> list1 = new List<string>();
             Algorithms.RotateInPlace(list1, 3);
-            InterfaceTests.TestListGeneric<string>(list1, new string[0]);
+            InterfaceTests.TestListGeneric(list1, new string[0]);
             Algorithms.RotateInPlace(list1, 0);
-            InterfaceTests.TestListGeneric<string>(list1, new string[0]);
+            InterfaceTests.TestListGeneric(list1, new string[0]);
             Algorithms.RotateInPlace(list1, -1);
-            InterfaceTests.TestListGeneric<string>(list1, new string[0]);
+            InterfaceTests.TestListGeneric(list1, new string[0]);
 
             IList<string> list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.RotateInPlace(list2, 1);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "bar", "baz", "smell", "the", "glove", "foo" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "bar", "baz", "smell", "the", "glove", "foo" });
 
             list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.RotateInPlace(list2, 0);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
 
             list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.RotateInPlace(list2, 10);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "the", "glove", "foo", "bar", "baz", "smell" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "the", "glove", "foo", "bar", "baz", "smell" });
 
             list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.RotateInPlace(list2, -2);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "the", "glove", "foo", "bar", "baz", "smell" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "the", "glove", "foo", "bar", "baz", "smell" });
 
             list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.RotateInPlace(list2, -13);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "glove", "foo", "bar", "baz", "smell", "the" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "glove", "foo", "bar", "baz", "smell", "the" });
 
             list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             Algorithms.RotateInPlace(list2, 6);
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
 
             IList<string> list3 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
             Algorithms.RotateInPlace(list3, -3);
-            InterfaceTests.TestListGeneric<string>(list3, new string[] { "smell", "the", "glove", "foo", "baz" });
+            InterfaceTests.TestListGeneric(list3, new string[] { "smell", "the", "glove", "foo", "baz" });
 
             string[] array1 =  { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.RotateInPlace(array1, -2);
-            InterfaceTests.TestEnumerableElements<string>(array1, new string[] { "the", "glove", "foo", "bar", "baz", "smell" });
+            InterfaceTests.TestEnumerableElements(array1, new string[] { "the", "glove", "foo", "bar", "baz", "smell" });
 
         }
 
@@ -1569,21 +1569,21 @@ namespace Wintellect.PowerCollections.Tests
 
             IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
             string[] result1 = Algorithms.RandomShuffle(coll1);
-            InterfaceTests.TestEnumerableElements<string>(result1, new string[0]);
+            InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
             IEnumerable<string> coll2 = EnumerableFromArray(new string[1] { "foo" });
             string[] result2 = Algorithms.RandomShuffle(coll2);
-            InterfaceTests.TestEnumerableElements<string>(result2, new string[1] { "foo" });
+            InterfaceTests.TestEnumerableElements(result2, new string[1] { "foo" });
 
             IEnumerable<string> coll3 = EnumerableFromArray(new string[] { "foo", "bar" });
             string[] result3 = Algorithms.RandomShuffle(coll3);
-            InterfaceTests.TestEnumerableElementsAnyOrder<string>(result3, new string[] { "foo", "bar" });
+            InterfaceTests.TestEnumerableElementsAnyOrder(result3, new string[] { "foo", "bar" });
 
             int[,] count = new int[6,6];
             IEnumerable<string> coll4 = EnumerableFromArray(new string[] { "a", "b", "c", "d", "e", "f" });
             for (int iter = 0; iter < ITER; ++iter) {
                 string[] result4 = Algorithms.RandomShuffle(coll4);
-                InterfaceTests.TestEnumerableElementsAnyOrder<string>(result4, new string[] { "a", "b", "c", "d", "e", "f" });
+                InterfaceTests.TestEnumerableElementsAnyOrder(result4, new string[] { "a", "b", "c", "d", "e", "f" });
 
                 for (int i = 0; i < 6; ++i)
                     count[i, result4[i][0] - 'a'] += 1;
@@ -1602,22 +1602,22 @@ namespace Wintellect.PowerCollections.Tests
 
             IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
             string[] result1 = Algorithms.RandomShuffle(coll1, new Random(167));
-            InterfaceTests.TestEnumerableElements<string>(result1, new string[0]);
+            InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
             IEnumerable<string> coll2 = EnumerableFromArray(new string[1] { "foo" });
             string[] result2 = Algorithms.RandomShuffle(coll2, new Random(167));
-            InterfaceTests.TestEnumerableElements<string>(result2, new string[1] { "foo" });
+            InterfaceTests.TestEnumerableElements(result2, new string[1] { "foo" });
 
             IEnumerable<string> coll3 = EnumerableFromArray(new string[] { "foo", "bar" });
             string[] result3 = Algorithms.RandomShuffle(coll3, new Random(167));
-            InterfaceTests.TestEnumerableElementsAnyOrder<string>(result3, new string[] { "foo", "bar" });
+            InterfaceTests.TestEnumerableElementsAnyOrder(result3, new string[] { "foo", "bar" });
 
             var rand = new Random(199);
             int[,] count = new int[6, 6];
             IEnumerable<string> coll4 = EnumerableFromArray(new string[] { "a", "b", "c", "d", "e", "f" });
             for (int iter = 0; iter < ITER; ++iter) {
                 string[] result4 = Algorithms.RandomShuffle(coll4, rand);
-                InterfaceTests.TestEnumerableElementsAnyOrder<string>(result4, new string[] { "a", "b", "c", "d", "e", "f" });
+                InterfaceTests.TestEnumerableElementsAnyOrder(result4, new string[] { "a", "b", "c", "d", "e", "f" });
 
                 for (int i = 0; i < 6; ++i)
                     count[i, result4[i][0] - 'a'] += 1;
@@ -1637,11 +1637,11 @@ namespace Wintellect.PowerCollections.Tests
 
             IList<string> list1 = new List<string>();
             Algorithms.RandomShuffleInPlace(list1);
-            InterfaceTests.TestListGeneric<string>(list1, new string[0]);
+            InterfaceTests.TestListGeneric(list1, new string[0]);
 
             IList<string> list2 = new List<string>(new string[1] { "foo" });
             Algorithms.RandomShuffleInPlace(list2);
-            InterfaceTests.TestListGeneric<string>(list2, new string[1] { "foo" });
+            InterfaceTests.TestListGeneric(list2, new string[1] { "foo" });
 
             IList<string> list3 = new List<string>(new string[] { "foo", "bar" });
             Algorithms.RandomShuffleInPlace(list3);
@@ -1671,11 +1671,11 @@ namespace Wintellect.PowerCollections.Tests
 
             IList<string> list1 = new List<string>();
             Algorithms.RandomShuffleInPlace(list1, new Random(1874));
-            InterfaceTests.TestListGeneric<string>(list1, new string[0]);
+            InterfaceTests.TestListGeneric(list1, new string[0]);
 
             IList<string> list2 = new List<string>(new string[1] { "foo" });
             Algorithms.RandomShuffleInPlace(list2, new Random(1));
-            InterfaceTests.TestListGeneric<string>(list2, new string[1] { "foo" });
+            InterfaceTests.TestListGeneric(list2, new string[1] { "foo" });
 
             IList<string> list3 = new List<string>(new string[] { "foo", "bar" });
             Algorithms.RandomShuffleInPlace(list3, new Random(11998));
@@ -1705,11 +1705,11 @@ namespace Wintellect.PowerCollections.Tests
 
             string[] array1 = new string[0];
             Algorithms.RandomShuffleInPlace(array1);
-            InterfaceTests.TestEnumerableElements<string>(array1, new string[0]);
+            InterfaceTests.TestEnumerableElements(array1, new string[0]);
 
             string[] array2 =  { "foo" };
             Algorithms.RandomShuffleInPlace(array2);
-            InterfaceTests.TestEnumerableElements<string>(array2, new string[1] { "foo" });
+            InterfaceTests.TestEnumerableElements(array2, new string[1] { "foo" });
 
             string[] array3 = { "foo", "bar" };
             Algorithms.RandomShuffleInPlace(array3);
@@ -1739,11 +1739,11 @@ namespace Wintellect.PowerCollections.Tests
 
             IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
             string[] result1 = Algorithms.RandomSubset(coll1, 0);
-            InterfaceTests.TestEnumerableElements<string>(result1, new string[0]);
+            InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
             IEnumerable<string> coll2 = EnumerableFromArray(new string[1] { "foo" });
             string[] result2 = Algorithms.RandomSubset(coll2, 1);
-            InterfaceTests.TestEnumerableElements<string>(result2, new string[1] { "foo" });
+            InterfaceTests.TestEnumerableElements(result2, new string[1] { "foo" });
 
             IEnumerable<string> coll3 = EnumerableFromArray(new string[] { "foo", "bar" });
             string[] result3 = Algorithms.RandomSubset(coll3, 1);
@@ -1786,11 +1786,11 @@ namespace Wintellect.PowerCollections.Tests
 
             IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
             string[] result1 = Algorithms.RandomSubset(coll1, 0, new Random(181));
-            InterfaceTests.TestEnumerableElements<string>(result1, new string[0]);
+            InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
             IEnumerable<string> coll2 = EnumerableFromArray(new string[1] { "foo" });
             string[] result2 = Algorithms.RandomSubset(coll2, 1, new Random(199));
-            InterfaceTests.TestEnumerableElements<string>(result2, new string[1] { "foo" });
+            InterfaceTests.TestEnumerableElements(result2, new string[1] { "foo" });
 
             IEnumerable<string> coll3 = EnumerableFromArray(new string[] { "foo", "bar" });
             string[] result3 = Algorithms.RandomSubset(coll3, 1, new Random(11999));
@@ -1834,11 +1834,11 @@ namespace Wintellect.PowerCollections.Tests
 
             IList<string> list1 = new List<string>(new string[0]);
             string[] result1 = Algorithms.RandomSubset(list1, 0);
-            InterfaceTests.TestEnumerableElements<string>(result1, new string[0]);
+            InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
             IList<string> list2 = new List<string>(new string[1] { "foo" });
             string[] result2 = Algorithms.RandomSubset(list2, 1);
-            InterfaceTests.TestEnumerableElements<string>(result2, new string[1] { "foo" });
+            InterfaceTests.TestEnumerableElements(result2, new string[1] { "foo" });
 
             IList<string> list3 = new List<string>(new string[] { "foo", "bar" });
             string[] result3 = Algorithms.RandomSubset(list3, 1);
@@ -1881,11 +1881,11 @@ namespace Wintellect.PowerCollections.Tests
 
             IList<string> list1 = new List<string>(new string[0]);
             string[] result1 = Algorithms.RandomSubset(list1, 0, new Random(998));
-            InterfaceTests.TestEnumerableElements<string>(result1, new string[0]);
+            InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
             IList<string> list2 = new List<string>(new string[1] { "foo" });
             string[] result2 = Algorithms.RandomSubset(list2, 1, new Random(12));
-            InterfaceTests.TestEnumerableElements<string>(result2, new string[1] { "foo" });
+            InterfaceTests.TestEnumerableElements(result2, new string[1] { "foo" });
 
             IList<string> list3 = new List<string>(new string[] { "foo", "bar" });
             string[] result3 = Algorithms.RandomSubset(list3, 1, new Random(1100));
@@ -2074,7 +2074,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                Algorithms.Copy<string>(new string[] { "hello", "sailor" }, list1, 2);
+                Algorithms.Copy(new string[] { "hello", "sailor" }, list1, 2);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2082,7 +2082,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                Algorithms.Copy<string>(new string[] { "hello", "sailor" }, list1, 2, 3);
+                Algorithms.Copy(new string[] { "hello", "sailor" }, list1, 2, 3);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2090,7 +2090,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                Algorithms.Copy<string>(new string[] { "hello", "sailor" }, 0, list1, 2, 3);
+                Algorithms.Copy(new string[] { "hello", "sailor" }, 0, list1, 2, 3);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2181,8 +2181,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SetIntersection()
         {
-            IEnumerable<int> enumOdds = EnumerableFromArray<int>(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
-            IEnumerable<int> enumDigits = EnumerableFromArray<int>(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
+            IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
+            IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
             IEnumerable<int> result;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -2192,8 +2192,8 @@ namespace Wintellect.PowerCollections.Tests
             result = Algorithms.SetIntersection(enumDigits, enumOdds);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 1, 3, 3, 3, 5, 7, 7, 9 });
 
-            IEnumerable<string> set1 = EnumerableFromArray<string>(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
-            IEnumerable<string> set2 = EnumerableFromArray<string>(new string[] {"CHEESE", "bAgEL", "BAGEL",  null, "pancakes", null});
+            IEnumerable<string> set1 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
+            IEnumerable<string> set2 = EnumerableFromArray(new string[] {"CHEESE", "bAgEL", "BAGEL",  null, "pancakes", null});
             IEnumerable<string> res = Algorithms.SetIntersection(set1, set2, StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestEnumerableElementsAnyOrder(res, new string[] { "cheese", null, "bagel", "bagel" }, StringComparer.InvariantCultureIgnoreCase.Equals);
         }
@@ -2201,8 +2201,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SetUnion()
         {
-            IEnumerable<int> enumOdds = EnumerableFromArray<int>(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
-            IEnumerable<int> enumDigits = EnumerableFromArray<int>(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
+            IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
+            IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
             IEnumerable<int> result;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -2212,8 +2212,8 @@ namespace Wintellect.PowerCollections.Tests
             result = Algorithms.SetUnion(enumDigits, enumOdds);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 1, 1, 1, 2, 2, 3, 3, 3, 4, 5, 5, 6, 7, 7, 7, 7, 7, 7, 8, 9, 11, 11, 13, 15, 17, 17, 19 });
 
-            IEnumerable<string> set1 = EnumerableFromArray<string>(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
-            IEnumerable<string> set2 = EnumerableFromArray<string>(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
+            IEnumerable<string> set1 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
+            IEnumerable<string> set2 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
             IEnumerable<string> res = Algorithms.SetUnion(set1, set2, StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestEnumerableElementsAnyOrder(res, new string[] { "apple", "apple", "banana", "cheese", null, null, "bagel", "bagel", "meat", "pancakes" }, StringComparer.InvariantCultureIgnoreCase.Equals);
         }
@@ -2221,8 +2221,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SetDifference()
         {
-            IEnumerable<int> enumOdds = EnumerableFromArray<int>(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
-            IEnumerable<int> enumDigits = EnumerableFromArray<int>(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
+            IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
+            IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
             IEnumerable<int> result;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -2232,8 +2232,8 @@ namespace Wintellect.PowerCollections.Tests
             result = Algorithms.SetDifference(enumDigits, enumOdds);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 2, 2, 4, 5, 6, 7, 7, 7, 7, 8 });
 
-            IEnumerable<string> set1 = EnumerableFromArray<string>(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
-            IEnumerable<string> set2 = EnumerableFromArray<string>(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
+            IEnumerable<string> set1 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
+            IEnumerable<string> set2 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
             IEnumerable<string> res = Algorithms.SetDifference(set1, set2, StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestEnumerableElementsAnyOrder(res, new string[] { "APPLE", "APPLE", "BANANA", "MEAT" }, StringComparer.InvariantCultureIgnoreCase.Equals);
             res = Algorithms.SetDifference(set2, set1, StringComparer.InvariantCultureIgnoreCase);
@@ -2243,8 +2243,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SetSymmetricDifference()
         {
-            IEnumerable<int> enumOdds = EnumerableFromArray<int>(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
-            IEnumerable<int> enumDigits = EnumerableFromArray<int>(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
+            IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
+            IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
             IEnumerable<int> result;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -2254,8 +2254,8 @@ namespace Wintellect.PowerCollections.Tests
             result = Algorithms.SetSymmetricDifference(enumDigits, enumOdds);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 1, 1, 2, 2, 4, 5, 6, 7, 7, 7, 7, 8, 11, 11, 13, 15, 17, 17, 19 });
 
-            IEnumerable<string> set1 = EnumerableFromArray<string>(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
-            IEnumerable<string> set2 = EnumerableFromArray<string>(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
+            IEnumerable<string> set1 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
+            IEnumerable<string> set2 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
             IEnumerable<string> res = Algorithms.SetSymmetricDifference(set1, set2, StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestEnumerableElementsAnyOrder(res, new string[] { "APPLE", "APPLE", null, "MEAT", "PANCAKES", "BANANA" }, StringComparer.InvariantCultureIgnoreCase.Equals);
         }
@@ -2263,11 +2263,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void DisjointSets()
         {
-            IEnumerable<int> set1 = EnumerableFromArray<int>(new int[] { 13, 11, 16, 16, 17, 16, 18, 11, 19, 16, 19 });
-            IEnumerable<int> set2 = EnumerableFromArray<int>(new int[0]);
-            IEnumerable<int> set3 = EnumerableFromArray<int>(new int[] { 6, 9, 6, 9, 1 });
-            IEnumerable<int> set4 = EnumerableFromArray<int>(new int[] { 6, 6, 1, 9, 9 });
-            IEnumerable<int> set5 = EnumerableFromArray<int>(new int[] { 7, 3, 6, 7 });
+            IEnumerable<int> set1 = EnumerableFromArray(new int[] { 13, 11, 16, 16, 17, 16, 18, 11, 19, 16, 19 });
+            IEnumerable<int> set2 = EnumerableFromArray(new int[0]);
+            IEnumerable<int> set3 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
+            IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
+            IEnumerable<int> set5 = EnumerableFromArray(new int[] { 7, 3, 6, 7 });
 
             Assert.IsTrue(Algorithms.DisjointSets(set2, set1));
             Assert.IsTrue(Algorithms.DisjointSets(set1, set2));
@@ -2288,9 +2288,9 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.IsTrue(Algorithms.DisjointSets(set2, set2));
 
-            IEnumerable<string> set10 = EnumerableFromArray<string>(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
-            IEnumerable<string> set11 = EnumerableFromArray<string>(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
-            IEnumerable<string> set12 = EnumerableFromArray<string>(new string[] { "aPple", "foo", "waffles", "Waffles" });
+            IEnumerable<string> set10 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
+            IEnumerable<string> set11 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
+            IEnumerable<string> set12 = EnumerableFromArray(new string[] { "aPple", "foo", "waffles", "Waffles" });
             Assert.IsFalse(Algorithms.DisjointSets(set10, set11, StringComparer.InvariantCultureIgnoreCase));
             Assert.IsFalse(Algorithms.DisjointSets(set10, set12, StringComparer.InvariantCultureIgnoreCase));
             Assert.IsTrue(Algorithms.DisjointSets(set11, set12, StringComparer.InvariantCultureIgnoreCase));
@@ -2299,11 +2299,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void EqualSets()
         {
-            IEnumerable<int> set1 = EnumerableFromArray<int>(new int[] { 1, 3, 6, 9, 3, 1, 6 });
-            IEnumerable<int> set2 = EnumerableFromArray<int>(new int[] { 9, 3, 6, 9, 1, 6 });
-            IEnumerable<int> set3 = EnumerableFromArray<int>(new int[0]);
-            IEnumerable<int> set4 = EnumerableFromArray<int>(new int[] { 6, 9, 6, 9, 1 });
-            IEnumerable<int> set5 = EnumerableFromArray<int>(new int[] { 6, 6, 1, 9, 9 });
+            IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
+            IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
+            IEnumerable<int> set3 = EnumerableFromArray(new int[0]);
+            IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
+            IEnumerable<int> set5 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
 
             Assert.IsFalse(Algorithms.EqualSets(set2, set1));
             Assert.IsFalse(Algorithms.EqualSets(set1, set2));
@@ -2324,9 +2324,9 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.IsTrue(Algorithms.EqualSets(set2, set2));
 
-            IEnumerable<string> set10 = EnumerableFromArray<string>(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
-            IEnumerable<string> set11 = EnumerableFromArray<string>(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
-            IEnumerable<string> set12 = EnumerableFromArray<string>(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });
+            IEnumerable<string> set10 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
+            IEnumerable<string> set11 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
+            IEnumerable<string> set12 = EnumerableFromArray(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });
             Assert.IsFalse(Algorithms.EqualSets(set10, set11, StringComparer.InvariantCultureIgnoreCase));
             Assert.IsFalse(Algorithms.EqualSets(set10, set12, StringComparer.InvariantCultureIgnoreCase));
             Assert.IsTrue(Algorithms.EqualSets(set11, set12, StringComparer.InvariantCultureIgnoreCase));
@@ -2337,11 +2337,11 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEqualityComparer<IEnumerable<int>> comparer = Algorithms.GetSetEqualityComparer<int>();
 
-            IEnumerable<int> set1 = EnumerableFromArray<int>(new int[] { 1, 3, 6, 9, 3, 1, 6 });
-            IEnumerable<int> set2 = EnumerableFromArray<int>(new int[] { 9, 3, 6, 9, 1, 6 });
-            IEnumerable<int> set3 = EnumerableFromArray<int>(new int[0]);
-            IEnumerable<int> set4 = EnumerableFromArray<int>(new int[] { 6, 9, 6, 9, 1 });
-            IEnumerable<int> set5 = EnumerableFromArray<int>(new int[] { 6, 6, 1, 9, 9 });
+            IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
+            IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
+            IEnumerable<int> set3 = EnumerableFromArray(new int[0]);
+            IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
+            IEnumerable<int> set5 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
 
             Assert.IsFalse(comparer.Equals(set2, set1));
             Assert.IsFalse(comparer.Equals(set1, set2));
@@ -2367,10 +2367,10 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.IsTrue(comparer.Equals(set2, set2));
 
-            IEqualityComparer<IEnumerable<string>> comparer2 = Algorithms.GetSetEqualityComparer<string>(StringComparer.InvariantCultureIgnoreCase);
-            IEnumerable<string> set10 = EnumerableFromArray<string>(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
-            IEnumerable<string> set11 = EnumerableFromArray<string>(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
-            IEnumerable<string> set12 = EnumerableFromArray<string>(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });
+            IEqualityComparer<IEnumerable<string>> comparer2 = Algorithms.GetSetEqualityComparer(StringComparer.InvariantCultureIgnoreCase);
+            IEnumerable<string> set10 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
+            IEnumerable<string> set11 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
+            IEnumerable<string> set12 = EnumerableFromArray(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });
             Assert.IsFalse(comparer2.Equals(set10, set11));
             Assert.IsFalse(comparer2.Equals(set10, set11));
             Assert.IsFalse(comparer2.GetHashCode(set10) == comparer2.GetHashCode(set11));
@@ -2387,11 +2387,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Subset()
         {
-            IEnumerable<int> set1 = EnumerableFromArray<int>(new int[] { 1, 3, 6, 9, 3, 1, 6 });
-            IEnumerable<int> set2 = EnumerableFromArray<int>(new int[] { 9, 3, 6, 9, 1, 6 });
-            IEnumerable<int> set3 = EnumerableFromArray<int>(new int[0]);
-            IEnumerable<int> set4 = EnumerableFromArray<int>(new int[] { 6, 9, 6, 9, 1 });
-            IEnumerable<int> set5 = EnumerableFromArray<int>(new int[] { 6, 6, 1, 9, 9 });
+            IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
+            IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
+            IEnumerable<int> set3 = EnumerableFromArray(new int[0]);
+            IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
+            IEnumerable<int> set5 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
 
             Assert.IsFalse(Algorithms.IsSubsetOf(set2, set1));
             Assert.IsFalse(Algorithms.IsSubsetOf(set1, set2));
@@ -2411,10 +2411,10 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(Algorithms.IsSubsetOf(set1, set1));
             Assert.IsTrue(Algorithms.IsSubsetOf(set3, set3));
 
-            IEnumerable<string> set10 = EnumerableFromArray<string>(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
-            IEnumerable<string> set11 = EnumerableFromArray<string>(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
-            IEnumerable<string> set12 = EnumerableFromArray<string>(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });
-            IEnumerable<string> set13 = EnumerableFromArray<string>(new string[] { "cheese", "meat", "APPLE", "bAGel" });
+            IEnumerable<string> set10 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
+            IEnumerable<string> set11 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
+            IEnumerable<string> set12 = EnumerableFromArray(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });
+            IEnumerable<string> set13 = EnumerableFromArray(new string[] { "cheese", "meat", "APPLE", "bAGel" });
 
             Assert.IsFalse(Algorithms.IsSubsetOf(set10, set11, StringComparer.InvariantCultureIgnoreCase));
             Assert.IsFalse(Algorithms.IsSubsetOf(set11, set10, StringComparer.InvariantCultureIgnoreCase));
@@ -2429,11 +2429,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ProperSubset()
         {
-            IEnumerable<int> set1 = EnumerableFromArray<int>(new int[] { 1, 3, 6, 9, 3, 1, 6 });
-            IEnumerable<int> set2 = EnumerableFromArray<int>(new int[] { 9, 3, 6, 9, 1, 6 });
-            IEnumerable<int> set3 = EnumerableFromArray<int>(new int[0]);
-            IEnumerable<int> set4 = EnumerableFromArray<int>(new int[] { 6, 9, 6, 9, 1 });
-            IEnumerable<int> set5 = EnumerableFromArray<int>(new int[] { 6, 6, 1, 9, 9 });
+            IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
+            IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
+            IEnumerable<int> set3 = EnumerableFromArray(new int[0]);
+            IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
+            IEnumerable<int> set5 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
 
             Assert.IsFalse(Algorithms.IsProperSubsetOf(set2, set1));
             Assert.IsFalse(Algorithms.IsProperSubsetOf(set1, set2));
@@ -2453,10 +2453,10 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(Algorithms.IsProperSubsetOf(set1, set1));
             Assert.IsFalse(Algorithms.IsProperSubsetOf(set3, set3));
 
-            IEnumerable<string> set10 = EnumerableFromArray<string>(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
-            IEnumerable<string> set11 = EnumerableFromArray<string>(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
-            IEnumerable<string> set12 = EnumerableFromArray<string>(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });
-            IEnumerable<string> set13 = EnumerableFromArray<string>(new string[] { "cheese", "meat", "APPLE", "bAGel" });
+            IEnumerable<string> set10 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
+            IEnumerable<string> set11 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
+            IEnumerable<string> set12 = EnumerableFromArray(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });
+            IEnumerable<string> set13 = EnumerableFromArray(new string[] { "cheese", "meat", "APPLE", "bAGel" });
 
             Assert.IsFalse(Algorithms.IsProperSubsetOf(set10, set11, StringComparer.InvariantCultureIgnoreCase));
             Assert.IsFalse(Algorithms.IsProperSubsetOf(set11, set10, StringComparer.InvariantCultureIgnoreCase));
@@ -2487,15 +2487,15 @@ namespace Wintellect.PowerCollections.Tests
         {
             IList<string> list1 = new BigList<string>(new string[] { "foo", "bar", "hello", "sailor" });
             IList<string> result1 = Algorithms.ReadOnly(list1);
-            InterfaceTests.TestReadOnlyListGeneric<string>(result1, new string[] { "foo", "bar", "hello", "sailor" }, "read-only list");
+            InterfaceTests.TestReadOnlyListGeneric(result1, new string[] { "foo", "bar", "hello", "sailor" }, "read-only list");
 
             IList<string> list2 = new Deque<string>(new string[] { });
             IList<string> result2 = Algorithms.ReadOnly(list2);
-            InterfaceTests.TestReadOnlyListGeneric<string>(result2, new string[] { }, "read-only list");
+            InterfaceTests.TestReadOnlyListGeneric(result2, new string[] { }, "read-only list");
 
             IList<string> list3 = new List<string>(new string[] { "foo", "bar", "hello", "sailor" }).AsReadOnly();
             IList<string> result3 = Algorithms.ReadOnly(list3);
-            InterfaceTests.TestReadOnlyListGeneric<string>(result3, new string[] { "foo", "bar", "hello", "sailor" }, null);
+            InterfaceTests.TestReadOnlyListGeneric(result3, new string[] { "foo", "bar", "hello", "sailor" }, null);
             Assert.AreSame(list3, result3);
         }
 
@@ -2504,11 +2504,11 @@ namespace Wintellect.PowerCollections.Tests
         {
             ICollection<string> collection1 = new OrderedSet<string>(new string[] { "foo", "bar", "hello", "sailor" });
             ICollection<string> result1 = Algorithms.ReadOnly(collection1);
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(result1, new string[] { "bar", "foo", "hello", "sailor" }, true, "read-only collection");
+            InterfaceTests.TestReadonlyCollectionGeneric(result1, new string[] { "bar", "foo", "hello", "sailor" }, true, "read-only collection");
 
             ICollection<string> collection2 = new Set<string>(new string[] { });
             ICollection<string> result2 = Algorithms.ReadOnly(collection2);
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(result2, new string[] { }, true, "read-only collection");
+            InterfaceTests.TestReadonlyCollectionGeneric(result2, new string[] { }, true, "read-only collection");
         }
 
         [TestMethod]
@@ -2520,7 +2520,7 @@ namespace Wintellect.PowerCollections.Tests
                 ["HELLO"] = -1
             };
             IDictionary<string, int> result1 = Algorithms.ReadOnly(dict1);
-            InterfaceTests.TestReadOnlyDictionaryGeneric<string, int>(result1, new string[] { "foo", "zap", "HELLO" }, new int[] { 12, 123, -1 },
+            InterfaceTests.TestReadOnlyDictionaryGeneric(result1, new string[] { "foo", "zap", "HELLO" }, new int[] { 12, 123, -1 },
                                     "fizzle", false, null, null, null);
 
             IDictionary<string, string> dict2 = new OrderedDictionary<string, string> {
@@ -2529,7 +2529,7 @@ namespace Wintellect.PowerCollections.Tests
                 [null] = "there"
             };
             IDictionary<string, string> result2 = Algorithms.ReadOnly(dict2);
-            InterfaceTests.TestReadOnlyDictionaryGeneric<string, string>(result2, new string[] { null, "foo", "zap" }, new string[] { "there", "hi", null },
+            InterfaceTests.TestReadOnlyDictionaryGeneric(result2, new string[] { null, "foo", "zap" }, new string[] { "there", "hi", null },
                                     "fizzle", true, null, null, null);
 
             IDictionary<string, string> result3 = Algorithms.ReadOnly(result2);
@@ -2541,7 +2541,7 @@ namespace Wintellect.PowerCollections.Tests
 
             IDictionary<int, string> dict5 = new Dictionary<int, string>();
             IDictionary<int,string> result5 = Algorithms.ReadOnly(dict5);
-            InterfaceTests.TestReadOnlyDictionaryGeneric<int,string>(result5, new int[0], new string[0],
+            InterfaceTests.TestReadOnlyDictionaryGeneric(result5, new int[0], new string[0],
                                     0, true, null, null, null);
         }
 
@@ -2549,14 +2549,14 @@ namespace Wintellect.PowerCollections.Tests
         public void AddTypingList()
         {
             IList list1 = new ArrayList(new string[] { "foo", "bar", "hello", "sailor" });
-            InterfaceTests.TestList<string>(list1, new string[] { "foo", "bar", "hello", "sailor" });
+            InterfaceTests.TestList(list1, new string[] { "foo", "bar", "hello", "sailor" });
             IList<string> result1 = Algorithms.TypedAs<string>(list1);
-            InterfaceTests.TestListGeneric<string>(result1, new string[] { "foo", "bar", "hello", "sailor" });
+            InterfaceTests.TestListGeneric(result1, new string[] { "foo", "bar", "hello", "sailor" });
 
             IList list2 = new ArrayList(new string[] {  });
-            InterfaceTests.TestList<string>(list2, new string[] {  });
+            InterfaceTests.TestList(list2, new string[] {  });
             IList<string> result2 = Algorithms.TypedAs<string>(list2);
-            InterfaceTests.TestListGeneric<string>(result2, new string[] {  });
+            InterfaceTests.TestListGeneric(result2, new string[] {  });
 
             IList list3 = null;
             IList<string> result3 = Algorithms.TypedAs<string>(list3);
@@ -2567,14 +2567,14 @@ namespace Wintellect.PowerCollections.Tests
         public void AddTypingCollection()
         {
             ICollection coll1 = new ArrayList(new string[] { "foo", "bar", "hello", "sailor" });
-            InterfaceTests.TestCollection<string>(coll1, new string[] { "foo", "bar", "hello", "sailor" }, true);
+            InterfaceTests.TestCollection(coll1, new string[] { "foo", "bar", "hello", "sailor" }, true);
             ICollection<string> result1 = Algorithms.TypedAs<string>(coll1);
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(result1, new string[] { "foo", "bar", "hello", "sailor" }, true, "strongly-typed Collection");
+            InterfaceTests.TestReadonlyCollectionGeneric(result1, new string[] { "foo", "bar", "hello", "sailor" }, true, "strongly-typed Collection");
 
             ICollection coll2 = new ArrayList(new string[] { });
-            InterfaceTests.TestCollection<string>(coll2, new string[] { }, true);
+            InterfaceTests.TestCollection(coll2, new string[] { }, true);
             ICollection<string> result2 = Algorithms.TypedAs<string>(coll2);
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(result2, new string[] { }, true, "strongly-typed Collection");
+            InterfaceTests.TestReadonlyCollectionGeneric(result2, new string[] { }, true, "strongly-typed Collection");
 
             ICollection coll3 = null;
             ICollection<string> result3 = Algorithms.TypedAs<string>(coll3);
@@ -2586,11 +2586,11 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable enum1 = new ArrayList(new string[] { "foo", "bar", "hello", "sailor" });
             IEnumerable<string> result1 = Algorithms.TypedAs<string>(enum1);
-            InterfaceTests.TestEnumerableElements<string>(result1, new string[] { "foo", "bar", "hello", "sailor" });
+            InterfaceTests.TestEnumerableElements(result1, new string[] { "foo", "bar", "hello", "sailor" });
 
             IEnumerable enum2 = new ArrayList(new string[] { });
             IEnumerable<string> result2 = Algorithms.TypedAs<string>(enum2);
-            InterfaceTests.TestEnumerableElements<string>(result2, new string[] { });
+            InterfaceTests.TestEnumerableElements(result2, new string[] { });
 
             IEnumerable enum3 = null;
             IEnumerable<string> result3 = Algorithms.TypedAs<string>(enum3);
@@ -2601,16 +2601,16 @@ namespace Wintellect.PowerCollections.Tests
         public void RemoveTypingList()
         {
             IList<string> list1 = new IListWrapper<string>(new BigList<string>(new string[] { "foo", "bar", "hello", "sailor" }));
-            InterfaceTests.TestListGeneric<string>(list1, new string[] { "foo", "bar", "hello", "sailor" });
+            InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "hello", "sailor" });
             IList result1 = Algorithms.Untyped(list1);
             Assert.IsFalse(result1 == list1);
-            InterfaceTests.TestList<string>(result1, new string[] { "foo", "bar", "hello", "sailor" });
+            InterfaceTests.TestList(result1, new string[] { "foo", "bar", "hello", "sailor" });
 
             IList<string> list2 = new BigList<string>(new string[] { "foo", "bar", "hello", "sailor" });
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "foo", "bar", "hello", "sailor" });
+            InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "hello", "sailor" });
             IList result2 = Algorithms.Untyped(list2);
             Assert.IsTrue(result2 == list2);   // should have just cast it away
-            InterfaceTests.TestList<string>(result2, new string[] { "foo", "bar", "hello", "sailor" });
+            InterfaceTests.TestList(result2, new string[] { "foo", "bar", "hello", "sailor" });
 
             IList<string> list3 = null;
             IList result3 = Algorithms.Untyped(list3);
@@ -2623,12 +2623,12 @@ namespace Wintellect.PowerCollections.Tests
             ICollection<string> coll1 = new ICollectionWrapper<string>(new OrderedSet<string>(new string[] { "foo", "bar", "hello", "sailor" }));
             ICollection result1 = Algorithms.Untyped(coll1);
             Assert.IsFalse(result1 == coll1);
-            InterfaceTests.TestCollection<string>(result1, new string[] { "bar", "foo", "hello", "sailor" }, true);
+            InterfaceTests.TestCollection(result1, new string[] { "bar", "foo", "hello", "sailor" }, true);
 
             ICollection<string> coll2 = new OrderedSet<string>(new string[] { "foo", "bar", "hello", "sailor" });
             ICollection result2 = Algorithms.Untyped(coll2);
             Assert.IsTrue(result2 == coll2);   // should have just cast it away
-            InterfaceTests.TestCollection<string>(result2, new string[] { "bar", "foo", "hello", "sailor" }, true);
+            InterfaceTests.TestCollection(result2, new string[] { "bar", "foo", "hello", "sailor" }, true);
 
             ICollection<string> coll3 = null;
             ICollection result3 = Algorithms.Untyped(coll3);
@@ -3454,7 +3454,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Sort()
         {
-            IEnumerable<int> enum1 = EnumerableFromArray<int>(new int[] { 8, 1, 5, 2, 4, 1, 10, -5, 3, 1, 8, 7, 12, -5, 2});
+            IEnumerable<int> enum1 = EnumerableFromArray(new int[] { 8, 1, 5, 2, 4, 1, 10, -5, 3, 1, 8, 7, 12, -5, 2});
             IEnumerable<int> result1 = Algorithms.Sort(enum1);
             InterfaceTests.TestEnumerableElements(enum1, new int[] { 8, 1, 5, 2, 4, 1, 10, -5, 3, 1, 8, 7, 12, -5, 2 });
             InterfaceTests.TestEnumerableElements(result1, new int[] { -5, -5, 1, 1, 1, 2, 2, 3, 4, 5, 7, 8, 8, 10, 12});
@@ -3468,13 +3468,13 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<int> result3 = Algorithms.Sort(enum3);
             InterfaceTests.TestEnumerableElements(result3, new int[] { });
 
-            IEnumerable<string> enum4 = EnumerableFromArray<string>(new string[] { "foo", "A", "l", "missy", "Fiddle", "diddle", "xxx", "YYY" });
+            IEnumerable<string> enum4 = EnumerableFromArray(new string[] { "foo", "A", "l", "missy", "Fiddle", "diddle", "xxx", "YYY" });
             IEnumerable<string> result4 = Algorithms.Sort(enum4, StringComparer.Ordinal);
             InterfaceTests.TestEnumerableElements(result4, new string[] { "A", "Fiddle", "YYY", "diddle", "foo", "l", "missy","xxx"});
             result4 = Algorithms.Sort(enum4, Algorithms.GetReverseComparer(StringComparer.InvariantCultureIgnoreCase));
             InterfaceTests.TestEnumerableElements(result4, new string[] { "YYY", "xxx", "missy", "l", "foo", "Fiddle", "diddle", "A"});
 
-            IEnumerable<double> enum5 = EnumerableFromArray<double>(new double[] { 4.2, -8.7, 1, 0, 1, -6.7, -3, 2.8, 9, -7.1, 7.2 });
+            IEnumerable<double> enum5 = EnumerableFromArray(new double[] { 4.2, -8.7, 1, 0, 1, -6.7, -3, 2.8, 9, -7.1, 7.2 });
             IEnumerable<double> result5 = Algorithms.Sort(enum5, delegate(double x, double y) {
                 x = Math.Abs(x); y = Math.Abs(y);
                 if (x < y)
@@ -3558,10 +3558,10 @@ namespace Wintellect.PowerCollections.Tests
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3, enum4), comp);
             InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
 
-            IEnumerable<string> str1 = EnumerableFromArray<string>(new string[] { "foo", "fiddle", "g1", "igloo"});
-            IEnumerable<string> str2 = EnumerableFromArray<string>(new string[] { "fast", "gross", "g3", "horse", "splurge" });
-            IEnumerable<string> str3 = EnumerableFromArray<string>(new string[] { "finagle", "gimpy", "hippo", "rascal" });
-            IEnumerable<string> mergeStr = Algorithms.MergeSorted<string>(delegate(string x, string y) { if (x[0] < y[0]) return -1; else if (x[0] > y[0]) return 1; else return 0; },
+            IEnumerable<string> str1 = EnumerableFromArray(new string[] { "foo", "fiddle", "g1", "igloo"});
+            IEnumerable<string> str2 = EnumerableFromArray(new string[] { "fast", "gross", "g3", "horse", "splurge" });
+            IEnumerable<string> str3 = EnumerableFromArray(new string[] { "finagle", "gimpy", "hippo", "rascal" });
+            IEnumerable<string> mergeStr = Algorithms.MergeSorted(delegate(string x, string y) { if (x[0] < y[0]) return -1; else if (x[0] > y[0]) return 1; else return 0; },
                 str1, str2, str3);
             InterfaceTests.TestEnumerableElements(mergeStr, new string[] { "foo", "fiddle", "fast", "finagle", "g1", "gross", "g3", "gimpy", "horse", "hippo", "igloo", "rascal", "splurge" });
         }
@@ -3913,7 +3913,7 @@ namespace Wintellect.PowerCollections.Tests
                     array[i] = new KeyWithOrder<int>(rand.Next(MAX), i);
                 }
 
-                Algorithms.StableSortInPlace<KeyWithOrder<int>>(array);
+                Algorithms.StableSortInPlace(array);
 
                 bool atFirst = true;
                 var prev = new KeyWithOrder<int>();
@@ -3935,7 +3935,7 @@ namespace Wintellect.PowerCollections.Tests
                     array[i] = new KeyWithOrder<int>(rand.Next(MAX), i);
                 }
 
-                Algorithms.StableSortInPlace<KeyWithOrder<int>>(array, Algorithms.GetReverseComparer(Comparer<KeyWithOrder<int>>.Default));
+                Algorithms.StableSortInPlace(array, Algorithms.GetReverseComparer(Comparer<KeyWithOrder<int>>.Default));
 
                 atFirst = true;
                 foreach (KeyWithOrder<int> x in array) {
@@ -4030,7 +4030,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetComparisonFromComparer()
         {
-            Comparison<int> comparison = Algorithms.GetComparisonFromComparer<int>(new OddEvenComparer());
+            Comparison<int> comparison = Algorithms.GetComparisonFromComparer(new OddEvenComparer());
 
             Assert.IsTrue(comparison(7, 6) < 0);
             Assert.IsTrue(comparison(7, 8) < 0);
@@ -4053,7 +4053,7 @@ namespace Wintellect.PowerCollections.Tests
                 ["HELLO"] = 18
             };
 
-            IEnumerable<string> coll1 = EnumerableFromArray<string>(new string[] { "FOO", "hi", null, "bar", "hello", "7" });
+            IEnumerable<string> coll1 = EnumerableFromArray(new string[] { "FOO", "hi", null, "bar", "hello", "7" });
 
             IEnumerable<int> result1 = Enumerable.Select(coll1, Algorithms.GetDictionaryConverter(dict1));
             InterfaceTests.TestEnumerableElements(result1, new int[] { 7, 0, 0, 11, 18, 0 });
@@ -4071,34 +4071,34 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual("null", Algorithms.ToString<decimal>(null));
             Assert.AreEqual("null", Algorithms.ToString<decimal>(null, true, "[[", "; ", "]]"));
 
-            IEnumerable<string> coll1 = EnumerableFromArray<string>(array);
+            IEnumerable<string> coll1 = EnumerableFromArray(array);
             s = Algorithms.ToString(coll1);
             Assert.AreEqual("{Hello,Goodbye,null,Clapton,Rules}", s);
 
-            IEnumerable<string> coll2 = EnumerableFromArray<string>(array);
+            IEnumerable<string> coll2 = EnumerableFromArray(array);
             s = Algorithms.ToString(coll2, true, "[[", "; ", "]]");
             Assert.AreEqual("[[Hello; Goodbye; null; Clapton; Rules]]", s);
 
-            IEnumerable<string> coll3 = EnumerableFromArray<string>(new string[0]);
+            IEnumerable<string> coll3 = EnumerableFromArray(new string[0]);
             s = Algorithms.ToString(coll3);
             Assert.AreEqual("{}", s);
 
-            IEnumerable<string> coll4 = EnumerableFromArray<string>(new string[0]);
+            IEnumerable<string> coll4 = EnumerableFromArray(new string[0]);
             s = Algorithms.ToString(coll4, false, "[[", "; ", "]]");
             Assert.AreEqual("[[]]", s);
 
-            IEnumerable<int> coll5 = EnumerableFromArray<int>(new int[] { 1, 2, 3 });
+            IEnumerable<int> coll5 = EnumerableFromArray(new int[] { 1, 2, 3 });
             s = Algorithms.ToString(coll5);
             Assert.AreEqual("{1,2,3}", s);
 
-            IEnumerable<int> coll6 = EnumerableFromArray<int>(new int[] { 1, 2, 3 });
+            IEnumerable<int> coll6 = EnumerableFromArray(new int[] { 1, 2, 3 });
             s = Algorithms.ToString(coll6, true, "[[", "; ", "]]");
             Assert.AreEqual("[[1; 2; 3]]", s);
 
-            IEnumerable<object> coll7 = EnumerableFromArray<object>(new object[] {
+            IEnumerable<object> coll7 = EnumerableFromArray(new object[] {
                 "hello", 
                 8,
-                EnumerableFromArray<int>(new int[] {1,2,3}),
+                EnumerableFromArray(new int[] {1,2,3}),
                 -8.9});
             s = Algorithms.ToString(coll7);
             Assert.AreEqual(s, "{hello,8,{1,2,3},-8.9}");
@@ -4190,7 +4190,7 @@ namespace Wintellect.PowerCollections.Tests
             array1[5] = 19;
             array1[6] = 2;
             array1[7] = 11;
-            InterfaceTests.TestListGeneric<int>(list1, new int[] { -1, -9, 112, 0, 2, 19, 2, 11 });
+            InterfaceTests.TestListGeneric(list1, new int[] { -1, -9, 112, 0, 2, 19, 2, 11 });
 
             // Check properties.
             Assert.IsFalse(list1.IsReadOnly);

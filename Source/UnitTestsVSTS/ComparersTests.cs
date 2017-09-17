@@ -281,7 +281,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ComparerPairFromKeyValueComparers()
         {
-            IComparer<KeyValuePair<int, string>> comparer = Comparers.ComparerPairFromKeyValueComparers<int, string>(new GOddEvenComparer(), StringComparer.InvariantCultureIgnoreCase);
+            IComparer<KeyValuePair<int, string>> comparer = Comparers.ComparerPairFromKeyValueComparers(new GOddEvenComparer(), StringComparer.InvariantCultureIgnoreCase);
 
             Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(7, "foo"), new KeyValuePair<int, string>(6, "bar")) < 0);
             Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(7, "bar"), new KeyValuePair<int, string>(8, "foo")) < 0);

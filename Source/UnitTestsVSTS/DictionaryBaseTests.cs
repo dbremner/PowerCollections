@@ -133,10 +133,10 @@ namespace Wintellect.PowerCollections.Tests
 
             var dict = new ReadOnlyTestDictionary<string, int>(s_array, i_array);
 
-            InterfaceTests.TestReadOnlyDictionary<string, int>(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary");
-            InterfaceTests.TestReadOnlyDictionary<string, int>(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary");
-            InterfaceTests.TestReadOnlyDictionaryGeneric<string, int>(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary", null, null);
-            InterfaceTests.TestReadOnlyDictionaryGeneric<string, int>(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary", null, null);
+            InterfaceTests.TestReadOnlyDictionary(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary");
+            InterfaceTests.TestReadOnlyDictionary(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary");
+            InterfaceTests.TestReadOnlyDictionaryGeneric(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary", null, null);
+            InterfaceTests.TestReadOnlyDictionaryGeneric(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary", null, null);
         }
 
         [TestMethod]
@@ -147,10 +147,10 @@ namespace Wintellect.PowerCollections.Tests
 
             var dict = new ReadWriteTestDictionary<string, int>(s_array, i_array);
 
-            InterfaceTests.TestReadWriteDictionary<string, int>(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary");
-            InterfaceTests.TestReadWriteDictionary<string, int>(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary");
-            InterfaceTests.TestReadWriteDictionaryGeneric<string, int>(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary", null, null);
-            InterfaceTests.TestReadWriteDictionaryGeneric<string, int>(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary", null, null);
+            InterfaceTests.TestReadWriteDictionary(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary");
+            InterfaceTests.TestReadWriteDictionary(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary");
+            InterfaceTests.TestReadWriteDictionaryGeneric(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary", null, null);
+            InterfaceTests.TestReadWriteDictionaryGeneric(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary", null, null);
         }
 
         [TestMethod]
@@ -213,8 +213,8 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < s_array.Length; ++i)
                 dict[s_array[i]] = i_array[i];
 
-            InterfaceTests.TestDictionary<string, int>(dict, s_array, i_array, "foo", false);
-            InterfaceTests.TestDictionaryGeneric<string, int>(dict, s_array, i_array, "foo", false, null, null);
+            InterfaceTests.TestDictionary(dict, s_array, i_array, "foo", false);
+            InterfaceTests.TestDictionaryGeneric(dict, s_array, i_array, "foo", false, null, null);
         }
 
         [TestMethod]
@@ -226,7 +226,7 @@ namespace Wintellect.PowerCollections.Tests
             var dict1 = new ReadWriteTestDictionary<string, int>(s_array, i_array);
             IDictionary<string, int> dict2 = dict1.AsReadOnly();
 
-            InterfaceTests.TestReadOnlyDictionaryGeneric<string, int>(dict2, s_array, i_array, "foo", true, null, null, null);
+            InterfaceTests.TestReadOnlyDictionaryGeneric(dict2, s_array, i_array, "foo", true, null, null, null);
         }
     }
 }

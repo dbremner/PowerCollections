@@ -82,8 +82,8 @@ namespace Wintellect.PowerCollections.Tests
 
             var coll = new ReadOnlyTestCollection<string>(s);
 
-            InterfaceTests.TestCollection<string>((ICollection)coll, s, true);
-            InterfaceTests.TestReadonlyCollectionGeneric<string>((ICollection<string>)coll, s, true, "ReadOnlyTestCollection");
+            InterfaceTests.TestCollection((ICollection)coll, s, true);
+            InterfaceTests.TestReadonlyCollectionGeneric((ICollection<string>)coll, s, true, "ReadOnlyTestCollection");
         }
 
         [TestMethod]
@@ -93,8 +93,8 @@ namespace Wintellect.PowerCollections.Tests
 
             var coll = new ReadWriteTestCollection<string>(s);
 
-            InterfaceTests.TestCollection<string>((ICollection)coll, s, true);
-            InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)coll, s, true);
+            InterfaceTests.TestCollection((ICollection)coll, s, true);
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)coll, s, true);
         }
 
         [TestMethod]
@@ -182,11 +182,11 @@ namespace Wintellect.PowerCollections.Tests
 
             var coll = new List<string>(s);
 
-            InterfaceTests.TestCollection<string>((ICollection)coll, s, true);
-            InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)coll, s, true);
+            InterfaceTests.TestCollection((ICollection)coll, s, true);
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)coll, s, true);
 
             IList<string> ro = new List<string>(s).AsReadOnly();
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(ro, s, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(ro, s, true, null);
         }
 
         // Tests the Keys and Values collections of Dictionary. Makes sure that our tests are reasonable.
@@ -201,10 +201,10 @@ namespace Wintellect.PowerCollections.Tests
                 ["Universe"] = 5
             };
 
-            InterfaceTests.TestCollection<string>(dict.Keys, new string[] { "Eric", "Clapton", "Rules", "The", "Universe" }, false);
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(dict.Keys, new string[] { "Eric", "Clapton", "Rules", "The", "Universe" }, false, null);
-            InterfaceTests.TestCollection<int>(dict.Values, new int[] { 1, 1, 3, 4, 5 }, false);
-            InterfaceTests.TestReadonlyCollectionGeneric<int>(dict.Values, new int[] { 1, 1, 3, 4, 5 }, false, null);
+            InterfaceTests.TestCollection(dict.Keys, new string[] { "Eric", "Clapton", "Rules", "The", "Universe" }, false);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Keys, new string[] { "Eric", "Clapton", "Rules", "The", "Universe" }, false, null);
+            InterfaceTests.TestCollection(dict.Values, new int[] { 1, 1, 3, 4, 5 }, false);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Values, new int[] { 1, 1, 3, 4, 5 }, false, null);
         }
 
         [TestMethod]
@@ -322,25 +322,25 @@ namespace Wintellect.PowerCollections.Tests
             var coll1 = new ReadWriteTestCollection<int>(array);
             IEnumerable<string> result1;
 
-            result1 = coll1.Select<string>(delegate(int x) { return (x * 2).ToString(); });
+            result1 = coll1.Select(delegate(int x) { return (x * 2).ToString(); });
             string[] expected = new string[400];
             for (int i = 0; i < 400; ++i)
                 expected[i] = (2 * i).ToString();
-            InterfaceTests.TestEnumerableElements<string>(result1, expected);
+            InterfaceTests.TestEnumerableElements(result1, expected);
 
             coll1 = new ReadWriteTestCollection<int>(new int[0]);
-            result1 = coll1.Select<string>(delegate(int x) { return (x * 2).ToString(); });
-            InterfaceTests.TestEnumerableElements<string>(result1, new string[0]);
+            result1 = coll1.Select(delegate(int x) { return (x * 2).ToString(); });
+            InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
             var coll2 = new ReadOnlyTestCollection<int>(array);
             IEnumerable<string> result2;
 
-            result2 = coll2.Select<string>(delegate(int x) { return (x * 2).ToString(); });
-            InterfaceTests.TestEnumerableElements<string>(result2, expected);
+            result2 = coll2.Select(delegate(int x) { return (x * 2).ToString(); });
+            InterfaceTests.TestEnumerableElements(result2, expected);
 
             coll2 = new ReadOnlyTestCollection<int>(new int[0]);
-            result2 = coll2.Select<string>(delegate(int x) { return (x * 2).ToString(); });
-            InterfaceTests.TestEnumerableElements<string>(result2, new string[0]);
+            result2 = coll2.Select(delegate(int x) { return (x * 2).ToString(); });
+            InterfaceTests.TestEnumerableElements(result2, new string[0]);
         }
 
         [TestMethod]
@@ -353,7 +353,7 @@ namespace Wintellect.PowerCollections.Tests
             var coll1 = new ReadWriteTestCollection<int>(elements);
             ICollection<int> coll2 = coll1.AsReadOnly();
 
-            InterfaceTests.TestReadonlyCollectionGeneric<int>(coll2, elements, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(coll2, elements, true, null);
 
             coll1.Add(27);
             coll1.Add(199);
@@ -367,13 +367,13 @@ namespace Wintellect.PowerCollections.Tests
             elements[400] = 27;
             elements[401] = 199;
 
-            InterfaceTests.TestReadonlyCollectionGeneric<int>(coll2, elements, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(coll2, elements, true, null);
 
             coll1 = new ReadWriteTestCollection<int>(new int[0]);
             coll2 = coll1.AsReadOnly();
-            InterfaceTests.TestReadonlyCollectionGeneric<int>(coll2, new int[0], true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(coll2, new int[0], true, null);
             coll1.Add(4);
-            InterfaceTests.TestReadonlyCollectionGeneric<int>(coll2, new int[] { 4 }, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(coll2, new int[] { 4 }, true, null);
         }
 
     }

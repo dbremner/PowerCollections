@@ -926,7 +926,7 @@ namespace Wintellect.PowerCollections.Tests
             list1.Insert(1, 78);
             list1.Insert(0, 11);
             list1.Insert(1, 13);
-            InterfaceTests.TestEnumerableElements<int>(list1, new int[] { 11, 13, 34, 78 });
+            InterfaceTests.TestEnumerableElements(list1, new int[] { 11, 13, 34, 78 });
 #if DEBUG
             list1.Validate();
 #endif //DEBUG
@@ -956,7 +956,7 @@ namespace Wintellect.PowerCollections.Tests
             list3.Insert(24, 101);
             list3.Insert(16, 100);
             list3.Insert(8, 102);
-            InterfaceTests.TestEnumerableElements<int>(list3, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 102, 8, 9, 10, 11, 12, 13, 14, 15, 100, 16, 17, 18, 19, 20, 21, 22, 23, 101, 24, 25, 26, 27,  28, 29, 30, 31 });
+            InterfaceTests.TestEnumerableElements(list3, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 102, 8, 9, 10, 11, 12, 13, 14, 15, 100, 16, 17, 18, 19, 20, 21, 22, 23, 101, 24, 25, 26, 27,  28, 29, 30, 31 });
         }
 
         [TestMethod]
@@ -967,7 +967,7 @@ namespace Wintellect.PowerCollections.Tests
             list3 = CreateList(-10, 10);
             list2.InsertRange(0, list3);
             list2.InsertRange(17, list3);
-            InterfaceTests.TestEnumerableElements<int>(list2, new int[] { -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 });
+            InterfaceTests.TestEnumerableElements(list2, new int[] { -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 });
 #if DEBUG
             list2.Validate();
 #endif //DEBUG
@@ -976,7 +976,7 @@ namespace Wintellect.PowerCollections.Tests
             list3 = CreateList(-10, 2);
             list2.InsertRange(0, list3);
             list2.InsertRange(17, list3);
-            InterfaceTests.TestEnumerableElements<int>(list2, new int[] { -10, -9,  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, -10, -9, 15, 16, 17, 18, 19 });
+            InterfaceTests.TestEnumerableElements(list2, new int[] { -10, -9,  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, -10, -9, 15, 16, 17, 18, 19 });
 #if DEBUG
             list2.Validate();
 #endif //DEBUG
@@ -991,7 +991,7 @@ namespace Wintellect.PowerCollections.Tests
             e1 = new int[] {-10, -9, -8, -7, -6, -5, -4, -3, -2, -1};
             list2.InsertRange(0, e1);
             list2.InsertRange(17, e1);
-            InterfaceTests.TestEnumerableElements<int>(list2, new int[] { -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 });
+            InterfaceTests.TestEnumerableElements(list2, new int[] { -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 });
 #if DEBUG
             list2.Validate();
 #endif //DEBUG
@@ -1000,14 +1000,14 @@ namespace Wintellect.PowerCollections.Tests
             e1 = new int[] { -10, -9 };
             list2.InsertRange(0, e1);
             list2.InsertRange(17, e1);
-            InterfaceTests.TestEnumerableElements<int>(list2, new int[] { -10, -9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, -10, -9, 15, 16, 17, 18, 19 });
+            InterfaceTests.TestEnumerableElements(list2, new int[] { -10, -9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, -10, -9, 15, 16, 17, 18, 19 });
 #if DEBUG
             list2.Validate();
 #endif //DEBUG
 
             list2 = new BigList<int>(new int[] { 1, 2, 3, 4, 5 });
             list2.InsertRange(2, new int[] { 9, 8});
-            InterfaceTests.TestEnumerableElements<int>(list2, new int[] { 1, 2, 9, 8, 3, 4, 5});
+            InterfaceTests.TestEnumerableElements(list2, new int[] { 1, 2, 9, 8, 3, 4, 5});
 
             list2 = new BigList<int> {
                 1,
@@ -1015,7 +1015,7 @@ namespace Wintellect.PowerCollections.Tests
             };
             list2.InsertRange(1, new int[] { 6, 5, 4 });
             list2.InsertRange(2, new int[] { 9, 8 });
-            InterfaceTests.TestEnumerableElements<int>(list2, new int[] { 1, 6, 9, 8, 5, 4, 2 });
+            InterfaceTests.TestEnumerableElements(list2, new int[] { 1, 6, 9, 8, 5, 4, 2 });
         }
 
         [TestMethod]
@@ -1089,7 +1089,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 1; i < list1.Count; i += 2)
                 list1.RemoveAt(i);
 
-            InterfaceTests.TestEnumerableElements<int>(list1, new int[] { 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 24, 25, 27, 28, 30, 31, 33, 34, 36, 37, 39, 40, 42, 43, 45, 46, 48, 49 });
+            InterfaceTests.TestEnumerableElements(list1, new int[] { 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 24, 25, 27, 28, 30, 31, 33, 34, 36, 37, 39, 40, 42, 43, 45, 46, 48, 49 });
 
             list1 = CreateList(0, 100);
 
@@ -1101,7 +1101,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 1; i < list1.Count; i += 2)
                 list1.RemoveAt(i);
 
-            InterfaceTests.TestEnumerableElements<int>(list1, new int[] { 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 24, 25, 27, 28, 30, 31, 33, 34, 36, 37, 39, 40, 42, 43, 45, 46, 48, 49 });
+            InterfaceTests.TestEnumerableElements(list1, new int[] { 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 24, 25, 27, 28, 30, 31, 33, 34, 36, 37, 39, 40, 42, 43, 45, 46, 48, 49 });
         }
 
         [TestMethod]
@@ -1117,7 +1117,7 @@ namespace Wintellect.PowerCollections.Tests
             list1.RemoveRange(30, 25);
             list1.RemoveRange(120, 37);
 
-            InterfaceTests.TestEnumerableElements<int>(list1, new int[] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 
+            InterfaceTests.TestEnumerableElements(list1, new int[] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 
                 32, 33, 34, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 
                 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 
                 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 187, 188, 189, 
@@ -1131,7 +1131,7 @@ namespace Wintellect.PowerCollections.Tests
             list1.RemoveRange(30, 25);
             list1.RemoveRange(120, 37);
 
-            InterfaceTests.TestEnumerableElements<int>(list1, new int[] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 
+            InterfaceTests.TestEnumerableElements(list1, new int[] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 
                 32, 33, 34, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 
                 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 
                 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 187, 188, 189, 
@@ -1302,19 +1302,19 @@ namespace Wintellect.PowerCollections.Tests
         {
             var list = new BigList<int>();
             int[] array = new int[0];
-            InterfaceTests.TestReadWriteListGeneric<int>((IList<int>)list, array);
+            InterfaceTests.TestReadWriteListGeneric((IList<int>)list, array);
 
             list = CreateList(0, 5);
             array = new int[5];
             for (int i = 0; i < array.Length; ++i)
                 array[i] = i;
-            InterfaceTests.TestReadWriteListGeneric<int>((IList<int>)list, array);
+            InterfaceTests.TestReadWriteListGeneric((IList<int>)list, array);
 
             list = CreateList(0, 300);
             array = new int[300];
             for (int i = 0; i < array.Length; ++i)
                 array[i] = i;
-            InterfaceTests.TestReadWriteListGeneric<int>((IList<int>)list, array);
+            InterfaceTests.TestReadWriteListGeneric((IList<int>)list, array);
         }
 
         [TestMethod]
@@ -1322,19 +1322,19 @@ namespace Wintellect.PowerCollections.Tests
         {
             var list = new BigList<int>();
             int[] array = new int[0];
-            InterfaceTests.TestReadWriteList<int>((IList)list, array);
+            InterfaceTests.TestReadWriteList((IList)list, array);
 
             list = CreateList(0, 5);
             array = new int[5];
             for (int i = 0; i < array.Length; ++i)
                 array[i] = i;
-            InterfaceTests.TestReadWriteList<int>((IList)list, array);
+            InterfaceTests.TestReadWriteList((IList)list, array);
 
             list = CreateList(0, 300);
             array = new int[300];
             for (int i = 0; i < array.Length; ++i)
                 array[i] = i;
-            InterfaceTests.TestReadWriteList<int>((IList)list, array);
+            InterfaceTests.TestReadWriteList((IList)list, array);
         }
 
         [TestMethod]
@@ -1346,26 +1346,26 @@ namespace Wintellect.PowerCollections.Tests
             list2 = list1.Clone();
             list3 = (BigList<int>)(((ICloneable)list1).Clone());
             list4 = new BigList<int>(list1);
-            InterfaceTests.TestListGeneric<int>(list2, new int[0], null);
-            InterfaceTests.TestListGeneric<int>(list3, new int[0], null);
-            InterfaceTests.TestListGeneric<int>(list4, new int[0], null);
+            InterfaceTests.TestListGeneric(list2, new int[0], null);
+            InterfaceTests.TestListGeneric(list3, new int[0], null);
+            InterfaceTests.TestListGeneric(list4, new int[0], null);
             list1.Add(5);
-            InterfaceTests.TestListGeneric<int>(list2, new int[0], null);
-            InterfaceTests.TestListGeneric<int>(list3, new int[0], null);
-            InterfaceTests.TestListGeneric<int>(list4, new int[0], null);
+            InterfaceTests.TestListGeneric(list2, new int[0], null);
+            InterfaceTests.TestListGeneric(list3, new int[0], null);
+            InterfaceTests.TestListGeneric(list4, new int[0], null);
 
             int[] array = {0, 1, 2, 3, 4};
             list1 = CreateList(0, 5);
             list2 = list1.Clone();
             list3 = (BigList<int>)(((ICloneable)list1).Clone());
             list4 = new BigList<int>(list1);
-            InterfaceTests.TestListGeneric<int>(list2, array, null);
-            InterfaceTests.TestListGeneric<int>(list3, array, null);
-            InterfaceTests.TestListGeneric<int>(list4, array, null);
+            InterfaceTests.TestListGeneric(list2, array, null);
+            InterfaceTests.TestListGeneric(list3, array, null);
+            InterfaceTests.TestListGeneric(list4, array, null);
             list2[3] = -1;
-            InterfaceTests.TestListGeneric<int>(list1, array, null);
-            InterfaceTests.TestListGeneric<int>(list3, array, null);
-            InterfaceTests.TestListGeneric<int>(list4, array, null);
+            InterfaceTests.TestListGeneric(list1, array, null);
+            InterfaceTests.TestListGeneric(list3, array, null);
+            InterfaceTests.TestListGeneric(list4, array, null);
 
             array = new int[100];
             for (int i = 0; i < 100; ++i)
@@ -1374,13 +1374,13 @@ namespace Wintellect.PowerCollections.Tests
             list2 = list1.Clone();
             list3 = (BigList<int>)(((ICloneable)list1).Clone());
             list4 = new BigList<int>(list1);
-            InterfaceTests.TestListGeneric<int>(list2, array, null);
-            InterfaceTests.TestListGeneric<int>(list3, array, null);
-            InterfaceTests.TestListGeneric<int>(list4, array, null);
+            InterfaceTests.TestListGeneric(list2, array, null);
+            InterfaceTests.TestListGeneric(list3, array, null);
+            InterfaceTests.TestListGeneric(list4, array, null);
             list4.Clear();
-            InterfaceTests.TestListGeneric<int>(list1, array, null);
-            InterfaceTests.TestListGeneric<int>(list2, array, null);
-            InterfaceTests.TestListGeneric<int>(list3, array, null);
+            InterfaceTests.TestListGeneric(list1, array, null);
+            InterfaceTests.TestListGeneric(list2, array, null);
+            InterfaceTests.TestListGeneric(list3, array, null);
         }
 
         // Simple class for testing cloning.
@@ -1496,23 +1496,23 @@ namespace Wintellect.PowerCollections.Tests
 
             // Check empty special case.
             list1 = new BigList<int>(new int[] { 1, 2, 3 }, 0);
-            InterfaceTests.TestListGeneric<int>(list1, new int[0], null);
+            InterfaceTests.TestListGeneric(list1, new int[0], null);
             list1 = new BigList<int>(new int[] { }, 5);
-            InterfaceTests.TestListGeneric<int>(list1, new int[0], null);
+            InterfaceTests.TestListGeneric(list1, new int[0], null);
             list1 = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3 }), 0);
-            InterfaceTests.TestListGeneric<int>(list1, new int[0], null);
+            InterfaceTests.TestListGeneric(list1, new int[0], null);
             list1 = new BigList<int>(new BigList<int>(), 5);
-            InterfaceTests.TestListGeneric<int>(list1, new int[0], null);
+            InterfaceTests.TestListGeneric(list1, new int[0], null);
 
             // Small cases.
             list1 = new BigList<int>(new int[] { 1, 2, 3, 4 }, 7);
-            InterfaceTests.TestListGeneric<int>(list1, new int[] { 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 }, null);
+            InterfaceTests.TestListGeneric(list1, new int[] { 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 }, null);
             list1[7] = 12;
-            InterfaceTests.TestListGeneric<int>(list1, new int[] { 1, 2, 3, 4, 1, 2, 3, 12, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 }, null);
+            InterfaceTests.TestListGeneric(list1, new int[] { 1, 2, 3, 4, 1, 2, 3, 12, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 }, null);
             list1 = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3, 4 }), 7) {
                 [17] = 13
             };
-            InterfaceTests.TestListGeneric<int>(list1, new int[] { 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 13, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 }, null);
+            InterfaceTests.TestListGeneric(list1, new int[] { 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 13, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 }, null);
 
             // Large cases.
             int i;
@@ -1602,7 +1602,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < 400; ++i)
                 elements[i] = i;
 
-            InterfaceTests.TestReadOnlyListGeneric<int>(list2, elements, null);
+            InterfaceTests.TestReadOnlyListGeneric(list2, elements, null);
 
             list1.Add(27);
             list1.AddToFront(98);
@@ -1618,13 +1618,13 @@ namespace Wintellect.PowerCollections.Tests
             elements[401] = 27;
             elements[17] = 9;
 
-            InterfaceTests.TestReadOnlyListGeneric<int>(list2, elements, null);
+            InterfaceTests.TestReadOnlyListGeneric(list2, elements, null);
 
             list1 = new BigList<int>();
             list2 = list1.AsReadOnly();
-            InterfaceTests.TestReadOnlyListGeneric<int>(list2, new int[0], null);
+            InterfaceTests.TestReadOnlyListGeneric(list2, new int[0], null);
             list1.Add(4);
-            InterfaceTests.TestReadOnlyListGeneric<int>(list2, new int[] { 4 }, null);
+            InterfaceTests.TestReadOnlyListGeneric(list2, new int[] { 4 }, null);
         }
 
         [TestMethod]
@@ -1681,21 +1681,21 @@ namespace Wintellect.PowerCollections.Tests
             BigList<int> list1 = CreateList(0, 400);
             BigList<string> list2;
 
-            list2 = list1.ConvertAll<string>(delegate(int x) { return (x * 2).ToString(); });
+            list2 = list1.ConvertAll(delegate(int x) { return (x * 2).ToString(); });
             string[] expected = new string[400];
             for (int i = 0; i < 400; ++i)
                 expected[i] = (2 * i).ToString();
 #if DEBUG
             list2.Validate();
 #endif //DEBUG
-            InterfaceTests.TestReadWriteListGeneric<string>(list2, expected);
+            InterfaceTests.TestReadWriteListGeneric(list2, expected);
 
             list1 = new BigList<int>();
-            list2 = list1.ConvertAll<string>(delegate(int x) { return (x * 2).ToString(); });
+            list2 = list1.ConvertAll(delegate(int x) { return (x * 2).ToString(); });
 #if DEBUG
             list2.Validate();
 #endif //DEBUG
-            InterfaceTests.TestReadWriteListGeneric<string>(list2, new string[0]);
+            InterfaceTests.TestReadWriteListGeneric(list2, new string[0]);
         }
 
         [TestMethod]
@@ -2192,19 +2192,19 @@ namespace Wintellect.PowerCollections.Tests
 
             var list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             list2.Reverse();
-            InterfaceTests.TestListGeneric<string>(list2, new string[] { "glove", "the", "smell", "baz", "bar", "foo" }, null);
+            InterfaceTests.TestListGeneric(list2, new string[] { "glove", "the", "smell", "baz", "bar", "foo" }, null);
 
             var list3 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
             list3.Reverse();
-            InterfaceTests.TestListGeneric<string>(list3, new string[] { "glove", "the", "smell", "baz", "foo" }, null);
+            InterfaceTests.TestListGeneric(list3, new string[] { "glove", "the", "smell", "baz", "foo" }, null);
 
             var list4 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
             list4.Reverse(1, 4);
-            InterfaceTests.TestListGeneric<string>(list4, new string[] { "foo", "glove", "the", "smell", "baz" }, null);
+            InterfaceTests.TestListGeneric(list4, new string[] { "foo", "glove", "the", "smell", "baz" }, null);
 
             var list5 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             list5.Reverse(3, 2);
-            InterfaceTests.TestListGeneric<string>(list5, new string[] { "foo", "bar", "baz", "the", "smell", "glove" }, null);
+            InterfaceTests.TestListGeneric(list5, new string[] { "foo", "bar", "baz", "the", "smell", "glove" }, null);
         }
 
         private void CheckArray<T>(T[] actual, T[] expected)
@@ -2221,27 +2221,27 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             var list1 = new BigList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
+            CheckArray(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
             var list2 = new BigList<string>();
             list2.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
+            CheckArray(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
             var list3 = new BigList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "a1", "a2", "a3", "a4", "the", "glove" });
+            CheckArray(array1, new string[] { "a1", "a2", "a3", "a4", "the", "glove" });
 
             var list4 = new BigList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "hello", "Sailor", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "hello", "Sailor", "b3", "b4", "b5", "b6" });
 
             var list5 = new BigList<string>();
             string[] array2 = new string[0];
             list5.CopyTo(array2);
-            CheckArray<string>(array2, new string[] { });
+            CheckArray(array2, new string[] { });
         }
 
         [TestMethod]
@@ -2250,27 +2250,27 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             var list1 = new BigList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1, 3);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             var list2 = new BigList<string>();
             list2.CopyTo(array1, 1);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             var list3 = new BigList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1, 2);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "a1", "a2", "a3", "a4" });
+            CheckArray(array1, new string[] { "foo", "bar", "a1", "a2", "a3", "a4" });
 
             var list4 = new BigList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1, 0);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1, 4);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "hello", "Sailor" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "hello", "Sailor" });
 
             var list5 = new BigList<string>();
             string[] array2 = new string[0];
             list5.CopyTo(array2, 0);
-            CheckArray<string>(array2, new string[] {  });
+            CheckArray(array2, new string[] {  });
         }
 
         [TestMethod]
@@ -2279,32 +2279,32 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             var list1 = new BigList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(1, array1, 3, 1);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "glove" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "glove" });
             list1.CopyTo(0, array1, 5, 1);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list1.CopyTo(2, array1, 6, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
             var list2 = new BigList<string>();
             list2.CopyTo(0, array1, 1, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list2.CopyTo(0, array1, 0, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list2.CopyTo(0, array1, 6, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
             var list3 = new BigList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(1, array1, 4, 2);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "a2", "a3" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "a2", "a3" });
 
             var list4 = new BigList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(0, array1, 0, 6);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             var list5 = new BigList<string>();
             string[] array2 = new string[0];
             list5.CopyTo(0, array2, 0, 0);
-            CheckArray<string>(array2, new string[] { });
+            CheckArray(array2, new string[] { });
         }
 
         [TestMethod]
@@ -2400,12 +2400,12 @@ namespace Wintellect.PowerCollections.Tests
 
             d_list = new BigList<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             removed = d_list.RemoveAll(delegate(double d) { return d < 200; });
-            InterfaceTests.TestReadWriteCollectionGeneric<double>(removed, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true, null);
+            InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true, null);
             Assert.AreEqual(0, d_list.Count);
 
             d_list = new BigList<double>();
             removed = d_list.RemoveAll(delegate(double d) { return d < 200; });
-            InterfaceTests.TestReadWriteCollectionGeneric<double>(removed, new double[] {  }, true, null);
+            InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] {  }, true, null);
             Assert.AreEqual(0, d_list.Count);
         }
 
@@ -2933,7 +2933,7 @@ namespace Wintellect.PowerCollections.Tests
 
         var result = (BigList<string>)InterfaceTests.SerializeRoundTrip(d);
 
-        InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)result, new string[] { "cool", "elvis", "hello", "foo", "world", "elvis", null, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
+        InterfaceTests.TestReadWriteListGeneric((IList<string>)result, new string[] { "cool", "elvis", "hello", "foo", "world", "elvis", null, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
 
     }
 

@@ -57,7 +57,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // Check Keys collection.
-            InterfaceTests.TestReadonlyCollectionGeneric<TKey>(dict.Keys, keys, false, null, keyEquals);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Keys, keys, false, null, keyEquals);
 
             // Check Values collection
             int a = 0;
@@ -68,7 +68,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
             Assert.AreEqual(dict.Values.Count, a);
-            InterfaceTests.TestReadonlyCollectionGeneric<TValue>(dict.Values, vals, false, null, valueEquals);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Values, vals, false, null, valueEquals);
 
             // Check KeyValuePairs collection.
             a = 0;
@@ -78,7 +78,7 @@ namespace Wintellect.PowerCollections.Tests
                     pairs[a++] = new KeyValuePair<TKey, TValue>(keys[iKey], values[iKey][iValue]);
                 }
             }
-            InterfaceTests.TestReadonlyCollectionGeneric<KeyValuePair<TKey, TValue>>(dict.KeyValuePairs, pairs, false, null, InterfaceTests.KeyValueEquals<TKey,TValue>(keyEquals,valueEquals));
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.KeyValuePairs, pairs, false, null, InterfaceTests.KeyValueEquals(keyEquals,valueEquals));
 
             // Tests Contains, ContainsKey, TryGetValue for wrong values.
             Assert.IsFalse(dict.ContainsKey(nonKey));
@@ -89,7 +89,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // Test IDictionary<TKey,IEnumerable<TValue>> implementation
-            InterfaceTests.TestReadWriteMultiDictionaryGeneric<TKey, TValue>(dict, keys, values, nonKey, nonValue, false, "MultiDictionary", keyEquals, valueEquals);
+            InterfaceTests.TestReadWriteMultiDictionaryGeneric(dict, keys, values, nonKey, nonValue, false, "MultiDictionary", keyEquals, valueEquals);
         }
 
         // Do random add,remove,replaces and create an array.
@@ -169,7 +169,7 @@ namespace Wintellect.PowerCollections.Tests
             int[] keysArray = keys.ToArray();
             string[][] valsArray = values.ToArray();
 
-            CheckMultiDictionaryContents<int, string>(dict,
+            CheckMultiDictionaryContents(dict,
                 keysArray,
                 valsArray,
                 -1, "Foo", null, null);
@@ -203,7 +203,7 @@ namespace Wintellect.PowerCollections.Tests
                 { null, 5.5 }
             };
 
-            CheckMultiDictionaryContents<string, double>(dict1,
+            CheckMultiDictionaryContents(dict1,
                 new string[] { null, "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 7.1 }, new double[] { -9 } },
                 "zip", -100, null, null);
@@ -222,7 +222,7 @@ namespace Wintellect.PowerCollections.Tests
                 { null, 5.5 }
             };
 
-            CheckMultiDictionaryContents<string, double>(dict1,
+            CheckMultiDictionaryContents(dict1,
                 new string[] { null, "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 5.5, 11.1, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8, 8.8 }, new double[] { 7.1 }, new double[] { -9 } },
                 "zip", -100, null, null);
@@ -232,15 +232,15 @@ namespace Wintellect.PowerCollections.Tests
                 { "foo", "BAR" },
                 { "Foo", "bar" }
             };
-            InterfaceTests.TestEnumerableElementsAnyOrder<string>(dict2.Keys, new string[] { "foo" });
-            InterfaceTests.TestEnumerableElementsAnyOrder<string>(dict2["FOO"], new string[] { "bar" });
+            InterfaceTests.TestEnumerableElementsAnyOrder(dict2.Keys, new string[] { "foo" });
+            InterfaceTests.TestEnumerableElementsAnyOrder(dict2["FOO"], new string[] { "bar" });
             dict2 = new MultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase) {
                 { "foo", "BAR" },
                 { "Foo", "bar" }
             };
-            InterfaceTests.TestEnumerableElementsAnyOrder<string>(dict2.Keys, new string[] { "foo" });
-            InterfaceTests.TestEnumerableElementsAnyOrder<string>(dict2["FOO"], new string[] { "BAR", "bar" });
-            InterfaceTests.TestEnumerableElementsAnyOrder<KeyValuePair<string, string>>
+            InterfaceTests.TestEnumerableElementsAnyOrder(dict2.Keys, new string[] { "foo" });
+            InterfaceTests.TestEnumerableElementsAnyOrder(dict2["FOO"], new string[] { "BAR", "bar" });
+            InterfaceTests.TestEnumerableElementsAnyOrder
                 (dict2.KeyValuePairs, new KeyValuePair<string, string>[] { new KeyValuePair<string,string>("foo", "BAR"),
                   new KeyValuePair<string,string>("foo", "bar")}, InterfaceTests.KeyValueEquals<string, string>());
         }
@@ -260,7 +260,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict1.ContainsKey("hi"));
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1.Keys, new string[] { "foo" });
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1["fOo"], new double[] { -9, 1.2, 4, 8, 9.8 });
-            InterfaceTests.TestEnumerableElementsAnyOrder<KeyValuePair<string, double>>
+            InterfaceTests.TestEnumerableElementsAnyOrder
                 (dict1.KeyValuePairs, new KeyValuePair<string, double>[] { 
                             new KeyValuePair<string,double>("foo", -9),
                             new KeyValuePair<string,double>("foo", 1.2),
@@ -282,7 +282,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict1.ContainsKey("hi"));
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1.Keys, new string[] { "a", "foo" });
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1["fOo"], new double[] { -9, -9, -9, 1.2, 4, 8, 9.8, 9.8 });
-            InterfaceTests.TestEnumerableElementsAnyOrder<KeyValuePair<string, double>>
+            InterfaceTests.TestEnumerableElementsAnyOrder
                 (dict1.KeyValuePairs, new KeyValuePair<string, double>[] { 
                             new KeyValuePair<string,double>("a", 1),
                             new KeyValuePair<string,double>("a", 2),
@@ -599,7 +599,7 @@ namespace Wintellect.PowerCollections.Tests
             };
             dict1.Remove("b", 7);
 
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(dict1.Keys, new string[] { null, "bar", "foo", "sailor" }, false, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict1.Keys, new string[] { null, "bar", "foo", "sailor" }, false, null);
 
             Assert.IsTrue(dict1.Keys.Contains("foo"));
             Assert.IsTrue(dict1.Keys.Contains("Foo"));
@@ -633,7 +633,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] expected = {
                 "bar", "BAZ", "FOO", "FOo", "bAZ", "Foo", "foo", "Gizzle", "hello"};
 
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(vals, expected, false, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(vals, expected, false, null);
 
             Assert.IsTrue(vals.Contains("gizzle"));
             Assert.IsTrue(vals.Contains("FOO"));
@@ -666,7 +666,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] expected = {
                 "bar", "baz", "BAZ", "FOO", "foo", "FOo", "bAZ", "Foo", "foo", "Gizzle", "hello"};
 
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(vals, expected, false, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(vals, expected, false, null);
 
             Assert.IsTrue(vals.Contains("gizzle"));
             Assert.IsTrue(vals.Contains("FOO"));
@@ -704,7 +704,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < expectedKeys.Length; ++i)
                 expectedPairs[i] = new KeyValuePair<string, string>(expectedKeys[i], expectedVals[i]);
 
-            InterfaceTests.TestReadonlyCollectionGeneric<KeyValuePair<string, string>>(pairs, expectedPairs, false, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(pairs, expectedPairs, false, null);
 
             Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3a", "baz")));
             Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3A", "baz")));
@@ -739,7 +739,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < expectedKeys.Length; ++i)
                 expectedPairs[i] = new KeyValuePair<string, string>(expectedKeys[i], expectedVals[i]);
 
-            InterfaceTests.TestReadonlyCollectionGeneric<KeyValuePair<string, string>>(pairs, expectedPairs, false, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(pairs, expectedPairs, false, null);
 
             Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3a", "baz")));
             Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3A", "baz")));
@@ -828,7 +828,7 @@ namespace Wintellect.PowerCollections.Tests
                 { "trail", "mix" }
             };
 
-            CheckMultiDictionaryContents<string, string>(dict1,
+            CheckMultiDictionaryContents(dict1,
                 new string[] { null, "foo", "hello", "trail" },
                 new string[][] { new string[] { "hello", "hi" }, new string[] { "a", "a", "bar", "bar" }, new string[] { null, null, "sailor" }, new string[] { "mix" } },
                 "zippy", "pinhead", null, null);
@@ -846,7 +846,7 @@ namespace Wintellect.PowerCollections.Tests
 
                 { "trail", "mix" }
             };
-            CheckMultiDictionaryContents<string, string>(dict1,
+            CheckMultiDictionaryContents(dict1,
                 new string[] { null, "foo", "hello", "trail" },
                 new string[][] { new string[] { "hello", "hi" }, new string[] { "a", "bar" }, new string[] { null, "sailor" }, new string[] { "mix" } },
                 "zippy", "pinhead", null, null);
@@ -1253,7 +1253,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var result = (MultiDictionary<string, double>)InterfaceTests.SerializeRoundTrip(d);
 
-            CheckMultiDictionaryContents<String,double>(result, 
+            CheckMultiDictionaryContents(result, 
                 new string[] {"FOO", "WORLD", "Hello", "eLVis", null},
                 new double[][] {new double[]{7,7}, new double[]{-9.5}, new double[] {11,12,13}, new double[] {0.9, 1.4}, new double[] {1.4}}, 
                 "zippy", 123, StringComparer.InvariantCultureIgnoreCase.Equals, null);
@@ -1296,7 +1296,7 @@ namespace Wintellect.PowerCollections.Tests
 
             result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
 
-            CheckMultiDictionaryContents<InterfaceTests.Unique, InterfaceTests.Unique>(result.dict,
+            CheckMultiDictionaryContents(result.dict,
                 result.keys,
                 new InterfaceTests.Unique[][] { new InterfaceTests.Unique[] { result.values[0], result.values[0] }, new InterfaceTests.Unique[] { result.values[1] }, new InterfaceTests.Unique[] { result.values[2], result.values[3], result.values[4] }, new InterfaceTests.Unique[] { result.values[5], result.values[6] }, new InterfaceTests.Unique[] { result.values[6] } },
                 new InterfaceTests.Unique("foo"), new InterfaceTests.Unique("bar"), null, null);

@@ -58,7 +58,7 @@ namespace Wintellect.PowerCollections.Tests
                     CheckListAndDeque(list, deque);
                 }
 
-                InterfaceTests.TestReadWriteList<int>(deque, list.ToArray());
+                InterfaceTests.TestReadWriteList(deque, list.ToArray());
             }
         }
 
@@ -108,7 +108,7 @@ namespace Wintellect.PowerCollections.Tests
                     CheckListAndDeque(list, deque);
                 }
 
-                InterfaceTests.TestReadWriteList<int>(deque, list.ToArray());
+                InterfaceTests.TestReadWriteList(deque, list.ToArray());
             }
         }
 
@@ -172,7 +172,7 @@ namespace Wintellect.PowerCollections.Tests
                     CheckListAndDeque(list, deque);
                 }
 
-                InterfaceTests.TestReadWriteList<int>(deque, list.ToArray());
+                InterfaceTests.TestReadWriteList(deque, list.ToArray());
             }
         }
 
@@ -189,7 +189,7 @@ namespace Wintellect.PowerCollections.Tests
             d.AddToBack(null);
             d.AddToFront("cool");
 
-            InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)d, new string[] { "cool", "elvis", "hello", "foo", "world", "elvis", null });
+            InterfaceTests.TestReadWriteListGeneric((IList<string>)d, new string[] { "cool", "elvis", "hello", "foo", "world", "elvis", null });
         }
 
         [TestMethod]
@@ -205,7 +205,7 @@ namespace Wintellect.PowerCollections.Tests
             d.AddToBack(null);
             d.AddToFront("cool");
 
-            InterfaceTests.TestReadWriteList<string>((IList)d, new string[] { "cool", "elvis", "hello", "foo", "world", "elvis", null });
+            InterfaceTests.TestReadWriteList((IList)d, new string[] { "cool", "elvis", "hello", "foo", "world", "elvis", null });
         }
 
         [TestMethod]
@@ -867,13 +867,13 @@ namespace Wintellect.PowerCollections.Tests
             deque2 = deque1.Clone();
             deque3 = (Deque<int>)(((ICloneable)deque1).Clone());
             deque4 = new Deque<int>(deque1);
-            InterfaceTests.TestListGeneric<int>(deque2, new int[0], null);
-            InterfaceTests.TestListGeneric<int>(deque3, new int[0], null);
-            InterfaceTests.TestListGeneric<int>(deque4, new int[0], null);
+            InterfaceTests.TestListGeneric(deque2, new int[0], null);
+            InterfaceTests.TestListGeneric(deque3, new int[0], null);
+            InterfaceTests.TestListGeneric(deque4, new int[0], null);
             deque1.Add(5);
-            InterfaceTests.TestListGeneric<int>(deque2, new int[0], null);
-            InterfaceTests.TestListGeneric<int>(deque3, new int[0], null);
-            InterfaceTests.TestListGeneric<int>(deque4, new int[0], null);
+            InterfaceTests.TestListGeneric(deque2, new int[0], null);
+            InterfaceTests.TestListGeneric(deque3, new int[0], null);
+            InterfaceTests.TestListGeneric(deque4, new int[0], null);
 
             int[] array = new int[100];
             for (int i = 0; i < 100; ++i)
@@ -886,13 +886,13 @@ namespace Wintellect.PowerCollections.Tests
             deque2 = deque1.Clone();
             deque3 = (Deque<int>)(((ICloneable)deque1).Clone());
             deque4 = new Deque<int>(deque1);
-            InterfaceTests.TestListGeneric<int>(deque2, array, null);
-            InterfaceTests.TestListGeneric<int>(deque3, array, null);
-            InterfaceTests.TestListGeneric<int>(deque4, array, null);
+            InterfaceTests.TestListGeneric(deque2, array, null);
+            InterfaceTests.TestListGeneric(deque3, array, null);
+            InterfaceTests.TestListGeneric(deque4, array, null);
             deque4.Clear();
-            InterfaceTests.TestListGeneric<int>(deque1, array, null);
-            InterfaceTests.TestListGeneric<int>(deque2, array, null);
-            InterfaceTests.TestListGeneric<int>(deque3, array, null);
+            InterfaceTests.TestListGeneric(deque1, array, null);
+            InterfaceTests.TestListGeneric(deque2, array, null);
+            InterfaceTests.TestListGeneric(deque3, array, null);
         }
 
         // Simple class for testing cloning.
@@ -1158,7 +1158,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var result = (Deque<string>) InterfaceTests.SerializeRoundTrip(d);
 
-            InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "cool", "elvis", "hello", "foo", "world", "elvis", null, "7", "8", "9", "10", "11", "12" });
+            InterfaceTests.TestReadWriteListGeneric((IList<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "cool", "elvis", "hello", "foo", "world", "elvis", null, "7", "8", "9", "10", "11", "12" });
 
         }
 

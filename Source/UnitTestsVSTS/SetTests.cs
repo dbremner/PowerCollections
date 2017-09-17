@@ -72,7 +72,7 @@ namespace Wintellect.PowerCollections.Tests
                 set1.Add(s);
 
             Array.Sort(s_array);
-            InterfaceTests.TestCollection<string>((ICollection)set1, s_array, false);
+            InterfaceTests.TestCollection((ICollection)set1, s_array, false);
         }
 
 
@@ -86,7 +86,7 @@ namespace Wintellect.PowerCollections.Tests
                 set1.Add(s);
 
             Array.Sort(s_array);
-            InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)set1, s_array, false);
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)set1, s_array, false);
         }
 
         [TestMethod]
@@ -582,8 +582,8 @@ namespace Wintellect.PowerCollections.Tests
             var set1 = new Set<int>(list);
             var set2 = new Set<int>(list, new ModularComparer(6));
 
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(set1, new int[] { 3, 8, 9, 12 }, false);
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(set2, new int[] { 9, 8, 12 }, false);
+            InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 3, 8, 9, 12 }, false);
+            InterfaceTests.TestReadWriteCollectionGeneric(set2, new int[] { 9, 8, 12 }, false);
         }
 
         [TestMethod]
@@ -900,7 +900,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var result = (Set<string>)InterfaceTests.SerializeRoundTrip(d);
 
-            InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "cool", "elvis", "hello", "foo", "world", null, "7", "8", "9", "10", "11", "12" }, false);
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "cool", "elvis", "hello", "foo", "world", null, "7", "8", "9", "10", "11", "12" }, false);
 
         }
 
@@ -936,7 +936,7 @@ namespace Wintellect.PowerCollections.Tests
 
             result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
 
-            InterfaceTests.TestReadWriteCollectionGeneric < InterfaceTests.Unique>(result.set, result.objects, false);
+            InterfaceTests.TestReadWriteCollectionGeneric(result.set, result.objects, false);
 
             for (int i = 0; i < result.objects.Length; ++i) {
                 if (result.objects[i] != null)

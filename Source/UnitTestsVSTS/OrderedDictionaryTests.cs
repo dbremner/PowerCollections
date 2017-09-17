@@ -624,10 +624,10 @@ namespace Wintellect.PowerCollections.Tests
 			ICollection valuesCollection = ((IDictionary)dict1).Values;
 			ICollection<int> valuesGenCollection = dict1.Values;
 
-			InterfaceTests.TestCollection<string>(keysCollection, new string[] { "a", "m", "q", "r", "x", "z" }, true);
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(keysGenCollection, new string[] { "a", "m", "q", "r", "x", "z" }, true, "KeysCollection");
-            InterfaceTests.TestCollection<int>(valuesCollection, new int[] { 143, 17, 17, -5, 12, 0 }, true);
-            InterfaceTests.TestReadonlyCollectionGeneric<int>(valuesGenCollection, new int[] { 143, 17, 17, -5, 12, 0 }, true, "ValuesCollection");
+			InterfaceTests.TestCollection(keysCollection, new string[] { "a", "m", "q", "r", "x", "z" }, true);
+            InterfaceTests.TestReadonlyCollectionGeneric(keysGenCollection, new string[] { "a", "m", "q", "r", "x", "z" }, true, "KeysCollection");
+            InterfaceTests.TestCollection(valuesCollection, new int[] { 143, 17, 17, -5, 12, 0 }, true);
+            InterfaceTests.TestReadonlyCollectionGeneric(valuesGenCollection, new int[] { 143, 17, 17, -5, 12, 0 }, true, "ValuesCollection");
         }
 
 		/// <summary>
@@ -649,10 +649,10 @@ namespace Wintellect.PowerCollections.Tests
 			ICollection valuesCollection = ((IDictionary)dict1).Values;
 			ICollection<string> valuesGenCollection = dict1.Values;
 
-			InterfaceTests.TestCollection<string>(keysCollection, new string[] { null, "a", "q" }, true);
+			InterfaceTests.TestCollection(keysCollection, new string[] { null, "a", "q" }, true);
             InterfaceTests.TestReadonlyCollectionGeneric(keysGenCollection, new string[] { null, "a", "q" }, true, "KeysCollection");
-            InterfaceTests.TestCollection<string>(valuesCollection, new string[] { "goodbye", "hello", null }, true);
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(valuesGenCollection, new string[] { "goodbye", "hello", null }, true, "ValuesCollection");
+            InterfaceTests.TestCollection(valuesCollection, new string[] { "goodbye", "hello", null }, true);
+            InterfaceTests.TestReadonlyCollectionGeneric(valuesGenCollection, new string[] { "goodbye", "hello", null }, true, "ValuesCollection");
 
             Assert.IsNull(dict1["q"]);
 			Assert.AreEqual("goodbye", dict1[null]);
@@ -931,8 +931,8 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.AreEqual(values[i], pairArray[i].Value);
             }
 
-            InterfaceTests.TestDictionary<TKey, TValue>((IDictionary)view, keys, values, nonKey, true);
-            InterfaceTests.TestDictionaryGeneric<TKey, TValue>((IDictionary<TKey, TValue>)view, keys, values, nonKey, true, null, null);
+            InterfaceTests.TestDictionary((IDictionary)view, keys, values, nonKey, true);
+            InterfaceTests.TestDictionaryGeneric((IDictionary<TKey, TValue>)view, keys, values, nonKey, true, null, null);
         }
 
         [TestMethod]
@@ -1074,8 +1074,8 @@ namespace Wintellect.PowerCollections.Tests
                 [12] = "biff"
             };
 
-            InterfaceTests.TestReadonlyCollectionGeneric<int>(dict1.Keys, new int[] { 3, 9, 8, 12 }, true, "KeysCollection");
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(dict1.Values, new string[] { "foo", "baz", "bar", "biff" }, true, "ValuesCollection");
+            InterfaceTests.TestReadonlyCollectionGeneric(dict1.Keys, new int[] { 3, 9, 8, 12 }, true, "KeysCollection");
+            InterfaceTests.TestReadonlyCollectionGeneric(dict1.Values, new string[] { "foo", "baz", "bar", "biff" }, true, "ValuesCollection");
         }
 
         [TestMethod]
@@ -1090,8 +1090,8 @@ namespace Wintellect.PowerCollections.Tests
                 [12] = "biff"
             };
 
-            InterfaceTests.TestReadonlyCollectionGeneric<int>(dict1.Keys, new int[] { 3, 9, 8, 12 }, true, "KeysCollection");
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(dict1.Values, new string[] { "foo", "baz", "bar", "biff" }, true, "ValuesCollection");
+            InterfaceTests.TestReadonlyCollectionGeneric(dict1.Keys, new int[] { 3, 9, 8, 12 }, true, "KeysCollection");
+            InterfaceTests.TestReadonlyCollectionGeneric(dict1.Values, new string[] { "foo", "baz", "bar", "biff" }, true, "ValuesCollection");
         }
 
         // Check that cloned dictionaries maintain a custom ordering.
@@ -1111,8 +1111,8 @@ namespace Wintellect.PowerCollections.Tests
             OrderedDictionary<int, string> dict3 = dict1.CloneContents();
             dict1[7] = "goofy";
 
-            InterfaceTests.TestReadWriteDictionaryGeneric<int, string>(dict2, new int[] { 3, 9, 8, 12 }, new string[] { "foo", "baz", "bar", "biff" }, 7, true, null, null, null);
-            InterfaceTests.TestReadWriteDictionaryGeneric<int, string>(dict3, new int[] { 3, 9, 8, 12 }, new string[] { "foo", "baz", "bar", "biff" }, 7, true, null, null, null);
+            InterfaceTests.TestReadWriteDictionaryGeneric(dict2, new int[] { 3, 9, 8, 12 }, new string[] { "foo", "baz", "bar", "biff" }, 7, true, null, null, null);
+            InterfaceTests.TestReadWriteDictionaryGeneric(dict3, new int[] { 3, 9, 8, 12 }, new string[] { "foo", "baz", "bar", "biff" }, 7, true, null, null, null);
         }
 
         // Test that it looks like a non-generic ICollection of DictionaryEntrys.
@@ -1126,7 +1126,7 @@ namespace Wintellect.PowerCollections.Tests
                 [3] = "foo"
             };
 
-            InterfaceTests.TestCollection<DictionaryEntry>((ICollection)dict1,
+            InterfaceTests.TestCollection((ICollection)dict1,
                 new DictionaryEntry[] {
                     new DictionaryEntry(3, "foo"), 
                     new DictionaryEntry(8, "bar"), 
@@ -1146,7 +1146,7 @@ namespace Wintellect.PowerCollections.Tests
                 [3] = "foo"
             };
 
-            InterfaceTests.TestReadWriteCollectionGeneric<KeyValuePair<int, string>>((ICollection<KeyValuePair<int, string>>)dict1, 
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<KeyValuePair<int, string>>)dict1, 
                 new KeyValuePair<int,string>[] {
                     new KeyValuePair<int,string>(3, "foo"), 
                     new KeyValuePair<int,string>(8, "bar"), 
@@ -1173,7 +1173,7 @@ namespace Wintellect.PowerCollections.Tests
 
             dict1.AddMany(dict2);
 
-            InterfaceTests.TestReadWriteCollectionGeneric<KeyValuePair<int, string>>((ICollection<KeyValuePair<int, string>>)dict1,
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<KeyValuePair<int, string>>)dict1,
                new KeyValuePair<int, string>[] {
                     new KeyValuePair<int,string>(0, "fribble"), 
                     new KeyValuePair<int,string>(3, "hello"), 
@@ -1200,7 +1200,7 @@ namespace Wintellect.PowerCollections.Tests
             int count = dict1.RemoveMany(array);
             Assert.AreEqual(3, count);
 
-            InterfaceTests.TestReadWriteCollectionGeneric<KeyValuePair<int, string>>((ICollection<KeyValuePair<int, string>>)dict1,
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<KeyValuePair<int, string>>)dict1,
                new KeyValuePair<int, string>[] {
                     new KeyValuePair<int,string>(9, "baz"), 
                     new KeyValuePair<int,string>(12, "biff") },
@@ -1229,8 +1229,8 @@ namespace Wintellect.PowerCollections.Tests
                 dict1.Add(s_array[i], i_array[i]);
             }
 
-            InterfaceTests.TestReadWriteDictionary<string, int>(dict1, s_array_sorted, i_array_sorted, "foo", true, "ReadOnlyTestDictionary");
-            InterfaceTests.TestReadWriteDictionaryGeneric<string, int>(dict1, s_array_sorted, i_array_sorted, "foo", true, "ReadOnlyTestDictionary", null, null);
+            InterfaceTests.TestReadWriteDictionary(dict1, s_array_sorted, i_array_sorted, "foo", true, "ReadOnlyTestDictionary");
+            InterfaceTests.TestReadWriteDictionaryGeneric(dict1, s_array_sorted, i_array_sorted, "foo", true, "ReadOnlyTestDictionary", null, null);
         }
 
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -1310,7 +1310,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var result = (OrderedDictionary<string, double>)InterfaceTests.SerializeRoundTrip(d);
 
-            InterfaceTests.TestDictionaryGeneric<String, double>(result,
+            InterfaceTests.TestDictionaryGeneric(result,
                 new string[] { null, "eLVis", "FOO", "Hello", "WORLD" },
                 new double[] {  1.4, 0.9, 7, 13, -9.5 },
                 "zippy", true, StringComparer.InvariantCultureIgnoreCase.Equals, null);
@@ -1331,14 +1331,14 @@ namespace Wintellect.PowerCollections.Tests
 
             var dict1 = new OrderedDictionary<string, int>(init);
 
-            InterfaceTests.TestDictionaryGeneric<string, int>(dict1,
+            InterfaceTests.TestDictionaryGeneric(dict1,
                 new string[] { "bar", "fiddle", "foo", "FOO", "goofy", "GOOfy", "trackstar" },
                 new int[] { 99, 107, 16, 19, 11, 110, 19 },
                 "zippy", true, null, null);
 
             var dict2 = new OrderedDictionary<string, int>(dict1, Algorithms.GetReverseComparer(StringComparer.InvariantCultureIgnoreCase));
 
-            InterfaceTests.TestDictionaryGeneric<string, int>(dict2,
+            InterfaceTests.TestDictionaryGeneric(dict2,
                 new string[] { "trackstar", "GOOfy", "FOO", "fiddle", "bar" },
                 new int[] { 19, 110, 19, 107, 99 },
                 "zippy", true, null, null);
@@ -1349,7 +1349,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var dict3 = new OrderedDictionary<string, int>(dict1, Algorithms.GetReverseComparison(myComparison));
 
-            InterfaceTests.TestDictionaryGeneric<string, int>(dict3,
+            InterfaceTests.TestDictionaryGeneric(dict3,
                 new string[] { "trackstar", "goofy", "foo", "bar", "GOOfy", "FOO"},
                 new int[] { 19, 11, 16, 99, 110, 19},
                 "zippy", true, null, null);

@@ -224,7 +224,7 @@ namespace Wintellect.PowerCollections.Tests
                 ++iKey;
             }
             Assert.IsTrue(iKey == keys.Length);
-            InterfaceTests.TestReadonlyCollectionGeneric<TKey>(dict.Keys, keys, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Keys, keys, true, null);
 
             // Check Values collection
             iKey = 0; iValue = 0;
@@ -247,7 +247,7 @@ namespace Wintellect.PowerCollections.Tests
                     vals[a++] = values[iKey][iValue];
                 }
             }
-            InterfaceTests.TestReadonlyCollectionGeneric<TValue>(dict.Values, vals, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Values, vals, true, null);
 
             // Check KeyValuePairs collection.
             iKey = 0; iValue = 0;
@@ -271,7 +271,7 @@ namespace Wintellect.PowerCollections.Tests
                     pairs[a++] = new KeyValuePair<TKey,TValue>(keys[iKey], values[iKey][iValue]);
                 }
             }
-            InterfaceTests.TestReadonlyCollectionGeneric<KeyValuePair<TKey,TValue>>(dict.KeyValuePairs, pairs, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.KeyValuePairs, pairs, true, null);
 
             // Tests Contains, ContainsKey, TryGetValue for wrong values.
             Assert.IsFalse(dict.ContainsKey(nonKey));
@@ -282,7 +282,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // Test IDictionary<TKey,ICollection<TValue>> implementation
-            InterfaceTests.TestMultiDictionaryGeneric<TKey,TValue>(dict, keys, values, nonKey, nonValue, true, null, null);
+            InterfaceTests.TestMultiDictionaryGeneric(dict, keys, values, nonKey, nonValue, true, null, null);
         }
 
         // Check the contents of a ReadOnly Multi-Dictionary non-destructively. Keys and Values must be in order.
@@ -333,7 +333,7 @@ namespace Wintellect.PowerCollections.Tests
                 ++iKey;
             }
             Assert.IsTrue(iKey == keys.Length);
-            InterfaceTests.TestReadonlyCollectionGeneric<TKey>(dict.Keys, keys, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Keys, keys, true, null);
 
             // Check Values collection
             iKey = 0; iValue = 0;
@@ -356,7 +356,7 @@ namespace Wintellect.PowerCollections.Tests
                     vals[a++] = values[iKey][iValue];
                 }
             }
-            InterfaceTests.TestReadonlyCollectionGeneric<TValue>(dict.Values, vals, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Values, vals, true, null);
 
             // Check KeyValuePairs collection.
             iKey = 0; iValue = 0;
@@ -380,7 +380,7 @@ namespace Wintellect.PowerCollections.Tests
                     pairs[a++] = new KeyValuePair<TKey, TValue>(keys[iKey], values[iKey][iValue]);
                 }
             }
-            InterfaceTests.TestReadonlyCollectionGeneric<KeyValuePair<TKey, TValue>>(dict.KeyValuePairs, pairs, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.KeyValuePairs, pairs, true, null);
 
             // Tests Contains, ContainsKey, TryGetValue for wrong values.
             Assert.IsFalse(dict.ContainsKey(nonKey));
@@ -391,7 +391,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // Test IDictionary<TKey,IEnumerable<TValue>> implementation
-            InterfaceTests.TestReadOnlyMultiDictionaryGeneric<TKey, TValue>(dict, keys, values, nonKey, nonValue, true, name, null, null);
+            InterfaceTests.TestReadOnlyMultiDictionaryGeneric(dict, keys, values, nonKey, nonValue, true, name, null, null);
         }
 
         private ReadWriteTestMultiDictionary<string, int> CreateTestReadWriteDictionary()
@@ -442,8 +442,8 @@ namespace Wintellect.PowerCollections.Tests
 
             CheckOrderedMultiDictionaryContents(dict, s_array, i_array, "foo", 113, null, null);
 
-            InterfaceTests.TestReadWriteMultiDictionaryGeneric<string, int>(dict, s_array, i_array, "foo", 113, true, "ReadWriteTestMultiDictionary", null, null);
-            InterfaceTests.TestReadWriteMultiDictionaryGeneric<string, int>(dict, s_array, i_array, "foo", 113, false, "ReadWriteTestMultiDictionary", null, null);
+            InterfaceTests.TestReadWriteMultiDictionaryGeneric(dict, s_array, i_array, "foo", 113, true, "ReadWriteTestMultiDictionary", null, null);
+            InterfaceTests.TestReadWriteMultiDictionaryGeneric(dict, s_array, i_array, "foo", 113, false, "ReadWriteTestMultiDictionary", null, null);
         }
 
         [TestMethod]
@@ -460,8 +460,8 @@ namespace Wintellect.PowerCollections.Tests
 
             CheckOrderedReadOnlyMultiDictionaryContents(dict, s_array, i_array, "foo", 113, "ReadOnlyTestMultiDictionary", null, null);
 
-            InterfaceTests.TestReadOnlyMultiDictionaryGeneric<string, int>(dict, s_array, i_array, "foo", 113, true, "ReadOnlyTestMultiDictionary", null, null);
-            InterfaceTests.TestReadOnlyMultiDictionaryGeneric<string, int>(dict, s_array, i_array, "foo", 113, false, "ReadOnlyTestMultiDictionary", null, null);
+            InterfaceTests.TestReadOnlyMultiDictionaryGeneric(dict, s_array, i_array, "foo", 113, true, "ReadOnlyTestMultiDictionary", null, null);
+            InterfaceTests.TestReadOnlyMultiDictionaryGeneric(dict, s_array, i_array, "foo", 113, false, "ReadOnlyTestMultiDictionary", null, null);
         }
 
         [TestMethod]

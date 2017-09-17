@@ -118,35 +118,35 @@ namespace Wintellect.PowerCollections.Tests
         {
             string[] s1 = {"Hello", "Goodbye", "Eric", null, "Clapton", "Hello", "Rules" };
             IList<string> list1 = new ReadOnlyArrayList<string>(s1);
-            InterfaceTests.TestReadOnlyListGeneric<string>(list1, s1, "ReadOnlyArrayList");
+            InterfaceTests.TestReadOnlyListGeneric(list1, s1, "ReadOnlyArrayList");
 
             string[] s2 = {  };
             IList<string> list2 = new ReadOnlyArrayList<string>(s2);
-            InterfaceTests.TestReadOnlyListGeneric<string>(list2, s2, "ReadOnlyArrayList");
+            InterfaceTests.TestReadOnlyListGeneric(list2, s2, "ReadOnlyArrayList");
 
             string[] s3 = { "foo" };
             IList<string> list3 = new ReadOnlyArrayList<string>(s3);
-            InterfaceTests.TestReadOnlyListGeneric<string>(list3, s3, "ReadOnlyArrayList");
+            InterfaceTests.TestReadOnlyListGeneric(list3, s3, "ReadOnlyArrayList");
 
             string[] s4 = { null, null };
             IList<string> list4 = new ReadOnlyArrayList<string>(s4);
-            InterfaceTests.TestReadOnlyListGeneric<string>(list4, s4, "ReadOnlyArrayList");
+            InterfaceTests.TestReadOnlyListGeneric(list4, s4, "ReadOnlyArrayList");
 
             string[] s5 = { "Hello", "Goodbye", "Eric", null, "Clapton", "Hello", "Rules" };
             IList list5 = new ReadOnlyArrayList<string>(s5);
-            InterfaceTests.TestReadOnlyList<string>(list5, s5, "ReadOnlyArrayList");
+            InterfaceTests.TestReadOnlyList(list5, s5, "ReadOnlyArrayList");
 
             string[] s6 = {  };
             IList list6 = new ReadOnlyArrayList<string>(s6);
-            InterfaceTests.TestReadOnlyList<string>(list6, s6, "ReadOnlyArrayList");
+            InterfaceTests.TestReadOnlyList(list6, s6, "ReadOnlyArrayList");
 
             string[] s7 = { "foo" };
             IList list7 = new ReadOnlyArrayList<string>(s7);
-            InterfaceTests.TestReadOnlyList<string>(list7, s7, "ReadOnlyArrayList");
+            InterfaceTests.TestReadOnlyList(list7, s7, "ReadOnlyArrayList");
 
             string[] s8 = { null, null };
             IList list8 = new ReadOnlyArrayList<string>(s8);
-            InterfaceTests.TestReadOnlyList<string>(list8, s8, "ReadOnlyArrayList");
+            InterfaceTests.TestReadOnlyList(list8, s8, "ReadOnlyArrayList");
         }
 
         [TestMethod]
@@ -154,35 +154,35 @@ namespace Wintellect.PowerCollections.Tests
         {
             string[] s1 = { "Hello", "Goodbye", "Eric", null, "Clapton", "Hello", "Rules" };
             IList<string> list1 = new ReadWriteArrayList<string>(s1);
-            InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)list1, s1);
+            InterfaceTests.TestReadWriteListGeneric((IList<string>)list1, s1);
 
             string[] s2 = {  };
             IList<string> list2 = new ReadWriteArrayList<string>(s2);
-            InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)list2, s2);
+            InterfaceTests.TestReadWriteListGeneric((IList<string>)list2, s2);
 
             string[] s3 = { "foo" };
             IList<string> list3 = new ReadWriteArrayList<string>(s3);
-            InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)list3, s3);
+            InterfaceTests.TestReadWriteListGeneric((IList<string>)list3, s3);
 
             string[] s4 = { null, null };
             IList<string> list4 = new ReadWriteArrayList<string>(s4);
-            InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)list4, s4);
+            InterfaceTests.TestReadWriteListGeneric((IList<string>)list4, s4);
 
             string[] s5 = { "Hello", "Goodbye", "Eric", null, "Clapton", "Hello", "Rules" };
             IList<string> list5 = new ReadWriteArrayList<string>(s5);
-            InterfaceTests.TestReadWriteList<string>((IList)list5, s5);
+            InterfaceTests.TestReadWriteList((IList)list5, s5);
 
             string[] s6 = {  };
             IList<string> list6 = new ReadWriteArrayList<string>(s6);
-            InterfaceTests.TestReadWriteList<string>((IList)list6, s6);
+            InterfaceTests.TestReadWriteList((IList)list6, s6);
 
             string[] s7 = { "foo" };
             IList<string> list7 = new ReadWriteArrayList<string>(s7);
-            InterfaceTests.TestReadWriteList<string>((IList)list7, s7);
+            InterfaceTests.TestReadWriteList((IList)list7, s7);
 
             string[] s8 = { null, null };
             IList<string> list8 = new ReadWriteArrayList<string>(s8);
-            InterfaceTests.TestReadWriteList<string>((IList)list8, s8); 
+            InterfaceTests.TestReadWriteList((IList)list8, s8); 
         }
 
         // Check that InterfaceTests is reasonable by checking against the built in List class.
@@ -192,23 +192,23 @@ namespace Wintellect.PowerCollections.Tests
             string[] s1 = { "Hello", "Goodbye", "Eric", null, "Clapton", "Hello", "Rules" };
 
             var list1 = new List<string>(s1);
-            InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)list1, s1);
+            InterfaceTests.TestReadWriteListGeneric((IList<string>)list1, s1);
             var list2 = new List<string>(s1);
-            InterfaceTests.TestReadWriteList<string>((IList)list2, s1);
+            InterfaceTests.TestReadWriteList((IList)list2, s1);
             var list3 = new ArrayList(s1);
             InterfaceTests.TestReadWriteList<object>((IList)list3, s1);
 
             var list4 = new List<string>();
-            InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)list4, new string[0]);
+            InterfaceTests.TestReadWriteListGeneric((IList<string>)list4, new string[0]);
             var list5 = new List<string>();
-            InterfaceTests.TestReadWriteList<string>((IList)list5, new string[0]);
+            InterfaceTests.TestReadWriteList((IList)list5, new string[0]);
             var list6 = new ArrayList();
             InterfaceTests.TestReadWriteList<object>((IList)list6, new string[0]);
 
             IList<string> ro1 = new List<string>(s1).AsReadOnly();
-            InterfaceTests.TestReadOnlyListGeneric<string>((IList<string>)ro1, s1, null);
+            InterfaceTests.TestReadOnlyListGeneric((IList<string>)ro1, s1, null);
             IList<string> ro2 = new List<string>().AsReadOnly();
-            InterfaceTests.TestReadOnlyListGeneric<string>((IList<string>)ro2, new string[0], null);
+            InterfaceTests.TestReadOnlyListGeneric((IList<string>)ro2, new string[0], null);
             IList ro3 = ArrayList.ReadOnly(new ArrayList(s1));
             InterfaceTests.TestReadOnlyList<object>(ro3, s1, null);
             IList ro4 = ArrayList.ReadOnly(new ArrayList());
@@ -469,7 +469,7 @@ namespace Wintellect.PowerCollections.Tests
             var list1 = new ReadWriteArrayList<int>(elements);
             IList<int> list2 = list1.AsReadOnly();
 
-            InterfaceTests.TestReadOnlyListGeneric<int>(list2, elements, null);
+            InterfaceTests.TestReadOnlyListGeneric(list2, elements, null);
 
             list1.Add(27);
             list1.Insert(0, 98);
@@ -485,13 +485,13 @@ namespace Wintellect.PowerCollections.Tests
             elements[401] = 27;
             elements[17] = 9;
 
-            InterfaceTests.TestReadOnlyListGeneric<int>(list2, elements, null);
+            InterfaceTests.TestReadOnlyListGeneric(list2, elements, null);
 
             list1 = new ReadWriteArrayList<int>(new int[0]);
             list2 = list1.AsReadOnly();
-            InterfaceTests.TestReadOnlyListGeneric<int>(list2, new int[0], null);
+            InterfaceTests.TestReadOnlyListGeneric(list2, new int[0], null);
             list1.Add(4);
-            InterfaceTests.TestReadOnlyListGeneric<int>(list2, new int[] { 4 }, null);
+            InterfaceTests.TestReadOnlyListGeneric(list2, new int[] { 4 }, null);
         }
 
         private void CheckArray<T>(T[] actual, T[] expected)
@@ -508,27 +508,27 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             var list1 = new ReadWriteArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
+            CheckArray(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
             var list2 = new ReadWriteArrayList<string>(new string[0]);
             list2.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
+            CheckArray(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
             var list3 = new ReadWriteArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "a1", "a2", "a3", "a4", "the", "glove" });
+            CheckArray(array1, new string[] { "a1", "a2", "a3", "a4", "the", "glove" });
 
             var list4 = new ReadWriteArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "hello", "Sailor", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "hello", "Sailor", "b3", "b4", "b5", "b6" });
 
             var list5 = new ReadWriteArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(array2);
-            CheckArray<string>(array2, new string[] { });
+            CheckArray(array2, new string[] { });
         }
 
         [TestMethod]
@@ -537,27 +537,27 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             var list1 = new ReadWriteArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1, 3);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             var list2 = new ReadWriteArrayList<string>(new string[0]);
             list2.CopyTo(array1, 1);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             var list3 = new ReadWriteArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1, 2);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "a1", "a2", "a3", "a4" });
+            CheckArray(array1, new string[] { "foo", "bar", "a1", "a2", "a3", "a4" });
 
             var list4 = new ReadWriteArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1, 0);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1, 4);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "hello", "Sailor" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "hello", "Sailor" });
 
             var list5 = new ReadWriteArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(array2, 0);
-            CheckArray<string>(array2, new string[] { });
+            CheckArray(array2, new string[] { });
         }
 
         [TestMethod]
@@ -566,32 +566,32 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             var list1 = new ReadWriteArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(1, array1, 3, 1);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "glove" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "glove" });
             list1.CopyTo(0, array1, 5, 1);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list1.CopyTo(2, array1, 6, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
             var list2 = new ReadWriteArrayList<string>(new string[0]);
             list2.CopyTo(0, array1, 1, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list2.CopyTo(0, array1, 0, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list2.CopyTo(0, array1, 6, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
             var list3 = new ReadWriteArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(1, array1, 4, 2);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "a2", "a3" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "a2", "a3" });
 
             var list4 = new ReadWriteArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(0, array1, 0, 6);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             var list5 = new ReadWriteArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(0, array2, 0, 0);
-            CheckArray<string>(array2, new string[] { });
+            CheckArray(array2, new string[] { });
         }
 
 
@@ -601,27 +601,27 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             var list1 = new ReadOnlyArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
+            CheckArray(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
             var list2 = new ReadOnlyArrayList<string>(new string[0]);
             list2.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
+            CheckArray(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
             var list3 = new ReadOnlyArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "a1", "a2", "a3", "a4", "the", "glove" });
+            CheckArray(array1, new string[] { "a1", "a2", "a3", "a4", "the", "glove" });
 
             var list4 = new ReadOnlyArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1);
-            CheckArray<string>(array1, new string[] { "hello", "Sailor", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "hello", "Sailor", "b3", "b4", "b5", "b6" });
 
             var list5 = new ReadOnlyArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(array2);
-            CheckArray<string>(array2, new string[] { });
+            CheckArray(array2, new string[] { });
         }
 
         [TestMethod]
@@ -630,27 +630,27 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             var list1 = new ReadOnlyArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1, 3);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             var list2 = new ReadOnlyArrayList<string>(new string[0]);
             list2.CopyTo(array1, 1);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
             var list3 = new ReadOnlyArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1, 2);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "a1", "a2", "a3", "a4" });
+            CheckArray(array1, new string[] { "foo", "bar", "a1", "a2", "a3", "a4" });
 
             var list4 = new ReadOnlyArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1, 0);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1, 4);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "hello", "Sailor" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "hello", "Sailor" });
 
             var list5 = new ReadOnlyArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(array2, 0);
-            CheckArray<string>(array2, new string[] { });
+            CheckArray(array2, new string[] { });
         }
 
         [TestMethod]
@@ -659,32 +659,32 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
             var list1 = new ReadOnlyArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(1, array1, 3, 1);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "glove" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "glove" });
             list1.CopyTo(0, array1, 5, 1);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list1.CopyTo(2, array1, 6, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
             var list2 = new ReadOnlyArrayList<string>(new string[0]);
             list2.CopyTo(0, array1, 1, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list2.CopyTo(0, array1, 0, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list2.CopyTo(0, array1, 6, 0);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
             var list3 = new ReadOnlyArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(1, array1, 4, 2);
-            CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "a2", "a3" });
+            CheckArray(array1, new string[] { "foo", "bar", "baz", "Sailor", "a2", "a3" });
 
             var list4 = new ReadOnlyArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(0, array1, 0, 6);
-            CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            CheckArray(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             var list5 = new ReadOnlyArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(0, array2, 0, 0);
-            CheckArray<string>(array2, new string[] { });
+            CheckArray(array2, new string[] { });
         }
 
         [TestMethod]

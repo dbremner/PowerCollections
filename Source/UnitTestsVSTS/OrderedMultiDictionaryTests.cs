@@ -68,7 +68,7 @@ namespace Wintellect.PowerCollections.Tests
                 ++iKey;
             }
             Assert.IsTrue(iKey == keys.Length);
-            InterfaceTests.TestReadonlyCollectionGeneric<TKey>(dict.Keys, keys, true, null, keyEquals);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Keys, keys, true, null, keyEquals);
 
             // Check Values collection
             iKey = 0; iValue = 0;
@@ -91,7 +91,7 @@ namespace Wintellect.PowerCollections.Tests
                     vals[a++] = values[iKey][iValue];
                 }
             }
-            InterfaceTests.TestReadonlyCollectionGeneric<TValue>(dict.Values, vals, true, null, valueEquals);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Values, vals, true, null, valueEquals);
 
             // Check KeyValuePairs collection.
             iKey = 0; iValue = 0;
@@ -115,7 +115,7 @@ namespace Wintellect.PowerCollections.Tests
                     pairs[a++] = new KeyValuePair<TKey, TValue>(keys[iKey], values[iKey][iValue]);
                 }
             }
-            InterfaceTests.TestReadonlyCollectionGeneric<KeyValuePair<TKey, TValue>>(dict.KeyValuePairs, pairs, true, null, InterfaceTests.KeyValueEquals<TKey,TValue>(keyEquals, valueEquals));
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.KeyValuePairs, pairs, true, null, InterfaceTests.KeyValueEquals(keyEquals, valueEquals));
 
             // Tests Contains, ContainsKey, TryGetValue for wrong values.
             Assert.IsFalse(dict.ContainsKey(nonKey));
@@ -126,7 +126,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // Test IDictionary<TKey,IEnumerable<TValue>> implementation
-            InterfaceTests.TestReadWriteMultiDictionaryGeneric<TKey, TValue>(dict, keys, values, nonKey, nonValue, true, "OrderedMultiDictionary", keyEquals, valueEquals);
+            InterfaceTests.TestReadWriteMultiDictionaryGeneric(dict, keys, values, nonKey, nonValue, true, "OrderedMultiDictionary", keyEquals, valueEquals);
         }
 
         // Do random add,remove,replaces and create an array.
@@ -206,7 +206,7 @@ namespace Wintellect.PowerCollections.Tests
             int[] keysArray = keys.ToArray();
             string[][] valsArray = values.ToArray();
 
-            CheckOrderedMultiDictionaryContents<int, string>(dict,
+            CheckOrderedMultiDictionaryContents(dict,
                 keysArray,
                 valsArray,
                 -1, "Foo", null, null);
@@ -240,7 +240,7 @@ namespace Wintellect.PowerCollections.Tests
                 { null, 5.5 }
             };
 
-            CheckOrderedMultiDictionaryContents<string, double>(dict1,
+            CheckOrderedMultiDictionaryContents(dict1,
                 new string[] { null, "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 7.1 }, new double[] { -9 } },
                 "zip", -100, null, null);
@@ -259,7 +259,7 @@ namespace Wintellect.PowerCollections.Tests
                 { null, 5.5 }
             };
 
-            CheckOrderedMultiDictionaryContents<string, double>(dict1,
+            CheckOrderedMultiDictionaryContents(dict1,
                 new string[] { null, "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 5.5, 11.1, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8, 8.8 }, new double[] { 7.1 }, new double[] { -9 } },
                 "zip", -100, null, null);
@@ -269,17 +269,16 @@ namespace Wintellect.PowerCollections.Tests
                 { "foo", "BAR" },
                 { "Foo", "bar" }
             };
-            InterfaceTests.TestEnumerableElements<string>(dict2.Keys, new string[] { "Foo" });
-            InterfaceTests.TestEnumerableElements<string>(dict2["FOO"], new string[] { "bar" });
+            InterfaceTests.TestEnumerableElements(dict2.Keys, new string[] { "Foo" });
+            InterfaceTests.TestEnumerableElements(dict2["FOO"], new string[] { "bar" });
             dict2 = new OrderedMultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase) {
                 { "foo", "BAR" },
                 { "Foo", "bar" }
             };
-            InterfaceTests.TestEnumerableElements<string>(dict2.Keys, new string[] { "foo" });
-            InterfaceTests.TestEnumerableElements<string>(dict2["FOO"], new string[] { "BAR", "bar" });
+            InterfaceTests.TestEnumerableElements(dict2.Keys, new string[] { "foo" });
+            InterfaceTests.TestEnumerableElements(dict2["FOO"], new string[] { "BAR", "bar" });
             Console.WriteLine(dict2.ToString());
-            InterfaceTests.TestEnumerableElements < KeyValuePair<string, string>>
-                (dict2.KeyValuePairs, new KeyValuePair<string, string>[] { new KeyValuePair<string,string>("foo", "BAR"),
+            InterfaceTests.TestEnumerableElements(dict2.KeyValuePairs, new KeyValuePair<string, string>[] { new KeyValuePair<string,string>("foo", "BAR"),
                   new KeyValuePair<string,string>("Foo", "bar")}, InterfaceTests.KeyValueEquals<string,string>());
         }
 
@@ -298,7 +297,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict1.ContainsKey("hi"));
             InterfaceTests.TestEnumerableElements(dict1.Keys, new string[] { "FOO" });
             InterfaceTests.TestEnumerableElements(dict1["fOo"], new double[] { -9, 1.2, 4, 8, 9.8 });
-            InterfaceTests.TestEnumerableElements<KeyValuePair<string, double>>
+            InterfaceTests.TestEnumerableElements
                 (dict1.KeyValuePairs, new KeyValuePair<string, double>[] { 
                             new KeyValuePair<string,double>("FOO", -9),
                             new KeyValuePair<string,double>("foo", 1.2),
@@ -320,7 +319,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict1.ContainsKey("hi"));
             InterfaceTests.TestEnumerableElements(dict1.Keys, new string[] { "a", "foo"});
             InterfaceTests.TestEnumerableElements(dict1["fOo"], new double[] { -9, -9, -9, 1.2, 4, 8, 9.8, 9.8 });
-            InterfaceTests.TestEnumerableElements<KeyValuePair<string, double>>
+            InterfaceTests.TestEnumerableElements
                 (dict1.KeyValuePairs, new KeyValuePair<string, double>[] { 
                             new KeyValuePair<string,double>("a", 1),
                             new KeyValuePair<string,double>("a", 2),
@@ -638,7 +637,7 @@ namespace Wintellect.PowerCollections.Tests
             };
             dict1.Remove("b", 7);
 
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(dict1.Keys, new string[] { null, "BAR", "Foo", "sailor" }, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict1.Keys, new string[] { null, "BAR", "Foo", "sailor" }, true, null);
 
             Assert.IsTrue(dict1.Keys.Contains("foo"));
             Assert.IsTrue(dict1.Keys.Contains("Foo"));
@@ -672,7 +671,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] expected = {
                 "bar", "BAZ", "FOO", "FOo", "bAZ", "Foo", "foo", "Gizzle", "hello"};
 
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(vals, expected, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(vals, expected, true, null);
 
             Assert.IsTrue(vals.Contains("gizzle"));
             Assert.IsTrue(vals.Contains("FOO"));
@@ -705,7 +704,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] expected = {
                 "bar", "baz", "BAZ", "FOO", "foo", "FOo", "bAZ", "Foo", "foo", "Gizzle", "hello"};
 
-            InterfaceTests.TestReadonlyCollectionGeneric<string>(vals, expected, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(vals, expected, true, null);
 
             Assert.IsTrue(vals.Contains("gizzle"));
             Assert.IsTrue(vals.Contains("FOO"));
@@ -743,7 +742,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < expectedKeys.Length; ++i)
                 expectedPairs[i] = new KeyValuePair<string, string>(expectedKeys[i], expectedVals[i]);
 
-            InterfaceTests.TestReadonlyCollectionGeneric<KeyValuePair<string,string>>(pairs, expectedPairs, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(pairs, expectedPairs, true, null);
 
             Assert.IsTrue(pairs.Contains(new KeyValuePair<string,string>("3a", "baz")));
             Assert.IsTrue(pairs.Contains(new KeyValuePair<string,string>("3A", "baz")));
@@ -779,7 +778,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < expectedKeys.Length; ++i)
                 expectedPairs[i] = new KeyValuePair<string, string>(expectedKeys[i], expectedVals[i]);
 
-            InterfaceTests.TestReadonlyCollectionGeneric<KeyValuePair<string, string>>(pairs, expectedPairs, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(pairs, expectedPairs, true, null);
 
             Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3a", "baz")));
             Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3A", "baz")));
@@ -868,7 +867,7 @@ namespace Wintellect.PowerCollections.Tests
                 { "trail", "mix" }
             };
 
-            CheckOrderedMultiDictionaryContents<string, string>(dict1,
+            CheckOrderedMultiDictionaryContents(dict1,
                 new string[] { null, "foo", "hello", "trail" },
                 new string[][] { new string[] { "hello", "hi" }, new string[] { "a", "a", "bar", "bar" }, new string[] { null, null, "sailor" }, new string[] { "mix" } },
                 "zippy", "pinhead", null, null);
@@ -886,7 +885,7 @@ namespace Wintellect.PowerCollections.Tests
 
                 { "trail", "mix" }
             };
-            CheckOrderedMultiDictionaryContents<string, string>(dict1,
+            CheckOrderedMultiDictionaryContents(dict1,
                 new string[] { null, "foo", "hello", "trail" },
                 new string[][] { new string[] { "hello", "hi" }, new string[] { "a", "bar" }, new string[] { null, "sailor" }, new string[] { "mix" } },
                 "zippy", "pinhead", null, null);
@@ -1318,7 +1317,7 @@ namespace Wintellect.PowerCollections.Tests
                 ++iKey;
             }
             Assert.IsTrue(iKey == keys.Length);
-            InterfaceTests.TestReadonlyCollectionGeneric<TKey>(dict.Keys, keys, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Keys, keys, true, null);
 
             // Check Values collection
             iKey = 0; iValue = 0;
@@ -1341,7 +1340,7 @@ namespace Wintellect.PowerCollections.Tests
                     vals[a++] = values[iKey][iValue];
                 }
             }
-            InterfaceTests.TestReadonlyCollectionGeneric<TValue>(dict.Values, vals, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.Values, vals, true, null);
 
             // Check KeyValuePairs collection.
             iKey = 0; iValue = 0;
@@ -1365,7 +1364,7 @@ namespace Wintellect.PowerCollections.Tests
                     pairs[a++] = new KeyValuePair<TKey, TValue>(keys[iKey], values[iKey][iValue]);
                 }
             }
-            InterfaceTests.TestReadonlyCollectionGeneric<KeyValuePair<TKey, TValue>>(dict.KeyValuePairs, pairs, true, null);
+            InterfaceTests.TestReadonlyCollectionGeneric(dict.KeyValuePairs, pairs, true, null);
 
             // Tests Contains, ContainsKey, TryGetValue for wrong values.
             Assert.IsFalse(dict.ContainsKey(nonKey));
@@ -1397,7 +1396,7 @@ namespace Wintellect.PowerCollections.Tests
             }
             
             // Test IDictionary<TKey,IEnumerable<TValue>> implementation
-            InterfaceTests.TestReadWriteMultiDictionaryGeneric<TKey, TValue>(dict, keys, values, nonKey, nonValue, true, "OrderedMultiDictionary", null, null);
+            InterfaceTests.TestReadWriteMultiDictionaryGeneric(dict, keys, values, nonKey, nonValue, true, "OrderedMultiDictionary", null, null);
         }
 
         [TestMethod]
@@ -1417,42 +1416,42 @@ namespace Wintellect.PowerCollections.Tests
                 {"gib", 1.1}
             };
 
-            CheckView<string, double>(dict1.RangeFrom("bar", true),
+            CheckView(dict1.RangeFrom("bar", true),
                 new string[] { "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 }, new double[] { -9 } },
                 null, 5.5, true, null, null);
 
-            CheckView<string, double>(dict1.RangeFrom("bar", false),
+            CheckView(dict1.RangeFrom("bar", false),
                 new string[] { "foo", "gib", "S" },
                 new double[][] { new double[] { -1.2, 3.5, 8.8 }, new double[] {1.1, 7.1 }, new double[] { -9 } },
                 "bar", 9.8, true, null, null);
 
-            CheckView<string, double>(dict1.RangeFrom("alpha", false),
+            CheckView(dict1.RangeFrom("alpha", false),
                 new string[] { "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 }, new double[] { -9 } },
                 "aaa", 5.5, true, null, null);
 
-            CheckView<string, double>(dict1.RangeFrom("hello", false),
+            CheckView(dict1.RangeFrom("hello", false),
                 new string[] { "S" },
                 new double[][] {new double[] { -9 } },
                 "foo", 3.5, true, null, null);
 
-            CheckView<string, double>(dict1.RangeFrom("S", true),
+            CheckView(dict1.RangeFrom("S", true),
                 new string[] { "S" },
                 new double[][] { new double[] { -9 } },
                 "foo", 3.5, true, null, null);
 
-            CheckView<string, double>(dict1.RangeFrom("Z", true),
+            CheckView(dict1.RangeFrom("Z", true),
                 new string[] {  },
                 new double[][] { },
                 "foo", 3.5, true, null, null);
 
-            CheckView<string, double>(dict1.RangeFrom("bar", true).Reversed(),
+            CheckView(dict1.RangeFrom("bar", true).Reversed(),
                 new string[] { "S", "gib", "foo", "bar" },
                 new double[][] {new double[] { -9 }, new double[] { 1.1, 7.1 }, new double[] { -1.2, 3.5, 8.8 },new double[] { 9.8 }   },
                 "alpha", 5.5, true, null, null);
 
-            CheckView<string, double>(dict1.RangeFrom("bar", false). Reversed(),
+            CheckView(dict1.RangeFrom("bar", false). Reversed(),
                 new string[] { "S", "gib", "foo" },
                 new double[][] { new double[] { -9 }, new double[] { 1.1, 7.1 }, new double[] { -1.2, 3.5, 8.8 } },
                 "bar", 9.8, true, null, null);
@@ -1476,32 +1475,32 @@ namespace Wintellect.PowerCollections.Tests
                 {"gib", 1.1}
             };
 
-            CheckView<string, double>(dict1.RangeTo("gib", true),
+            CheckView(dict1.RangeTo("gib", true),
                 new string[] { null, "bar", "foo", "gib" },
                 new double[][] { new double[] {5.5, 11.1}, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 } },
                 "S", -9, true, null, null);
 
-            CheckView<string, double>(dict1.RangeTo("gib", false),
+            CheckView(dict1.RangeTo("gib", false),
                 new string[] { null, "bar", "foo" },
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 } },
                 "gib", 1.1, true, null, null);
 
-            CheckView<string, double>(dict1.RangeTo("Z", false),
+            CheckView(dict1.RangeTo("Z", false),
                 new string[] { null, "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 }, new double[] {-9} },
                 "Zelda", -11, true, null, null);
 
-            CheckView<string, double>(dict1.RangeTo(null, false),
+            CheckView(dict1.RangeTo(null, false),
                 new string[] {  },
                 new double[][] { },
                 null, 5.5, true, null, null);
 
-            CheckView<string, double>(dict1.RangeTo("gib", true).Reversed(),
+            CheckView(dict1.RangeTo("gib", true).Reversed(),
                 new string[] { "gib", "foo", "bar", null },
                 new double[][] { new double[] { 1.1, 7.1 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 9.8 }, new double[] { 5.5, 11.1 }  },
                 "S", -9, true, null, null);
 
-            CheckView<string, double>(dict1.RangeTo("gib", false).Reversed(),
+            CheckView(dict1.RangeTo("gib", false).Reversed(),
                 new string[] { "foo", "bar", null },
                 new double[][] { new double[] { -1.2, 3.5, 8.8 }, new double[] { 9.8 }, new double[] { 5.5, 11.1 } },
                 "gib", 1.1, true, null, null);
@@ -1525,43 +1524,43 @@ namespace Wintellect.PowerCollections.Tests
                 {"gib", 1.1}
             };
 
-            CheckView<string, double>(dict1.Range(null, true, "S", true),
+            CheckView(dict1.Range(null, true, "S", true),
                 new string[] { null, "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 }, new double[] { -9 } },
                 "Speedo", -14, true, null, null);
 
-            CheckView<string, double>(dict1.Range(null, false, "S", true),
+            CheckView(dict1.Range(null, false, "S", true),
                 new string[] { "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 }, new double[] { -9 } },
                 null, -14, true, null, null);
 
-            CheckView<string, double>(dict1.Range(null, true, "S", false),
+            CheckView(dict1.Range(null, true, "S", false),
                 new string[] { null, "bar", "foo", "gib"},
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 } },
                 "S", -9, true, null, null);
 
-            CheckView<string, double>(dict1.Range(null, false, "S", false),
+            CheckView(dict1.Range(null, false, "S", false),
                 new string[] { "bar", "foo", "gib" },
                 new double[][] { new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 } },
                 "Speedo", -14, true, null, null);
 
 
-            CheckView<string, double>(dict1.Range(null, true, "S", true).Reversed(),
+            CheckView(dict1.Range(null, true, "S", true).Reversed(),
                 new string[] {"S", "gib", "foo", "bar", null },
                 new double[][] { new double[] { -9 }, new double[] { 1.1, 7.1 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 9.8 }, new double[] { 5.5, 11.1 } },
                 "Speedo", -14, true, null, null);
 
-            CheckView<string, double>(dict1.Range(null, false, "S", true).Reversed(),
+            CheckView(dict1.Range(null, false, "S", true).Reversed(),
                 new string[] { "S", "gib", "foo", "bar" },
                 new double[][] { new double[] { -9 }, new double[] { 1.1, 7.1 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 9.8 } },
                 null, -14, true, null, null);
 
-            CheckView<string, double>(dict1.Range(null, true, "S", false).Reversed(),
+            CheckView(dict1.Range(null, true, "S", false).Reversed(),
                 new string[] { "gib", "foo", "bar", null },
                 new double[][] { new double[] { 1.1, 7.1 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 9.8 }, new double[] { 5.5, 11.1 } },
                 "S", -9, true, null, null);
 
-            CheckView<string, double>(dict1.Range(null, false, "S", false).Reversed(),
+            CheckView(dict1.Range(null, false, "S", false).Reversed(),
                 new string[] { "gib", "foo", "bar" },
                 new double[][] { new double[] { 1.1, 7.1 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 9.8 } },
                "Speedo", -14, true, null, null);
@@ -1584,12 +1583,12 @@ namespace Wintellect.PowerCollections.Tests
                 {"gib", 1.1}
             };
 
-            CheckView<string, double>(dict1.Reversed(),
+            CheckView(dict1.Reversed(),
                 new string[] {"S", "gib", "foo", "bar", null },
                 new double[][] { new double[] { -9 }, new double[] { 1.1, 7.1 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 9.8 }, new double[] { 5.5, 11.1 } },
                 "Speedo", -14, false, null, null);
 
-            CheckView<string, double>(dict1.Reversed().Reversed(),
+            CheckView(dict1.Reversed().Reversed(),
                 new string[] { null, "bar", "foo", "gib", "S" },
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 }, new double[] { -9 } },
                 "Speedo", -14, false, null, null);
@@ -1615,49 +1614,49 @@ namespace Wintellect.PowerCollections.Tests
 
             dict2 = dict1.Clone();
             dict2.Range("bar", false, "gib", true).Clear();
-            CheckOrderedMultiDictionaryContents<string, double>(dict2,
+            CheckOrderedMultiDictionaryContents(dict2,
                 new string[] { null, "bar", "S" },
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -9 } },
                 "foo", 3.5, null, null);
 
             dict2 = dict1.Clone();
             dict2.RangeTo("gib", true).Clear();
-            CheckOrderedMultiDictionaryContents<string, double>(dict2,
+            CheckOrderedMultiDictionaryContents(dict2,
                 new string[] { "S" },
                 new double[][] {new double[] { -9 } },
                 "foo", 3.5, null, null);
 
             dict2 = dict1.Clone();
             dict2.RangeTo("gib", false).Clear();
-            CheckOrderedMultiDictionaryContents<string, double>(dict2,
+            CheckOrderedMultiDictionaryContents(dict2,
                 new string[] { "gib", "S" },
                 new double[][] {new double[] { 1.1, 7.1 }, new double[] { -9 } },
                 "foo", 3.5, null, null);
 
             dict2 = dict1.Clone();
             dict2.RangeFrom("gib", false).Clear();
-            CheckOrderedMultiDictionaryContents<string, double>(dict2,
+            CheckOrderedMultiDictionaryContents(dict2,
                 new string[] { null, "bar", "foo", "gib"},
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 } },
                 "S", 3.7, null, null);
 
             dict2 = dict1.Clone();
             dict2.RangeFrom("gib", true).Clear();
-            CheckOrderedMultiDictionaryContents<string, double>(dict2,
+            CheckOrderedMultiDictionaryContents(dict2,
                 new string[] { null, "bar", "foo" },
                 new double[][] { new double[] { 5.5, 11.1 }, new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 } },
                 "S", 3.7, null, null);
 
             dict2 = dict1.Clone();
             dict2.Range(null, true, "S", true).Clear();
-            CheckOrderedMultiDictionaryContents<string, double>(dict2,
+            CheckOrderedMultiDictionaryContents(dict2,
                 new string[] { },
                 new double[][] { },
                 "S", 3.7, null, null);
 
             dict2 = dict1.Clone();
             dict2.Reversed().Clear();
-            CheckOrderedMultiDictionaryContents<string, double>(dict2,
+            CheckOrderedMultiDictionaryContents(dict2,
                 new string[] { },
                 new double[][] {  },
                 "S", 3.7, null, null);
@@ -1680,7 +1679,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var result = (OrderedMultiDictionary<string, double>)InterfaceTests.SerializeRoundTrip(d);
 
-            CheckOrderedMultiDictionaryContents<String, double>(result,
+            CheckOrderedMultiDictionaryContents(result,
                 new string[] { null, "eLVis", "FOO", "Hello", "WORLD" },
                 new double[][] { new double[] { 1.4 }, new double[] { 0.9, 1.4 }, new double[] { 7, 7 }, new double[] { 11, 12, 13 }, new double[] { -9.5 } },
                 "zippy", 123, StringComparer.InvariantCultureIgnoreCase.Equals, null);

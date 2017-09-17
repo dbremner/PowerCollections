@@ -126,7 +126,7 @@ namespace Wintellect.PowerCollections.Tests
                 if (present[i])
                     vals[j++] = i;
 
-            InterfaceTests.TestReadOnlyListGeneric<int>(set1.AsList(), vals, null);
+            InterfaceTests.TestReadOnlyListGeneric(set1.AsList(), vals, null);
 
             int[] array = set1.ToArray();
             Assert.IsTrue(Algorithms.EqualCollections(array, vals));
@@ -142,7 +142,7 @@ namespace Wintellect.PowerCollections.Tests
                 set1.Add(s);
 
             Array.Sort(s_array);
-            InterfaceTests.TestCollection<string>((ICollection) set1, s_array, true);
+            InterfaceTests.TestCollection((ICollection) set1, s_array, true);
         }
 
 
@@ -156,7 +156,7 @@ namespace Wintellect.PowerCollections.Tests
                 set1.Add(s);
 
             Array.Sort(s_array);
-            InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)set1, s_array, true, null);
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)set1, s_array, true, null);
         }
 
         [TestMethod]
@@ -883,13 +883,13 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(view.Contains(nonItem));
             Assert.IsTrue(view.IndexOf(nonItem) < 0);
 
-            InterfaceTests.TestCollection<T>((ICollection)view, items, true);
-            InterfaceTests.TestReadOnlyListGeneric<T>(view.AsList(), items, null);
+            InterfaceTests.TestCollection((ICollection)view, items, true);
+            InterfaceTests.TestReadOnlyListGeneric(view.AsList(), items, null);
             Array.Reverse(items);
-            InterfaceTests.TestCollection<T>((ICollection)view.Reversed(), items, true);
-            InterfaceTests.TestReadOnlyListGeneric<T>(view.Reversed().AsList(), items, null);
+            InterfaceTests.TestCollection((ICollection)view.Reversed(), items, true);
+            InterfaceTests.TestReadOnlyListGeneric(view.Reversed().AsList(), items, null);
             Array.Reverse(items);
-            InterfaceTests.TestReadWriteCollectionGeneric<T>((ICollection<T>)view, items, true, null);
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<T>)view, items, true, null);
         }
 
         // Check Range methods.
@@ -1101,7 +1101,7 @@ namespace Wintellect.PowerCollections.Tests
                 9,
                 3
             };
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(set1, new int[] { 3, 9, 8, 12 }, true, null);
+            InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 3, 9, 8, 12 }, true, null);
         }
 
         [TestMethod]
@@ -1115,7 +1115,7 @@ namespace Wintellect.PowerCollections.Tests
                 9,
                 3
             };
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(set1, new int[] { 3, 9, 8, 12 }, true, null);
+            InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 3, 9, 8, 12 }, true, null);
         }
 
         [TestMethod]
@@ -1150,9 +1150,9 @@ namespace Wintellect.PowerCollections.Tests
             var set2 = new OrderedSet<int>(list, myOrdering);
             var set3 = new OrderedSet<int>(list, myComparer);
 
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(set1, new int[] { 3, 8, 9, 12 }, true, null);
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(set2, new int[] { 3, 9, 8, 12 }, true, null);
-            InterfaceTests.TestReadWriteCollectionGeneric<int>(set3, new int[] { 3, 9, 8, 12 }, true, null);
+            InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 3, 8, 9, 12 }, true, null);
+            InterfaceTests.TestReadWriteCollectionGeneric(set2, new int[] { 3, 9, 8, 12 }, true, null);
+            InterfaceTests.TestReadWriteCollectionGeneric(set3, new int[] { 3, 9, 8, 12 }, true, null);
         }
 
 
@@ -1282,7 +1282,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var result = (OrderedSet<string>)InterfaceTests.SerializeRoundTrip(d);
 
-            InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)result, new string[] { null, "1", "10", "11", "12", "2", "3", "4", "5", "6", "7", "8", "9", "cool", "elvis", "foo", "hello", "world" }, true, StringComparer.InvariantCultureIgnoreCase.Equals);
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result, new string[] { null, "1", "10", "11", "12", "2", "3", "4", "5", "6", "7", "8", "9", "cool", "elvis", "foo", "hello", "world" }, true, StringComparer.InvariantCultureIgnoreCase.Equals);
 
         }
 
