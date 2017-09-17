@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections.Tests;
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 
@@ -944,16 +945,20 @@ namespace Wintellect.PowerCollections.Tests
                 new KeyValuePair<string,string>("queztel", "hello")});
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void NotComparable1()
         {
-            var dict1 = new OrderedMultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false);
+            ThrowsInvalid( () =>
+            _ = new OrderedMultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false)
+                );
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void NotComparable2()
         {
-            var dict2 = new OrderedMultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true);
+            ThrowsInvalid( () =>
+             _ = new OrderedMultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true)
+                );
         }
 
         [TestMethod]
@@ -1137,7 +1142,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void CantCloneContents()
         {
             var dict1 = new OrderedMultiDictionary<int, NotCloneable>(true) {
@@ -1145,7 +1150,7 @@ namespace Wintellect.PowerCollections.Tests
                 [5] = new NotCloneable[] { new NotCloneable(), new NotCloneable() }
             };
 
-            OrderedMultiDictionary<int, NotCloneable> dict2 = dict1.CloneContents();
+            ThrowsInvalid(() => dict1.CloneContents());
         }
 
 
