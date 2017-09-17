@@ -2473,13 +2473,13 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> first = EnumerableFromArray(new int[] { 1, 8, 4 });
             IEnumerable<string> second = EnumerableFromArray(new string[] { "foo", "bar" });
-            Pair<int, string>[] expected = {new Pair<int,string>(1, "foo"), new Pair<int,string>(1, "bar"), new Pair<int,string>(8, "foo"), 
-                new Pair<int,string>(8, "bar"), new Pair<int,string>(4, "foo"), new Pair<int,string>(4, "bar")};
+            (int, string)[] expected = {(1, "foo"), (1, "bar"), (8, "foo"), 
+                (8, "bar"), (4, "foo"), (4, "bar")};
 
             InterfaceTests.TestEnumerableElementsAnyOrder(Algorithms.CartesianProduct(first, second), expected);
 
             second = EnumerableFromArray(new string[0]);
-            InterfaceTests.TestEnumerableElementsAnyOrder(Algorithms.CartesianProduct(first, second), new Pair<int, string>[0]);
+            InterfaceTests.TestEnumerableElementsAnyOrder(Algorithms.CartesianProduct(first, second), new (int, string)[0]);
         }
 
         [TestMethod]

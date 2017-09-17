@@ -94,10 +94,8 @@
     <Compile Include="OrderedDictionaryTests.cs" />
     <Compile Include="OrderedMultiDictionaryTests.cs" />
     <Compile Include="OrderedSetTests.cs" />
-    <Compile Include="PairTests.cs" />
     <Compile Include="RedBlackTests.cs" />
     <Compile Include="SetTests.cs" />
-    <Compile Include="TripleTests.cs" />
     <Compile Include="UtilTests.cs" />
     <Compile Include="VSCodeGenAccessors.cs" />
   </ItemGroup>

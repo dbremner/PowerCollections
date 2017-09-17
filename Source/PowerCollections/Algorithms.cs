@@ -2743,7 +2743,7 @@ namespace Wintellect.PowerCollections
         /// <param name="first">The first collection.</param>
         /// <param name="second">The second collection.</param>
         /// <returns>An IEnumerable&lt;Pair&lt;TFirst, TSecond&gt;&gt; that enumerates the cartesian product of the two collections.</returns>
-        public static IEnumerable<Pair<TFirst, TSecond>> CartesianProduct<TFirst, TSecond>(IEnumerable<TFirst> first, IEnumerable<TSecond> second)
+        public static IEnumerable<(TFirst, TSecond)> CartesianProduct<TFirst, TSecond>(IEnumerable<TFirst> first, IEnumerable<TSecond> second)
         {
             if (first == null)
                 throw new ArgumentNullException(nameof(first));
@@ -2752,7 +2752,7 @@ namespace Wintellect.PowerCollections
 
             foreach (TFirst itemFirst in first)
                 foreach (TSecond itemSecond in second)
-                    yield return new Pair<TFirst, TSecond>(itemFirst, itemSecond);
+                    yield return (itemFirst, itemSecond);
         }
 
         #endregion Set operations 

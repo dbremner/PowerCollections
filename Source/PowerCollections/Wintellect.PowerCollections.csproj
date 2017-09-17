@@ -106,7 +106,6 @@
     <Compile Include="OrderedDictionary.cs" />
     <Compile Include="OrderedMultiDictionary.cs" />
     <Compile Include="OrderedSet.cs" />
-    <Compile Include="Pair.cs" />
     <Compile Include="ReadOnlyCollectionBase.cs" />
     <Compile Include="ReadOnlyDictionaryBase.cs" />
     <Compile Include="ReadOnlyListBase.cs" />
@@ -114,7 +113,6 @@
     <Compile Include="RedBlack.cs" />
     <Compile Include="Set.cs" />
     <Compile Include="Strings.cs" />
-    <Compile Include="Triple.cs" />
     <Compile Include="Util.cs" />
     <AppDesigner Include="Properties\" />
     <None Include="Migrated rules for Wintellect.PowerCollections %282%29.ruleset" />
