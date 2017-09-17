@@ -4,7 +4,6 @@
     //All uses should be inspected
     //BagTests,
     //BigListTests,
-    //MultiDictionaryTests,
     //SetTests
     internal class NotCloneable { }
 }

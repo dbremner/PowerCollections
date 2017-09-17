@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections.Tests;
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 
@@ -1115,7 +1116,7 @@ namespace Wintellect.PowerCollections.Tests
 
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void CantCloneContents()
         {
             var dict1 = new MultiDictionary<int, NotCloneable>(true) {
@@ -1123,9 +1124,8 @@ namespace Wintellect.PowerCollections.Tests
                 [5] = new NotCloneable[] { new NotCloneable(), new NotCloneable() }
             };
 
-            MultiDictionary<int, NotCloneable> dict2 = dict1.CloneContents();
+            ThrowsInvalid(() => dict1.CloneContents());
         }
-
 
         [TestMethod]
         public void FailFastEnumerator()
