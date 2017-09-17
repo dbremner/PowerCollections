@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 #endregion
@@ -201,36 +202,10 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(set1[3], "foo");
             Assert.AreEqual(set1[4], "Hello");
 
-            try {
-                string s = set1[-1];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            var invalidValues = new[] {-1, 5, Int32.MaxValue, Int32.MinValue};
 
-            try {
-                string s = set1[5];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            try {
-                string s = set1[Int32.MaxValue];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            try {
-                string s = set1[Int32.MinValue];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
+            foreach (var invalidValue in invalidValues) {
+                ThrowsOutOfRange(() => _ = set1[invalidValue]);
             }
         }
 
