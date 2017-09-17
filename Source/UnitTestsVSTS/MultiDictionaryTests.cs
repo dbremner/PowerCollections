@@ -1115,8 +1115,6 @@ namespace Wintellect.PowerCollections.Tests
 
         }
 
-        class NotCloneable { }
-
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {

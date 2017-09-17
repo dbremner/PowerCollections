@@ -90,6 +90,7 @@
     <Compile Include="MainProgram.cs" />
     <Compile Include="MultiDictionaryBaseTests.cs" />
     <Compile Include="MultiDictionaryTests.cs" />
+    <Compile Include="NotCloneable.cs" />
     <Compile Include="OrderedBagTests.cs" />
     <Compile Include="OrderedDictionaryTests.cs" />
     <Compile Include="OrderedMultiDictionaryTests.cs" />
