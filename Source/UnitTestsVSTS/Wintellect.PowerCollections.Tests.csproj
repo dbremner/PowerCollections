@@ -81,6 +81,7 @@
     <Compile Include="BagTests.cs" />
     <Compile Include="BigListTests.cs" />
     <Compile Include="CollectionBaseTests.cs" />
+    <Compile Include="GenericComparable.cs" />
     <Compile Include="ComparersTests.cs" />
     <Compile Include="DequeTests.cs" />
     <Compile Include="DictionaryBaseTests.cs" />

@@ -1001,15 +1001,15 @@ namespace Wintellect.PowerCollections.Tests
 
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void CantCloneContents()
         {
-            var set1 = new OrderedSet<NotCloneable> {
-                new NotCloneable(),
-                new NotCloneable()
+            var set1 = new OrderedSet<GenericComparable> {
+                new GenericComparable(0),
+                new GenericComparable(1)
             };
 
-            OrderedSet<NotCloneable> set2 = set1.CloneContents();
+            ThrowsInvalid(() => set1.CloneContents());
         }
 
         [TestMethod]
