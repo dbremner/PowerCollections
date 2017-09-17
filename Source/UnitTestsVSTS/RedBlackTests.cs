@@ -77,8 +77,7 @@ namespace Wintellect.PowerCollections.Tests {
 
         private void InsertPrintValidate(string key, int data, DuplicatePolicy dupPolicy)
         {
-            TestItem oldData;
-            tree.Insert(new TestItem(key, data), dupPolicy, out oldData);
+            tree.Insert(new TestItem(key, data), dupPolicy, out _);
 #if DEBUG
             tree.Print();
             tree.Validate();
@@ -110,8 +109,7 @@ namespace Wintellect.PowerCollections.Tests {
 
         private void InsertValidate(string key, int data, DuplicatePolicy dupPolicy)
         {
-            TestItem oldData;
-            tree.Insert(new TestItem(key, data), dupPolicy, out oldData);
+            tree.Insert(new TestItem(key, data), dupPolicy, out _);
 #if DEBUG
             tree.Validate();
 #endif //DEBUG

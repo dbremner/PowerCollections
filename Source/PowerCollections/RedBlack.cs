@@ -1184,8 +1184,7 @@ namespace Wintellect.PowerCollections
 			}
 			else {
 				Debug.Assert(! root.IsRed, "Root is not black");
-				int blackHeight;
-				int nodeCount = ValidateSubTree(root, out blackHeight);
+			    int nodeCount = ValidateSubTree(root, out _);
 				Debug.Assert(nodeCount == this.count, "Node count of tree is not correct.");
 			}
 		}

@@ -384,8 +384,7 @@ namespace Wintellect.PowerCollections
         public sealed override bool Remove(TKey key)
         {
             KeyValuePair<TKey, TValue> keyPair = NewPair(key);
-			KeyValuePair<TKey, TValue> item;
-			return tree.Delete(keyPair, true, out item);
+            return tree.Delete(keyPair, true, out _);
 		}
 
 		/// <summary>
@@ -549,9 +548,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if the dictionary contains key. False if the dictionary does not contain key.</returns>
         public sealed override bool ContainsKey(TKey key)
         {
-            KeyValuePair<TKey, TValue> pairFound;
-
-            return tree.Find(NewPair(key), false, false, out pairFound);
+            return tree.Find(NewPair(key), false, false, out _);
 		}
 
         /// <summary>

@@ -211,8 +211,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if the key is present in the dictionary.</returns>
         public virtual bool ContainsKey(TKey key)
         {
-            IEnumerator<TValue> values;
-            return TryEnumerateValuesForKey(key, out values);
+            return TryEnumerateValuesForKey(key, out _);
         }
 
         /// <summary>

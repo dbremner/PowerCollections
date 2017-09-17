@@ -422,8 +422,7 @@ namespace Wintellect.PowerCollections
         public sealed override bool ContainsKey(TKey key)
         {
             var find = new KeyAndValues(key);
-            KeyAndValues temp;
-            return hash.Find(find, false, out temp);
+            return hash.Find(find, false, out _);
         }
 
         /// <summary>

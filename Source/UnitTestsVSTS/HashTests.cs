@@ -47,8 +47,7 @@ namespace Wintellect.PowerCollections.Tests
 
         private void InsertPrintValidate(string key, int data, bool replaceOnDuplicate)
         {
-            TestItem oldData;
-            hash.Insert(new TestItem(key, data), replaceOnDuplicate, out oldData);
+            hash.Insert(new TestItem(key, data), replaceOnDuplicate, out _);
 #if DEBUG
             hash.Print();
             hash.Validate();
@@ -82,8 +81,7 @@ namespace Wintellect.PowerCollections.Tests
 
         private void InsertValidate(string key, int data, bool replaceOnDuplicate)
         {
-            TestItem oldData;
-            hash.Insert(new TestItem(key, data), replaceOnDuplicate, out oldData);
+            hash.Insert(new TestItem(key, data), replaceOnDuplicate, out _);
 #if DEBUG
             hash.Validate();
 #endif //DEBUG
@@ -393,37 +391,36 @@ namespace Wintellect.PowerCollections.Tests
             t.Insert(4, true, out dummy);
 
             bool b;
-            int d;
 
-            b = t.Delete(1, out d);
+            b = t.Delete(1, out _);
             Assert.IsTrue(b);
 #if DEBUG
             t.Print();
             t.Validate();
 #endif //DEBUG
 
-            b = t.Delete(1, out d);
+            b = t.Delete(1, out _);
             Assert.IsFalse(b);
 #if DEBUG
             t.Print();
             t.Validate();
 #endif //DEBUG
 
-            b = t.Delete(int.MinValue, out d);
+            b = t.Delete(int.MinValue, out _);
             Assert.IsFalse(b);
 #if DEBUG
             t.Print();
             t.Validate();
 #endif //DEBUG
 
-            b = t.Delete(3, out d);
+            b = t.Delete(3, out _);
             Assert.IsTrue(b);
 #if DEBUG
             t.Print();
             t.Validate();
 #endif //DEBUG
 
-            b = t.Delete(3, out d);
+            b = t.Delete(3, out _);
             Assert.IsFalse(b);
 #if DEBUG
             t.Print();
