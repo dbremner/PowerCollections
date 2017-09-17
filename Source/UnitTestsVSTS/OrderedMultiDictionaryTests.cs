@@ -974,25 +974,29 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.IsTrue(dict1 != dict2);
 
+            KeyValuePair<TKey, TValue> KvpCreate<TKey, TValue>(TKey tkey, TValue tvalue) {
+                return new KeyValuePair<TKey, TValue>(tkey, tvalue);
+            }
+
             dict2.Add("qubert", "hoover");
             dict2.Remove("queztel");
             dict2.Add("hello", "banana");
 
-            InterfaceTests.TestEnumerableElements(dict1.KeyValuePairs, new KeyValuePair<string, string>[] {
-                new KeyValuePair<string,string>("Alpha", "oz"),
-                new KeyValuePair<string,string>("Hello", "AAA"),
-                new KeyValuePair<string,string>("Hi", "aaa"),
-                new KeyValuePair<string,string>("qubert", "hippy"),
-                new KeyValuePair<string,string>("qubert", "dinosaur"),
-                new KeyValuePair<string,string>("queztel", "hello")});
+            InterfaceTests.TestEnumerableElements(dict1.KeyValuePairs, new [] {
+                KvpCreate("Alpha", "oz"),
+                KvpCreate("Hello", "AAA"),
+                KvpCreate("Hi", "aaa"),
+                KvpCreate("qubert", "hippy"),
+                KvpCreate("qubert", "dinosaur"),
+                KvpCreate("queztel", "hello")});
 
-            InterfaceTests.TestEnumerableElements(dict2.KeyValuePairs, new KeyValuePair<string, string>[] {
-                new KeyValuePair<string,string>("Alpha", "oz"),
-                new KeyValuePair<string,string>("hello", "banana"),
-                new KeyValuePair<string,string>("Hello", "AAA"),
-                new KeyValuePair<string,string>("Hi", "aaa"),
-                new KeyValuePair<string,string>("qubert", "hoover"),
-                new KeyValuePair<string,string>("qubert", "dinosaur")});
+            InterfaceTests.TestEnumerableElements(dict2.KeyValuePairs, new [] {
+                KvpCreate("Alpha", "oz"),
+                KvpCreate("hello", "banana"),
+                KvpCreate("Hello", "AAA"),
+                KvpCreate("Hi", "aaa"),
+                KvpCreate("qubert", "hoover"),
+                KvpCreate("qubert", "dinosaur")});
 
             dict2 = ((OrderedMultiDictionary<string, string>)((ICloneable)dict1).Clone());
 
@@ -1002,13 +1006,13 @@ namespace Wintellect.PowerCollections.Tests
             dict2.Remove("queztel");
             dict2.Add("hello", "banana");
 
-            InterfaceTests.TestEnumerableElements(dict2.KeyValuePairs, new KeyValuePair<string, string>[] {
-                new KeyValuePair<string,string>("Alpha", "oz"),
-                new KeyValuePair<string,string>("hello", "banana"),
-                new KeyValuePair<string,string>("Hello", "AAA"),
-                new KeyValuePair<string,string>("Hi", "aaa"),
-                new KeyValuePair<string,string>("qubert", "hoover"),
-                new KeyValuePair<string,string>("qubert", "dinosaur")});
+            InterfaceTests.TestEnumerableElements(dict2.KeyValuePairs, new [] {
+                KvpCreate("Alpha", "oz"),
+                KvpCreate("hello", "banana"),
+                KvpCreate("Hello", "AAA"),
+                KvpCreate("Hi", "aaa"),
+                KvpCreate("qubert", "hoover"),
+                KvpCreate("qubert", "dinosaur")});
 
             var dict4 = new OrderedMultiDictionary<string, int>(true);
             OrderedMultiDictionary<string, int> dict5;
