@@ -43,7 +43,6 @@ namespace Wintellect.PowerCollections.Tests
 
                 bool b = ((IDictionary<TKey, ICollection<TValue>>)dict).TryGetValue(keys[iKey], out getValues);
                 Assert.IsTrue(b);
-                iValue = 0;
                 InterfaceTests.TestEnumerableElementsAnyOrder(getValues, values[iKey]);
 
                 iValue = 0;
@@ -53,7 +52,6 @@ namespace Wintellect.PowerCollections.Tests
                 }
                 Assert.IsTrue(iValue == values[iKey].Length);
 
-                iValue = 0;
                 getValues = dict[keys[iKey]];
                 InterfaceTests.TestEnumerableElementsAnyOrder(getValues, values[iKey]);
             }
@@ -1273,7 +1271,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeUnique()
         {
-            UniqueStuff d = new UniqueStuff(), result = new UniqueStuff();
+            UniqueStuff d = new UniqueStuff();
 
             d.keys = new InterfaceTests.Unique[] {
                 new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5")
@@ -1296,7 +1294,7 @@ namespace Wintellect.PowerCollections.Tests
                 {d.keys[2], d.values[3]}
             };
 
-            result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
+            var result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
 
             CheckMultiDictionaryContents(result.dict,
                 result.keys,

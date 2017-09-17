@@ -1976,7 +1976,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int length = 1; length <= 7; ++length) {
                 set.Clear();
                 list.Clear();
-                prev = null; s = null;
+                s = null;
                 for (int i = 0; i < length; ++i)
                     list.Add((char)('A' + i));
                 array = list.ToArray();
@@ -2001,7 +2001,7 @@ namespace Wintellect.PowerCollections.Tests
             // Test some with equal elements too.
             set.Clear();
             list.Clear();
-            prev = null; s = null;
+            s = null;
             list.AddRange(new char[] { 'A', 'B', 'B', 'C', 'C' });
             array = list.ToArray();
 
@@ -2019,7 +2019,7 @@ namespace Wintellect.PowerCollections.Tests
 
             set.Clear();
             list.Clear();
-            prev = null; s = null;
+            s = null;
             list.AddRange(new char[] { 'A', 'A', 'A', 'A' });
             array = list.ToArray();
 
@@ -2043,7 +2043,7 @@ namespace Wintellect.PowerCollections.Tests
 
             set.Clear();
             list.Clear();
-            prev = null; s = null;
+            s = null;
             list.AddRange(new char[] { 'A', 'B', 'C', 'a', 'b' });
             array = list.ToArray();
 

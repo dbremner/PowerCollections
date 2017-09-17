@@ -846,8 +846,6 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
             }
 
-            list1 = new BigList<int>(new int[] { 1, 2, 3 });
-
             list1 = new BigList<int>();
             try {
                 list1[-1] = 1;
@@ -2859,7 +2857,7 @@ namespace Wintellect.PowerCollections.Tests
     [TestMethod]
     public void SerializeUnique1()
     {
-        UniqueStuff d = new UniqueStuff(), result = new UniqueStuff();
+        UniqueStuff d = new UniqueStuff();
 
         d.objects = new InterfaceTests.Unique[] { 
                 new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5"), new InterfaceTests.Unique("6"), 
@@ -2878,7 +2876,7 @@ namespace Wintellect.PowerCollections.Tests
         d.list.InsertRange(0, new InterfaceTests.Unique[] { d.objects[0], d.objects[1], d.objects[2], d.objects[3], d.objects[4], d.objects[5] });
         d.list.AddRange(new InterfaceTests.Unique[] { d.objects[14], d.objects[15], d.objects[16], d.objects[17], d.objects[18], d.objects[19] });
 
-        result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
+        var result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
 
         InterfaceTests.TestReadWriteListGeneric(result.list, result.objects);
 
@@ -2892,7 +2890,7 @@ namespace Wintellect.PowerCollections.Tests
         public void SerializeUnique2()
         {
             const int LEN = 1387;
-            UniqueStuff d = new UniqueStuff(), result = new UniqueStuff();
+            UniqueStuff d = new UniqueStuff();
 
             d.objects = new InterfaceTests.Unique[LEN];
             for (int i = 0; i < LEN; ++i) 
@@ -2901,7 +2899,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < LEN; ++i)
                 d.list.Add(d.objects[i]);
 
-            result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
+            var result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
 
             InterfaceTests.TestReadWriteListGeneric(result.list, result.objects);
 

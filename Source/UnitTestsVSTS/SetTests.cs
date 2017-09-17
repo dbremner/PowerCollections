@@ -861,7 +861,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeUnique()
         {
-            UniqueStuff d = new UniqueStuff(), result = new UniqueStuff();
+            var d = new UniqueStuff();
 
             d.objects = new InterfaceTests.Unique[] { 
                 new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5"), new InterfaceTests.Unique("6"), 
@@ -880,7 +880,7 @@ namespace Wintellect.PowerCollections.Tests
             d.set.AddMany(new InterfaceTests.Unique[] { d.objects[0], d.objects[1], d.objects[2], d.objects[3], d.objects[4], d.objects[5] });
             d.set.AddMany(new InterfaceTests.Unique[] { d.objects[14], d.objects[15], d.objects[16], d.objects[17], d.objects[18], d.objects[19] });
 
-            result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
+            var result = (UniqueStuff)InterfaceTests.SerializeRoundTrip(d);
 
             InterfaceTests.TestReadWriteCollectionGeneric(result.set, result.objects, false);
 
