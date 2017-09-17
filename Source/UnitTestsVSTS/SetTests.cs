@@ -185,10 +185,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void AddMany()
         {
-            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
-            set1.Add("foo");
-            set1.Add("Eric");
-            set1.Add("Clapton");
+            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "foo",
+                "Eric",
+                "Clapton"
+            };
             string[] s_array = { "FOO", "x", "elmer", "fudd", "Clapton", null };
             set1.AddMany(s_array);
 
@@ -198,14 +199,15 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveMany()
         {
-            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "foo",
+                "Eric",
+                "Clapton",
+                null,
+                "fudd",
+                "elmer"
+            };
 
-            set1.Add("foo");
-            set1.Add("Eric");
-            set1.Add("Clapton");
-            set1.Add(null);
-            set1.Add("fudd");
-            set1.Add("elmer");
             string[] s_array = { "FOO", "jasmine", "eric", null };
             int count = set1.RemoveMany(s_array);
             Assert.AreEqual(3, count);
@@ -412,14 +414,14 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            var set1 = new Set<MyInt>();
-
-            set1.Add(new MyInt(143));
-            set1.Add(new MyInt(2));
-            set1.Add(new MyInt(9));
-            set1.Add(null);
-            set1.Add(new MyInt(14));
-            set1.Add(new MyInt(111));
+            var set1 = new Set<MyInt> {
+                new MyInt(143),
+                new MyInt(2),
+                new MyInt(9),
+                null,
+                new MyInt(14),
+                new MyInt(111)
+            };
             Set<MyInt> set2 = set1.CloneContents();
             CompareClones(set1, set2);
 
@@ -427,12 +429,13 @@ namespace Wintellect.PowerCollections.Tests
             Set<int> set4 = set3.CloneContents();
             CompareClones(set3, set4);
 
-            var set5 = new Set<UtilTests.CloneableStruct>();
-            set5.Add(new UtilTests.CloneableStruct(143));
-            set5.Add(new UtilTests.CloneableStruct(5));
-            set5.Add(new UtilTests.CloneableStruct(23));
-            set5.Add(new UtilTests.CloneableStruct(1));
-            set5.Add(new UtilTests.CloneableStruct(8));
+            var set5 = new Set<UtilTests.CloneableStruct> {
+                new UtilTests.CloneableStruct(143),
+                new UtilTests.CloneableStruct(5),
+                new UtilTests.CloneableStruct(23),
+                new UtilTests.CloneableStruct(1),
+                new UtilTests.CloneableStruct(8)
+            };
             Set<UtilTests.CloneableStruct> set6 = set5.CloneContents();
 
             Assert.AreEqual(set5.Count, set6.Count);
@@ -456,10 +459,10 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            var set1 = new Set<NotCloneable>();
-
-            set1.Add(new NotCloneable());
-            set1.Add(new NotCloneable());
+            var set1 = new Set<NotCloneable> {
+                new NotCloneable(),
+                new NotCloneable()
+            };
 
             Set<NotCloneable> set2 = set1.CloneContents();
         }
@@ -883,15 +886,15 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeStrings()
         {
-            var d = new Set<string>();
-
-            d.Add("foo");
-            d.Add("world");
-            d.Add("hello");
-            d.Add("elvis");
-            d.Add("elvis");
-            d.Add(null);
-            d.Add("cool");
+            var d = new Set<string> {
+                "foo",
+                "world",
+                "hello",
+                "elvis",
+                "elvis",
+                null,
+                "cool"
+            };
             d.AddMany(new string[] { "1", "2", "3", "4", "5", "6" });
             d.AddMany(new string[] { "7", "8", "9", "10", "11", "12" });
 
@@ -918,16 +921,16 @@ namespace Wintellect.PowerCollections.Tests
                 new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5"), new InterfaceTests.Unique("6"), 
                 new InterfaceTests.Unique("cool"), new InterfaceTests.Unique("elvis"), new InterfaceTests.Unique("hello"), new InterfaceTests.Unique("foo"), new InterfaceTests.Unique("world"), new InterfaceTests.Unique("elvis"), new InterfaceTests.Unique(null), null,
                 new InterfaceTests.Unique("7"), new InterfaceTests.Unique("8"), new InterfaceTests.Unique("9"), new InterfaceTests.Unique("10"), new InterfaceTests.Unique("11"), new InterfaceTests.Unique("12") };
-            d.set = new Set<InterfaceTests.Unique>();
-
-            d.set.Add(d.objects[9]);
-            d.set.Add(d.objects[10]);
-            d.set.Add(d.objects[8]);
-            d.set.Add(d.objects[11]);
-            d.set.Add(d.objects[7]);
-            d.set.Add(d.objects[12]);
-            d.set.Add(d.objects[6]);
-            d.set.Add(d.objects[13]);
+            d.set = new Set<InterfaceTests.Unique> {
+                d.objects[9],
+                d.objects[10],
+                d.objects[8],
+                d.objects[11],
+                d.objects[7],
+                d.objects[12],
+                d.objects[6],
+                d.objects[13]
+            };
             d.set.AddMany(new InterfaceTests.Unique[] { d.objects[0], d.objects[1], d.objects[2], d.objects[3], d.objects[4], d.objects[5] });
             d.set.AddMany(new InterfaceTests.Unique[] { d.objects[14], d.objects[15], d.objects[16], d.objects[17], d.objects[18], d.objects[19] });
 

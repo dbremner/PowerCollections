@@ -147,11 +147,12 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Add()
         {
-            var dict1 = new OrderedDictionary<double, int>();
+            var dict1 = new OrderedDictionary<double, int> {
+                {4.67, 12},
+                {double.NaN, -17},
+                {double.PositiveInfinity, 0}
+            };
 
-            dict1.Add(4.67, 12);
-            dict1.Add(double.NaN, -17);
-            dict1.Add(double.PositiveInfinity, 0);
             try {
                 dict1.Add(4.67, 187); Assert.Fail("Exception should be thrown");
             }
@@ -233,12 +234,12 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Update()
         {
-            var dict1 = new OrderedDictionary<double, int>();
-
-            dict1.Add(4.67, 12);
-            dict1.Add(double.NaN, -17);
-            dict1.Add(double.PositiveInfinity, 0);
-            dict1.Add(double.MaxValue, 441);
+            var dict1 = new OrderedDictionary<double, int> {
+                { 4.67, 12 },
+                { double.NaN, -17 },
+                { double.PositiveInfinity, 0 },
+                { double.MaxValue, 441 }
+            };
             dict1.Replace(4.67, -89);
             try {
                 dict1.Replace(double.NegativeInfinity, 187); Assert.Fail("Exception should be thrown");
@@ -279,18 +280,18 @@ namespace Wintellect.PowerCollections.Tests
 		[TestMethod]
 		public void IndexerSet()
 		{
-			var dict1 = new OrderedDictionary<double,int>();
+            var dict1 = new OrderedDictionary<double, int> {
+                [4.67] = 12,
+                [double.NaN] = -17,
+                [double.PositiveInfinity] = 0,
+                [4.67] = 187,
+                [double.NegativeInfinity] = 188921,
+                [double.NegativeInfinity] = 421,
+                [4.67] = 222,
+                [double.MaxValue] = 444
+            };
 
-			dict1[4.67] = 12;
-			dict1[double.NaN] = -17;
-			dict1[double.PositiveInfinity] = 0;
-			dict1[4.67] = 187;
-			dict1[double.NegativeInfinity] = 188921;
-			dict1[double.NegativeInfinity] = 421;
-			dict1[4.67] = 222;
-			dict1[double.MaxValue] = 444;
-
-			Assert.AreEqual(5, dict1.Count);
+            Assert.AreEqual(5, dict1.Count);
 			Assert.AreEqual(222, dict1[4.67]);
 			Assert.AreEqual(421, dict1[double.NegativeInfinity]);
 			Assert.AreEqual(0, dict1[double.PositiveInfinity]);
@@ -303,11 +304,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexerGet()
         {
-            var dict1 = new OrderedDictionary<string,int>(StringComparer.InvariantCultureIgnoreCase);
-
-            dict1["foo"] = 12;
-            dict1[null] = 18;
-            dict1["BAR"] = 11;
+            var dict1 = new OrderedDictionary<string, int>(StringComparer.InvariantCultureIgnoreCase) {
+                ["foo"] = 12,
+                [null] = 18,
+                ["BAR"] = 11
+            };
 
             Assert.AreEqual(12, dict1["Foo"]);
             Assert.AreEqual(18, dict1[null]);
@@ -466,17 +467,17 @@ namespace Wintellect.PowerCollections.Tests
 		[TestMethod]
 		public void ContainsKey()
 		{
-			var dict1 = new OrderedDictionary<string,string>();
-
-			dict1["b"] =  "foo";
-			dict1["r"] =  "bar";
-			dict1[""] =  "golde";
-			dict1["n"] =  "baz";
-			dict1["B"] =  "hello";
-			dict1[""] =  "peter";
-			dict1["n"] =  "horton";
-			dict1["x"] =  "hears";
-			dict1.Remove("n");
+            var dict1 = new OrderedDictionary<string, string> {
+                ["b"] = "foo",
+                ["r"] = "bar",
+                [""] = "golde",
+                ["n"] = "baz",
+                ["B"] = "hello",
+                [""] = "peter",
+                ["n"] = "horton",
+                ["x"] = "hears"
+            };
+            dict1.Remove("n");
 			dict1["c"] =  "a who";
 			dict1["q"] =  null;
 
@@ -609,16 +610,16 @@ namespace Wintellect.PowerCollections.Tests
 		[TestMethod]
 		public void KeysValuesCollections()
 		{
-			var dict1 = new OrderedDictionary<string,int>();
+            var dict1 = new OrderedDictionary<string, int> {
+                { "q", 17 },
+                { "a", 143 },
+                { "r", -5 },
+                { "z", 0 },
+                { "x", 12 },
+                { "m", 17 }
+            };
 
-			dict1.Add("q", 17);
-			dict1.Add("a", 143);
-			dict1.Add("r", -5);
-			dict1.Add("z", 0);
-			dict1.Add("x", 12);
-			dict1.Add("m", 17);
-
-			ICollection keysCollection = ((IDictionary)dict1).Keys;
+            ICollection keysCollection = ((IDictionary)dict1).Keys;
 			ICollection<string> keysGenCollection = dict1.Keys;
 			ICollection valuesCollection = ((IDictionary)dict1).Values;
 			ICollection<int> valuesGenCollection = dict1.Values;
@@ -719,21 +720,21 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
 		public void Enumerate()
 		{
-			var dict1 = new OrderedDictionary<string,int>();
+            var dict1 = new OrderedDictionary<string, int> {
+                ["foo"] = 23,
+                ["a"] = 11,
+                ["b"] = 119,
+                [""] = 981,
+                ["r4"] = 9,
+                ["b"] = 7,
+                ["hello"] = 198,
+                ["q"] = 199,
+                ["ww"] = -8,
+                ["ww"] = -9,
+                ["p"] = 1234
+            };
 
-			dict1["foo"] = 23;
-			dict1["a"] = 11;
-			dict1["b"] = 119;
-			dict1[""] = 981;
-			dict1["r4"] = 9;
-			dict1["b"] = 7;
-			dict1["hello"] = 198;
-			dict1["q"] = 199;
-			dict1["ww"] = -8;
-			dict1["ww"] = -9;
-			dict1["p"] = 1234;
-			
-			CheckEnumeration(dict1, dict1.Reversed(),
+            CheckEnumeration(dict1, dict1.Reversed(),
 					new string[] {"", "a", "b", "foo", "hello", "p", "q", "r4", "ww" },
 			        new int[] {981, 11, 7, 23, 198, 1234, 199, 9, -9});
 		}
@@ -848,25 +849,25 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            var dict1 = new OrderedDictionary<int, MyInt>();
-
-            dict1[4] = new MyInt(143);
-            dict1[7] = new MyInt(2);
-            dict1[11] = new MyInt(9);
-            dict1[18] = null;
-            dict1[3] = new MyInt(14);
-            dict1[1] = new MyInt(111);
+            var dict1 = new OrderedDictionary<int, MyInt> {
+                [4] = new MyInt(143),
+                [7] = new MyInt(2),
+                [11] = new MyInt(9),
+                [18] = null,
+                [3] = new MyInt(14),
+                [1] = new MyInt(111)
+            };
             OrderedDictionary<int, MyInt> dict2 = dict1.CloneContents();
             CompareClones(dict1, dict2);
 
             var dict3 = new OrderedDictionary<MyInt, int>(
-                delegate(MyInt v1, MyInt v2) { return v2.value.CompareTo(v1.value);});
-
-            dict3[new MyInt(7)] = 144;
-            dict3[new MyInt(16)] = 13;
-            dict3[new MyInt(-6)] = -14;
-            dict3[new MyInt(0)] = 31415;
-            dict3[new MyInt(1111)] = 0;
+                delegate (MyInt v1, MyInt v2) { return v2.value.CompareTo(v1.value); }) {
+                [new MyInt(7)] = 144,
+                [new MyInt(16)] = 13,
+                [new MyInt(-6)] = -14,
+                [new MyInt(0)] = 31415,
+                [new MyInt(1111)] = 0
+            };
 
             OrderedDictionary<MyInt, int> dict4 = dict3.CloneContents();
             CompareClones(dict3, dict4);
@@ -874,12 +875,13 @@ namespace Wintellect.PowerCollections.Tests
             Comparison<UtilTests.CloneableStruct> comparison = delegate(UtilTests.CloneableStruct s1, UtilTests.CloneableStruct s2) {
                 return s1.value.CompareTo(s2.value);
             };
-            var dict5 = new OrderedDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct>(comparison);
-            dict5[new UtilTests.CloneableStruct(7)] = new UtilTests.CloneableStruct(144);
-            dict5[new UtilTests.CloneableStruct(16)] = new UtilTests.CloneableStruct(13);
-            dict5[new UtilTests.CloneableStruct(-6)] = new UtilTests.CloneableStruct(-14);
-            dict5[new UtilTests.CloneableStruct(0)] = new UtilTests.CloneableStruct(31415);
-            dict5[new UtilTests.CloneableStruct(1111)] = new UtilTests.CloneableStruct(0);
+            var dict5 = new OrderedDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct>(comparison) {
+                [new UtilTests.CloneableStruct(7)] = new UtilTests.CloneableStruct(144),
+                [new UtilTests.CloneableStruct(16)] = new UtilTests.CloneableStruct(13),
+                [new UtilTests.CloneableStruct(-6)] = new UtilTests.CloneableStruct(-14),
+                [new UtilTests.CloneableStruct(0)] = new UtilTests.CloneableStruct(31415),
+                [new UtilTests.CloneableStruct(1111)] = new UtilTests.CloneableStruct(0)
+            };
             OrderedDictionary<UtilTests.CloneableStruct,UtilTests.CloneableStruct> dict6 = dict5.CloneContents();
 
             IEnumerator<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>> e1 = dict5.GetEnumerator();
@@ -903,10 +905,10 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            var dict1 = new OrderedDictionary<int,NotCloneable>();
-
-            dict1[4] = new NotCloneable();
-            dict1[5] = new NotCloneable();
+            var dict1 = new OrderedDictionary<int, NotCloneable> {
+                [4] = new NotCloneable(),
+                [5] = new NotCloneable()
+            };
 
             OrderedDictionary<int, NotCloneable> dict2 = dict1.CloneContents();
         }
@@ -936,19 +938,19 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Range()
         {
-            var dict1 = new OrderedDictionary<string, int>();
-
-            dict1["foo"] = 23;
-            dict1["a"] = 11;
-            dict1["b"] = 119;
-            dict1[""] = 981;
-            dict1["r4"] = 9;
-            dict1["b"] = 7;
-            dict1["hello"] = 198;
-            dict1["q"] = 199;
-            dict1["ww"] = -8;
-            dict1["ww"] = -9;
-            dict1["p"] = 1234;
+            var dict1 = new OrderedDictionary<string, int> {
+                ["foo"] = 23,
+                ["a"] = 11,
+                ["b"] = 119,
+                [""] = 981,
+                ["r4"] = 9,
+                ["b"] = 7,
+                ["hello"] = 198,
+                ["q"] = 199,
+                ["ww"] = -8,
+                ["ww"] = -9,
+                ["p"] = 1234
+            };
 
             CheckView(dict1.Range("a", true, "z", false), 
                                         new string[] { "a", "b", "foo", "hello", "p", "q", "r4", "ww" },
@@ -1065,11 +1067,12 @@ namespace Wintellect.PowerCollections.Tests
         {
             IComparer<int> myComparer = new GOddEvenComparer();
 
-            var dict1 = new OrderedDictionary<int, string>(myComparer);
-            dict1[3] = "foo";
-            dict1[8] = "bar";
-            dict1[9] = "baz";
-            dict1[12] = "biff";
+            var dict1 = new OrderedDictionary<int, string>(myComparer) {
+                [3] = "foo",
+                [8] = "bar",
+                [9] = "baz",
+                [12] = "biff"
+            };
 
             InterfaceTests.TestReadonlyCollectionGeneric<int>(dict1.Keys, new int[] { 3, 9, 8, 12 }, true, "KeysCollection");
             InterfaceTests.TestReadonlyCollectionGeneric<string>(dict1.Values, new string[] { "foo", "baz", "bar", "biff" }, true, "ValuesCollection");
@@ -1080,11 +1083,12 @@ namespace Wintellect.PowerCollections.Tests
         {
             Comparison<int> myOrdering = ComparersTests.CompareOddEven;
 
-            var dict1 = new OrderedDictionary<int, string>(myOrdering);
-            dict1[3] = "foo";
-            dict1[8] = "bar";
-            dict1[9] = "baz";
-            dict1[12] = "biff";
+            var dict1 = new OrderedDictionary<int, string>(myOrdering) {
+                [3] = "foo",
+                [8] = "bar",
+                [9] = "baz",
+                [12] = "biff"
+            };
 
             InterfaceTests.TestReadonlyCollectionGeneric<int>(dict1.Keys, new int[] { 3, 9, 8, 12 }, true, "KeysCollection");
             InterfaceTests.TestReadonlyCollectionGeneric<string>(dict1.Values, new string[] { "foo", "baz", "bar", "biff" }, true, "ValuesCollection");
@@ -1096,11 +1100,12 @@ namespace Wintellect.PowerCollections.Tests
         {
             Comparison<int> myOrdering = ComparersTests.CompareOddEven;
 
-            var dict1 = new OrderedDictionary<int, string>(myOrdering);
-            dict1[3] = "foo";
-            dict1[8] = "bar";
-            dict1[9] = "baz";
-            dict1[12] = "biff";
+            var dict1 = new OrderedDictionary<int, string>(myOrdering) {
+                [3] = "foo",
+                [8] = "bar",
+                [9] = "baz",
+                [12] = "biff"
+            };
 
             OrderedDictionary<int, string> dict2 = dict1.Clone();
             OrderedDictionary<int, string> dict3 = dict1.CloneContents();
@@ -1114,11 +1119,12 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ICollectionMembers()
         {
-            var dict1 = new OrderedDictionary<int, string>();
-            dict1[9] = "baz";
-            dict1[8] = "bar";
-            dict1[12] = "biff";
-            dict1[3] = "foo";
+            var dict1 = new OrderedDictionary<int, string> {
+                [9] = "baz",
+                [8] = "bar",
+                [12] = "biff",
+                [3] = "foo"
+            };
 
             InterfaceTests.TestCollection<DictionaryEntry>((ICollection)dict1,
                 new DictionaryEntry[] {
@@ -1133,11 +1139,12 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GenericICollectionMembers()
         {
-            var dict1 = new OrderedDictionary<int, string>();
-            dict1[9] = "baz";
-            dict1[8] = "bar";
-            dict1[12] = "biff";
-            dict1[3] = "foo";
+            var dict1 = new OrderedDictionary<int, string> {
+                [9] = "baz",
+                [8] = "bar",
+                [12] = "biff",
+                [3] = "foo"
+            };
 
             InterfaceTests.TestReadWriteCollectionGeneric<KeyValuePair<int, string>>((ICollection<KeyValuePair<int, string>>)dict1, 
                 new KeyValuePair<int,string>[] {
@@ -1180,13 +1187,13 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveCollection()
         {
-            var dict1 = new OrderedDictionary<int, string>();
-
-            dict1[9] = "baz";
-            dict1[8] = "bar";
-            dict1[12] = "biff";
-            dict1[3] = "foo";
-            dict1[127] = "hello";
+            var dict1 = new OrderedDictionary<int, string> {
+                [9] = "baz",
+                [8] = "bar",
+                [12] = "biff",
+                [3] = "foo",
+                [127] = "hello"
+            };
 
             int[] array = new int[] { 8, 127, 4, 3 };
 
@@ -1293,13 +1300,13 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeStrings()
         {
-            var d = new OrderedDictionary<string, double>(StringComparer.InvariantCultureIgnoreCase);
-
-            d.Add("hEllo", 13);
-            d.Add("foo", 7);
-            d.Add("world", -9.5);
-            d.Add("elvis", 0.9);
-            d.Add(null, 1.4);
+            var d = new OrderedDictionary<string, double>(StringComparer.InvariantCultureIgnoreCase) {
+                { "hEllo", 13 },
+                { "foo", 7 },
+                { "world", -9.5 },
+                { "elvis", 0.9 },
+                { null, 1.4 }
+            };
 
             var result = (OrderedDictionary<string, double>)InterfaceTests.SerializeRoundTrip(d);
 
@@ -1312,15 +1319,15 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ConstructionWithInitialization()
         {
-            var init = new Dictionary<string, int>();
-
-            init["foo"] = 16;
-            init["FOO"] = 19;
-            init["fiddle"] = 107;
-            init["goofy"] = 11;
-            init["trackstar"] = 19;
-            init["GOOfy"] = 110;
-            init["bar"] = 99;
+            var init = new Dictionary<string, int> {
+                ["foo"] = 16,
+                ["FOO"] = 19,
+                ["fiddle"] = 107,
+                ["goofy"] = 11,
+                ["trackstar"] = 19,
+                ["GOOfy"] = 110,
+                ["bar"] = 99
+            };
 
             var dict1 = new OrderedDictionary<string, int>(init);
 

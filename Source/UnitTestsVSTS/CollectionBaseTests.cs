@@ -193,12 +193,13 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]  
         public void CheckDictionaryKeyValues()
         {
-            var dict = new Dictionary<string, int>();
-            dict["Eric"] = 3;
-            dict["Clapton"] = 1;
-            dict["Rules"] = 4;
-            dict["The"] = 1;
-            dict["Universe"] = 5;
+            var dict = new Dictionary<string, int> {
+                ["Eric"] = 3,
+                ["Clapton"] = 1,
+                ["Rules"] = 4,
+                ["The"] = 1,
+                ["Universe"] = 5
+            };
 
             InterfaceTests.TestCollection<string>(dict.Keys, new string[] { "Eric", "Clapton", "Rules", "The", "Universe" }, false);
             InterfaceTests.TestReadonlyCollectionGeneric<string>(dict.Keys, new string[] { "Eric", "Clapton", "Rules", "The", "Universe" }, false, null);

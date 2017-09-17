@@ -948,10 +948,10 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            var deque1 = new Deque<MyInt>();
-
-            deque1.Add(new MyInt(143));
-            deque1.Add(new MyInt(2));
+            var deque1 = new Deque<MyInt> {
+                new MyInt(143),
+                new MyInt(2)
+            };
             deque1.AddToFront(new MyInt(9));
             deque1.Add(null);
             deque1.AddToFront(new MyInt(2));
@@ -964,8 +964,9 @@ namespace Wintellect.PowerCollections.Tests
             Deque<int> deque4 = deque3.CloneContents();
             CompareClones(deque3, deque4);
 
-            var deque5 = new Deque<UtilTests.CloneableStruct>();
-            deque5.Add(new UtilTests.CloneableStruct(143));
+            var deque5 = new Deque<UtilTests.CloneableStruct> {
+                new UtilTests.CloneableStruct(143)
+            };
             deque5.AddToFront(new UtilTests.CloneableStruct(5));
             deque5.Add(new UtilTests.CloneableStruct(23));
             deque5.AddToFront(new UtilTests.CloneableStruct(1));
@@ -991,10 +992,10 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            var deque1 = new Deque<NotCloneable>();
-
-            deque1.Add(new NotCloneable());
-            deque1.Add(new NotCloneable());
+            var deque1 = new Deque<NotCloneable> {
+                new NotCloneable(),
+                new NotCloneable()
+            };
 
             Deque<NotCloneable> deque2 = deque1.CloneContents();
         }

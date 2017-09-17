@@ -2514,18 +2514,20 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ReadOnlyDictionary()
         {
-            IDictionary<string, int> dict1 = new Dictionary<string, int>();
-            dict1["foo"] = 12;
-            dict1["zap"] = 123;
-            dict1["HELLO"] = -1;
+            IDictionary<string, int> dict1 = new Dictionary<string, int> {
+                ["foo"] = 12,
+                ["zap"] = 123,
+                ["HELLO"] = -1
+            };
             IDictionary<string, int> result1 = Algorithms.ReadOnly(dict1);
             InterfaceTests.TestReadOnlyDictionaryGeneric<string, int>(result1, new string[] { "foo", "zap", "HELLO" }, new int[] { 12, 123, -1 },
                                     "fizzle", false, null, null, null);
 
-            IDictionary<string, string> dict2 = new OrderedDictionary<string, string>();
-            dict2["foo"] = "hi";
-            dict2["zap"] = null;
-            dict2[null] = "there";
+            IDictionary<string, string> dict2 = new OrderedDictionary<string, string> {
+                ["foo"] = "hi",
+                ["zap"] = null,
+                [null] = "there"
+            };
             IDictionary<string, string> result2 = Algorithms.ReadOnly(dict2);
             InterfaceTests.TestReadOnlyDictionaryGeneric<string, string>(result2, new string[] { null, "foo", "zap" }, new string[] { "there", "hi", null },
                                     "fizzle", true, null, null, null);
@@ -4045,11 +4047,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetDictionaryConverter()
         {
-            var dict1 = new OrderedDictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
-
-            dict1["foo"] = 7;
-            dict1["bar"] = 11;
-            dict1["HELLO"] = 18;
+            var dict1 = new OrderedDictionary<string, int>(StringComparer.InvariantCultureIgnoreCase) {
+                ["foo"] = 7,
+                ["bar"] = 11,
+                ["HELLO"] = 18
+            };
 
             IEnumerable<string> coll1 = EnumerableFromArray<string>(new string[] { "FOO", "hi", null, "bar", "hello", "7" });
 

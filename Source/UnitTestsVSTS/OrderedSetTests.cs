@@ -379,10 +379,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void AddMany()
         {
-            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
-            set1.Add("foo");
-            set1.Add("Eric");
-            set1.Add("Clapton");
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "foo",
+                "Eric",
+                "Clapton"
+            };
             string[] s_array = { "FOO", "x", "elmer", "fudd", "Clapton", null };
             set1.AddMany(s_array);
 
@@ -392,14 +393,14 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveMany()
         {
-            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
-
-            set1.Add("foo");
-            set1.Add("Eric");
-            set1.Add("Clapton");
-            set1.Add(null);
-            set1.Add("fudd");
-            set1.Add("elmer");
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "foo",
+                "Eric",
+                "Clapton",
+                null,
+                "fudd",
+                "elmer"
+            };
             string[] s_array = { "FOO", "jasmine", "eric", null };
             int count = set1.RemoveMany(s_array);
             Assert.AreEqual(3, count);
@@ -1025,22 +1026,22 @@ namespace Wintellect.PowerCollections.Tests
         public void CloneContents()
         {
             var set1 = new OrderedSet<MyInt>(
-                delegate(MyInt v1, MyInt v2) { 
+                delegate (MyInt v1, MyInt v2) {
                     if (v1 == null) {
                         return (v2 == null) ? 0 : -1;
                     }
                     else if (v2 == null)
                         return 1;
                     else
-                        return v2.value.CompareTo(v1.value); 
-                });
-
-            set1.Add(new MyInt(143));
-            set1.Add(new MyInt(2));
-            set1.Add(new MyInt(9));
-            set1.Add(null);
-            set1.Add(new MyInt(14));
-            set1.Add(new MyInt(111));
+                        return v2.value.CompareTo(v1.value);
+                }) {
+                new MyInt(143),
+                new MyInt(2),
+                new MyInt(9),
+                null,
+                new MyInt(14),
+                new MyInt(111)
+            };
             OrderedSet<MyInt> set2 = set1.CloneContents();
             CompareClones(set1, set2);
 
@@ -1051,12 +1052,13 @@ namespace Wintellect.PowerCollections.Tests
             Comparison<UtilTests.CloneableStruct> comparison = delegate(UtilTests.CloneableStruct s1, UtilTests.CloneableStruct s2) {
                 return s1.value.CompareTo(s2.value);
             };
-            var set5 = new OrderedSet<UtilTests.CloneableStruct>(comparison);
-            set5.Add(new UtilTests.CloneableStruct(143));
-            set5.Add(new UtilTests.CloneableStruct(5));
-            set5.Add(new UtilTests.CloneableStruct(23));
-            set5.Add(new UtilTests.CloneableStruct(1));
-            set5.Add(new UtilTests.CloneableStruct(8));
+            var set5 = new OrderedSet<UtilTests.CloneableStruct>(comparison) {
+                new UtilTests.CloneableStruct(143),
+                new UtilTests.CloneableStruct(5),
+                new UtilTests.CloneableStruct(23),
+                new UtilTests.CloneableStruct(1),
+                new UtilTests.CloneableStruct(8)
+            };
             OrderedSet<UtilTests.CloneableStruct> set6 = set5.CloneContents();
 
             Assert.AreEqual(set5.Count, set6.Count);
@@ -1080,10 +1082,10 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            var set1 = new OrderedSet<NotCloneable>();
-
-            set1.Add(new NotCloneable());
-            set1.Add(new NotCloneable());
+            var set1 = new OrderedSet<NotCloneable> {
+                new NotCloneable(),
+                new NotCloneable()
+            };
 
             OrderedSet<NotCloneable> set2 = set1.CloneContents();
         }
@@ -1093,11 +1095,12 @@ namespace Wintellect.PowerCollections.Tests
         {
             Comparison<int> myOrdering = ComparersTests.CompareOddEven;
 
-            var set1 = new OrderedSet<int>(myOrdering);
-            set1.Add(8);
-            set1.Add(12);
-            set1.Add(9);
-            set1.Add(3);
+            var set1 = new OrderedSet<int>(myOrdering) {
+                8,
+                12,
+                9,
+                3
+            };
             InterfaceTests.TestReadWriteCollectionGeneric<int>(set1, new int[] { 3, 9, 8, 12 }, true, null);
         }
 
@@ -1106,11 +1109,12 @@ namespace Wintellect.PowerCollections.Tests
         {
             IComparer<int> myComparer = new GOddEvenComparer();
 
-            var set1 = new OrderedSet<int>(myComparer);
-            set1.Add(8);
-            set1.Add(12);
-            set1.Add(9);
-            set1.Add(3);
+            var set1 = new OrderedSet<int>(myComparer) {
+                8,
+                12,
+                9,
+                3
+            };
             InterfaceTests.TestReadWriteCollectionGeneric<int>(set1, new int[] { 3, 9, 8, 12 }, true, null);
         }
 
@@ -1263,15 +1267,16 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeStrings()
         {
-            var d = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var d = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "foo",
+                "WORLD",
+                "Hello",
+                "eLVIs",
+                "elvis",
+                null,
+                "cool"
+            };
 
-            d.Add("foo");
-            d.Add("WORLD");
-            d.Add("Hello");
-            d.Add("eLVIs");
-            d.Add("elvis");
-            d.Add(null);
-            d.Add("cool");
             d.AddMany(new string[] { "1", "2", "3", "4", "5", "6" });
             d.AddMany(new string[] { "7", "8", "9", "10", "11", "12" });
 

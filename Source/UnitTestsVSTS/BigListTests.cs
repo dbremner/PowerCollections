@@ -302,10 +302,10 @@ namespace Wintellect.PowerCollections.Tests
         public void AppendBigList2()
         {
             const int SIZE = 8000;
-            var biglist1 = new BigList<int>();
-
-            biglist1.Add(1);
-            biglist1.Add(2);
+            var biglist1 = new BigList<int> {
+                1,
+                2
+            };
             int i = 3, j = 11;
             while (i <= SIZE) {
                 int[] array = new int[j];
@@ -1009,9 +1009,10 @@ namespace Wintellect.PowerCollections.Tests
             list2.InsertRange(2, new int[] { 9, 8});
             InterfaceTests.TestEnumerableElements<int>(list2, new int[] { 1, 2, 9, 8, 3, 4, 5});
 
-            list2 = new BigList<int>();
-            list2.Add(1);
-            list2.Add(2);
+            list2 = new BigList<int> {
+                1,
+                2
+            };
             list2.InsertRange(1, new int[] { 6, 5, 4 });
             list2.InsertRange(2, new int[] { 9, 8 });
             InterfaceTests.TestEnumerableElements<int>(list2, new int[] { 1, 6, 9, 8, 5, 4, 2 });
@@ -1435,14 +1436,14 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            var list1 = new BigList<MyInt>();
-
-            list1.Add(new MyInt(143));
-            list1.Add(new MyInt(2));
-            list1.Add(new MyInt(9));
-            list1.Add(null);
-            list1.Add(new MyInt(2));
-            list1.Add(new MyInt(111));
+            var list1 = new BigList<MyInt> {
+                new MyInt(143),
+                new MyInt(2),
+                new MyInt(9),
+                null,
+                new MyInt(2),
+                new MyInt(111)
+            };
             BigList<MyInt> list2 = list1.CloneContents();
             CompareClones(list1, list2);
 
@@ -1450,12 +1451,13 @@ namespace Wintellect.PowerCollections.Tests
             BigList<int> list4 = list3.CloneContents();
             CompareClones(list3, list4);
 
-            var list5 = new BigList<UtilTests.CloneableStruct>();
-            list5.Add(new UtilTests.CloneableStruct(143));
-            list5.Add(new UtilTests.CloneableStruct(5));
-            list5.Add(new UtilTests.CloneableStruct(23));
-            list5.Add(new UtilTests.CloneableStruct(1));
-            list5.Add(new UtilTests.CloneableStruct(8));
+            var list5 = new BigList<UtilTests.CloneableStruct> {
+                new UtilTests.CloneableStruct(143),
+                new UtilTests.CloneableStruct(5),
+                new UtilTests.CloneableStruct(23),
+                new UtilTests.CloneableStruct(1),
+                new UtilTests.CloneableStruct(8)
+            };
             BigList<UtilTests.CloneableStruct> list6 = list5.CloneContents();
 
             Assert.AreEqual(list5.Count, list6.Count);
@@ -1477,10 +1479,10 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            var list1 = new BigList<NotCloneable>();
-
-            list1.Add(new NotCloneable());
-            list1.Add(new NotCloneable());
+            var list1 = new BigList<NotCloneable> {
+                new NotCloneable(),
+                new NotCloneable()
+            };
 
             BigList<NotCloneable> list2 = list1.CloneContents();
         }
@@ -1507,8 +1509,9 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestListGeneric<int>(list1, new int[] { 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 }, null);
             list1[7] = 12;
             InterfaceTests.TestListGeneric<int>(list1, new int[] { 1, 2, 3, 4, 1, 2, 3, 12, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 }, null);
-            list1 = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3, 4 }), 7);
-            list1[17] = 13;
+            list1 = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3, 4 }), 7) {
+                [17] = 13
+            };
             InterfaceTests.TestListGeneric<int>(list1, new int[] { 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 13, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 }, null);
 
             // Large cases.

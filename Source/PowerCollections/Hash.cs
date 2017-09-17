@@ -577,15 +577,16 @@ namespace Wintellect.PowerCollections
         /// <returns>A shallow clone that contains the same items.</returns>
         public Hash<T> Clone(Converter<T,T> cloneItem)
         {
-            var clone = new Hash<T>(equalityComparer);
-            clone.count = this.count;
-            clone.usedSlots = this.usedSlots;
-            clone.totalSlots = this.totalSlots;
-            clone.loadFactor = this.loadFactor;
-            clone.thresholdGrow = this.thresholdGrow;
-            clone.thresholdShrink = this.thresholdShrink;
-            clone.hashMask = this.hashMask;
-            clone.secondaryShift = this.secondaryShift;
+            var clone = new Hash<T>(equalityComparer) {
+                count = this.count,
+                usedSlots = this.usedSlots,
+                totalSlots = this.totalSlots,
+                loadFactor = this.loadFactor,
+                thresholdGrow = this.thresholdGrow,
+                thresholdShrink = this.thresholdShrink,
+                hashMask = this.hashMask,
+                secondaryShift = this.secondaryShift
+            };
             if (table != null) {
                 clone.table = (Slot[])table.Clone();
 

@@ -172,17 +172,17 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Add()
         {
-            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
-
-            bag1.Add("Hello"); 
-            bag1.Add("foo"); 
-            bag1.Add(""); 
-            bag1.Add("HELLO"); 
-            bag1.Add("foo"); 
-            bag1.Add(null); 
-            bag1.Add("hello"); 
-            bag1.Add("Eric"); 
-            bag1.Add(null); 
+            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "Hello",
+                "foo",
+                "",
+                "HELLO",
+                "foo",
+                null,
+                "hello",
+                "Eric",
+                null
+            };
 
             InterfaceTests.TestReadWriteCollectionGeneric(bag1, new string[] { null, null, "", "Eric", "foo", "foo", "Hello", "HELLO", "hello" }, true, null);
         }
@@ -190,17 +190,17 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetItemByIndex()
         {
-            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
-
-            bag1.Add("Hello");
-            bag1.Add("foo");
-            bag1.Add("");
-            bag1.Add("HELLO");
-            bag1.Add("foo");
-            bag1.Add(null);
-            bag1.Add("hello");
-            bag1.Add("Eric");
-            bag1.Add(null); 
+            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "Hello",
+                "foo",
+                "",
+                "HELLO",
+                "foo",
+                null,
+                "hello",
+                "Eric",
+                null
+            };
 
             Assert.AreEqual(bag1[0], null);
             Assert.AreEqual(bag1[1], null);
@@ -248,17 +248,17 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexOf()
         {
-            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
-
-            bag1.Add("Hello");
-            bag1.Add("foo");
-            bag1.Add("");
-            bag1.Add("HELLO");
-            bag1.Add("foo");
-            bag1.Add(null);
-            bag1.Add("hello");
-            bag1.Add("Eric");
-            bag1.Add(null);
+            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "Hello",
+                "foo",
+                "",
+                "HELLO",
+                "foo",
+                null,
+                "hello",
+                "Eric",
+                null
+            };
 
             Assert.AreEqual(0, bag1.IndexOf(null));
             Assert.AreEqual(1, bag1.LastIndexOf(null));
@@ -275,17 +275,17 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void AsList()
         {
-            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
-
-            bag1.Add("Hello");
-            bag1.Add("foo");
-            bag1.Add("");
-            bag1.Add("HELLO");
-            bag1.Add("foo");
-            bag1.Add(null);
-            bag1.Add("hello");
-            bag1.Add("Eric");
-            bag1.Add(null);
+            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "Hello",
+                "foo",
+                "",
+                "HELLO",
+                "foo",
+                null,
+                "hello",
+                "Eric",
+                null
+            };
 
             InterfaceTests.TestReadOnlyListGeneric(bag1.AsList(), new string[] { null, null, "", "Eric", "foo", "foo", "Hello", "HELLO", "hello" }, null, StringComparer.InvariantCultureIgnoreCase.Equals);
 
@@ -413,10 +413,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void AddMany()
         {
-            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
-            bag1.Add("foo");
-            bag1.Add("Eric");
-            bag1.Add("Clapton");
+            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "foo",
+                "Eric",
+                "Clapton"
+            };
             string[] s_array = { "FOO", "x", "elmer", "fudd", "Clapton", null };
             bag1.AddMany(s_array);
 
@@ -432,15 +433,15 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveMany()
         {
-            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
-
-            bag1.Add("foo");
-            bag1.Add("Eric");
-            bag1.Add("Clapton");
-            bag1.Add(null);
-            bag1.Add("Foo");
-            bag1.Add("fudd");
-            bag1.Add("elmer");
+            var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase) {
+                "foo",
+                "Eric",
+                "Clapton",
+                null,
+                "Foo",
+                "fudd",
+                "elmer"
+            };
             string[] s_array = { "FOO", "jasmine", "eric", null };
             int count = bag1.RemoveMany(s_array);
             Assert.AreEqual(3, count);
@@ -1133,12 +1134,13 @@ namespace Wintellect.PowerCollections.Tests
             Comparison<UtilTests.CloneableStruct> comparison = delegate(UtilTests.CloneableStruct s1, UtilTests.CloneableStruct s2) {
                 return s1.value.CompareTo(s2.value);
             };
-            var bag5 = new OrderedBag<UtilTests.CloneableStruct>(comparison);
-            bag5.Add(new UtilTests.CloneableStruct(143));
-            bag5.Add(new UtilTests.CloneableStruct(1));
-            bag5.Add(new UtilTests.CloneableStruct(23));
-            bag5.Add(new UtilTests.CloneableStruct(1));
-            bag5.Add(new UtilTests.CloneableStruct(8));
+            var bag5 = new OrderedBag<UtilTests.CloneableStruct>(comparison) {
+                new UtilTests.CloneableStruct(143),
+                new UtilTests.CloneableStruct(1),
+                new UtilTests.CloneableStruct(23),
+                new UtilTests.CloneableStruct(1),
+                new UtilTests.CloneableStruct(8)
+            };
             OrderedBag<UtilTests.CloneableStruct> bag6 = bag5.CloneContents();
 
             Assert.AreEqual(bag5.Count, bag6.Count);
@@ -1160,10 +1162,10 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            var bag1 = new OrderedBag<NotCloneable>();
-
-            bag1.Add(new NotCloneable());
-            bag1.Add(new NotCloneable());
+            var bag1 = new OrderedBag<NotCloneable> {
+                new NotCloneable(),
+                new NotCloneable()
+            };
 
             OrderedBag<NotCloneable> bag2 = bag1.CloneContents();
         }
@@ -1173,12 +1175,13 @@ namespace Wintellect.PowerCollections.Tests
         {
             Comparison<int> myOrdering = ComparersTests.CompareOddEven;
 
-            var bag1 = new OrderedBag<int>(myOrdering);
-            bag1.Add(8);
-            bag1.Add(12);
-            bag1.Add(9);
-            bag1.Add(9);
-            bag1.Add(3);
+            var bag1 = new OrderedBag<int>(myOrdering) {
+                8,
+                12,
+                9,
+                9,
+                3
+            };
             InterfaceTests.TestReadWriteCollectionGeneric<int>(bag1, new int[] { 3, 9, 9, 8, 12 }, true);
         }
 
@@ -1187,12 +1190,13 @@ namespace Wintellect.PowerCollections.Tests
         {
             IComparer<int> myComparer = new GOddEvenComparer();
 
-            var bag1 = new OrderedBag<int>(myComparer);
-            bag1.Add(3);
-            bag1.Add(8);
-            bag1.Add(12);
-            bag1.Add(9);
-            bag1.Add(3);
+            var bag1 = new OrderedBag<int>(myComparer) {
+                3,
+                8,
+                12,
+                9,
+                3
+            };
             InterfaceTests.TestReadWriteCollectionGeneric<int>(bag1, new int[] { 3, 3, 9, 8, 12 }, true);
         }
 
@@ -1367,17 +1371,17 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeStrings()
         {
-            var d = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
-
-            d.Add(null);
-            d.Add("hello");
-            d.Add("foo");
-            d.Add("WORLD");
-            d.Add("Hello");
-            d.Add("eLVIs");
-            d.Add("elvis");
-            d.Add(null);
-            d.Add("cool");
+            var d = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase) {
+                null,
+                "hello",
+                "foo",
+                "WORLD",
+                "Hello",
+                "eLVIs",
+                "elvis",
+                null,
+                "cool"
+            };
             d.AddMany(new string[] { "1", "2", "3", "4", "5", "6" });
             d.AddMany(new string[] { "7", "8", "9", "10", "11", "12" });
 
