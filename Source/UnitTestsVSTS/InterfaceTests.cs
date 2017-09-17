@@ -136,7 +136,7 @@ namespace Wintellect.PowerCollections.Tests {
 		/// <param name="mustBeInOrder">Must the values be in order?</param>
 		public static void TestCollection<T>(ICollection coll, T[] valueArray, bool mustBeInOrder)
 		{
-			T[] values = (T[])valueArray.Clone();		// clone the array so we can destroy it.
+			var values = (T[])valueArray.Clone();		// clone the array so we can destroy it.
 
 			// Check ICollection.Count.
 			Assert.AreEqual(values.Length, coll.Count);
@@ -1261,7 +1261,7 @@ namespace Wintellect.PowerCollections.Tests {
 
             // Check the setter by reversing the list.
             for (int i = 0; i < coll.Count / 2; ++i) {
-                T temp = (T) coll[i];
+                var temp = (T) coll[i];
                 coll[i] = coll[coll.Count - 1 - i];
                 coll[coll.Count - 1 - i] = temp;
             }
@@ -1275,7 +1275,7 @@ namespace Wintellect.PowerCollections.Tests {
 
             // Reverse back
             for (int i = 0; i < coll.Count / 2; ++i) {
-                T temp = (T) coll[i];
+                var temp = (T) coll[i];
                 coll[i] = coll[coll.Count - 1 - i];
                 coll[coll.Count - 1 - i] = temp;
             }

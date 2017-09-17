@@ -119,7 +119,7 @@ namespace Wintellect.PowerCollections
         {
             bool firstItem = true;
 
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new System.Text.StringBuilder();
 
             builder.Append("{");
 
@@ -374,7 +374,7 @@ namespace Wintellect.PowerCollections
             get
             {
                 if (key is TKey || key == null) {
-                    TKey theKey = (TKey)key;
+                    var theKey = (TKey)key;
                     TValue theValue;
 
                     // The IDictionary (non-generic) indexer returns null for not found, instead of
@@ -410,7 +410,7 @@ namespace Wintellect.PowerCollections
 
            bool firstItem = true;
 
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new System.Text.StringBuilder();
 
             builder.Append("{");
 
@@ -532,7 +532,7 @@ namespace Wintellect.PowerCollections
                 get
                 {
                     KeyValuePair<TKey, TValue> pair = enumerator.Current;
-                    DictionaryEntry entry = new DictionaryEntry();
+                    var entry = new DictionaryEntry();
                     if (pair.Key != null)
                         entry.Key = pair.Key;
                     entry.Value = pair.Value;

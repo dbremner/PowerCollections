@@ -80,7 +80,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             string[] s = { "Hello", "Goodbye", "Eric", "Clapton", "Rules" };
 
-            ReadOnlyTestCollection<string> coll = new ReadOnlyTestCollection<string>(s);
+            var coll = new ReadOnlyTestCollection<string>(s);
 
             InterfaceTests.TestCollection<string>((ICollection)coll, s, true);
             InterfaceTests.TestReadonlyCollectionGeneric<string>((ICollection<string>)coll, s, true, "ReadOnlyTestCollection");
@@ -91,7 +91,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             string[] s = { "Hello", "Goodbye", "Eric", "Clapton", "Rules" };
 
-            ReadWriteTestCollection<string> coll = new ReadWriteTestCollection<string>(s);
+            var coll = new ReadWriteTestCollection<string>(s);
 
             InterfaceTests.TestCollection<string>((ICollection)coll, s, true);
             InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)coll, s, true);
@@ -101,29 +101,28 @@ namespace Wintellect.PowerCollections.Tests
         public void ConvertToString()
         {
             string[] array = { "Hello", "Goodbye", null, "Clapton", "Rules" };
-            string s;
 
-            ReadWriteTestCollection<string> coll1 = new ReadWriteTestCollection<string>(array);
-            s = coll1.ToString();
+            var coll1 = new ReadWriteTestCollection<string>(array);
+            string s = coll1.ToString();
             Assert.AreEqual("{Hello,Goodbye,null,Clapton,Rules}", s);
 
-            ReadOnlyTestCollection<string> coll2 = new ReadOnlyTestCollection<string>(array);
+            var coll2 = new ReadOnlyTestCollection<string>(array);
             s = coll2.ToString();
             Assert.AreEqual("{Hello,Goodbye,null,Clapton,Rules}", s);
 
-            ReadWriteTestCollection<string> coll3 = new ReadWriteTestCollection<string>(new string[0]);
+            var coll3 = new ReadWriteTestCollection<string>(new string[0]);
             s = coll3.ToString();
             Assert.AreEqual("{}", s);
 
-            ReadOnlyTestCollection<string> coll4= new ReadOnlyTestCollection<string>(new string[0]);
+            var coll4= new ReadOnlyTestCollection<string>(new string[0]);
             s = coll4.ToString();
             Assert.AreEqual("{}", s);
 
-            ReadWriteTestCollection<int> coll5 = new ReadWriteTestCollection<int>(new int[] { 1, 2, 3 });
+            var coll5 = new ReadWriteTestCollection<int>(new int[] { 1, 2, 3 });
             s = coll5.ToString();
             Assert.AreEqual("{1,2,3}", s);
 
-            ReadOnlyTestCollection<int> coll6 = new ReadOnlyTestCollection<int>(new int[] { 1, 2, 3 });
+            var coll6 = new ReadOnlyTestCollection<int>(new int[] { 1, 2, 3 });
             s = coll6.ToString();
             Assert.AreEqual("{1,2,3}", s);
 
@@ -136,27 +135,27 @@ namespace Wintellect.PowerCollections.Tests
             string[] array = { "Hello", "Goodbye", null, "Clapton", "Rules" };
             string s;
 
-            ReadWriteTestCollection<string> coll1 = new ReadWriteTestCollection<string>(array);
+            var coll1 = new ReadWriteTestCollection<string>(array);
             s = coll1.DebuggerDisplayString();
             Assert.AreEqual("{Hello,Goodbye,null,Clapton,Rules}", s);
 
-            ReadOnlyTestCollection<string> coll2 = new ReadOnlyTestCollection<string>(array);
+            var coll2 = new ReadOnlyTestCollection<string>(array);
             s = coll2.DebuggerDisplayString();
             Assert.AreEqual("{Hello,Goodbye,null,Clapton,Rules}", s);
 
-            ReadWriteTestCollection<string> coll3 = new ReadWriteTestCollection<string>(new string[0]);
+            var coll3 = new ReadWriteTestCollection<string>(new string[0]);
             s = coll3.DebuggerDisplayString();
             Assert.AreEqual("{}", s);
 
-            ReadOnlyTestCollection<string> coll4 = new ReadOnlyTestCollection<string>(new string[0]);
+            var coll4 = new ReadOnlyTestCollection<string>(new string[0]);
             s = coll4.DebuggerDisplayString();
             Assert.AreEqual("{}", s);
 
-            ReadWriteTestCollection<int> coll5 = new ReadWriteTestCollection<int>(new int[] { 1, 2, 3 });
+            var coll5 = new ReadWriteTestCollection<int>(new int[] { 1, 2, 3 });
             s = coll5.DebuggerDisplayString();
             Assert.AreEqual("{1,2,3}", s);
 
-            ReadOnlyTestCollection<int> coll6 = new ReadOnlyTestCollection<int>(new int[] { 1, 2, 3 });
+            var coll6 = new ReadOnlyTestCollection<int>(new int[] { 1, 2, 3 });
             s = coll6.DebuggerDisplayString();
             Assert.AreEqual("{1,2,3}", s);
 
@@ -166,11 +165,11 @@ namespace Wintellect.PowerCollections.Tests
 
             string expected = "{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,...}";
 
-            ReadWriteTestCollection<int> coll7 = new ReadWriteTestCollection<int>(bigarray);
+            var coll7 = new ReadWriteTestCollection<int>(bigarray);
             s = coll7.DebuggerDisplayString();
             Assert.AreEqual(expected, s);
 
-            ReadOnlyTestCollection<int> coll8 = new ReadOnlyTestCollection<int>(bigarray);
+            var coll8 = new ReadOnlyTestCollection<int>(bigarray);
             s = coll8.DebuggerDisplayString();
             Assert.AreEqual(expected, s);
         }
@@ -181,7 +180,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             string[] s = { "Hello", "Goodbye", "Eric", "Clapton", "Rules" };
 
-            List<string> coll = new List<string>(s);
+            var coll = new List<string>(s);
 
             InterfaceTests.TestCollection<string>((ICollection)coll, s, true);
             InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)coll, s, true);
@@ -194,7 +193,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]  
         public void CheckDictionaryKeyValues()
         {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            var dict = new Dictionary<string, int>();
             dict["Eric"] = 3;
             dict["Clapton"] = 1;
             dict["Rules"] = 4;
@@ -210,7 +209,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Exists()
         {
-            ReadWriteTestCollection<double> coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.IsTrue(coll1.Any(delegate(double d) { return d > 100; }));
             Assert.IsTrue(coll1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
@@ -218,7 +217,7 @@ namespace Wintellect.PowerCollections.Tests
             coll1.Clear();
             Assert.IsFalse(coll1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
 
-            ReadOnlyTestCollection<double> coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.IsTrue(coll2.Any(delegate(double d) { return d > 100; }));
             Assert.IsTrue(coll2.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
@@ -230,7 +229,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void TrueForAll()
         {
-            ReadWriteTestCollection<double> coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.IsFalse(coll1.All(delegate(double d) { return d > 100; }));
             Assert.IsFalse(coll1.All(delegate(double d) { return Math.Abs(d) < 10; }));
@@ -239,7 +238,7 @@ namespace Wintellect.PowerCollections.Tests
             coll1.Clear();
             Assert.IsTrue(coll1.All(delegate(double d) { return Math.Abs(d) == 0.04; }));
 
-            ReadOnlyTestCollection<double> coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.IsFalse(coll2.All(delegate(double d) { return d > 100; }));
             Assert.IsFalse(coll2.All(delegate(double d) { return Math.Abs(d) < 10; }));
@@ -252,7 +251,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CountWhere()
         {
-            ReadWriteTestCollection<double> coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.AreEqual(0, coll1.CountWhere(delegate(double d) { return d > 200; }));
             Assert.AreEqual(6, coll1.CountWhere(delegate(double d) { return Math.Abs(d) < 10; }));
@@ -261,7 +260,7 @@ namespace Wintellect.PowerCollections.Tests
             coll1.Clear();
             Assert.AreEqual(0, coll1.CountWhere(delegate(double d) { return Math.Abs(d) < 10; }));
 
-            ReadOnlyTestCollection<double> coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.AreEqual(0, coll2.CountWhere(delegate(double d) { return d > 200; }));
             Assert.AreEqual(6, coll2.CountWhere(delegate(double d) { return Math.Abs(d) < 10; }));
@@ -274,7 +273,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindAll()
         {
-            ReadWriteTestCollection<double> coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
+            var coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             double[] expected = { 7.6, -7.6, 10.11, 187.4 };
             int i;
 
@@ -285,7 +284,7 @@ namespace Wintellect.PowerCollections.Tests
             }
             Assert.AreEqual(expected.Length, i);
 
-            ReadOnlyTestCollection<double> coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
+            var coll2 = new ReadOnlyTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             expected = new double[] { 7.6, -7.6, 10.11, 187.4 };
 
             i = 0;
@@ -299,7 +298,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveAll()
         {
-            ReadWriteTestCollection<double> coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
+            var coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
 
             coll1.RemoveAll(delegate(double d) { return Math.Abs(d) > 5; });
             InterfaceTests.TestReadWriteCollectionGeneric(coll1, new double[] { 4.5, 1.2,  -0.04, 1.78 }, true, null);
@@ -319,7 +318,7 @@ namespace Wintellect.PowerCollections.Tests
             int[] array = new int[400];
             for (int i = 0; i < array.Length; ++i)
                 array[i] = i;
-            ReadWriteTestCollection<int> coll1 = new ReadWriteTestCollection<int>(array);
+            var coll1 = new ReadWriteTestCollection<int>(array);
             IEnumerable<string> result1;
 
             result1 = coll1.Select<string>(delegate(int x) { return (x * 2).ToString(); });
@@ -332,7 +331,7 @@ namespace Wintellect.PowerCollections.Tests
             result1 = coll1.Select<string>(delegate(int x) { return (x * 2).ToString(); });
             InterfaceTests.TestEnumerableElements<string>(result1, new string[0]);
 
-            ReadOnlyTestCollection<int> coll2 = new ReadOnlyTestCollection<int>(array);
+            var coll2 = new ReadOnlyTestCollection<int>(array);
             IEnumerable<string> result2;
 
             result2 = coll2.Select<string>(delegate(int x) { return (x * 2).ToString(); });
@@ -350,7 +349,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < 400; ++i)
                 elements[i] = i;
 
-            ReadWriteTestCollection<int> coll1 = new ReadWriteTestCollection<int>(elements);
+            var coll1 = new ReadWriteTestCollection<int>(elements);
             ICollection<int> coll2 = coll1.AsReadOnly();
 
             InterfaceTests.TestReadonlyCollectionGeneric<int>(coll2, elements, true, null);

@@ -54,7 +54,7 @@ namespace Wintellect.PowerCollections
         /// <returns>A new KeyValuePair.</returns>
         private static KeyValuePair<TKey, TValue> NewPair(TKey key, TValue value)
         {
-            KeyValuePair<TKey, TValue> pair = new KeyValuePair<TKey,TValue>(key, value);
+            var pair = new KeyValuePair<TKey,TValue>(key, value);
             return pair;
         }
 
@@ -439,7 +439,7 @@ namespace Wintellect.PowerCollections
         private IEnumerator<TKey> EnumerateKeys(RedBlackTree<KeyValuePair<TKey,TValue>>.RangeTester rangeTester, bool reversed)
         {
             bool isFirst = true;
-            TKey lastKey = default(TKey);
+            var lastKey = default(TKey);
 
             IEnumerable<KeyValuePair<TKey, TValue>> pairs;
 
@@ -536,7 +536,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The cloned dictionary.</returns>
         public OrderedMultiDictionary<TKey, TValue> Clone()
         {
-            OrderedMultiDictionary<TKey, TValue> newDict = new OrderedMultiDictionary<TKey, TValue>(allowDuplicateValues, keyCount, keyComparer, valueComparer, comparer, tree.Clone());
+            var newDict = new OrderedMultiDictionary<TKey, TValue>(allowDuplicateValues, keyCount, keyComparer, valueComparer, comparer, tree.Clone());
             return newDict;
         }
 
@@ -579,7 +579,7 @@ namespace Wintellect.PowerCollections
             if (!Util.IsCloneableType(typeof(TValue), out valueIsValueType))
                 NonCloneableType(typeof(TValue));
 
-            OrderedMultiDictionary<TKey, TValue> newDict = new OrderedMultiDictionary<TKey, TValue>(allowDuplicateValues, keyComparer, valueComparer);
+            var newDict = new OrderedMultiDictionary<TKey, TValue>(allowDuplicateValues, keyComparer, valueComparer);
 
             foreach (KeyValuePair<TKey, TValue> pair in tree) {
                 // Clone the key and value parts of the pair. Value types can be cloned

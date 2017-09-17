@@ -29,7 +29,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveWhenTrueCollection()
         {
-            List<double> d_list = new List<double>(new double[]{ 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
+            var d_list = new List<double>(new double[]{ 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             ICollection<double> removed;
 
             removed = Algorithms.RemoveWhere((ICollection<double>)d_list, delegate(double d) { return Math.Abs(d) > 5; });
@@ -227,8 +227,8 @@ namespace Wintellect.PowerCollections.Tests
         public void Concatenate()
         {
             string[] coll1 = { "hello", "there", "sailor" };
-            List<string> coll2 = new List<string>(new string[] { "eric", "clapton" });
-            OrderedSet<string> coll3 = new OrderedSet<string>(new string[] { "ghi", "xyz", "abc" });
+            var coll2 = new List<string>(new string[] { "eric", "clapton" });
+            var coll3 = new OrderedSet<string>(new string[] { "ghi", "xyz", "abc" });
 
             Assert.IsTrue(Algorithms.EqualCollections<string>(Algorithms.Concatenate<string>(coll1, new string[0], coll2, coll3, coll1),
                 new string[] { "hello", "there", "sailor", "eric", "clapton", "abc", "ghi", "xyz", "hello", "there", "sailor" }));
@@ -821,11 +821,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Fill()
         {
-            BigList<string> coll1 = new BigList<string>(new string[4] { "foo", null, "baz", "elvis" });
+            var coll1 = new BigList<string>(new string[4] { "foo", null, "baz", "elvis" });
             Algorithms.Fill(coll1, "xyzzy");
             InterfaceTests.TestListGeneric(coll1, new string[] { "xyzzy", "xyzzy", "xyzzy", "xyzzy" });
 
-            List<string> coll2 = new List<string>();
+            var coll2 = new List<string>();
             Algorithms.Fill(coll2, "xyzzy");
             InterfaceTests.TestListGeneric(coll2, new string[] { });
 
@@ -838,7 +838,7 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.IsTrue(e is ArgumentException);
             }
 
-            BigList<int> coll4 = new BigList<int>(new int[] { 2 }, 10000);
+            var coll4 = new BigList<int>(new int[] { 2 }, 10000);
             Algorithms.Fill(coll4, 42);
             Assert.AreEqual(coll4.Count, 10000);
             foreach (int x in coll4)
@@ -860,7 +860,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FillRange()
         {
-            BigList<string> coll1 = new BigList<string>(new string[4] { "foo", null, "baz", "elvis" });
+            var coll1 = new BigList<string>(new string[4] { "foo", null, "baz", "elvis" });
             Algorithms.FillRange(coll1, 1, 2, "xyzzy");
             InterfaceTests.TestListGeneric(coll1, new string[] { "foo", "xyzzy", "xyzzy", "elvis" });
             Algorithms.FillRange(coll1, 0, 4, "ben");
@@ -870,7 +870,7 @@ namespace Wintellect.PowerCollections.Tests
             Algorithms.FillRange(coll1, 0, 2, null);
             InterfaceTests.TestListGeneric(coll1, new string[] { null, null, "ben", "ben" });
 
-            List<string> coll2 = new List<string>();
+            var coll2 = new List<string>();
             Algorithms.FillRange(coll2, 0, 0, "xyzzy");
             InterfaceTests.TestListGeneric(coll2, new string[] { });
 
@@ -883,7 +883,7 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.IsTrue(e is ArgumentException);
             }
 
-            BigList<int> coll4 = new BigList<int>(new int[] { 2 }, 10000);
+            var coll4 = new BigList<int>(new int[] { 2 }, 10000);
             Algorithms.FillRange(coll4, 1, 9998, 42);
             Assert.AreEqual(coll4.Count, 10000);
             int i = 0;
@@ -1428,7 +1428,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CopyArray4()
         {
-            List<string> list1 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list1 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             string[] array2 = { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.Copy(list1, 1, array2, 2, 2);
             InterfaceTests.TestListGeneric<string>(array2, new string[] { "foo", "bar", "a2", "a3", "the", "glove" });
@@ -1612,7 +1612,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] result3 = Algorithms.RandomShuffle(coll3, new Random(167));
             InterfaceTests.TestEnumerableElementsAnyOrder<string>(result3, new string[] { "foo", "bar" });
 
-            Random rand = new Random(199);
+            var rand = new Random(199);
             int[,] count = new int[6, 6];
             IEnumerable<string> coll4 = EnumerableFromArray(new string[] { "a", "b", "c", "d", "e", "f" });
             for (int iter = 0; iter < ITER; ++iter) {
@@ -1681,7 +1681,7 @@ namespace Wintellect.PowerCollections.Tests
             Algorithms.RandomShuffleInPlace(list3, new Random(11998));
             InterfaceTests.TestEnumerableElementsAnyOrder(list3, new string[] { "foo", "bar" });
 
-            Random rand = new Random(110);
+            var rand = new Random(110);
             int[,] count = new int[6, 6];
             for (int iter = 0; iter < ITER; ++iter) {
                 IList<string> list4 = new List<string>(new string[] { "a", "b", "c", "d", "e", "f" });
@@ -1797,7 +1797,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(result3.Length == 1);
             Assert.IsTrue(result3[0] == "foo" || result3[0] == "bar");
 
-            Random rand = new Random(1973);
+            var rand = new Random(1973);
             int[,] count = new int[3, 7];
             IEnumerable<string> coll4 = EnumerableFromArray(new string[] { "a", "b", "c", "d", "e", "f", "g" });
             for (int iter = 0; iter < ITER; ++iter) {
@@ -1892,7 +1892,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(result3.Length == 1);
             Assert.IsTrue(result3[0] == "foo" || result3[0] == "bar");
 
-            Random rand = new Random(9987);
+            var rand = new Random(9987);
             int[,] count = new int[3, 7];
             IList<string> list4 = new List<string>(new string[] { "a", "b", "c", "d", "e", "f", "g" });
             for (int iter = 0; iter < ITER; ++iter) {
@@ -1925,8 +1925,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GeneratePermutations()
         {
-            List<char> list = new List<char>();
-            Set<string> set = new Set<string>();
+            var list = new List<char>();
+            var set = new Set<string>();
             char[] array;
             string s;
 
@@ -1961,8 +1961,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GenerateSortedPermutations1()
         {
-            List<char> list = new List<char>();
-            Set<string> set = new Set<string>();
+            var list = new List<char>();
+            var set = new Set<string>();
             char[] array;
             string s, prev;
 
@@ -3508,7 +3508,7 @@ namespace Wintellect.PowerCollections.Tests
             merged = Algorithms.MergeSorted(enum1, enum2, enum3);
             InterfaceTests.TestEnumerableElements(merged, new int [] {});
 
-            Random rand = new Random(13);
+            var rand = new Random(13);
             int[] a1 = new int[rand.Next(1000)], a2 = new int[rand.Next(1000)], a3 = new int[rand.Next(1000)], a4 = new int[rand.Next(1000)];
             for (int i = 0; i < a1.Length; ++i)
                 a1[i] = rand.Next(1000);
@@ -3571,7 +3571,7 @@ namespace Wintellect.PowerCollections.Tests
             const int MAX = 750;
             const int ITER = 100;
 
-            Random rand = new Random(12);
+            var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
                 IList<int> list = new BigList<int>();
@@ -3599,7 +3599,7 @@ namespace Wintellect.PowerCollections.Tests
                 return x.CompareTo(y);
             };
 
-            Random rand = new Random(12);
+            var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
                 IList<double> list = new BigList<double>();
@@ -3623,7 +3623,7 @@ namespace Wintellect.PowerCollections.Tests
             const int SIZE = 17;
             const int ITER = 500;
 
-            Random rand = new Random(12);
+            var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
                 IComparer<string> comp = (iter % 2 == 0) ? StringComparer.InvariantCultureIgnoreCase : StringComparer.Ordinal;
@@ -3653,7 +3653,7 @@ namespace Wintellect.PowerCollections.Tests
                 return x.CompareTo(y);
             };
 
-            Random rand = new Random(12);
+            var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
                 int size = rand.Next(SIZE);
@@ -3749,7 +3749,7 @@ namespace Wintellect.PowerCollections.Tests
             const int MAX = 30;
             const int ITER = 1000;
 
-            Random rand = new Random(12);
+            var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
                 IList<int> list = new List<int>();
@@ -3849,7 +3849,7 @@ namespace Wintellect.PowerCollections.Tests
             const int SIZE = 1000;
             const int MAX = 50;
             const int ITER = 100;
-            Random rand = new Random(42);
+            var rand = new Random(42);
             KeyWithOrder<int>[] array = new KeyWithOrder<int>[SIZE];
 
             for (int iter = 0; iter < ITER; ++iter) {
@@ -3862,7 +3862,7 @@ namespace Wintellect.PowerCollections.Tests
                 IEnumerable<KeyWithOrder<int>> result = Algorithms.StableSort(en);
 
                 bool atFirst = true;
-                KeyWithOrder<int> prev = new KeyWithOrder<int>();
+                var prev = new KeyWithOrder<int>();
                 foreach (KeyWithOrder<int> x in result) {
                     if (!atFirst) {
                         if (x.value == prev.value) {
@@ -3902,7 +3902,7 @@ namespace Wintellect.PowerCollections.Tests
             const int SIZE = 1000;
             const int MAX = 50;
             const int ITER = 100;
-            Random rand = new Random(42);
+            var rand = new Random(42);
             KeyWithOrder<int>[] array = new KeyWithOrder<int>[SIZE];
 
             for (int iter = 0; iter < ITER; ++iter) {
@@ -3914,7 +3914,7 @@ namespace Wintellect.PowerCollections.Tests
                 Algorithms.StableSortInPlace<KeyWithOrder<int>>(array);
 
                 bool atFirst = true;
-                KeyWithOrder<int> prev = new KeyWithOrder<int>();
+                var prev = new KeyWithOrder<int>();
                 foreach (KeyWithOrder<int> x in array) {
                     if (!atFirst) {
                         if (x.value == prev.value) {
@@ -3955,7 +3955,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetIdentityComparer()
         {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new System.Text.StringBuilder();
             builder.Append("h"); builder.Append("e"); builder.Append("l"); builder.Append("l"); builder.Append("o");
 
             string hello1 = builder.ToString();
@@ -4045,7 +4045,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetDictionaryConverter()
         {
-            OrderedDictionary<string, int> dict1 = new OrderedDictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
+            var dict1 = new OrderedDictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
 
             dict1["foo"] = 7;
             dict1["bar"] = 11;
@@ -4117,14 +4117,14 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.AreEqual("null", Algorithms.ToString<string,int>(null));
 
-            OrderedDictionary<string, int> dict1 = new OrderedDictionary<string, int>();
+            var dict1 = new OrderedDictionary<string, int>();
             for (int i = 0; i < s_array.Length; ++i) 
                 dict1.Add(s_array[i], i_array[i]);
 
             s = Algorithms.ToString(dict1);
             Assert.AreEqual(s, "{null->6, Clapton->5, Eric->1, The->5, World->19}", s);
 
-            OrderedDictionary<string, object> dict2 = new OrderedDictionary<string, object>();
+            var dict2 = new OrderedDictionary<string, object>();
             for (int i = 0; i < s_array.Length; ++i) 
                 dict2.Add(s_array[i], o_array[i]);
 

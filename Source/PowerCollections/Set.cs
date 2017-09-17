@@ -126,7 +126,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The cloned set.</returns>
         public Set<T> Clone()
         {
-            Set<T> newSet = new Set<T>(equalityComparer, hash.Clone(null));
+            var newSet = new Set<T>(equalityComparer, hash.Clone(null));
             return newSet; 
         }
 
@@ -146,7 +146,7 @@ namespace Wintellect.PowerCollections
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))
                 throw new InvalidOperationException(string.Format(Strings.TypeNotCloneable, typeof(T).FullName));
 
-            Set<T> clone = new Set<T>(equalityComparer);
+            var clone = new Set<T>(equalityComparer);
 
             // Clone each item, and add it to the new ordered set.
             foreach (T item in this) {
@@ -611,7 +611,7 @@ namespace Wintellect.PowerCollections
             }
 
             T dummy;
-            Hash<T> newHash = new Hash<T>(equalityComparer);
+            var newHash = new Hash<T>(equalityComparer);
 
             foreach (T item in smaller) {
                 if (larger.Contains(item))

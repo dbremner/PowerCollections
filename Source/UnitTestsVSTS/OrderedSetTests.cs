@@ -41,7 +41,7 @@ namespace Wintellect.PowerCollections.Tests
             int IComparable.CompareTo(object other)
             {
                 if (other is ComparableClass2) {
-                    ComparableClass2 o = (ComparableClass2)other;
+                    var o = (ComparableClass2)other;
 
                     if (Value > o.Value)
                         return 1;
@@ -79,8 +79,8 @@ namespace Wintellect.PowerCollections.Tests
         public void RandomAddDelete() {
             const int SIZE = 5000;
             bool[] present = new bool[SIZE];
-            Random rand = new Random();
-            OrderedSet<int> set1 = new OrderedSet<int>();
+            var rand = new Random();
+            var set1 = new OrderedSet<int>();
             bool b;
 
             // Add and delete values at random.
@@ -136,7 +136,7 @@ namespace Wintellect.PowerCollections.Tests
         public void ICollectionInterface()
         {
             string[] s_array = {"Foo", "Eric", "Clapton", "hello", "goodbye", "C#"};
-            OrderedSet<string> set1 = new OrderedSet<string>();
+            var set1 = new OrderedSet<string>();
 
             foreach (string s in s_array)
                 set1.Add(s);
@@ -150,7 +150,7 @@ namespace Wintellect.PowerCollections.Tests
         public void GenericICollectionInterface()
         {
             string[] s_array = { "Foo", "Eric", "Clapton", "hello", "goodbye", "C#", "Java" };
-            OrderedSet<string> set1 = new OrderedSet<string>();
+            var set1 = new OrderedSet<string>();
 
             foreach (string s in s_array)
                 set1.Add(s);
@@ -162,7 +162,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Add()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
             bool b;
 
             b = set1.Add("hello"); Assert.IsFalse(b);
@@ -181,7 +181,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetItemByIndex()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
             bool b;
 
             b = set1.Add("hello"); Assert.IsFalse(b);
@@ -236,7 +236,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexOf()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
             bool b;
 
             b = set1.Add("hello"); Assert.IsFalse(b);
@@ -261,7 +261,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void AsList()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
             bool b;
 
             b = set1.Add("hello"); Assert.IsFalse(b);
@@ -276,7 +276,7 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestReadOnlyListGeneric(set1.AsList(), new string[] { null, "", "Eric", "foo", "Hello" }, null);
 
-            OrderedSet<string> set2 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set2 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestReadOnlyListGeneric(set2.AsList(), new string[] { }, null);
 
         }
@@ -284,7 +284,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CountAndClear()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
 
             Assert.AreEqual(0, set1.Count);
             set1.Add("hello"); Assert.AreEqual(1, set1.Count);
@@ -309,7 +309,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Remove()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
             bool b;
 
             b = set1.Remove("Eric"); Assert.IsFalse(b);
@@ -334,7 +334,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void TryGetItem()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
             bool b;
             string s;
 
@@ -359,7 +359,7 @@ namespace Wintellect.PowerCollections.Tests
         public void ToArray()
         {
             string[] s_array = { "Foo", "Eric", "Clapton", "hello", "goodbye", "C#" };
-            OrderedSet<string> set1 = new OrderedSet<string>();
+            var set1 = new OrderedSet<string>();
 
             string[] a1 = set1.ToArray();
             Assert.IsNotNull(a1);
@@ -379,7 +379,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void AddMany()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
             set1.Add("foo");
             set1.Add("Eric");
             set1.Add("Clapton");
@@ -392,7 +392,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveMany()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
 
             set1.Add("foo");
             set1.Add("Eric");
@@ -420,7 +420,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Exists()
         {
-            OrderedSet<double> set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.IsTrue(set1.Any(delegate(double d) { return d > 100; }));
             Assert.IsTrue(set1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
@@ -432,7 +432,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void TrueForAll()
         {
-            OrderedSet<double> set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.IsFalse(set1.All(delegate(double d) { return d > 100; }));
             Assert.IsFalse(set1.All(delegate(double d) { return Math.Abs(d) < 10; }));
@@ -445,7 +445,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CountWhere()
         {
-            OrderedSet<double> set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.AreEqual(0, set1.CountWhere(delegate(double d) { return d > 200; }));
             Assert.AreEqual(6, set1.CountWhere(delegate(double d) { return Math.Abs(d) < 10; }));
@@ -458,7 +458,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveAll()
         {
-            OrderedSet<double> set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
+            var set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
 
             set1.RemoveAll(delegate(double d) { return Math.Abs(d) > 5; });
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new double[] { -0.04, 1.2, 1.78, 4.5 }, true, null);
@@ -475,7 +475,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindAll()
         {
-            OrderedSet<double> set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
+            var set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             double[] expected = {-7.6,7.6,10.11, 187.4};
             int i;
 
@@ -490,12 +490,12 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IsDisjointFrom()
         {
-            Set<int> set1 = new Set<int>(new int[] { 6, 7, 1, 11, 9, 3, 8 });
-            Set<int> set2 = new Set<int>();
-            Set<int> set3 = new Set<int>();
-            Set<int> set4 = new Set<int>(new int[] { 9, 1, 8, 3, 7, 6, 11 });
-            Set<int> set5 = new Set<int>(new int[] { 17, 3, 12, 10 });
-            Set<int> set6 = new Set<int>(new int[] { 19, 14, 0, 2 });
+            var set1 = new Set<int>(new int[] { 6, 7, 1, 11, 9, 3, 8 });
+            var set2 = new Set<int>();
+            var set3 = new Set<int>();
+            var set4 = new Set<int>(new int[] { 9, 1, 8, 3, 7, 6, 11 });
+            var set5 = new Set<int>(new int[] { 17, 3, 12, 10 });
+            var set6 = new Set<int>(new int[] { 19, 14, 0, 2 });
 
             Assert.IsFalse(set1.IsDisjointFrom(set1));
             Assert.IsTrue(set2.IsDisjointFrom(set2));
@@ -522,8 +522,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Intersection()
         {
-            OrderedSet<int> setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            OrderedSet<int> setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9});
+            var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9});
             OrderedSet<int> set1, set2, set3;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -556,8 +556,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Union()
         {
-            OrderedSet<int> setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            OrderedSet<int> setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             OrderedSet<int> set1, set2, set3;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -590,8 +590,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SymmetricDifference()
         {
-            OrderedSet<int> setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            OrderedSet<int> setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             OrderedSet<int> set1, set2, set3;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -624,8 +624,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Difference()
         {
-            OrderedSet<int> setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            OrderedSet<int> setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             OrderedSet<int> set1, set2, set3;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -658,11 +658,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Subset()
         {
-            OrderedSet<int> set1 = new OrderedSet<int>(new int[] { 1, 3, 6, 7, 8, 9, 10 });
-            OrderedSet<int> set2 = new OrderedSet<int>();
-            OrderedSet<int> set3 = new OrderedSet<int>(new int[] { 3, 8, 9 });
-            OrderedSet<int> set4 = new OrderedSet<int>(new int[] { 3, 8, 9 });
-            OrderedSet<int> set5 = new OrderedSet<int>(new int[] { 1, 2, 6, 8, 9, 10 });
+            var set1 = new OrderedSet<int>(new int[] { 1, 3, 6, 7, 8, 9, 10 });
+            var set2 = new OrderedSet<int>();
+            var set3 = new OrderedSet<int>(new int[] { 3, 8, 9 });
+            var set4 = new OrderedSet<int>(new int[] { 3, 8, 9 });
+            var set5 = new OrderedSet<int>(new int[] { 1, 2, 6, 8, 9, 10 });
 
             Assert.IsTrue(set1.IsSupersetOf(set2));
             Assert.IsTrue(set2.IsSubsetOf(set1));
@@ -702,13 +702,13 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IsEqualTo()
         {
-            OrderedSet<int> set1 = new OrderedSet<int>(new int[] { 6, 7, 1, 11, 9, 3, 8 });
-            OrderedSet<int> set2 = new OrderedSet<int>();
-            OrderedSet<int> set3 = new OrderedSet<int>();
-            OrderedSet<int> set4 = new OrderedSet<int>(new int[] { 9, 11, 1, 3, 6, 7, 8, 14 });
-            OrderedSet<int> set5 = new OrderedSet<int>(new int[] { 3, 6, 7, 11, 14, 8, 9 });
-            OrderedSet<int> set6 = new OrderedSet<int>(new int[] { 1, 3, 6, 7, 8, 10, 11 });
-            OrderedSet<int> set7 = new OrderedSet<int>(new int[] { 9, 1, 8, 3, 7, 6, 11 });
+            var set1 = new OrderedSet<int>(new int[] { 6, 7, 1, 11, 9, 3, 8 });
+            var set2 = new OrderedSet<int>();
+            var set3 = new OrderedSet<int>();
+            var set4 = new OrderedSet<int>(new int[] { 9, 11, 1, 3, 6, 7, 8, 14 });
+            var set5 = new OrderedSet<int>(new int[] { 3, 6, 7, 11, 14, 8, 9 });
+            var set6 = new OrderedSet<int>(new int[] { 1, 3, 6, 7, 8, 10, 11 });
+            var set7 = new OrderedSet<int>(new int[] { 9, 1, 8, 3, 7, 6, 11 });
 
             Assert.IsTrue(set1.IsEqualTo(set1));
             Assert.IsTrue(set2.IsEqualTo(set2));
@@ -741,7 +741,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clone()
         {
-            OrderedSet<int> set1 = new OrderedSet<int>(new int[] { 1, 7, 9, 11, 13, 15, -17, 19, -21 });
+            var set1 = new OrderedSet<int>(new int[] { 1, 7, 9, 11, 13, 15, -17, 19, -21 });
             OrderedSet<int> set2, set3;
 
             set2 = set1.Clone();
@@ -762,36 +762,36 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void InconsistentComparisons1()
         {
-            OrderedSet<int> setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            OrderedSet<int> setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, ComparersTests.CompareOddEven);
+            var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, ComparersTests.CompareOddEven);
             setOdds.UnionWith(setDigits);
         }
 
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void InconsistentComparisons2()
         {
-            OrderedSet<int> setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            OrderedSet<int> setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenComparer());
+            var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenComparer());
             setOdds.SymmetricDifferenceWith(setDigits);
         }
 
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void InconsistentComparisons3()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
-            OrderedSet<string> set2 = new OrderedSet<string>(new string[] { "bada", "bing"}, StringComparer.InvariantCulture);
+            var set1 = new OrderedSet<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
+            var set2 = new OrderedSet<string>(new string[] { "bada", "bing"}, StringComparer.InvariantCulture);
             set1.Intersection(set2);
         }
 
         [TestMethod]
         public void ConsistentComparisons()
         {
-            OrderedSet<int> setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 }, ComparersTests.CompareOddEven);
-            OrderedSet<int> setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, ComparersTests.CompareOddEven);
+            var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 }, ComparersTests.CompareOddEven);
+            var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, ComparersTests.CompareOddEven);
             setOdds.UnionWith(setDigits);
 
-            OrderedSet<string> set1 = new OrderedSet<string>(new string[] { "foo", "Bar" }, StringComparer.InvariantCulture);
-            OrderedSet<string> set2 = new OrderedSet<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
+            var set1 = new OrderedSet<string>(new string[] { "foo", "Bar" }, StringComparer.InvariantCulture);
+            var set2 = new OrderedSet<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
             set1.Difference(set2);
         }
 
@@ -799,19 +799,19 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void NotComparable1()
         {
-            OrderedSet<UncomparableClass1> set1 = new OrderedSet<UncomparableClass1>();
+            var set1 = new OrderedSet<UncomparableClass1>();
         }
 
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void NotComparable2()
         {
-            OrderedSet<UncomparableClass2> set1 = new OrderedSet<UncomparableClass2>();
+            var set1 = new OrderedSet<UncomparableClass2>();
         }
 
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void FailFastEnumerator1()
         {
-            OrderedSet<double> set1 = new OrderedSet<double>();
+            var set1 = new OrderedSet<double>();
 
             double d = 1.218034;
             for (int i = 0; i < 50; ++i) {
@@ -829,7 +829,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void FailFastEnumerator2()
         {
-            OrderedSet<double> set1 = new OrderedSet<double>();
+            var set1 = new OrderedSet<double>();
 
             double d = 1.218034;
             for (int i = 0; i < 50; ++i) {
@@ -895,7 +895,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Range()
         {
-            OrderedSet<int> set1 = new OrderedSet<int>(new int[] { 1,3,4,6,8,9,11,14,22});
+            var set1 = new OrderedSet<int>(new int[] { 1,3,4,6,8,9,11,14,22});
 
             CheckView(set1.Clone().Range(4, true, 11, false), new int[] { 4, 6, 8, 9 }, 11);
             CheckView(set1.Clone().Range(4, false, 11, false), new int[] { 6, 8, 9 }, 4);
@@ -929,7 +929,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Reversed()
         {
-            OrderedSet<int> set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
+            var set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
 
             CheckView(set1.Reversed(), new int[] { 22, 14, 11, 9, 8, 6, 4, 3, 1 }, 0);
         }
@@ -937,7 +937,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ViewClear()
         {
-            OrderedSet<int> set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
+            var set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
 
             set1.Range(6, false, 11, true).Clear();
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 1, 3, 4, 6, 14, 22 }, true, null);
@@ -946,7 +946,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(ArgumentException))]
         public void ViewAddException1()
         {
-            OrderedSet<int> set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
+            var set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
 
             set1.Range(3, true, 8, false).Add(8);
         }
@@ -954,7 +954,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(ArgumentException))]
         public void ViewAddException2()
         {
-            OrderedSet<int> set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
+            var set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
 
             set1.Range(3, true, 8, false).Add(2);
         }
@@ -962,7 +962,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ViewAddRemove()
         {
-            OrderedSet<int> set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
+            var set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
 
             Assert.IsFalse(set1.Range(3, true, 8, false).Remove(9));
             Assert.IsTrue(set1.Contains(9));
@@ -1024,7 +1024,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            OrderedSet<MyInt> set1 = new OrderedSet<MyInt>(
+            var set1 = new OrderedSet<MyInt>(
                 delegate(MyInt v1, MyInt v2) { 
                     if (v1 == null) {
                         return (v2 == null) ? 0 : -1;
@@ -1044,14 +1044,14 @@ namespace Wintellect.PowerCollections.Tests
             OrderedSet<MyInt> set2 = set1.CloneContents();
             CompareClones(set1, set2);
 
-            OrderedSet<int> set3 = new OrderedSet<int>(new int[] { 144, 5, 23, 1, 8 });
+            var set3 = new OrderedSet<int>(new int[] { 144, 5, 23, 1, 8 });
             OrderedSet<int> set4 = set3.CloneContents();
             CompareClones(set3, set4);
 
             Comparison<UtilTests.CloneableStruct> comparison = delegate(UtilTests.CloneableStruct s1, UtilTests.CloneableStruct s2) {
                 return s1.value.CompareTo(s2.value);
             };
-            OrderedSet<UtilTests.CloneableStruct> set5 = new OrderedSet<UtilTests.CloneableStruct>(comparison);
+            var set5 = new OrderedSet<UtilTests.CloneableStruct>(comparison);
             set5.Add(new UtilTests.CloneableStruct(143));
             set5.Add(new UtilTests.CloneableStruct(5));
             set5.Add(new UtilTests.CloneableStruct(23));
@@ -1080,7 +1080,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            OrderedSet<NotCloneable> set1 = new OrderedSet<NotCloneable>();
+            var set1 = new OrderedSet<NotCloneable>();
 
             set1.Add(new NotCloneable());
             set1.Add(new NotCloneable());
@@ -1093,7 +1093,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             Comparison<int> myOrdering = ComparersTests.CompareOddEven;
 
-            OrderedSet<int> set1 = new OrderedSet<int>(myOrdering);
+            var set1 = new OrderedSet<int>(myOrdering);
             set1.Add(8);
             set1.Add(12);
             set1.Add(9);
@@ -1106,7 +1106,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IComparer<int> myComparer = new GOddEvenComparer();
 
-            OrderedSet<int> set1 = new OrderedSet<int>(myComparer);
+            var set1 = new OrderedSet<int>(myComparer);
             set1.Add(8);
             set1.Add(12);
             set1.Add(9);
@@ -1118,16 +1118,16 @@ namespace Wintellect.PowerCollections.Tests
         public void ComparerProperty()
         {
             IComparer<int> comparer1 = new GOddEvenComparer();
-            OrderedSet<int> set1 = new OrderedSet<int>(comparer1);
+            var set1 = new OrderedSet<int>(comparer1);
             Assert.AreSame(comparer1, set1.Comparer);
-            OrderedSet<decimal> set2 = new OrderedSet<decimal>();
+            var set2 = new OrderedSet<decimal>();
             Assert.AreSame(Comparer<decimal>.Default, set2.Comparer);
-            OrderedSet<string> set3 = new OrderedSet<string>(StringComparer.OrdinalIgnoreCase);
+            var set3 = new OrderedSet<string>(StringComparer.OrdinalIgnoreCase);
             Assert.AreSame(StringComparer.OrdinalIgnoreCase, set3.Comparer);
 
             Comparison<int> comparison1 = ComparersTests.CompareOddEven;
-            OrderedSet<int> set4 = new OrderedSet<int>(comparison1);
-            OrderedSet<int> set5 = new OrderedSet<int>(comparison1);
+            var set4 = new OrderedSet<int>(comparison1);
+            var set5 = new OrderedSet<int>(comparison1);
             Assert.AreEqual(set4.Comparer, set5.Comparer);
             Assert.IsFalse(set4.Comparer == set5.Comparer);
             Assert.IsFalse(object.Equals(set4.Comparer, set1.Comparer));
@@ -1141,10 +1141,10 @@ namespace Wintellect.PowerCollections.Tests
         {
             Comparison<int> myOrdering = ComparersTests.CompareOddEven;
             IComparer<int> myComparer = new GOddEvenComparer();
-            List<int> list = new List<int>(new int[] { 12, 3, 9, 8, 9, 3 });
-            OrderedSet<int> set1 = new OrderedSet<int>(list);
-            OrderedSet<int> set2 = new OrderedSet<int>(list, myOrdering);
-            OrderedSet<int> set3 = new OrderedSet<int>(list, myComparer);
+            var list = new List<int>(new int[] { 12, 3, 9, 8, 9, 3 });
+            var set1 = new OrderedSet<int>(list);
+            var set2 = new OrderedSet<int>(list, myOrdering);
+            var set3 = new OrderedSet<int>(list, myComparer);
 
             InterfaceTests.TestReadWriteCollectionGeneric<int>(set1, new int[] { 3, 8, 9, 12 }, true, null);
             InterfaceTests.TestReadWriteCollectionGeneric<int>(set2, new int[] { 3, 9, 8, 12 }, true, null);
@@ -1155,7 +1155,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Smallest()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(
+            var set1 = new OrderedSet<string>(
                 new string[] { "foo", null, "Foo", "Eric", "FOO", "eric", "bar" }, StringComparer.InvariantCultureIgnoreCase);
 
             string s;
@@ -1190,7 +1190,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Largest()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(
+            var set1 = new OrderedSet<string>(
                 new string[] { "foo", null, "Foo", "Eric", "FOO", "eric", "bar" }, StringComparer.InvariantCultureIgnoreCase);
 
             string s;
@@ -1225,7 +1225,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SmallestLargestException()
         {
-            OrderedSet<string> set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
 
             try {
                 set1.GetFirst();
@@ -1263,7 +1263,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeStrings()
         {
-            OrderedSet<string> d = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            var d = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
 
             d.Add("foo");
             d.Add("WORLD");
@@ -1275,7 +1275,7 @@ namespace Wintellect.PowerCollections.Tests
             d.AddMany(new string[] { "1", "2", "3", "4", "5", "6" });
             d.AddMany(new string[] { "7", "8", "9", "10", "11", "12" });
 
-            OrderedSet<string> result = (OrderedSet<string>)InterfaceTests.SerializeRoundTrip(d);
+            var result = (OrderedSet<string>)InterfaceTests.SerializeRoundTrip(d);
 
             InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)result, new string[] { null, "1", "10", "11", "12", "2", "3", "4", "5", "6", "7", "8", "9", "cool", "elvis", "foo", "hello", "world" }, true, StringComparer.InvariantCultureIgnoreCase.Equals);
 

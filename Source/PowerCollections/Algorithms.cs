@@ -1453,7 +1453,7 @@ namespace Wintellect.PowerCollections
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            T current = default(T);
+            var current = default(T);
             bool atBeginning = true;
 
             foreach (T item in collection) {
@@ -1523,7 +1523,7 @@ namespace Wintellect.PowerCollections
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
-            T current = default(T);
+            var current = default(T);
             T item;
             int i = -1, j = 0;
             int listCount = list.Count;
@@ -1613,7 +1613,7 @@ namespace Wintellect.PowerCollections
                 return 0;          // Run of 1 must be the first item in the list.
 
             int start = 0, index = 0;
-            T current = default(T);
+            var current = default(T);
             int runLength = 0;
 
             // Go through the list, looking for a run of the given length.
@@ -1728,7 +1728,7 @@ namespace Wintellect.PowerCollections
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            IList<T> list = collection as IList<T>;
+            var list = collection as IList<T>;
             if (list != null) {
                 // If it's a list, we can iterate in reverse.
                 for (int index = list.Count - 1; index >= 0; --index) {
@@ -1981,7 +1981,7 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(equalityComparer));
 
             // Create a set of the items we are looking for, for efficient lookup.
-            Set<T> setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
+            var setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
 
             // Scan the list for the items.
             int index = 0;
@@ -2066,7 +2066,7 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(equalityComparer));
 
             // Create a set of the items we are looking for, for efficient lookup.
-            Set<T> setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
+            var setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
 
             // Scan the list
             for (int index = list.Count - 1; index >= 0; --index) {
@@ -2146,7 +2146,7 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentNullException(nameof(equalityComparer));
 
             // Create a set of the items we are looking for, for efficient lookup.
-            Set<T> setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
+            var setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
 
             // Scan the list
             int index = 0;
@@ -2325,8 +2325,8 @@ namespace Wintellect.PowerCollections
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
-            Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
+            var bag1 = new Bag<T>(collection1, equalityComparer);
+            var bag2 = new Bag<T>(collection2, equalityComparer);
             return bag2.IsSupersetOf(bag1);
         }
 
@@ -2376,8 +2376,8 @@ namespace Wintellect.PowerCollections
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
-            Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
+            var bag1 = new Bag<T>(collection1, equalityComparer);
+            var bag2 = new Bag<T>(collection2, equalityComparer);
             return bag2.IsProperSupersetOf(bag1);
         }
 
@@ -2425,7 +2425,7 @@ namespace Wintellect.PowerCollections
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            Set<T> set1 = new Set<T>(collection1, equalityComparer);
+            var set1 = new Set<T>(collection1, equalityComparer);
 
             foreach (T item2 in collection2) {
                 if (set1.Contains(item2))
@@ -2477,8 +2477,8 @@ namespace Wintellect.PowerCollections
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
-            Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
+            var bag1 = new Bag<T>(collection1, equalityComparer);
+            var bag2 = new Bag<T>(collection2, equalityComparer);
             return bag2.IsEqualTo(bag1);
         }
 
@@ -2536,8 +2536,8 @@ namespace Wintellect.PowerCollections
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
-            Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
+            var bag1 = new Bag<T>(collection1, equalityComparer);
+            var bag2 = new Bag<T>(collection2, equalityComparer);
             return Util.CreateEnumerableWrapper(bag1.Intersection(bag2));
         }
 
@@ -2595,8 +2595,8 @@ namespace Wintellect.PowerCollections
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
-            Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
+            var bag1 = new Bag<T>(collection1, equalityComparer);
+            var bag2 = new Bag<T>(collection2, equalityComparer);
             if (bag1.Count > bag2.Count) {
                 bag1.UnionWith(bag2);
                 return Util.CreateEnumerableWrapper(bag1);
@@ -2661,8 +2661,8 @@ namespace Wintellect.PowerCollections
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
-            Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
+            var bag1 = new Bag<T>(collection1, equalityComparer);
+            var bag2 = new Bag<T>(collection2, equalityComparer);
             bag1.DifferenceWith(bag2);
             return Util.CreateEnumerableWrapper(bag1);
         }
@@ -2721,8 +2721,8 @@ namespace Wintellect.PowerCollections
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            Bag<T> bag1 = new Bag<T>(collection1, equalityComparer);
-            Bag<T> bag2 = new Bag<T>(collection2, equalityComparer);
+            var bag1 = new Bag<T>(collection1, equalityComparer);
+            var bag2 = new Bag<T>(collection2, equalityComparer);
             if (bag1.Count > bag2.Count) {
                 bag1.SymmetricDifferenceWith(bag2);
                 return Util.CreateEnumerableWrapper(bag1);
@@ -2802,7 +2802,7 @@ namespace Wintellect.PowerCollections
 
             bool firstItem = true;
 
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new System.Text.StringBuilder();
 
             builder.Append(start);
 
@@ -2843,7 +2843,7 @@ namespace Wintellect.PowerCollections
             if (dictionary == null)
                 return "null";
 
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new System.Text.StringBuilder();
 
             builder.Append("{");
 
@@ -3022,7 +3022,7 @@ namespace Wintellect.PowerCollections
 
             // We need random access to the items in the collection. If it's not already an 
             // IList<T>, copy to a temporary list.
-            IList<T> list = collection as IList<T>;
+            var list = collection as IList<T>;
             if (list == null) {
                 list = new List<T>(collection);
             }
@@ -3032,7 +3032,7 @@ namespace Wintellect.PowerCollections
                 throw new ArgumentOutOfRangeException(nameof(count));
 
             T[] result = new T[count];  // the result array.
-            Dictionary<int, T> swappedValues = new Dictionary<int, T>(count);   // holds swapped values from the list.
+            var swappedValues = new Dictionary<int, T>(count);   // holds swapped values from the list.
 
             for (int i = 0; i < count; ++i) {
                 // Set j to the index of the item to swap with, and value to the value to swap with.
@@ -3268,7 +3268,7 @@ namespace Wintellect.PowerCollections
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            T maxSoFar = default(T);
+            var maxSoFar = default(T);
             bool foundOne = false;
 
             // Go through the collection, keeping the maximum found so far.
@@ -3335,7 +3335,7 @@ namespace Wintellect.PowerCollections
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            T minSoFar = default(T);
+            var minSoFar = default(T);
             bool foundOne = false;
 
             // Go through the collection, keeping the minimum found so far.
@@ -3402,7 +3402,7 @@ namespace Wintellect.PowerCollections
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            T maxSoFar = default(T);
+            var maxSoFar = default(T);
             int indexSoFar = -1;
 
             // Go through the collection, keeping the maximum found so far.
@@ -3469,7 +3469,7 @@ namespace Wintellect.PowerCollections
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            T minSoFar = default(T);
+            var minSoFar = default(T);
             int indexSoFar = -1;
 
             // Go through the collection, keeping the minimum found so far.
@@ -4115,7 +4115,7 @@ namespace Wintellect.PowerCollections
 
             IEnumerator<T>[] enumerators = new IEnumerator<T>[collections.Length];
             bool[] more = new bool[collections.Length];
-            T smallestItem = default(T);
+            var smallestItem = default(T);
             int smallestItemIndex;
 
             try {
@@ -4696,12 +4696,12 @@ namespace Wintellect.PowerCollections
             if (collection.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(collection));
 
-            IList<T> list = collection as IList<T>;
+            var list = collection as IList<T>;
             if (list != null) {
                 T item;
                 int i = -1, j = 0;
                 int listCount = list.Count;
-                List<T> removed = new List<T>();
+                var removed = new List<T>();
 
                 // Remove item where predicate is true, compressing items to lower in the list. This is much more
                 // efficient than the naive algorithm that uses IList<T>.Remove().
@@ -4740,7 +4740,7 @@ namespace Wintellect.PowerCollections
             else {
                 // We have to copy all the items to remove to a List, because collections can't be modifed 
                 // during an enumeration.
-                List<T> removed = new List<T>();
+                var removed = new List<T>();
 
                 foreach (T item in collection)
                     if (predicate(item))

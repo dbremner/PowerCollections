@@ -182,9 +182,9 @@ namespace Wintellect.PowerCollections.Tests
         // Check an ordered multi-dictionary against an array.
         private void CheckAgainstArray(OrderedMultiDictionary<int, string> dict, int[,] array)
         {
-            List<string[]> values = new List<string[]>();
-            List<int> keys = new List<int>();
-            List<string> vals = new List<string>();
+            var values = new List<string[]>();
+            var keys = new List<int>();
+            var vals = new List<string>();
 
             for (int i = 0; i < array.GetLength(0); ++i) {
                 bool hasval = false;
@@ -215,8 +215,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RandomAdd()
         {
-            Random rand = new Random(14);
-            OrderedMultiDictionary<int,string> dict = new OrderedMultiDictionary<int,string>(true);
+            var rand = new Random(14);
+            var dict = new OrderedMultiDictionary<int,string>(true);
 
             int[,] array = AddRemoveRandom(rand, dict, true, 3000);
             CheckAgainstArray(dict, array);
@@ -227,7 +227,7 @@ namespace Wintellect.PowerCollections.Tests
         public void Add()
         {
             // Test without duplicate values.
-            OrderedMultiDictionary<string, double> dict1 = new OrderedMultiDictionary<string, double>(false);
+            var dict1 = new OrderedMultiDictionary<string, double>(false);
 
             dict1.Add("foo", 3.5);
             dict1.Add("foo", -1.2);
@@ -265,7 +265,7 @@ namespace Wintellect.PowerCollections.Tests
                 "zip", -100, null, null);
 
             // Test duplicate values with distinct equal values.
-            OrderedMultiDictionary<string, string> dict2 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict2 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
             dict2.Add("foo", "BAR");
             dict2.Add("Foo", "bar");
             InterfaceTests.TestEnumerableElements<string>(dict2.Keys, new string[] { "Foo" });
@@ -285,7 +285,7 @@ namespace Wintellect.PowerCollections.Tests
         public void AddMany1()
         {
             // Test without duplicate values.
-            OrderedMultiDictionary<string, double> dict1 = new OrderedMultiDictionary<string, double>(false, StringComparer.InvariantCultureIgnoreCase);
+            var dict1 = new OrderedMultiDictionary<string, double>(false, StringComparer.InvariantCultureIgnoreCase);
 
             dict1.AddMany("foo", AlgorithmsTests.EnumerableFromArray(new double[] { 9.8, 1.2, -9, 9.8, -9, 4 }));
             dict1.AddMany("hi", new double[0]);
@@ -338,7 +338,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Replace()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -363,7 +363,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ReplaceMany()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(false);
+            var dict1 = new OrderedMultiDictionary<string, int>(false);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -391,7 +391,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveKey()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -421,7 +421,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveManyKeys()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -448,7 +448,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Remove()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -478,7 +478,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveMany1()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("bill", 7);
             dict1.Add("foo", 4);
@@ -508,7 +508,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clear()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bill", 7);
@@ -539,7 +539,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Count()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add(null, 7);
@@ -550,7 +550,7 @@ namespace Wintellect.PowerCollections.Tests
             dict1.Add("foo", 4);
             Assert.AreEqual(4, dict1.Count);
 
-            OrderedMultiDictionary<string, int> dict2 = new OrderedMultiDictionary<string, int>(false);
+            var dict2 = new OrderedMultiDictionary<string, int>(false);
 
             dict2.Add("foo", 4);
             dict2.Add(null, 7);
@@ -571,7 +571,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ContainsKey()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add(null, 7);
@@ -596,7 +596,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Contains()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add(null, 7);
@@ -624,7 +624,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void KeysCollection()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(false, StringComparer.InvariantCultureIgnoreCase);
+            var dict1 = new OrderedMultiDictionary<string, int>(false, StringComparer.InvariantCultureIgnoreCase);
 
             dict1.Add("foo", 4);
             dict1.Add(null, 2);
@@ -644,14 +644,14 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(dict1.Keys.Contains("Sailor"));
             Assert.IsFalse(dict1.Keys.Contains("banana"));
 
-            OrderedMultiDictionary<string, int> dict2 = new OrderedMultiDictionary<string, int>(false, StringComparer.InvariantCultureIgnoreCase);
+            var dict2 = new OrderedMultiDictionary<string, int>(false, StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestEnumerableElements(dict2.Keys, new string[] { });
         }
 
         [TestMethod]
         public void ValuesCollection1()
         {
-            OrderedMultiDictionary<double, string> dict = new OrderedMultiDictionary<double, string>(false, Comparer<double>.Default, StringComparer.InvariantCultureIgnoreCase);
+            var dict = new OrderedMultiDictionary<double, string>(false, Comparer<double>.Default, StringComparer.InvariantCultureIgnoreCase);
 
             dict.Add(7, "Gizzle");
             dict.Add(4, "foo");
@@ -684,7 +684,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ValuesCollection2()
         {
-            OrderedMultiDictionary<double, string> dict = new OrderedMultiDictionary<double, string>(true, Comparer<double>.Default, StringComparer.InvariantCultureIgnoreCase);
+            var dict = new OrderedMultiDictionary<double, string>(true, Comparer<double>.Default, StringComparer.InvariantCultureIgnoreCase);
 
             dict.Add(7, "Gizzle");
             dict.Add(4, "foo");
@@ -717,7 +717,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void KeyValuesCollection1()
         {
-            OrderedMultiDictionary<string, string> dict = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
 
             dict.Add("7A", "Gizzle");
             dict.Add("4a", "foo");
@@ -753,7 +753,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void KeyValuesCollection2()
         {
-            OrderedMultiDictionary<string, string> dict = new OrderedMultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict = new OrderedMultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
 
             dict.Add("7A", "Gizzle");
             dict.Add("4A", "foo");
@@ -788,7 +788,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Indexer()
         {
-            OrderedMultiDictionary<string, string> dict1 = new OrderedMultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict1 = new OrderedMultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
 
             dict1.Add("foo", "BAR");
             dict1.Add(null, "hello");
@@ -810,7 +810,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetValueCount()
         {
-            OrderedMultiDictionary<string, string> dict1 = new OrderedMultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict1 = new OrderedMultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
 
             dict1.Add("foo", "BAR");
             dict1.Add(null, "hello");
@@ -853,7 +853,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IMultiDictionaryInterface()
         {
-            OrderedMultiDictionary<string, string> dict1 = new OrderedMultiDictionary<string, string>(true);
+            var dict1 = new OrderedMultiDictionary<string, string>(true);
 
             dict1.Add("foo", "bar");
             dict1.Add(null, "hello");
@@ -903,7 +903,7 @@ namespace Wintellect.PowerCollections.Tests
                     return 0;
             };
 
-            OrderedMultiDictionary<string,string> dict1 = new OrderedMultiDictionary<string,string>(false, reverseFirstLetter);
+            var dict1 = new OrderedMultiDictionary<string,string>(false, reverseFirstLetter);
 
             dict1.Add("hello", "AAA");
             dict1.Add("hi", "aaa");
@@ -921,7 +921,7 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestEnumerableElements(dict1.Keys, new string[] { "queztel", "hi", "alpha" });
 
-            OrderedMultiDictionary<string, string> dict2 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, reverseFirstLetter);
+            var dict2 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, reverseFirstLetter);
 
             dict2.Add("qubert", "dinosaur");
             dict2.Add("Hello", "AAA");
@@ -944,13 +944,13 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void NotComparable1()
         {
-            OrderedMultiDictionary<OrderedDictionaryTests.UncomparableClass1, string> dict1 = new OrderedMultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false);
+            var dict1 = new OrderedMultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false);
         }
 
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void NotComparable2()
         {
-            OrderedMultiDictionary<string, OrderedDictionaryTests.UncomparableClass2> dict2 = new OrderedMultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true);
+            var dict2 = new OrderedMultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true);
         }
 
         [TestMethod]
@@ -965,7 +965,7 @@ namespace Wintellect.PowerCollections.Tests
                     return 0;
             };
 
-            OrderedMultiDictionary<string, string> dict1 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, reverseFirstLetter);
+            var dict1 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, reverseFirstLetter);
 
             dict1.Add("qubert", "dinosaur");
             dict1.Add("Hello", "AAA");
@@ -1016,7 +1016,7 @@ namespace Wintellect.PowerCollections.Tests
                 new KeyValuePair<string,string>("qubert", "hoover"),
                 new KeyValuePair<string,string>("qubert", "dinosaur")});
 
-            OrderedMultiDictionary<string, int> dict4 = new OrderedMultiDictionary<string, int>(true);
+            var dict4 = new OrderedMultiDictionary<string, int>(true);
             OrderedMultiDictionary<string, int> dict5;
             dict5 = dict4.Clone();
             Assert.IsFalse(dict4 == dict5);
@@ -1065,7 +1065,7 @@ namespace Wintellect.PowerCollections.Tests
                         return v2.value.CompareTo(v1.value); 
                 };
 
-            OrderedMultiDictionary<int, MyInt> dict1 = new OrderedMultiDictionary<int, MyInt>(true,
+            var dict1 = new OrderedMultiDictionary<int, MyInt>(true,
                 delegate(int v1, int v2) { return - v2.CompareTo(v1); },
                 myIntComparison);
 
@@ -1080,7 +1080,7 @@ namespace Wintellect.PowerCollections.Tests
             OrderedMultiDictionary<int, MyInt> dict2 = dict1.CloneContents();
             CompareClones(dict1, dict2);
 
-            OrderedMultiDictionary<MyInt, int> dict3 = new OrderedMultiDictionary<MyInt, int>(false, myIntComparison);
+            var dict3 = new OrderedMultiDictionary<MyInt, int>(false, myIntComparison);
 
             dict3.Add(new MyInt(4), 143);
             dict3.Add(new MyInt(7), 2);
@@ -1097,7 +1097,7 @@ namespace Wintellect.PowerCollections.Tests
             Comparison<UtilTests.CloneableStruct> comparison = delegate(UtilTests.CloneableStruct s1, UtilTests.CloneableStruct s2) {
                 return s1.value.CompareTo(s2.value);
             };
-            OrderedMultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct> dict5 = new OrderedMultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct>(true, comparison, comparison);
+            var dict5 = new OrderedMultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct>(true, comparison, comparison);
             dict5.Add(new UtilTests.CloneableStruct(7) , new UtilTests.CloneableStruct(-14));
             dict5.Add(new UtilTests.CloneableStruct(16) , new UtilTests.CloneableStruct(13));
             dict5.Add(new UtilTests.CloneableStruct(7) , new UtilTests.CloneableStruct(-14));
@@ -1137,7 +1137,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            OrderedMultiDictionary<int, NotCloneable> dict1 = new OrderedMultiDictionary<int, NotCloneable>(true);
+            var dict1 = new OrderedMultiDictionary<int, NotCloneable>(true);
 
             dict1[4] = new NotCloneable[] { new NotCloneable() };
             dict1[5] = new NotCloneable[] { new NotCloneable(), new NotCloneable() };
@@ -1149,7 +1149,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FailFastEnumerator()
         {
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true);
+            var dict1 = new OrderedMultiDictionary<string, int>(true);
 
             dict1.Add("foo", 12);
             dict1.Add("foo", 15);
@@ -1216,16 +1216,16 @@ namespace Wintellect.PowerCollections.Tests
         public void KeyComparerProperty()
         {
             IComparer<int> comparer1 = new GOddEvenComparer();
-            OrderedMultiDictionary<int, string> dict1 = new OrderedMultiDictionary<int, string>(false, comparer1);
+            var dict1 = new OrderedMultiDictionary<int, string>(false, comparer1);
             Assert.AreSame(comparer1, dict1.KeyComparer);
-            OrderedMultiDictionary<decimal, string> dict2 = new OrderedMultiDictionary<decimal, string>(true);
+            var dict2 = new OrderedMultiDictionary<decimal, string>(true);
             Assert.AreSame(Comparer<decimal>.Default, dict2.KeyComparer);
-            OrderedMultiDictionary<string, string> dict3 = new OrderedMultiDictionary<string, string>(true, StringComparer.OrdinalIgnoreCase, StringComparer.CurrentCulture);
+            var dict3 = new OrderedMultiDictionary<string, string>(true, StringComparer.OrdinalIgnoreCase, StringComparer.CurrentCulture);
             Assert.AreSame(StringComparer.OrdinalIgnoreCase, dict3.KeyComparer);
 
             Comparison<int> comparison1 = ComparersTests.CompareOddEven;
-            OrderedMultiDictionary<int, string> dict4 = new OrderedMultiDictionary<int, string>(true, comparison1);
-            OrderedMultiDictionary<int, string> dict5 = new OrderedMultiDictionary<int, string>(false, comparison1, delegate(string x, string y) { return - x.CompareTo(y); });
+            var dict4 = new OrderedMultiDictionary<int, string>(true, comparison1);
+            var dict5 = new OrderedMultiDictionary<int, string>(false, comparison1, delegate(string x, string y) { return - x.CompareTo(y); });
             Assert.AreEqual(dict4.KeyComparer, dict5.KeyComparer);
             Assert.IsFalse(dict4.KeyComparer == dict5.KeyComparer);
             Assert.IsFalse(object.Equals(dict4.KeyComparer, dict1.KeyComparer));
@@ -1243,16 +1243,16 @@ namespace Wintellect.PowerCollections.Tests
         public void ValueComparerProperty()
         {
             IComparer<int> comparer1 = new GOddEvenComparer();
-            OrderedMultiDictionary<string, int> dict1 = new OrderedMultiDictionary<string, int>(true, StringComparer.InvariantCulture, comparer1);
+            var dict1 = new OrderedMultiDictionary<string, int>(true, StringComparer.InvariantCulture, comparer1);
             Assert.AreSame(comparer1, dict1.ValueComparer);
-            OrderedMultiDictionary<string, decimal> dict2 = new OrderedMultiDictionary<string, decimal>(false);
+            var dict2 = new OrderedMultiDictionary<string, decimal>(false);
             Assert.AreSame(Comparer<decimal>.Default, dict2.ValueComparer);
-            OrderedMultiDictionary<string, string> dict3 = new OrderedMultiDictionary<string, string>(true, StringComparer.InvariantCulture, StringComparer.OrdinalIgnoreCase);
+            var dict3 = new OrderedMultiDictionary<string, string>(true, StringComparer.InvariantCulture, StringComparer.OrdinalIgnoreCase);
             Assert.AreSame(StringComparer.OrdinalIgnoreCase, dict3.ValueComparer);
 
             Comparison<int> comparison1 = ComparersTests.CompareOddEven;
-            OrderedMultiDictionary<string, int> dict4 = new OrderedMultiDictionary<string, int>(true, delegate(string x, string y) { return x.CompareTo(y); }, comparison1);
-            OrderedMultiDictionary<string, int> dict5 = new OrderedMultiDictionary<string, int>(false, delegate(string x, string y) { return - x.CompareTo(y); }, comparison1);
+            var dict4 = new OrderedMultiDictionary<string, int>(true, delegate(string x, string y) { return x.CompareTo(y); }, comparison1);
+            var dict5 = new OrderedMultiDictionary<string, int>(false, delegate(string x, string y) { return - x.CompareTo(y); }, comparison1);
             Assert.AreEqual(dict4.ValueComparer, dict5.ValueComparer);
             Assert.IsFalse(dict4.ValueComparer == dict5.ValueComparer);
             Assert.IsFalse(object.Equals(dict4.ValueComparer, dict1.ValueComparer));
@@ -1400,7 +1400,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RangeFrom()
         {
-            OrderedMultiDictionary<string, double> dict1 = new OrderedMultiDictionary<string, double>(false);
+            var dict1 = new OrderedMultiDictionary<string, double>(false);
 
             dict1.Add("foo", 3.5);
             dict1.Add("foo", -1.2);
@@ -1459,7 +1459,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RangeTo()
         {
-            OrderedMultiDictionary<string, double> dict1 = new OrderedMultiDictionary<string, double>(false);
+            var dict1 = new OrderedMultiDictionary<string, double>(false);
 
             dict1.Add("foo", 3.5);
             dict1.Add("foo", -1.2);
@@ -1508,7 +1508,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Range()
         {
-            OrderedMultiDictionary<string, double> dict1 = new OrderedMultiDictionary<string, double>(false);
+            var dict1 = new OrderedMultiDictionary<string, double>(false);
 
             dict1.Add("foo", 3.5);
             dict1.Add("foo", -1.2);
@@ -1567,7 +1567,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Reversed()
         {
-            OrderedMultiDictionary<string, double> dict1 = new OrderedMultiDictionary<string, double>(false);
+            var dict1 = new OrderedMultiDictionary<string, double>(false);
 
             dict1.Add("foo", 3.5);
             dict1.Add("foo", -1.2);
@@ -1595,7 +1595,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RangeClear()
         {
-            OrderedMultiDictionary<string, double> dict1 = new OrderedMultiDictionary<string, double>(false);
+            var dict1 = new OrderedMultiDictionary<string, double>(false);
             OrderedMultiDictionary<string, double> dict2;
 
             dict1.Add("foo", 3.5);
@@ -1663,7 +1663,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeStrings()
         {
-            OrderedMultiDictionary<string, double> d = new OrderedMultiDictionary<string, double>(true, StringComparer.InvariantCultureIgnoreCase);
+            var d = new OrderedMultiDictionary<string, double>(true, StringComparer.InvariantCultureIgnoreCase);
 
             d.Add("hEllo", 13);
             d.Add("foo", 7);
@@ -1675,7 +1675,7 @@ namespace Wintellect.PowerCollections.Tests
             d.Add("FOO", 7);
             d.Add("hello", 12);
 
-            OrderedMultiDictionary<string, double> result = (OrderedMultiDictionary<string, double>)InterfaceTests.SerializeRoundTrip(d);
+            var result = (OrderedMultiDictionary<string, double>)InterfaceTests.SerializeRoundTrip(d);
 
             CheckOrderedMultiDictionaryContents<String, double>(result,
                 new string[] { null, "eLVis", "FOO", "Hello", "WORLD" },

@@ -382,7 +382,7 @@ namespace Wintellect.PowerCollections.Tests {
 		public void DeleteNotPresent()
 		{
             int dummy;
-            RedBlackTree<int> t = new RedBlackTree<int>(Comparers.DefaultComparer<int>());
+            var t = new RedBlackTree<int>(Comparers.DefaultComparer<int>());
 
 			t.Insert(3, DuplicatePolicy.ReplaceFirst, out dummy);
             t.Insert(1, DuplicatePolicy.ReplaceFirst, out dummy);
@@ -584,7 +584,7 @@ namespace Wintellect.PowerCollections.Tests {
         [TestMethod]
         public void EnumerateAndCountRange2()
         {
-            Random rand = new Random(112);
+            var rand = new Random(112);
             for (int iter = 0; iter < ITERATIONS; ++iter) {
                 tree = new RedBlackTree<TestItem>(new DataComparer());
                 int[] a = CreateRandomArray(iter, LENGTH, LENGTH * 10, false);
@@ -1153,7 +1153,7 @@ namespace Wintellect.PowerCollections.Tests {
 		/// <param name="allowDups">Whether to allow duplicate elements.</param>
 		/// <returns></returns>
 		private int[] CreateRandomArray(int seed, int length, int max, bool allowDups) {
-			Random rand = new Random(seed);
+			var rand = new Random(seed);
 
 			int[] a = new int[length];
 			for (int i = 0; i < a.Length; ++i)
@@ -1332,7 +1332,7 @@ namespace Wintellect.PowerCollections.Tests {
 			for (int iter = 0; iter < ITERATIONS / 10; ++iter) {
 				tree = new RedBlackTree<TestItem>(new DataComparer());
 				bool[] a = new bool[LENGTH];
-				Random rand = new Random(iter + 5000);
+				var rand = new Random(iter + 5000);
 				TestItem itemFound;
 			
 				for (int i = 0; i < LENGTH * 10; ++i) {

@@ -212,7 +212,7 @@ namespace Wintellect.PowerCollections
         /// <param name="value">The value to associated with <paramref name="key"/>.</param>
         public sealed override void Add(TKey key, TValue value)
         {
-            KeyAndValues keyValues = new KeyAndValues(key);
+            var keyValues = new KeyAndValues(key);
             KeyAndValues existing;
 
             if (hash.Find(keyValues, false, out existing)) {
@@ -264,7 +264,7 @@ namespace Wintellect.PowerCollections
         /// therefore removed). False if <paramref name="value"/> was not associated with <paramref name="key"/>.</returns>
         public sealed override bool Remove(TKey key, TValue value)
         {
-            KeyAndValues keyValues = new KeyAndValues(key);
+            var keyValues = new KeyAndValues(key);
             KeyAndValues existing;
 
             if (hash.Find(keyValues, false, out existing)) {
@@ -395,7 +395,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if <paramref name="value"/> is associated with <paramref name="key"/>.</returns>
         public sealed override bool Contains(TKey key, TValue value)
         {
-            KeyAndValues find = new KeyAndValues(key);
+            var find = new KeyAndValues(key);
             KeyAndValues item;
             if (hash.Find(find, false, out item)) {
                 int existingCount = item.Count;
@@ -421,7 +421,7 @@ namespace Wintellect.PowerCollections
         /// one value associated with it. Returns false otherwise.</returns>
         public sealed override bool ContainsKey(TKey key)
         {
-            KeyAndValues find = new KeyAndValues(key);
+            var find = new KeyAndValues(key);
             KeyAndValues temp;
             return hash.Find(find, false, out temp);
         }
@@ -467,7 +467,7 @@ namespace Wintellect.PowerCollections
         /// <returns>True if the dictionary contains key. False if the dictionary does not contain key.</returns>
         protected sealed override bool TryEnumerateValuesForKey(TKey key, out IEnumerator<TValue> values)
         {
-            KeyAndValues find = new KeyAndValues(key);
+            var find = new KeyAndValues(key);
             KeyAndValues item;
             if (hash.Find(find, false, out item)) {
                 values = EnumerateValues(item);
@@ -487,7 +487,7 @@ namespace Wintellect.PowerCollections
         /// is not present in the dictionary, zero is returned.</returns>
         protected sealed override int CountValues(TKey key)
         {
-            KeyAndValues find = new KeyAndValues(key);
+            var find = new KeyAndValues(key);
             KeyAndValues item;
             if (hash.Find(find, false, out item)) {
                 return item.Count;
@@ -556,7 +556,7 @@ namespace Wintellect.PowerCollections
             // It's tempting to do a more efficient cloning, utilizing the hash.Clone() method. However, we can't know that
             // the cloned version of the key has the same hash value.
 
-            MultiDictionary<TKey, TValue> newDict = new MultiDictionary<TKey, TValue>(allowDuplicateValues, keyEqualityComparer, valueEqualityComparer);
+            var newDict = new MultiDictionary<TKey, TValue>(allowDuplicateValues, keyEqualityComparer, valueEqualityComparer);
 
             foreach (KeyAndValues item in hash) {
                 // Clone the key and values parts. Value types can be cloned

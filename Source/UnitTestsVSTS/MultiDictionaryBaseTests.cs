@@ -402,8 +402,8 @@ namespace Wintellect.PowerCollections.Tests
                                         new int[] { 4}, 
                                         new int[] { 1, 2, 3, 4, 5, 6}, 
                                         new int[] { 8}};
-            List<string> s_list = new List<string>(s_array);
-            List<List<int>> i_list = new List<List<int>>();
+            var s_list = new List<string>(s_array);
+            var i_list = new List<List<int>>();
             foreach (int[] arr in i_array) {
                 i_list.Add(new List<int>(arr));
             }
@@ -419,8 +419,8 @@ namespace Wintellect.PowerCollections.Tests
                                         new int[] { 4}, 
                                         new int[] { 1, 2, 3, 4, 5, 6}, 
                                         new int[] { 8}};
-            List<string> s_list = new List<string>(s_array);
-            List<List<int>> i_list = new List<List<int>>();
+            var s_list = new List<string>(s_array);
+            var i_list = new List<List<int>>();
             foreach (int[] arr in i_array) {
                 i_list.Add(new List<int>(arr));
             }
@@ -695,23 +695,23 @@ namespace Wintellect.PowerCollections.Tests
                                         new int[] { 4}, 
                                         new int[] { 1, 2, 3, 4, 5, 6}, 
                                         new int[] { 8}};
-            List<string> s_list = new List<string>(s_array);
-            List<List<int>> i_list = new List<List<int>>();
+            var s_list = new List<string>(s_array);
+            var i_list = new List<List<int>>();
             foreach (int[] arr in i_array) {
                 i_list.Add(new List<int>(arr));
             }
 
-            ReadWriteTestMultiDictionary<string, int> dict = new ReadWriteTestMultiDictionary<string, int>(s_list, i_list);
+            var dict = new ReadWriteTestMultiDictionary<string, int>(s_list, i_list);
 
             string s = dict.ToString();
             Assert.AreEqual("{Eric->(1,9,11), null->(6,10), Rules->(4), The->(1,2,3,4,5,6), World->(8)}", s);
 
-            ReadOnlyTestMultiDictionary<string, int> dict2 = new ReadOnlyTestMultiDictionary<string, int>(s_list, i_list);
+            var dict2 = new ReadOnlyTestMultiDictionary<string, int>(s_list, i_list);
 
             s = dict2.ToString();
             Assert.AreEqual("{Eric->(1,9,11), null->(6,10), Rules->(4), The->(1,2,3,4,5,6), World->(8)}", s);
 
-            ReadOnlyTestMultiDictionary<string, int> dict3 = new ReadOnlyTestMultiDictionary<string, int>(new List<string>(), new List<List<int>>());
+            var dict3 = new ReadOnlyTestMultiDictionary<string, int>(new List<string>(), new List<List<int>>());
 
             s = dict3.ToString();
             Assert.AreEqual("{}", s);
@@ -726,33 +726,33 @@ namespace Wintellect.PowerCollections.Tests
                                         new int[] { 4}, 
                                         new int[] { 1, 2, 3, 4, 5, 6}, 
                                         new int[] { 8}};
-            List<string> s_list = new List<string>(s_array);
-            List<List<int>> i_list = new List<List<int>>();
+            var s_list = new List<string>(s_array);
+            var i_list = new List<List<int>>();
             foreach (int[] arr in i_array) {
                 i_list.Add(new List<int>(arr));
             }
 
-            ReadWriteTestMultiDictionary<string, int> dict = new ReadWriteTestMultiDictionary<string, int>(s_list, i_list);
+            var dict = new ReadWriteTestMultiDictionary<string, int>(s_list, i_list);
 
             string s = dict.DebuggerDisplayString();
             Assert.AreEqual("{Eric->(1,9,11), null->(6,10), Rules->(4), The->(1,2,3,4,5,6), World->(8)}", s);
 
-            ReadOnlyTestMultiDictionary<string, int> dict2 = new ReadOnlyTestMultiDictionary<string, int>(s_list, i_list);
+            var dict2 = new ReadOnlyTestMultiDictionary<string, int>(s_list, i_list);
 
             s = dict2.DebuggerDisplayString();
             Assert.AreEqual("{Eric->(1,9,11), null->(6,10), Rules->(4), The->(1,2,3,4,5,6), World->(8)}", s);
 
-            ReadWriteTestMultiDictionary<string, int> dict3 = new ReadWriteTestMultiDictionary<string, int>(new List<string>(), new List<List<int>>());
+            var dict3 = new ReadWriteTestMultiDictionary<string, int>(new List<string>(), new List<List<int>>());
 
             s = dict3.DebuggerDisplayString();
             Assert.AreEqual("{}", s);
 
-            ReadOnlyTestMultiDictionary<string, int> dict4 = new ReadOnlyTestMultiDictionary<string, int>(new List<string>(), new List<List<int>>());
+            var dict4 = new ReadOnlyTestMultiDictionary<string, int>(new List<string>(), new List<List<int>>());
 
             s = dict4.DebuggerDisplayString();
             Assert.AreEqual("{}", s);
 
-            ReadWriteTestMultiDictionary<string, int> dict5 = new ReadWriteTestMultiDictionary<string, int>(new List<string>(), new List<List<int>>());
+            var dict5 = new ReadWriteTestMultiDictionary<string, int>(new List<string>(), new List<List<int>>());
             for (int i = 0; i < 20; ++i) {
                 for (int j = 0; j < i; ++j) {
                     dict5.Add(string.Format("foo{0}bar", i), j);
@@ -767,7 +767,7 @@ namespace Wintellect.PowerCollections.Tests
             foreach (string key in s_list) 
                 i_list.Add(new List<int>(dict5[key]));
 
-            ReadOnlyTestMultiDictionary<string, int> dict6 = new ReadOnlyTestMultiDictionary<string, int>(s_list, i_list);
+            var dict6 = new ReadOnlyTestMultiDictionary<string, int>(s_list, i_list);
 
             s = dict6.DebuggerDisplayString();
             Assert.AreEqual("{foo1bar->(0), foo2bar->(0,1), foo3bar->(0,1,2), foo4bar->(0,1,2,3), foo5bar->(0,1,2,3,4), foo6bar->(0,1,2,3,4,5), foo7bar->(0,1,2,3,4,5,6), foo8bar->(0,1,2,3,4,5,6,7), foo9bar->(0,1,2,3,4,5,6,7,8), foo10bar->(0,1,2,3,4,5,6,7,8,9), foo11bar->(0,1,2,3,4,5,6,7,8,9,10), ...}", s);

@@ -163,7 +163,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The cloned bag.</returns>
         public OrderedBag<T> Clone()
         {
-            OrderedBag<T> newBag = new OrderedBag<T>(comparer, tree.Clone());
+            var newBag = new OrderedBag<T>(comparer, tree.Clone());
             return newBag;
         }
 
@@ -183,7 +183,7 @@ namespace Wintellect.PowerCollections
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))
                 throw new InvalidOperationException(string.Format(Strings.TypeNotCloneable, typeof(T).FullName));
 
-            OrderedBag<T> clone = new OrderedBag<T>(comparer);
+            var clone = new OrderedBag<T>(comparer);
 
             // Clone each item, and add it to the new ordered bag.
             foreach (T item in this) {
@@ -305,7 +305,7 @@ namespace Wintellect.PowerCollections
         /// <returns>An IEnumerable&lt;T&gt; that enumerates the unique items.</returns>
         public IEnumerable<T> DistinctItems()
         {
-            T previous = default(T);
+            var previous = default(T);
             bool atBeginning = true;
 
             // Enumerate the items, but only yield ones not equal to the previous one.
@@ -758,7 +758,7 @@ namespace Wintellect.PowerCollections
         {
             CheckConsistentComparison(otherBag);
 
-            T previous = default(T);
+            var previous = default(T);
             bool atBeginning = true;
             int copiesInThis = 0, copiesInOther = 0;
 
@@ -896,9 +896,9 @@ namespace Wintellect.PowerCollections
             }
 
             T dummy;
-            RedBlackTree<T> newTree = new RedBlackTree<T>(comparer);
+            var newTree = new RedBlackTree<T>(comparer);
 
-            T previous = default(T);
+            var previous = default(T);
             bool atBeginning = true;
             int copiesInSmaller = 0, copiesInLarger = 0;
 
@@ -951,7 +951,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherBag; larger = this;
             }
 
-            T previous = default(T);
+            var previous = default(T);
             bool atBeginning = true;
             int copiesInSmaller = 0, copiesInLarger = 0;
 
@@ -999,7 +999,7 @@ namespace Wintellect.PowerCollections
 
             CheckConsistentComparison(otherBag);
 
-            T previous = default(T);
+            var previous = default(T);
             bool atBeginning = true;
             int copiesInThis = 0, copiesInOther = 0;
 
@@ -1083,7 +1083,7 @@ namespace Wintellect.PowerCollections
         public OrderedBag<T> SymmetricDifference(OrderedBag<T> otherBag)
         {
             CheckConsistentComparison(otherBag);
-            OrderedBag<T> result = new OrderedBag<T>(comparer);
+            var result = new OrderedBag<T>(comparer);
             IEnumerator<T> enum1 = this.GetEnumerator(), enum2 = otherBag.GetEnumerator();
 
             bool valid1 = enum1.MoveNext();

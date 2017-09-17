@@ -145,9 +145,9 @@ namespace Wintellect.PowerCollections.Tests
         // Check an ordered multi-dictionary against an array.
         private void CheckAgainstArray(MultiDictionary<int, string> dict, int[,] array)
         {
-            List<string[]> values = new List<string[]>();
-            List<int> keys = new List<int>();
-            List<string> vals = new List<string>();
+            var values = new List<string[]>();
+            var keys = new List<int>();
+            var vals = new List<string>();
 
             for (int i = 0; i < array.GetLength(0); ++i) {
                 bool hasval = false;
@@ -178,8 +178,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RandomAdd()
         {
-            Random rand = new Random(14);
-            MultiDictionary<int, string> dict = new MultiDictionary<int, string>(true);
+            var rand = new Random(14);
+            var dict = new MultiDictionary<int, string>(true);
 
             int[,] array = AddRemoveRandom(rand, dict, true, 3000);
             CheckAgainstArray(dict, array);
@@ -190,7 +190,7 @@ namespace Wintellect.PowerCollections.Tests
         public void Add()
         {
             // Test without duplicate values.
-            MultiDictionary<string, double> dict1 = new MultiDictionary<string, double>(false);
+            var dict1 = new MultiDictionary<string, double>(false);
 
             dict1.Add("foo", 3.5);
             dict1.Add("foo", -1.2);
@@ -228,7 +228,7 @@ namespace Wintellect.PowerCollections.Tests
                 "zip", -100, null, null);
 
             // Test duplicate values with distinct equal values.
-            MultiDictionary<string, string> dict2 = new MultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict2 = new MultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
             dict2.Add("foo", "BAR");
             dict2.Add("Foo", "bar");
             InterfaceTests.TestEnumerableElementsAnyOrder<string>(dict2.Keys, new string[] { "foo" });
@@ -247,7 +247,7 @@ namespace Wintellect.PowerCollections.Tests
         public void AddMany1()
         {
             // Test without duplicate values.
-            MultiDictionary<string, double> dict1 = new MultiDictionary<string, double>(false, StringComparer.InvariantCultureIgnoreCase);
+            var dict1 = new MultiDictionary<string, double>(false, StringComparer.InvariantCultureIgnoreCase);
 
             dict1.AddMany("foo", AlgorithmsTests.EnumerableFromArray(new double[] { 9.8, 1.2, -9, 9.8, -9, 4 }));
             dict1.AddMany("hi", new double[0]);
@@ -299,7 +299,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Replace()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -324,7 +324,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ReplaceMany()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(false);
+            var dict1 = new MultiDictionary<string, int>(false);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -352,7 +352,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveKey()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -382,7 +382,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveManyKeys()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -409,7 +409,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Remove()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bar", 7);
@@ -439,7 +439,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveMany1()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
 
             dict1.Add("bill", 7);
             dict1.Add("foo", 4);
@@ -469,7 +469,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clear()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add("bill", 7);
@@ -500,7 +500,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Count()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add(null, 7);
@@ -511,7 +511,7 @@ namespace Wintellect.PowerCollections.Tests
             dict1.Add("foo", 4);
             Assert.AreEqual(4, dict1.Count);
 
-            MultiDictionary<string, int> dict2 = new MultiDictionary<string, int>(false);
+            var dict2 = new MultiDictionary<string, int>(false);
 
             dict2.Add("foo", 4);
             dict2.Add(null, 7);
@@ -532,7 +532,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ContainsKey()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add(null, 7);
@@ -557,7 +557,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Contains()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
 
             dict1.Add("foo", 4);
             dict1.Add(null, 7);
@@ -585,7 +585,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void KeysCollection()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(false, StringComparer.InvariantCultureIgnoreCase);
+            var dict1 = new MultiDictionary<string, int>(false, StringComparer.InvariantCultureIgnoreCase);
 
             dict1.Add("foo", 4);
             dict1.Add(null, 2);
@@ -605,14 +605,14 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(dict1.Keys.Contains("Sailor"));
             Assert.IsFalse(dict1.Keys.Contains("banana"));
 
-            MultiDictionary<string, int> dict2 = new MultiDictionary<string, int>(false, StringComparer.InvariantCultureIgnoreCase);
+            var dict2 = new MultiDictionary<string, int>(false, StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestEnumerableElementsAnyOrder(dict2.Keys, new string[] { });
         }
 
         [TestMethod]
         public void ValuesCollection1()
         {
-            MultiDictionary<double, string> dict = new MultiDictionary<double, string>(false, EqualityComparer<double>.Default, StringComparer.InvariantCultureIgnoreCase);
+            var dict = new MultiDictionary<double, string>(false, EqualityComparer<double>.Default, StringComparer.InvariantCultureIgnoreCase);
 
             dict.Add(7, "Gizzle");
             dict.Add(4, "foo");
@@ -645,7 +645,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ValuesCollection2()
         {
-            MultiDictionary<double, string> dict = new MultiDictionary<double, string>(true, EqualityComparer<double>.Default, StringComparer.InvariantCultureIgnoreCase);
+            var dict = new MultiDictionary<double, string>(true, EqualityComparer<double>.Default, StringComparer.InvariantCultureIgnoreCase);
 
             dict.Add(7, "Gizzle");
             dict.Add(4, "foo");
@@ -678,7 +678,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void KeyValuesCollection1()
         {
-            MultiDictionary<string, string> dict = new MultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict = new MultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
 
             dict.Add("7A", "Gizzle");
             dict.Add("4a", "foo");
@@ -713,7 +713,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void KeyValuesCollection2()
         {
-            MultiDictionary<string, string> dict = new MultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict = new MultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
 
             dict.Add("7A", "Gizzle");
             dict.Add("4A", "foo");
@@ -748,7 +748,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Indexer()
         {
-            MultiDictionary<string, string> dict1 = new MultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict1 = new MultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
 
             dict1.Add("foo", "BAR");
             dict1.Add(null, "hello");
@@ -770,7 +770,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetValueCount()
         {
-            MultiDictionary<string, string> dict1 = new MultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
+            var dict1 = new MultiDictionary<string, string>(true, StringComparer.InvariantCultureIgnoreCase, StringComparer.InvariantCultureIgnoreCase);
 
             dict1.Add("foo", "BAR");
             dict1.Add(null, "hello");
@@ -813,7 +813,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IMultiDictionaryInterface()
         {
-            MultiDictionary<string, string> dict1 = new MultiDictionary<string, string>(true);
+            var dict1 = new MultiDictionary<string, string>(true);
 
             dict1.Add("foo", "bar");
             dict1.Add(null, "hello");
@@ -856,7 +856,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEqualityComparer<string> firstLetterComparer = new FirstLetterComparer();
 
-            MultiDictionary<string, string> dict1 = new MultiDictionary<string, string>(false, firstLetterComparer);
+            var dict1 = new MultiDictionary<string, string>(false, firstLetterComparer);
 
             dict1.Add("hello", "AAA");
             dict1.Add("hi", "aaa");
@@ -874,7 +874,7 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1.Keys, new string[] { "qubert", "hello", "alpha" });
 
-            MultiDictionary<string, string> dict2 = new MultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, firstLetterComparer);
+            var dict2 = new MultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, firstLetterComparer);
 
             dict2.Add("qubert", "dinosaur");
             dict2.Add("Hello", "AAA");
@@ -898,14 +898,14 @@ namespace Wintellect.PowerCollections.Tests
         public void NotComparable1()
         {
             // This should work -- all types are comparable in a hash way via object.Equals and object.GetHashCode.
-            MultiDictionary<OrderedDictionaryTests.UncomparableClass1, string> dict1 = new MultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false);
+            var dict1 = new MultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false);
         }
 
         [TestMethod]
         public void NotComparable2()
         {
             // This should work -- all types are comparable in a hash way via object.Equals and object.GetHashCode.
-            MultiDictionary<string, OrderedDictionaryTests.UncomparableClass2> dict2 = new MultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true);
+            var dict2 = new MultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true);
         }
 
         class FirstLetterComparer : IEqualityComparer<string>
@@ -940,7 +940,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEqualityComparer<string> firstLetterComparer = new FirstLetterComparer();
 
-            MultiDictionary<string, string> dict1 = new MultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, firstLetterComparer);
+            var dict1 = new MultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase, firstLetterComparer);
 
             dict1.Add("qubert", "dinosaur");
             dict1.Add("Hello", "AAA");
@@ -991,7 +991,7 @@ namespace Wintellect.PowerCollections.Tests
                 new KeyValuePair<string,string>("qubert", "hoover"),
                 new KeyValuePair<string,string>("qubert", "dinosaur")});
 
-            MultiDictionary<string, int> dict4 = new MultiDictionary<string, int>(true);
+            var dict4 = new MultiDictionary<string, int>(true);
             MultiDictionary<string, int> dict5;
             dict5 = dict4.Clone();
             Assert.IsFalse(dict4 == dict5);
@@ -1051,8 +1051,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            MyIntComparer comparer = new MyIntComparer();
-            MultiDictionary<int, MyInt> dict1 = new MultiDictionary<int, MyInt>(true, EqualityComparer<int>.Default, comparer);
+            var comparer = new MyIntComparer();
+            var dict1 = new MultiDictionary<int, MyInt>(true, EqualityComparer<int>.Default, comparer);
 
             dict1.Add(4, new MyInt(143));
             dict1.Add(7, new MyInt(2));
@@ -1065,7 +1065,7 @@ namespace Wintellect.PowerCollections.Tests
             MultiDictionary<int, MyInt> dict2 = dict1.CloneContents();
             CompareClones(dict1, dict2);
 
-            MultiDictionary<MyInt, int> dict3 = new MultiDictionary<MyInt, int>(false, comparer);
+            var dict3 = new MultiDictionary<MyInt, int>(false, comparer);
 
             dict3.Add(new MyInt(4), 143);
             dict3.Add(new MyInt(7), 2);
@@ -1079,7 +1079,7 @@ namespace Wintellect.PowerCollections.Tests
             MultiDictionary<MyInt, int> dict4 = dict3.CloneContents();
             CompareClones(dict3, dict4);
 
-            MultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct> dict5 = new MultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct>(true);
+            var dict5 = new MultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct>(true);
             dict5.Add(new UtilTests.CloneableStruct(7), new UtilTests.CloneableStruct(-14));
             dict5.Add(new UtilTests.CloneableStruct(16), new UtilTests.CloneableStruct(13));
             dict5.Add(new UtilTests.CloneableStruct(7), new UtilTests.CloneableStruct(-14));
@@ -1117,7 +1117,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            MultiDictionary<int, NotCloneable> dict1 = new MultiDictionary<int, NotCloneable>(true);
+            var dict1 = new MultiDictionary<int, NotCloneable>(true);
 
             dict1[4] = new NotCloneable[] { new NotCloneable() };
             dict1[5] = new NotCloneable[] { new NotCloneable(), new NotCloneable() };
@@ -1129,7 +1129,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FailFastEnumerator()
         {
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true);
+            var dict1 = new MultiDictionary<string, int>(true);
             bool throwNow;
 
             dict1.Add("foo", 12);
@@ -1205,11 +1205,11 @@ namespace Wintellect.PowerCollections.Tests
         public void KeyComparerProperty()
         {
             IEqualityComparer<int> comparer1 = new GOddEvenEqualityComparer();
-            MultiDictionary<int, string> dict1 = new MultiDictionary<int, string>(false, comparer1);
+            var dict1 = new MultiDictionary<int, string>(false, comparer1);
             Assert.AreSame(comparer1, dict1.KeyComparer);
-            MultiDictionary<decimal, string> dict2 = new MultiDictionary<decimal, string>(true);
+            var dict2 = new MultiDictionary<decimal, string>(true);
             Assert.AreSame(EqualityComparer<decimal>.Default, dict2.KeyComparer);
-            MultiDictionary<string, string> dict3 = new MultiDictionary<string, string>(true, StringComparer.OrdinalIgnoreCase, StringComparer.CurrentCulture);
+            var dict3 = new MultiDictionary<string, string>(true, StringComparer.OrdinalIgnoreCase, StringComparer.CurrentCulture);
             Assert.AreSame(StringComparer.OrdinalIgnoreCase, dict3.KeyComparer);
 
             Assert.AreSame(dict1.KeyComparer, dict1.Clone().KeyComparer);
@@ -1221,11 +1221,11 @@ namespace Wintellect.PowerCollections.Tests
         public void ValueComparerProperty()
         {
             IEqualityComparer<int> comparer1 = new GOddEvenEqualityComparer();
-            MultiDictionary<string, int> dict1 = new MultiDictionary<string, int>(true, StringComparer.InvariantCulture, comparer1);
+            var dict1 = new MultiDictionary<string, int>(true, StringComparer.InvariantCulture, comparer1);
             Assert.AreSame(comparer1, dict1.ValueComparer);
-            MultiDictionary<string, decimal> dict2 = new MultiDictionary<string, decimal>(false);
+            var dict2 = new MultiDictionary<string, decimal>(false);
             Assert.AreSame(EqualityComparer<decimal>.Default, dict2.ValueComparer);
-            MultiDictionary<string, string> dict3 = new MultiDictionary<string, string>(true, StringComparer.InvariantCulture, StringComparer.OrdinalIgnoreCase);
+            var dict3 = new MultiDictionary<string, string>(true, StringComparer.InvariantCulture, StringComparer.OrdinalIgnoreCase);
             Assert.AreSame(StringComparer.OrdinalIgnoreCase, dict3.ValueComparer);
 
             Assert.AreSame(dict1.ValueComparer, dict1.Clone().ValueComparer);
@@ -1236,7 +1236,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeStrings()
         {
-            MultiDictionary<string,double> d = new MultiDictionary<string,double>(true,StringComparer.InvariantCultureIgnoreCase);
+            var d = new MultiDictionary<string,double>(true,StringComparer.InvariantCultureIgnoreCase);
 
             d.Add("hEllo", 13);
             d.Add("foo", 7);
@@ -1248,7 +1248,7 @@ namespace Wintellect.PowerCollections.Tests
             d.Add("FOO", 7);
             d.Add("hello", 12);
 
-            MultiDictionary<string, double> result = (MultiDictionary<string, double>)InterfaceTests.SerializeRoundTrip(d);
+            var result = (MultiDictionary<string, double>)InterfaceTests.SerializeRoundTrip(d);
 
             CheckMultiDictionaryContents<String,double>(result, 
                 new string[] {"FOO", "WORLD", "Hello", "eLVis", null},

@@ -160,7 +160,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The cloned set.</returns>
         public OrderedSet<T> Clone()
         {
-            OrderedSet<T> newSet = new OrderedSet<T>(comparer, tree.Clone());
+            var newSet = new OrderedSet<T>(comparer, tree.Clone());
             return newSet;
         }
 
@@ -180,7 +180,7 @@ namespace Wintellect.PowerCollections
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))
                 throw new InvalidOperationException(string.Format(Strings.TypeNotCloneable, typeof(T).FullName));
 
-            OrderedSet<T> clone = new OrderedSet<T>(comparer);
+            var clone = new OrderedSet<T>(comparer);
 
             // Clone each item, and add it to the new ordered set.
             foreach (T item in this) {
@@ -767,7 +767,7 @@ namespace Wintellect.PowerCollections
             }
 
             T dummy;
-            RedBlackTree<T> newTree = new RedBlackTree<T>(comparer);
+            var newTree = new RedBlackTree<T>(comparer);
 
             foreach (T item in smaller) {
                 if (larger.Contains(item))

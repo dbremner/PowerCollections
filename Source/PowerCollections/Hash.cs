@@ -577,7 +577,7 @@ namespace Wintellect.PowerCollections
         /// <returns>A shallow clone that contains the same items.</returns>
         public Hash<T> Clone(Converter<T,T> cloneItem)
         {
-            Hash<T> clone = new Hash<T>(equalityComparer);
+            var clone = new Hash<T>(equalityComparer);
             clone.count = this.count;
             clone.usedSlots = this.usedSlots;
             clone.totalSlots = this.totalSlots;
@@ -644,7 +644,7 @@ namespace Wintellect.PowerCollections
             loadFactor = serializationInfo.GetSingle("loadFactor");
             equalityComparer = (IEqualityComparer<T>) serializationInfo.GetValue("equalityComparer", typeof(IEqualityComparer<T>));
 
-            T[] items = (T[])serializationInfo.GetValue("items", typeof(T[]));
+            var items = (T[])serializationInfo.GetValue("items", typeof(T[]));
             T dummy;
 
             EnsureEnoughSlots(items.Length);

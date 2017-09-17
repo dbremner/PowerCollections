@@ -191,18 +191,18 @@ namespace Wintellect.PowerCollections.Tests
         {
             string[] s1 = { "Hello", "Goodbye", "Eric", null, "Clapton", "Hello", "Rules" };
 
-            List<string> list1 = new List<string>(s1);
+            var list1 = new List<string>(s1);
             InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)list1, s1);
-            List<string> list2 = new List<string>(s1);
+            var list2 = new List<string>(s1);
             InterfaceTests.TestReadWriteList<string>((IList)list2, s1);
-            ArrayList list3 = new ArrayList(s1);
+            var list3 = new ArrayList(s1);
             InterfaceTests.TestReadWriteList<object>((IList)list3, s1);
 
-            List<string> list4 = new List<string>();
+            var list4 = new List<string>();
             InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)list4, new string[0]);
-            List<string> list5 = new List<string>();
+            var list5 = new List<string>();
             InterfaceTests.TestReadWriteList<string>((IList)list5, new string[0]);
-            ArrayList list6 = new ArrayList();
+            var list6 = new ArrayList();
             InterfaceTests.TestReadWriteList<object>((IList)list6, new string[0]);
 
             IList<string> ro1 = new List<string>(s1).AsReadOnly();
@@ -219,7 +219,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Range()
         {
-            ReadWriteArrayList<int> main = new ReadWriteArrayList<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
+            var main = new ReadWriteArrayList<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
             IList<int> range = main.Range(2, 4);
 
             InterfaceTests.TestReadWriteListGeneric(range, new int[] { 2, 3, 4, 5 }, null);
@@ -267,7 +267,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void ReadOnlyRange()
         {
-            ReadOnlyArrayList<int> main = new ReadOnlyArrayList<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
+            var main = new ReadOnlyArrayList<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
             IList<int> range = main.Range(2, 4);
 
             InterfaceTests.TestReadOnlyListGeneric(range, new int[] { 2, 3, 4, 5 }, null);
@@ -280,7 +280,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RangeExceptions()
         {
-            ReadWriteArrayList<int> list = new ReadWriteArrayList<int>(new int[0]);
+            var list = new ReadWriteArrayList<int>(new int[0]);
             IList<int> range;
 
             for (int i = 0; i < 50; ++i)
@@ -374,7 +374,7 @@ namespace Wintellect.PowerCollections.Tests
         public void ReadOnlyRangeExceptions()
         {
             int[] array = new int[100];
-            ReadOnlyArrayList<int> list = new ReadOnlyArrayList<int>(array);
+            var list = new ReadOnlyArrayList<int>(array);
             IList<int> range;
 
             try {
@@ -466,7 +466,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < 400; ++i)
                 elements[i] = i;
 
-            ReadWriteArrayList<int> list1 = new ReadWriteArrayList<int>(elements);
+            var list1 = new ReadWriteArrayList<int>(elements);
             IList<int> list2 = list1.AsReadOnly();
 
             InterfaceTests.TestReadOnlyListGeneric<int>(list2, elements, null);
@@ -506,26 +506,26 @@ namespace Wintellect.PowerCollections.Tests
         public void CopyTo1()
         {
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
-            ReadWriteArrayList<string> list1 = new ReadWriteArrayList<string>(new string[] { "hello", "Sailor" });
+            var list1 = new ReadWriteArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
-            ReadWriteArrayList<string> list2 = new ReadWriteArrayList<string>(new string[0]);
+            var list2 = new ReadWriteArrayList<string>(new string[0]);
             list2.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
-            ReadWriteArrayList<string> list3 = new ReadWriteArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list3 = new ReadWriteArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "a1", "a2", "a3", "a4", "the", "glove" });
 
-            ReadWriteArrayList<string> list4 = new ReadWriteArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            var list4 = new ReadWriteArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "hello", "Sailor", "b3", "b4", "b5", "b6" });
 
-            ReadWriteArrayList<string> list5 = new ReadWriteArrayList<string>(new string[0]);
+            var list5 = new ReadWriteArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(array2);
             CheckArray<string>(array2, new string[] { });
@@ -535,26 +535,26 @@ namespace Wintellect.PowerCollections.Tests
         public void CopyTo2()
         {
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
-            ReadWriteArrayList<string> list1 = new ReadWriteArrayList<string>(new string[] { "hello", "Sailor" });
+            var list1 = new ReadWriteArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1, 3);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            ReadWriteArrayList<string> list2 = new ReadWriteArrayList<string>(new string[0]);
+            var list2 = new ReadWriteArrayList<string>(new string[0]);
             list2.CopyTo(array1, 1);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            ReadWriteArrayList<string> list3 = new ReadWriteArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list3 = new ReadWriteArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1, 2);
             CheckArray<string>(array1, new string[] { "foo", "bar", "a1", "a2", "a3", "a4" });
 
-            ReadWriteArrayList<string> list4 = new ReadWriteArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            var list4 = new ReadWriteArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1, 0);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1, 4);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "hello", "Sailor" });
 
-            ReadWriteArrayList<string> list5 = new ReadWriteArrayList<string>(new string[0]);
+            var list5 = new ReadWriteArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(array2, 0);
             CheckArray<string>(array2, new string[] { });
@@ -564,7 +564,7 @@ namespace Wintellect.PowerCollections.Tests
         public void CopyTo3()
         {
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
-            ReadWriteArrayList<string> list1 = new ReadWriteArrayList<string>(new string[] { "hello", "Sailor" });
+            var list1 = new ReadWriteArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(1, array1, 3, 1);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "glove" });
             list1.CopyTo(0, array1, 5, 1);
@@ -572,7 +572,7 @@ namespace Wintellect.PowerCollections.Tests
             list1.CopyTo(2, array1, 6, 0);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
-            ReadWriteArrayList<string> list2 = new ReadWriteArrayList<string>(new string[0]);
+            var list2 = new ReadWriteArrayList<string>(new string[0]);
             list2.CopyTo(0, array1, 1, 0);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list2.CopyTo(0, array1, 0, 0);
@@ -580,15 +580,15 @@ namespace Wintellect.PowerCollections.Tests
             list2.CopyTo(0, array1, 6, 0);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
-            ReadWriteArrayList<string> list3 = new ReadWriteArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list3 = new ReadWriteArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(1, array1, 4, 2);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "a2", "a3" });
 
-            ReadWriteArrayList<string> list4 = new ReadWriteArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            var list4 = new ReadWriteArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(0, array1, 0, 6);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
-            ReadWriteArrayList<string> list5 = new ReadWriteArrayList<string>(new string[0]);
+            var list5 = new ReadWriteArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(0, array2, 0, 0);
             CheckArray<string>(array2, new string[] { });
@@ -599,26 +599,26 @@ namespace Wintellect.PowerCollections.Tests
         public void CopyTo1ReadOnly()
         {
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
-            ReadOnlyArrayList<string> list1 = new ReadOnlyArrayList<string>(new string[] { "hello", "Sailor" });
+            var list1 = new ReadOnlyArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
-            ReadOnlyArrayList<string> list2 = new ReadOnlyArrayList<string>(new string[0]);
+            var list2 = new ReadOnlyArrayList<string>(new string[0]);
             list2.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
-            ReadOnlyArrayList<string> list3 = new ReadOnlyArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list3 = new ReadOnlyArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "a1", "a2", "a3", "a4", "the", "glove" });
 
-            ReadOnlyArrayList<string> list4 = new ReadOnlyArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            var list4 = new ReadOnlyArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "hello", "Sailor", "b3", "b4", "b5", "b6" });
 
-            ReadOnlyArrayList<string> list5 = new ReadOnlyArrayList<string>(new string[0]);
+            var list5 = new ReadOnlyArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(array2);
             CheckArray<string>(array2, new string[] { });
@@ -628,26 +628,26 @@ namespace Wintellect.PowerCollections.Tests
         public void CopyTo2ReadOnly()
         {
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
-            ReadOnlyArrayList<string> list1 = new ReadOnlyArrayList<string>(new string[] { "hello", "Sailor" });
+            var list1 = new ReadOnlyArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1, 3);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            ReadOnlyArrayList<string> list2 = new ReadOnlyArrayList<string>(new string[0]);
+            var list2 = new ReadOnlyArrayList<string>(new string[0]);
             list2.CopyTo(array1, 1);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            ReadOnlyArrayList<string> list3 = new ReadOnlyArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list3 = new ReadOnlyArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1, 2);
             CheckArray<string>(array1, new string[] { "foo", "bar", "a1", "a2", "a3", "a4" });
 
-            ReadOnlyArrayList<string> list4 = new ReadOnlyArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            var list4 = new ReadOnlyArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1, 0);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1, 4);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "hello", "Sailor" });
 
-            ReadOnlyArrayList<string> list5 = new ReadOnlyArrayList<string>(new string[0]);
+            var list5 = new ReadOnlyArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(array2, 0);
             CheckArray<string>(array2, new string[] { });
@@ -657,7 +657,7 @@ namespace Wintellect.PowerCollections.Tests
         public void CopyTo3ReadOnly()
         {
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
-            ReadOnlyArrayList<string> list1 = new ReadOnlyArrayList<string>(new string[] { "hello", "Sailor" });
+            var list1 = new ReadOnlyArrayList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(1, array1, 3, 1);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "glove" });
             list1.CopyTo(0, array1, 5, 1);
@@ -665,7 +665,7 @@ namespace Wintellect.PowerCollections.Tests
             list1.CopyTo(2, array1, 6, 0);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
-            ReadOnlyArrayList<string> list2 = new ReadOnlyArrayList<string>(new string[0]);
+            var list2 = new ReadOnlyArrayList<string>(new string[0]);
             list2.CopyTo(0, array1, 1, 0);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list2.CopyTo(0, array1, 0, 0);
@@ -673,15 +673,15 @@ namespace Wintellect.PowerCollections.Tests
             list2.CopyTo(0, array1, 6, 0);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
-            ReadOnlyArrayList<string> list3 = new ReadOnlyArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list3 = new ReadOnlyArrayList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(1, array1, 4, 2);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "a2", "a3" });
 
-            ReadOnlyArrayList<string> list4 = new ReadOnlyArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            var list4 = new ReadOnlyArrayList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(0, array1, 0, 6);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
-            ReadOnlyArrayList<string> list5 = new ReadOnlyArrayList<string>(new string[0]);
+            var list5 = new ReadOnlyArrayList<string>(new string[0]);
             string[] array2 = new string[0];
             list5.CopyTo(0, array2, 0, 0);
             CheckArray<string>(array2, new string[] { });
@@ -690,7 +690,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Find()
         {
-            ReadWriteArrayList<int> list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 4, 9 });
+            var list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 4, 9 });
             bool found;
             int result;
 
@@ -732,7 +732,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindLast()
         {
-            ReadWriteArrayList<int> list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 2, 9 });
+            var list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 2, 9 });
             bool found;
             int result;
 
@@ -774,7 +774,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindAll()
         {
-            ReadWriteArrayList<int> list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
+            var list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
             IEnumerable<int> found;
 
             found = list1.Where(delegate(int x) { return (x & 1) == 1; });
@@ -797,7 +797,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindIndex()
         {
-            ReadWriteArrayList<int> list1 = new ReadWriteArrayList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
+            var list1 = new ReadWriteArrayList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
 
             Assert.AreEqual(2, list1.FindIndex(delegate(int x) { return (x & 1) == 1; }));
             Assert.AreEqual(0, list1.FindIndex(delegate(int x) { return (x & 1) == 0; }));
@@ -824,7 +824,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindLastIndex()
         {
-            ReadWriteArrayList<int> list1 = new ReadWriteArrayList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
+            var list1 = new ReadWriteArrayList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
 
             Assert.AreEqual(4, list1.FindLastIndex(delegate(int x) { return (x & 1) == 1; }));
             Assert.AreEqual(5, list1.FindLastIndex(delegate(int x) { return (x & 1) == 0; }));
@@ -857,7 +857,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexOf()
         {
-            ReadWriteArrayList<int> list = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
+            var list = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
             int index;
 
             index = list.IndexOf(1);
@@ -926,7 +926,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexOf2()
         {
-            ReadWriteArrayList<MyDouble> list = new ReadWriteArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
+            var list = new ReadWriteArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
             int index;
 
             index = list.IndexOf(new MyDouble(1));
@@ -952,7 +952,7 @@ namespace Wintellect.PowerCollections.Tests
         public void LastIndexOf()
         {
             //                                                                        0  1  2  3  4  5  6  7   8  9 10 11 12 13 14
-            ReadWriteArrayList<int> list = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
+            var list = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
             int index;
 
             index = list.LastIndexOf(1);
@@ -1014,7 +1014,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void LastIndexOf2()
         {
-            ReadWriteArrayList<MyDouble> list = new ReadWriteArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
+            var list = new ReadWriteArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
             int index;
 
             index = list.LastIndexOf(new MyDouble(1));
@@ -1040,7 +1040,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindReadOnly()
         {
-            ReadOnlyArrayList<int> list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 4, 9 });
+            var list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 4, 9 });
             bool found;
             int result;
 
@@ -1082,7 +1082,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindLastReadOnly()
         {
-            ReadOnlyArrayList<int> list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 2, 9 });
+            var list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 2, 9 });
             bool found;
             int result;
 
@@ -1124,7 +1124,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindAllReadOnly()
         {
-            ReadOnlyArrayList<int> list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
+            var list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
             IEnumerable<int> found;
 
             found = list1.Where(delegate(int x) { return (x & 1) == 1; });
@@ -1147,7 +1147,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindIndexReadOnly()
         {
-            ReadOnlyArrayList<int> list1 = new ReadOnlyArrayList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
+            var list1 = new ReadOnlyArrayList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
 
             Assert.AreEqual(2, list1.FindIndex(delegate(int x) { return (x & 1) == 1; }));
             Assert.AreEqual(0, list1.FindIndex(delegate(int x) { return (x & 1) == 0; }));
@@ -1174,7 +1174,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindLastIndexReadOnly()
         {
-            ReadOnlyArrayList<int> list1 = new ReadOnlyArrayList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
+            var list1 = new ReadOnlyArrayList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
 
             Assert.AreEqual(4, list1.FindLastIndex(delegate(int x) { return (x & 1) == 1; }));
             Assert.AreEqual(5, list1.FindLastIndex(delegate(int x) { return (x & 1) == 0; }));
@@ -1207,7 +1207,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexOfReadOnly()
         {
-            ReadOnlyArrayList<int> list = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
+            var list = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
             int index;
 
             index = list.IndexOf(1);
@@ -1258,7 +1258,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexOf2ReadOnly()
         {
-            ReadOnlyArrayList<MyDouble> list = new ReadOnlyArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
+            var list = new ReadOnlyArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
             int index;
 
             index = list.IndexOf(new MyDouble(1));
@@ -1284,7 +1284,7 @@ namespace Wintellect.PowerCollections.Tests
         public void LastIndexOfReadOnly()
         {
             //                                                                        0  1  2  3  4  5  6  7   8  9 10 11 12 13 14
-            ReadOnlyArrayList<int> list = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
+            var list = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
             int index;
 
             index = list.LastIndexOf(1);
@@ -1346,7 +1346,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void LastIndexOf2ReadOnly()
         {
-            ReadOnlyArrayList<MyDouble> list = new ReadOnlyArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
+            var list = new ReadOnlyArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
             int index;
 
             index = list.LastIndexOf(new MyDouble(1));

@@ -26,7 +26,7 @@ namespace Wintellect.PowerCollections.Tests
         public void AppendItem()
         {
             const int SIZE = 8000;
-            BigList<int> biglist1 = new BigList<int>();
+            var biglist1 = new BigList<int>();
             int i;
 
             for (i = 1; i <= SIZE; ++i) {
@@ -68,7 +68,7 @@ namespace Wintellect.PowerCollections.Tests
         public void PrependItem()
         {
             const int SIZE = 8000;
-            BigList<int> biglist1 = new BigList<int>();
+            var biglist1 = new BigList<int>();
             int i;
 
             for (i = 1; i <= SIZE; ++i) {
@@ -144,7 +144,7 @@ namespace Wintellect.PowerCollections.Tests
         public void CreateFromEnumerable2()
         {
             int[] array = new int[0];
-            BigList<int> biglist1 = new BigList<int>(array);
+            var biglist1 = new BigList<int>(array);
             Assert.AreEqual(0, biglist1.Count);
         }
 
@@ -152,7 +152,7 @@ namespace Wintellect.PowerCollections.Tests
         public void AppendAll()
         {
             const int SIZE = 8000;
-            BigList<int> biglist1 = new BigList<int>();
+            var biglist1 = new BigList<int>();
 
             int i = 1, j = 0;
             while (i <= SIZE) {
@@ -201,7 +201,7 @@ namespace Wintellect.PowerCollections.Tests
         public void PrependAll()
         {
             const int SIZE = 8000;
-            BigList<int> biglist1 = new BigList<int>();
+            var biglist1 = new BigList<int>();
 
             int i = 1, j = 0;
             while (i <= SIZE) {
@@ -250,14 +250,14 @@ namespace Wintellect.PowerCollections.Tests
         public void AppendBigList()
         {
             const int SIZE = 8000;
-            BigList<int> biglist1 = new BigList<int>();
+            var biglist1 = new BigList<int>();
 
             int i = 1, j = 0;
             while (i <= SIZE) {
                 int[] array = new int[j];
                 for (int x = 0; x < j; ++x)
                     array[x] = i + x;
-                BigList<int> biglistOther = new BigList<int>(array);
+                var biglistOther = new BigList<int>(array);
                 if (j % 3 == 0)
                     biglistOther.Clone();
                 biglist1.AddRange(biglistOther);
@@ -302,14 +302,14 @@ namespace Wintellect.PowerCollections.Tests
         public void AppendBigList2()
         {
             const int SIZE = 8000;
-            BigList<int> biglist1 = new BigList<int>();
+            var biglist1 = new BigList<int>();
 
             biglist1.Add(1);
             biglist1.Add(2);
             int i = 3, j = 11;
             while (i <= SIZE) {
                 int[] array = new int[j];
-                BigList<int> biglistOther = new BigList<int>();
+                var biglistOther = new BigList<int>();
                 for (int x = 0; x < j; ++x)
                     biglistOther.AddToFront(i + (j - x - 1));
                 if (j % 7 == 0)
@@ -356,14 +356,14 @@ namespace Wintellect.PowerCollections.Tests
         public void PrependBigList()
         {
             const int SIZE = 8000;
-            BigList<int> biglist1 = new BigList<int>();
+            var biglist1 = new BigList<int>();
 
             int i = 1, j = 0;
             while (i <= SIZE) {
                 int[] array = new int[j];
                 for (int x = 0; x < j; ++x)
                     array[j - x - 1] = i + x;
-                BigList<int> biglistOther = new BigList<int>(array);
+                var biglistOther = new BigList<int>(array);
                 if (j % 3 == 0)
                     biglistOther.Clone();
                 biglist1.AddRangeToFront(biglistOther);
@@ -408,14 +408,14 @@ namespace Wintellect.PowerCollections.Tests
         public void AddBigListEnd()
         {
             const int SIZE = 8000;
-            BigList<int> biglist1 = new BigList<int>();
+            var biglist1 = new BigList<int>();
 
             int i = 1, j = 0;
             while (i <= SIZE) {
                 int[] array = new int[j];
                 for (int x = 0; x < j; ++x)
                     array[x] = i + x;
-                BigList<int> biglistOther = new BigList<int>(array);
+                var biglistOther = new BigList<int>(array);
                 if (j % 3 == 0)
                     biglistOther.Clone();
                 biglist1 = biglist1 + biglistOther;
@@ -460,14 +460,14 @@ namespace Wintellect.PowerCollections.Tests
         public void AddBigListBeginning()
         {
             const int SIZE = 8000;
-            BigList<int> biglist1 = new BigList<int>();
+            var biglist1 = new BigList<int>();
 
             int i = 1, j = 0;
             while (i <= SIZE) {
                 int[] array = new int[j];
                 for (int x = 0; x < j; ++x)
                     array[j - x - 1] = i + x;
-                BigList<int> biglistOther = new BigList<int>(array);
+                var biglistOther = new BigList<int>(array);
                 if (j % 3 == 0)
                     biglistOther.Clone();
                 biglist1 = biglistOther + biglist1;
@@ -1076,7 +1076,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveAt()
         {
-            BigList<int> list1 = new BigList<int>();
+            var list1 = new BigList<int>();
             for (int i = 0; i < 100; ++i)
                 list1.Add(i);
 
@@ -1106,7 +1106,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveRange()
         {
-            BigList<int> list1 = new BigList<int>();
+            var list1 = new BigList<int>();
             for (int i = 0; i < 200; ++i)
                 list1.Add(i);
 
@@ -1228,7 +1228,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void AddToSelf()
         {
-            BigList<int> list1 = new BigList<int>();
+            var list1 = new BigList<int>();
 
             for (int i = 0; i < 20; ++i)
                 list1.Add(i);
@@ -1299,7 +1299,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GenericIListInterface()
         {
-            BigList<int> list = new BigList<int>();
+            var list = new BigList<int>();
             int[] array = new int[0];
             InterfaceTests.TestReadWriteListGeneric<int>((IList<int>)list, array);
 
@@ -1319,7 +1319,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IListInterface()
         {
-            BigList<int> list = new BigList<int>();
+            var list = new BigList<int>();
             int[] array = new int[0];
             InterfaceTests.TestReadWriteList<int>((IList)list, array);
 
@@ -1435,7 +1435,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            BigList<MyInt> list1 = new BigList<MyInt>();
+            var list1 = new BigList<MyInt>();
 
             list1.Add(new MyInt(143));
             list1.Add(new MyInt(2));
@@ -1446,11 +1446,11 @@ namespace Wintellect.PowerCollections.Tests
             BigList<MyInt> list2 = list1.CloneContents();
             CompareClones(list1, list2);
 
-            BigList<int> list3 = new BigList<int>(new int[] { 144, 5, 23, 1, 0, 8 });
+            var list3 = new BigList<int>(new int[] { 144, 5, 23, 1, 0, 8 });
             BigList<int> list4 = list3.CloneContents();
             CompareClones(list3, list4);
 
-            BigList<UtilTests.CloneableStruct> list5 = new BigList<UtilTests.CloneableStruct>();
+            var list5 = new BigList<UtilTests.CloneableStruct>();
             list5.Add(new UtilTests.CloneableStruct(143));
             list5.Add(new UtilTests.CloneableStruct(5));
             list5.Add(new UtilTests.CloneableStruct(23));
@@ -1477,7 +1477,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            BigList<NotCloneable> list1 = new BigList<NotCloneable>();
+            var list1 = new BigList<NotCloneable>();
 
             list1.Add(new NotCloneable());
             list1.Add(new NotCloneable());
@@ -1667,7 +1667,7 @@ namespace Wintellect.PowerCollections.Tests
             result = list1.All(delegate(int x) { return false; });
             Assert.IsTrue(result);
 
-            List<int> list2 = new List<int>();
+            var list2 = new List<int>();
             result = list2.TrueForAll(delegate(int x) { return false; });
             Assert.IsTrue(result);
         }
@@ -1698,7 +1698,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Find()
         {
-            BigList<int> list1 = new BigList<int>(new int[] { 4, 8, 1, 3, 4, 9 });
+            var list1 = new BigList<int>(new int[] { 4, 8, 1, 3, 4, 9 });
             bool found;
             int result;
 
@@ -1740,7 +1740,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindLast()
         {
-            BigList<int> list1 = new BigList<int>(new int[] { 4, 8, 1, 3, 2, 9 });
+            var list1 = new BigList<int>(new int[] { 4, 8, 1, 3, 2, 9 });
             bool found;
             int result;
 
@@ -1782,7 +1782,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindAll()
         {
-            BigList<int> list1 = new BigList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
+            var list1 = new BigList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
             IEnumerable<int> found;
 
             found = list1.Where(delegate(int x) { return (x & 1) == 1; });
@@ -1805,7 +1805,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindIndex()
         {
-            BigList<int> list1 = new BigList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
+            var list1 = new BigList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
 
             Assert.AreEqual(2, list1.FindIndex(delegate(int x) { return (x & 1) == 1; }));
             Assert.AreEqual(0, list1.FindIndex(delegate(int x) { return (x & 1) == 0; }));
@@ -1832,7 +1832,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindLastIndex()
         {
-            BigList<int> list1 = new BigList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
+            var list1 = new BigList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
 
             Assert.AreEqual(4, list1.FindLastIndex(delegate(int x) { return (x & 1) == 1; }));
             Assert.AreEqual(5, list1.FindLastIndex(delegate(int x) { return (x & 1) == 0; }));
@@ -1865,7 +1865,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexOf()
         {
-            BigList<int> list = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
+            var list = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
             int index;
 
             index = list.IndexOf(1);
@@ -1934,7 +1934,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexOf2()
         {
-            BigList<MyDouble> list = new BigList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9)});
+            var list = new BigList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9)});
             int index;
 
             index = list.IndexOf(new MyDouble(1));
@@ -1960,7 +1960,7 @@ namespace Wintellect.PowerCollections.Tests
         public void LastIndexOf()
         {
             //                                                                        0  1  2  3  4  5  6  7   8  9 10 11 12 13 14
-            BigList<int> list = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
+            var list = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
             int index;
 
             index = list.LastIndexOf(1);
@@ -2022,7 +2022,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void LastIndexOf2()
         {
-            BigList<MyDouble> list = new BigList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
+            var list = new BigList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
             int index;
 
             index = list.LastIndexOf(new MyDouble(1));
@@ -2047,7 +2047,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Range()
         {
-            BigList<int> main = new BigList<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
+            var main = new BigList<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
             IList<int> range = main.Range(2, 4);
 
             InterfaceTests.TestListGeneric(range, new int[] { 2, 3, 4, 5 }, null);
@@ -2095,7 +2095,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RangeExceptions()
         {
-            BigList<int> list = new BigList<int>(new int[] { 1 }, 100);
+            var list = new BigList<int>(new int[] { 1 }, 100);
             IList<int> range;
 
             try {
@@ -2183,23 +2183,23 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Reverse()
         {
-            BigList<string> list1 = new BigList<string>();
+            var list1 = new BigList<string>();
             list1.Reverse();
             InterfaceTests.TestEnumerableElements(list1, new string[0]);
 
-            BigList<string> list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            var list2 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             list2.Reverse();
             InterfaceTests.TestListGeneric<string>(list2, new string[] { "glove", "the", "smell", "baz", "bar", "foo" }, null);
 
-            BigList<string> list3 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
+            var list3 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
             list3.Reverse();
             InterfaceTests.TestListGeneric<string>(list3, new string[] { "glove", "the", "smell", "baz", "foo" }, null);
 
-            BigList<string> list4 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
+            var list4 = new BigList<string>(new string[] { "foo", "baz", "smell", "the", "glove" });
             list4.Reverse(1, 4);
             InterfaceTests.TestListGeneric<string>(list4, new string[] { "foo", "glove", "the", "smell", "baz" }, null);
 
-            BigList<string> list5 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
+            var list5 = new BigList<string>(new string[] { "foo", "bar", "baz", "smell", "the", "glove" });
             list5.Reverse(3, 2);
             InterfaceTests.TestListGeneric<string>(list5, new string[] { "foo", "bar", "baz", "the", "smell", "glove" }, null);
         }
@@ -2216,26 +2216,26 @@ namespace Wintellect.PowerCollections.Tests
         public void CopyTo1()
         {
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
-            BigList<string> list1 = new BigList<string>(new string[] { "hello", "Sailor" });
+            var list1 = new BigList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
-            BigList<string> list2 = new BigList<string>();
+            var list2 = new BigList<string>();
             list2.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "hello", "Sailor", "baz", "smell", "the", "glove" });
 
-            BigList<string> list3 = new BigList<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list3 = new BigList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "a1", "a2", "a3", "a4", "the", "glove" });
 
-            BigList<string> list4 = new BigList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            var list4 = new BigList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1);
             CheckArray<string>(array1, new string[] { "hello", "Sailor", "b3", "b4", "b5", "b6" });
 
-            BigList<string> list5 = new BigList<string>();
+            var list5 = new BigList<string>();
             string[] array2 = new string[0];
             list5.CopyTo(array2);
             CheckArray<string>(array2, new string[] { });
@@ -2245,26 +2245,26 @@ namespace Wintellect.PowerCollections.Tests
         public void CopyTo2()
         {
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
-            BigList<string> list1 = new BigList<string>(new string[] { "hello", "Sailor" });
+            var list1 = new BigList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(array1, 3);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            BigList<string> list2 = new BigList<string>();
+            var list2 = new BigList<string>();
             list2.CopyTo(array1, 1);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            BigList<string> list3 = new BigList<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list3 = new BigList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(array1, 2);
             CheckArray<string>(array1, new string[] { "foo", "bar", "a1", "a2", "a3", "a4" });
 
-            BigList<string> list4 = new BigList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            var list4 = new BigList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(array1, 0);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
             list1.CopyTo(array1, 4);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "hello", "Sailor" });
 
-            BigList<string> list5 = new BigList<string>();
+            var list5 = new BigList<string>();
             string[] array2 = new string[0];
             list5.CopyTo(array2, 0);
             CheckArray<string>(array2, new string[] {  });
@@ -2274,7 +2274,7 @@ namespace Wintellect.PowerCollections.Tests
         public void CopyTo3()
         {
             string[] array1 = { "foo", "bar", "baz", "smell", "the", "glove" };
-            BigList<string> list1 = new BigList<string>(new string[] { "hello", "Sailor" });
+            var list1 = new BigList<string>(new string[] { "hello", "Sailor" });
             list1.CopyTo(1, array1, 3, 1);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "glove" });
             list1.CopyTo(0, array1, 5, 1);
@@ -2282,7 +2282,7 @@ namespace Wintellect.PowerCollections.Tests
             list1.CopyTo(2, array1, 6, 0);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
-            BigList<string> list2 = new BigList<string>();
+            var list2 = new BigList<string>();
             list2.CopyTo(0, array1, 1, 0);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
             list2.CopyTo(0, array1, 0, 0);
@@ -2290,15 +2290,15 @@ namespace Wintellect.PowerCollections.Tests
             list2.CopyTo(0, array1, 6, 0);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "the", "hello" });
 
-            BigList<string> list3 = new BigList<string>(new string[] { "a1", "a2", "a3", "a4" });
+            var list3 = new BigList<string>(new string[] { "a1", "a2", "a3", "a4" });
             list3.CopyTo(1, array1, 4, 2);
             CheckArray<string>(array1, new string[] { "foo", "bar", "baz", "Sailor", "a2", "a3" });
 
-            BigList<string> list4 = new BigList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
+            var list4 = new BigList<string>(new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
             list4.CopyTo(0, array1, 0, 6);
             CheckArray<string>(array1, new string[] { "b1", "b2", "b3", "b4", "b5", "b6" });
 
-            BigList<string> list5 = new BigList<string>();
+            var list5 = new BigList<string>();
             string[] array2 = new string[0];
             list5.CopyTo(0, array2, 0, 0);
             CheckArray<string>(array2, new string[] { });
@@ -2307,7 +2307,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FailFastEnumerator()
         {
-            BigList<string> biglist1 = new BigList<string>(new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" });
+            var biglist1 = new BigList<string>(new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" });
             int i = 0;
 
             try {
@@ -2383,7 +2383,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveAll()
         {
-            BigList<double> d_list = new BigList<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
+            var d_list = new BigList<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             ICollection<double> removed;
 
             removed = d_list.RemoveAll(delegate(double d) { return Math.Abs(d) > 5; });
@@ -2413,10 +2413,10 @@ namespace Wintellect.PowerCollections.Tests
             const int MAX = 30;
             const int ITER = 1000;
 
-            Random rand = new Random(12);
+            var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
-                BigList<int> list = new BigList<int>();
+                var list = new BigList<int>();
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(rand.Next(MAX));
@@ -2452,7 +2452,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void BinarySearch2()
         {
-            BigList<String> list = new BigList<String>(new String[] { "foo", "Giraffe", "gorge", "HELLO", "hello", "number", "NUMber", "ooze" });
+            var list = new BigList<String>(new String[] { "foo", "Giraffe", "gorge", "HELLO", "hello", "number", "NUMber", "ooze" });
             int index;
 
             index = list.BinarySearch("GIRAFFE", StringComparer.InvariantCultureIgnoreCase);
@@ -2479,10 +2479,10 @@ namespace Wintellect.PowerCollections.Tests
             const int MAX = 750;
             const int ITER = 100;
 
-            Random rand = new Random(12);
+            var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
-                BigList<int> list = new BigList<int>();
+                var list = new BigList<int>();
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(rand.Next(MAX));
@@ -2507,10 +2507,10 @@ namespace Wintellect.PowerCollections.Tests
                 return x.CompareTo(y);
             };
 
-            Random rand = new Random(12);
+            var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
-                BigList<double> list = new BigList<double>();
+                var list = new BigList<double>();
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(rand.NextDouble() - 0.5);
@@ -2531,11 +2531,11 @@ namespace Wintellect.PowerCollections.Tests
             const int SIZE = 17;
             const int ITER = 500;
 
-            Random rand = new Random(12);
+            var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
                 IComparer<string> comp = (iter % 2 == 0) ? StringComparer.InvariantCultureIgnoreCase : StringComparer.Ordinal;
-                BigList<string> list = new BigList<string>();
+                var list = new BigList<string>();
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(strings[rand.Next(strings.Length)]);
@@ -2551,7 +2551,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Sort4()
         {
-            BigList<int> list = new BigList<int>(new int[] { });
+            var list = new BigList<int>(new int[] { });
             list.Sort();
             InterfaceTests.TestEnumerableElements(list, new int[] { });
 
@@ -2625,7 +2625,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void TooLarge()
         {
-            BigList<int> listMaxSize = new BigList<int>(new int[] { 6 }, int.MaxValue - 1);
+            var listMaxSize = new BigList<int>(new int[] { 6 }, int.MaxValue - 1);
             Assert.AreEqual(int.MaxValue - 1, listMaxSize.Count);
 
             try {
@@ -2724,7 +2724,7 @@ namespace Wintellect.PowerCollections.Tests
             const int NUMLISTS = 8;
             const int ITER = 20000;
 
-            Random rand = new Random(13);
+            var rand = new Random(13);
             BigList<int>[] biglists = new BigList<int>[NUMLISTS];
             List<int>[] lists = new List<int>[NUMLISTS];
             for (int i = 0; i < NUMLISTS; ++i) {
@@ -2771,7 +2771,7 @@ namespace Wintellect.PowerCollections.Tests
                     whichlist2 = rand.Next(NUMLISTS);
                     whichlist3 = rand.Next(NUMLISTS);
                     biglists[whichlist1] = biglists[whichlist2] + biglists[whichlist3];
-                    List<int> temp = new List<int>(lists[whichlist2]);
+                    var temp = new List<int>(lists[whichlist2]);
                     temp.AddRange(lists[whichlist3]);
                     lists[whichlist1] = temp;
                     break;
@@ -2916,7 +2916,7 @@ namespace Wintellect.PowerCollections.Tests
     [TestMethod]
     public void SerializeStrings()
     {
-        BigList<string> d = new BigList<string>();
+        var d = new BigList<string>();
 
         d.AddToFront("foo");
         d.Add("world");
@@ -2928,7 +2928,7 @@ namespace Wintellect.PowerCollections.Tests
         d.AddRange(new string[] { "1", "2", "3", "4", "5", "6" });
         d.AddRange(new string[] { "7", "8", "9", "10", "11", "12" });
 
-        BigList<string> result = (BigList<string>)InterfaceTests.SerializeRoundTrip(d);
+        var result = (BigList<string>)InterfaceTests.SerializeRoundTrip(d);
 
         InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)result, new string[] { "cool", "elvis", "hello", "foo", "world", "elvis", null, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
 

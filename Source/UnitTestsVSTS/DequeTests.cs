@@ -29,11 +29,11 @@ namespace Wintellect.PowerCollections.Tests
         public void RandomInsertDelete()
         {
             const int ITER = 2000, LOOP = 15;
-            Random rand = new Random(13);
+            var rand = new Random(13);
 
             for (int loop = 0; loop < LOOP; ++loop) {
-                Deque<int> deque = new Deque<int>();
-                List<int> list = new List<int>();
+                var deque = new Deque<int>();
+                var list = new List<int>();
                 for (int iter = 0; iter < ITER; ++iter) {
                     //Console.Write("Loop {0}, Iteration {1}: ", loop, iter);
                     if (rand.Next(100) < 45) {
@@ -66,11 +66,11 @@ namespace Wintellect.PowerCollections.Tests
         public void RandomInsertDeleteRange()
         {
             const int ITER = 2000, LOOP = 15;
-            Random rand = new Random(13);
+            var rand = new Random(13);
 
             for (int loop = 0; loop < LOOP; ++loop) {
-                Deque<int> deque = new Deque<int>();
-                List<int> list = new List<int>();
+                var deque = new Deque<int>();
+                var list = new List<int>();
                 for (int iter = 0; iter < ITER; ++iter) {
                    //Console.Write("Loop {0}, Iteration {1}: ", loop, iter);
                     if (rand.Next(100) < 45) {
@@ -116,11 +116,11 @@ namespace Wintellect.PowerCollections.Tests
         public void RandomAddRemoveFrontBack()
         {
             const int ITER = 2000, LOOP = 15;
-            Random rand = new Random(13);
+            var rand = new Random(13);
 
             for (int loop = 0; loop < LOOP; ++loop) {
-                Deque<int> deque = new Deque<int>();
-                List<int> list = new List<int>();
+                var deque = new Deque<int>();
+                var list = new List<int>();
                 for (int iter = 0; iter < ITER; ++iter) {
                     //Console.Write("Loop {0}, Iteration {1}: ", loop, iter);
                     if (rand.Next(100) < 45 && list.Count > 0) {
@@ -179,7 +179,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GenericIListInterface()
         {
-            Deque<string> d = new Deque<string>();
+            var d = new Deque<string>();
 
             d.AddToFront("foo");
             d.AddToBack("world");
@@ -195,7 +195,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IListInterface()
         {
-            Deque<string> d = new Deque<string>();
+            var d = new Deque<string>();
 
             d.AddToFront("foo");
             d.AddToBack("world");
@@ -211,7 +211,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Insert()
         {
-            Deque<string> d = new Deque<string>();
+            var d = new Deque<string>();
 
             d.Insert(0, "a");
             d.Insert(1, "b");
@@ -242,7 +242,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void InsertExceptions()
         {
-            Deque<string> d = new Deque<string>();
+            var d = new Deque<string>();
 
             d.AddToFront("foo");
             d.AddToBack("world");
@@ -288,7 +288,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveAt()
         {
-            Deque<string> d = new Deque<string>();
+            var d = new Deque<string>();
 
             d.Insert(0, "a");
             d.Insert(1, "b");
@@ -325,7 +325,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveAtExceptions()
         {
-            Deque<string> d = new Deque<string>();
+            var d = new Deque<string>();
 
             d.AddToFront("foo");
             d.AddToBack("world");
@@ -371,7 +371,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Indexer()
         {
-            Deque<string> d = new Deque<string>();
+            var d = new Deque<string>();
 
             d.AddToFront("c");
             d.AddToFront("b");
@@ -405,7 +405,7 @@ namespace Wintellect.PowerCollections.Tests
         public void IndexerExceptions()
         {
             string s = "foo";
-            Deque<string> d = new Deque<string>();
+            var d = new Deque<string>();
 
             d.AddToFront("c");
             d.AddToFront("b");
@@ -538,7 +538,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void EmptyExceptions()
         {
-            Deque<double> d = new Deque<double>();
+            var d = new Deque<double>();
 
             try {
                 d.GetAtFront();
@@ -612,7 +612,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void AddMany()
         {
-            Deque<string> deque1 = new Deque<string>(new string[] { "A", "B", "C", "D" });
+            var deque1 = new Deque<string>(new string[] { "A", "B", "C", "D" });
             deque1.AddManyToFront(new string[] { "Q", "R", "S" });
             deque1.AddManyToBack(new string[] { "L", "M", "N", "O" });
             InterfaceTests.TestReadWriteListGeneric(deque1, new string[] { "Q", "R", "S", "A", "B", "C", "D", "L", "M", "N", "O" });
@@ -621,7 +621,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FailFastEnumerator()
         {
-            Deque<string> deque1 = new Deque<string>(new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" });
+            var deque1 = new Deque<string>(new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" });
             int i = 0;
 
             try {
@@ -697,18 +697,18 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Initialize()
         {
-            Deque<string> deque1 = new Deque<string>(new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" });
+            var deque1 = new Deque<string>(new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" });
             InterfaceTests.TestReadWriteListGeneric(deque1, new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" });
-            Deque<string> deque2 = new Deque<string>(new string[] {});
+            var deque2 = new Deque<string>(new string[] {});
             InterfaceTests.TestReadWriteListGeneric(deque2, new string[] {});
-            Deque<string> deque3 = new Deque<string>();
+            var deque3 = new Deque<string>();
             InterfaceTests.TestReadWriteListGeneric(deque3, new string[] {});
         }
 
         [TestMethod]
         public void Capacity()
         {
-            Deque<int> deque1 = new Deque<int>();
+            var deque1 = new Deque<int>();
 
             Assert.AreEqual(0, deque1.Capacity);
             deque1.Add(4);
@@ -757,7 +757,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void TrimToSize()
         {
-            Deque<int> deque1 = new Deque<int>();
+            var deque1 = new Deque<int>();
             deque1.TrimToSize();
             Assert.AreEqual(deque1.Count, deque1.Capacity);
 
@@ -772,7 +772,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveRangeExceptions()
         {
-            Deque<int> deque1 = new Deque<int>();
+            var deque1 = new Deque<int>();
             for (int i = 0; i < 100; ++i)
                 deque1.AddToBack(i);
 
@@ -948,7 +948,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            Deque<MyInt> deque1 = new Deque<MyInt>();
+            var deque1 = new Deque<MyInt>();
 
             deque1.Add(new MyInt(143));
             deque1.Add(new MyInt(2));
@@ -959,12 +959,12 @@ namespace Wintellect.PowerCollections.Tests
             Deque<MyInt> deque2 = deque1.CloneContents();
             CompareClones(deque1, deque2);
 
-            Deque<int> deque3 = new Deque<int>(new int[] { 144, 5, 23 });
+            var deque3 = new Deque<int>(new int[] { 144, 5, 23 });
             deque3.InsertRange(1, new int[] { 7, 5, 11, 109 });
             Deque<int> deque4 = deque3.CloneContents();
             CompareClones(deque3, deque4);
 
-            Deque<UtilTests.CloneableStruct> deque5 = new Deque<UtilTests.CloneableStruct>();
+            var deque5 = new Deque<UtilTests.CloneableStruct>();
             deque5.Add(new UtilTests.CloneableStruct(143));
             deque5.AddToFront(new UtilTests.CloneableStruct(5));
             deque5.Add(new UtilTests.CloneableStruct(23));
@@ -991,7 +991,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            Deque<NotCloneable> deque1 = new Deque<NotCloneable>();
+            var deque1 = new Deque<NotCloneable>();
 
             deque1.Add(new NotCloneable());
             deque1.Add(new NotCloneable());
@@ -1002,7 +1002,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Range()
         {
-            Deque<int> main = new Deque<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
+            var main = new Deque<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
             IList<int> range = main.Range(2, 4);
 
             InterfaceTests.TestListGeneric(range, new int[] { 2, 3, 4, 5 }, null);
@@ -1050,7 +1050,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RangeExceptions()
         {
-            Deque<int> deque = new Deque<int>();
+            var deque = new Deque<int>();
             IList<int> range;
 
             for (int i = 0; i < 50; ++i)
@@ -1143,7 +1143,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeStrings()
         {
-            Deque<string> d = new Deque<string>();
+            var d = new Deque<string>();
 
             d.AddToFront("foo");
             d.AddToBack("world");
@@ -1155,7 +1155,7 @@ namespace Wintellect.PowerCollections.Tests
             d.AddManyToFront(new string[] { "1", "2", "3", "4", "5", "6" });
             d.AddManyToBack(new string[] { "7", "8", "9", "10", "11", "12" });
 
-            Deque<string> result = (Deque<string>) InterfaceTests.SerializeRoundTrip(d);
+            var result = (Deque<string>) InterfaceTests.SerializeRoundTrip(d);
 
             InterfaceTests.TestReadWriteListGeneric<string>((IList<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "cool", "elvis", "hello", "foo", "world", "elvis", null, "7", "8", "9", "10", "11", "12" });
 

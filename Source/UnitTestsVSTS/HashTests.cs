@@ -381,7 +381,7 @@ namespace Wintellect.PowerCollections.Tests
         public void DeleteNotPresent()
         {
             int dummy;
-            Hash<int> t = new Hash<int>(EqualityComparer<int>.Default);
+            var t = new Hash<int>(EqualityComparer<int>.Default);
 
             t.Insert(3, true, out dummy);
             t.Insert(1, true, out dummy);
@@ -479,7 +479,7 @@ namespace Wintellect.PowerCollections.Tests
         /// <returns></returns>
         private int[] CreateRandomArray(int seed, int length, int max, bool allowDups)
         {
-            Random rand = new Random(seed);
+            var rand = new Random(seed);
 
             int[] a = new int[length];
             for (int i = 0; i < a.Length; ++i)
@@ -607,7 +607,7 @@ namespace Wintellect.PowerCollections.Tests
                 hash = new Hash<TestItem>(new DataComparer());
                 bool[] a = new bool[LENGTH];
                 int[] value = new int[LENGTH];
-                Random rand = new Random(iter + 5000);
+                var rand = new Random(iter + 5000);
                 TestItem itemFound;
 
                 for (int i = 0; i < LENGTH * 10; ++i) {
@@ -717,10 +717,10 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GrowShrink()
         {
-            Hash<double> hash1 = new Hash<double>(EqualityComparer<double>.Default);
+            var hash1 = new Hash<double>(EqualityComparer<double>.Default);
             double dummy;
 
-            Random r = new Random(13);
+            var r = new Random(13);
 
             for (int i = 0; i < 1000; ++i) {
                 bool b = hash1.Insert(r.NextDouble(), true, out dummy);
@@ -780,10 +780,10 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void LoadFactor()
         {
-            Hash<double> hash1 = new Hash<double>(EqualityComparer<double>.Default);
+            var hash1 = new Hash<double>(EqualityComparer<double>.Default);
             double dummy;
 
-            Random r = new Random(13);
+            var r = new Random(13);
 
             for (int i = 0; i < 600; ++i) {
                 bool b = hash1.Insert(r.NextDouble(), true, out dummy);

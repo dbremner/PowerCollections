@@ -57,7 +57,7 @@ namespace Wintellect.PowerCollections.Tests
             {
                 if (! (other is CloneableStruct))
                     return false;
-                CloneableStruct o = (CloneableStruct)other;
+                var o = (CloneableStruct)other;
 
                 return (o.value == value);
             }

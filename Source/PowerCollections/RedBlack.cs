@@ -130,7 +130,7 @@ namespace Wintellect.PowerCollections
             /// <returns>The cloned node.</returns>
             public Node Clone()
             {
-                Node newNode = new Node();
+                var newNode = new Node();
                 newNode.item = item;
 
                 newNode.count = count;
@@ -195,7 +195,7 @@ namespace Wintellect.PowerCollections
         /// <returns>Clone version of this tree.</returns>
         public RedBlackTree<T> Clone()
         {
-            RedBlackTree<T> newTree = new RedBlackTree<T>(comparer);
+            var newTree = new RedBlackTree<T>(comparer);
             newTree.count = this.count;
             if (this.root != null)
                 newTree.root = this.root.Clone();

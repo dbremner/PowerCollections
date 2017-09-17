@@ -55,7 +55,7 @@ namespace Wintellect.PowerCollections
         /// <returns>A new KeyValuePair.</returns>
         private static KeyValuePair<T, int> NewPair(T item, int count)
         {
-            KeyValuePair<T, int> pair = new KeyValuePair<T,int>(item, count);
+            var pair = new KeyValuePair<T,int>(item, count);
             return pair;
         }
 
@@ -66,7 +66,7 @@ namespace Wintellect.PowerCollections
         /// <returns>A new KeyValuePair.</returns>
         private static KeyValuePair<T, int> NewPair(T item)
         {
-            KeyValuePair<T, int> pair = new KeyValuePair<T, int>(item, 0);
+            var pair = new KeyValuePair<T, int>(item, 0);
             return pair;
         }
 
@@ -165,7 +165,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The cloned bag.</returns>
         public Bag<T> Clone()
         {
-            Bag<T> newBag = new Bag<T>(equalityComparer, keyEqualityComparer, hash.Clone(null), count);
+            var newBag = new Bag<T>(equalityComparer, keyEqualityComparer, hash.Clone(null), count);
             return newBag;
         }
 
@@ -185,7 +185,7 @@ namespace Wintellect.PowerCollections
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))
                 throw new InvalidOperationException(string.Format(Strings.TypeNotCloneable, typeof(T).FullName));
 
-            Hash<KeyValuePair<T,int>> newHash = new Hash<KeyValuePair<T,int>>(equalityComparer);
+            var newHash = new Hash<KeyValuePair<T,int>>(equalityComparer);
 
             // Clone each item, and add it to the new ordered bag.
             foreach (KeyValuePair<T, int> pair in hash) {
@@ -820,7 +820,7 @@ namespace Wintellect.PowerCollections
             }
 
             KeyValuePair<T,int> dummy;
-            Hash<KeyValuePair<T, int>> newHash = new Hash<KeyValuePair<T, int>>(equalityComparer);
+            var newHash = new Hash<KeyValuePair<T, int>>(equalityComparer);
             int newCount = 0;
             int copiesInSmaller, copiesInLarger, copies;
 

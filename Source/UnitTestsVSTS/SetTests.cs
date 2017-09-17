@@ -21,8 +21,8 @@ namespace Wintellect.PowerCollections.Tests
         {
             const int SIZE = 50000;
             bool[] present = new bool[SIZE];
-            Random rand = new Random();
-            Set<int> set1 = new Set<int>();
+            var rand = new Random();
+            var set1 = new Set<int>();
             bool b;
 
             // Add and delete values at random.
@@ -66,7 +66,7 @@ namespace Wintellect.PowerCollections.Tests
         public void ICollectionInterface()
         {
             string[] s_array = { "Foo", "Eric", "Clapton", "hello", "goodbye", "C#" };
-            Set<string> set1 = new Set<string>();
+            var set1 = new Set<string>();
 
             foreach (string s in s_array)
                 set1.Add(s);
@@ -80,7 +80,7 @@ namespace Wintellect.PowerCollections.Tests
         public void GenericICollectionInterface()
         {
             string[] s_array = { "Foo", "Eric", "Clapton", "hello", "goodbye", "C#", "Java" };
-            Set<string> set1 = new Set<string>();
+            var set1 = new Set<string>();
 
             foreach (string s in s_array)
                 set1.Add(s);
@@ -92,7 +92,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Add()
         {
-            Set<string> set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
             bool b;
 
             b = set1.Add("hello"); Assert.IsFalse(b);
@@ -111,7 +111,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CountAndClear()
         {
-            Set<string> set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
 
             Assert.AreEqual(0, set1.Count);
             set1.Add("hello"); Assert.AreEqual(1, set1.Count);
@@ -136,7 +136,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Remove()
         {
-            Set<string> set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
             bool b;
 
             b = set1.Remove("Eric"); Assert.IsFalse(b);
@@ -161,7 +161,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void TryGetItem()
         {
-            Set<string> set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
             bool b;
             string s;
 
@@ -185,7 +185,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void AddMany()
         {
-            Set<string> set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
             set1.Add("foo");
             set1.Add("Eric");
             set1.Add("Clapton");
@@ -198,7 +198,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveMany()
         {
-            Set<string> set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
 
             set1.Add("foo");
             set1.Add("Eric");
@@ -226,7 +226,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Exists()
         {
-            Set<double> set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.IsTrue(set1.Any(delegate(double d) { return d > 100; }));
             Assert.IsTrue(set1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
@@ -238,7 +238,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void TrueForAll()
         {
-            Set<double> set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.IsFalse(set1.All(delegate(double d) { return d > 100; }));
             Assert.IsFalse(set1.All(delegate(double d) { return Math.Abs(d) < 10; }));
@@ -251,7 +251,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CountWhere()
         {
-            Set<double> set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
+            var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
 
             Assert.AreEqual(0, set1.CountWhere(delegate(double d) { return d > 200; }));
             Assert.AreEqual(6, set1.CountWhere(delegate(double d) { return Math.Abs(d) < 10; }));
@@ -264,7 +264,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RemoveAll()
         {
-            Set<double> set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
+            var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
 
             set1.RemoveAll(delegate(double d) { return Math.Abs(d) > 5; });
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new double[] { -0.04, 1.2, 1.78, 4.5 }, false);
@@ -281,7 +281,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void FindAll()
         {
-            Set<double> set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
+            var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             double[] expected = { -7.6, 7.6, 10.11, 187.4 };
             int i;
 
@@ -299,7 +299,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void FailFastEnumerator1()
         {
-            Set<double> set1 = new Set<double>();
+            var set1 = new Set<double>();
 
             double d = 1.218034;
             for (int i = 0; i < 50; ++i) {
@@ -317,7 +317,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void FailFastEnumerator2()
         {
-            Set<double> set1 = new Set<double>();
+            var set1 = new Set<double>();
 
             double d = 1.218034;
             for (int i = 0; i < 50; ++i) {
@@ -335,7 +335,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clone()
         {
-            Set<int> set1 = new Set<int>(new int[] { 1, 7, 9, 11, 13, 15, -17, 19, -21 });
+            var set1 = new Set<int>(new int[] { 1, 7, 9, 11, 13, 15, -17, 19, -21 });
             Set<int> set2, set3;
 
             set2 = set1.Clone();
@@ -412,7 +412,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            Set<MyInt> set1 = new Set<MyInt>();
+            var set1 = new Set<MyInt>();
 
             set1.Add(new MyInt(143));
             set1.Add(new MyInt(2));
@@ -423,11 +423,11 @@ namespace Wintellect.PowerCollections.Tests
             Set<MyInt> set2 = set1.CloneContents();
             CompareClones(set1, set2);
 
-            Set<int> set3 = new Set<int>(new int[] { 144, 5, 23, 1, 8 });
+            var set3 = new Set<int>(new int[] { 144, 5, 23, 1, 8 });
             Set<int> set4 = set3.CloneContents();
             CompareClones(set3, set4);
 
-            Set<UtilTests.CloneableStruct> set5 = new Set<UtilTests.CloneableStruct>();
+            var set5 = new Set<UtilTests.CloneableStruct>();
             set5.Add(new UtilTests.CloneableStruct(143));
             set5.Add(new UtilTests.CloneableStruct(5));
             set5.Add(new UtilTests.CloneableStruct(23));
@@ -456,7 +456,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void CantCloneContents()
         {
-            Set<NotCloneable> set1 = new Set<NotCloneable>();
+            var set1 = new Set<NotCloneable>();
 
             set1.Add(new NotCloneable());
             set1.Add(new NotCloneable());
@@ -488,7 +488,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CustomIComparer()
         {
-            Set<int> set1 = new Set<int>(new ModularComparer(5));
+            var set1 = new Set<int>(new ModularComparer(5));
             bool b;
 
             b = set1.Add(4); Assert.IsFalse(b);
@@ -507,11 +507,11 @@ namespace Wintellect.PowerCollections.Tests
         public void ComparerProperty()
         {
             IEqualityComparer<int> comparer1 = new ModularComparer(5);
-            Set<int> set1 = new Set<int>(comparer1);
+            var set1 = new Set<int>(comparer1);
             Assert.AreSame(comparer1, set1.Comparer);
-            Set<decimal> set2 = new Set<decimal>();
+            var set2 = new Set<decimal>();
             Assert.AreSame(EqualityComparer<decimal>.Default, set2.Comparer);
-            Set<string> set3 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
+            var set3 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
             Assert.AreSame(StringComparer.InvariantCultureIgnoreCase, set3.Comparer);
         }
 
@@ -559,7 +559,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GenericIEquatable()
         {
-            Set<GenComparable> set1 = new Set<GenComparable>();
+            var set1 = new Set<GenComparable>();
             bool b;
 
             b = set1.Add(new GenComparable(4)); Assert.IsFalse(b);
@@ -575,9 +575,9 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Initialize()
         {
-            List<int> list = new List<int>(new int[] { 12, 3, 9, 8, 9 });
-            Set<int> set1 = new Set<int>(list);
-            Set<int> set2 = new Set<int>(list, new ModularComparer(6));
+            var list = new List<int>(new int[] { 12, 3, 9, 8, 9 });
+            var set1 = new Set<int>(list);
+            var set2 = new Set<int>(list, new ModularComparer(6));
 
             InterfaceTests.TestReadWriteCollectionGeneric<int>(set1, new int[] { 3, 8, 9, 12 }, false);
             InterfaceTests.TestReadWriteCollectionGeneric<int>(set2, new int[] { 9, 8, 12 }, false);
@@ -587,7 +587,7 @@ namespace Wintellect.PowerCollections.Tests
         public void ToArray()
         {
             string[] s_array = { "Foo", "Eric", "Clapton", "hello", null, "goodbye", "C#" };
-            Set<string> set1 = new Set<string>();
+            var set1 = new Set<string>();
 
             string[] a1 = set1.ToArray();
             Assert.IsNotNull(a1);
@@ -608,11 +608,11 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Subset()
         {
-            Set<int> set1 = new Set<int>(new int[] { 1, 3, 6, 7, 8, 9, 10 });
-            Set<int> set2 = new Set<int>();
-            Set<int> set3 = new Set<int>(new int[] { 3, 8, 9 });
-            Set<int> set4 = new Set<int>(new int[] { 3, 8, 9 });
-            Set<int> set5 = new Set<int>(new int[] { 1, 2, 6, 8, 9, 10 });
+            var set1 = new Set<int>(new int[] { 1, 3, 6, 7, 8, 9, 10 });
+            var set2 = new Set<int>();
+            var set3 = new Set<int>(new int[] { 3, 8, 9 });
+            var set4 = new Set<int>(new int[] { 3, 8, 9 });
+            var set5 = new Set<int>(new int[] { 1, 2, 6, 8, 9, 10 });
 
             Assert.IsTrue(set1.IsSupersetOf(set2));
             Assert.IsTrue(set2.IsSubsetOf(set1));
@@ -652,13 +652,13 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IsEqualTo()
         {
-            Set<int> set1 = new Set<int>(new int[] { 6, 7, 1, 11, 9, 3, 8 });
-            Set<int> set2 = new Set<int>();
-            Set<int> set3 = new Set<int>();
-            Set<int> set4 = new Set<int>(new int[] { 9, 11, 1, 3, 6, 7, 8, 14 });
-            Set<int> set5 = new Set<int>(new int[] { 3, 6, 7, 11, 14, 8, 9 });
-            Set<int> set6 = new Set<int>(new int[] { 1, 3, 6, 7, 8, 10, 11 });
-            Set<int> set7 = new Set<int>(new int[] { 9, 1, 8, 3, 7, 6, 11 });
+            var set1 = new Set<int>(new int[] { 6, 7, 1, 11, 9, 3, 8 });
+            var set2 = new Set<int>();
+            var set3 = new Set<int>();
+            var set4 = new Set<int>(new int[] { 9, 11, 1, 3, 6, 7, 8, 14 });
+            var set5 = new Set<int>(new int[] { 3, 6, 7, 11, 14, 8, 9 });
+            var set6 = new Set<int>(new int[] { 1, 3, 6, 7, 8, 10, 11 });
+            var set7 = new Set<int>(new int[] { 9, 1, 8, 3, 7, 6, 11 });
 
             Assert.IsTrue(set1.IsEqualTo(set1));
             Assert.IsTrue(set2.IsEqualTo(set2));
@@ -691,12 +691,12 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IsDisjointFrom()
         {
-            Set<int> set1 = new Set<int>(new int[] { 6, 7, 1, 11, 9, 3, 8 });
-            Set<int> set2 = new Set<int>();
-            Set<int> set3 = new Set<int>();
-            Set<int> set4 = new Set<int>(new int[] { 9, 1, 8, 3, 7, 6, 11 });
-            Set<int> set5 = new Set<int>(new int[] { 17, 3, 12, 10 });
-            Set<int> set6 = new Set<int>(new int[] { 19, 14, 0, 2});
+            var set1 = new Set<int>(new int[] { 6, 7, 1, 11, 9, 3, 8 });
+            var set2 = new Set<int>();
+            var set3 = new Set<int>();
+            var set4 = new Set<int>(new int[] { 9, 1, 8, 3, 7, 6, 11 });
+            var set5 = new Set<int>(new int[] { 17, 3, 12, 10 });
+            var set6 = new Set<int>(new int[] { 19, 14, 0, 2});
 
             Assert.IsFalse(set1.IsDisjointFrom(set1));
             Assert.IsTrue(set2.IsDisjointFrom(set2));
@@ -723,8 +723,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Intersection()
         {
-            Set<int> setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            Set<int> setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            var setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             Set<int> set1, set2, set3;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -757,8 +757,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Union()
         {
-            Set<int> setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            Set<int> setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            var setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             Set<int> set1, set2, set3;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -791,8 +791,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SymmetricDifference()
         {
-            Set<int> setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            Set<int> setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            var setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             Set<int> set1, set2, set3;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -825,8 +825,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Difference()
         {
-            Set<int> setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            Set<int> setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            var setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             Set<int> set1, set2, set3;
 
             // Algorithms work different depending on sizes, so try both ways.
@@ -859,31 +859,31 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void InconsistentComparisons1()
         {
-            Set<int> setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
-            Set<int> setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenEqualityComparer());
+            var setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
+            var setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenEqualityComparer());
             setOdds.SymmetricDifferenceWith(setDigits);
         }
 
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]
         public void InconsistentComparisons2()
         {
-            Set<string> set1 = new Set<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
-            Set<string> set2 = new Set<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
+            var set1 = new Set<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
+            var set2 = new Set<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
             set1.Intersection(set2);
         }
 
         [TestMethod]
         public void ConsistentComparisons()
         {
-            Set<string> set1 = new Set<string>(new string[] { "foo", "Bar" }, StringComparer.InvariantCulture);
-            Set<string> set2 = new Set<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
+            var set1 = new Set<string>(new string[] { "foo", "Bar" }, StringComparer.InvariantCulture);
+            var set2 = new Set<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
             set1.Difference(set2);
         }
 
         [TestMethod]
         public void SerializeStrings()
         {
-            Set<string> d = new Set<string>();
+            var d = new Set<string>();
 
             d.Add("foo");
             d.Add("world");
@@ -895,7 +895,7 @@ namespace Wintellect.PowerCollections.Tests
             d.AddMany(new string[] { "1", "2", "3", "4", "5", "6" });
             d.AddMany(new string[] { "7", "8", "9", "10", "11", "12" });
 
-            Set<string> result = (Set<string>)InterfaceTests.SerializeRoundTrip(d);
+            var result = (Set<string>)InterfaceTests.SerializeRoundTrip(d);
 
             InterfaceTests.TestReadWriteCollectionGeneric<string>((ICollection<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "cool", "elvis", "hello", "foo", "world", null, "7", "8", "9", "10", "11", "12" }, false);
 

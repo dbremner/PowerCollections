@@ -131,7 +131,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] s_array = { "Eric", "Clapton", "Rules", "The", "World" };
             int[] i_array = { 1, 5, 6, 5, 19 };
 
-            ReadOnlyTestDictionary<string, int> dict = new ReadOnlyTestDictionary<string, int>(s_array, i_array);
+            var dict = new ReadOnlyTestDictionary<string, int>(s_array, i_array);
 
             InterfaceTests.TestReadOnlyDictionary<string, int>(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary");
             InterfaceTests.TestReadOnlyDictionary<string, int>(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary");
@@ -145,7 +145,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] s_array = { "Eric", "Clapton", "Rules", "The", "World" };
             int[] i_array = { 1, 5, 6, 5, 19 };
 
-            ReadWriteTestDictionary<string, int> dict = new ReadWriteTestDictionary<string, int>(s_array, i_array);
+            var dict = new ReadWriteTestDictionary<string, int>(s_array, i_array);
 
             InterfaceTests.TestReadWriteDictionary<string, int>(dict, s_array, i_array, "foo", true, "ReadOnlyTestDictionary");
             InterfaceTests.TestReadWriteDictionary<string, int>(dict, s_array, i_array, "foo", false, "ReadOnlyTestDictionary");
@@ -160,11 +160,11 @@ namespace Wintellect.PowerCollections.Tests
             int[] i_array = { 1, 5, 6, 5, 19 };
             string s;
 
-            ReadWriteTestDictionary<string, int> dict1 = new ReadWriteTestDictionary<string, int>(s_array, i_array);
+            var dict1 = new ReadWriteTestDictionary<string, int>(s_array, i_array);
             s = dict1.ToString();
             Assert.AreEqual("{Eric->1, Clapton->5, null->6, The->5, World->19}", s);
 
-            ReadOnlyTestDictionary<int, string> dict2 = new ReadOnlyTestDictionary<int, string>(i_array, s_array);
+            var dict2 = new ReadOnlyTestDictionary<int, string>(i_array, s_array);
             s = dict2.ToString();
             Assert.AreEqual("{1->Eric, 5->Clapton, 6->null, 5->The, 19->World}", s);
         }
@@ -176,11 +176,11 @@ namespace Wintellect.PowerCollections.Tests
             int[] i_array = { 1, 5, 6, 5, 19 };
             string s;
 
-            ReadWriteTestDictionary<string, int> dict1 = new ReadWriteTestDictionary<string, int>(s_array, i_array);
+            var dict1 = new ReadWriteTestDictionary<string, int>(s_array, i_array);
             s = dict1.ToString();
             Assert.AreEqual("{Eric->1, Clapton->5, null->6, The->5, World->19}", s);
 
-            ReadOnlyTestDictionary<int, string> dict2 = new ReadOnlyTestDictionary<int, string>(i_array, s_array);
+            var dict2 = new ReadOnlyTestDictionary<int, string>(i_array, s_array);
             s = dict2.ToString();
             Assert.AreEqual("{1->Eric, 5->Clapton, 6->null, 5->The, 19->World}", s);
 
@@ -194,11 +194,11 @@ namespace Wintellect.PowerCollections.Tests
 
             string expected = "{1->foo0bar, 3->foo1bar, 5->foo2bar, 7->foo3bar, 9->foo4bar, 11->foo5bar, 13->foo6bar, 15->foo7bar, 17->foo8bar, 19->foo9bar, 21->foo10bar, 23->foo11bar, 25->foo12bar, 27->foo13bar, 29->foo14bar, 31->foo15bar, 33->foo16bar, 35->foo17bar, 37->foo18bar, ...}";
  
-            ReadWriteTestDictionary<int,string> dict3 = new ReadWriteTestDictionary<int, string>(i_big,s_big);
+            var dict3 = new ReadWriteTestDictionary<int, string>(i_big,s_big);
             s = dict3.DebuggerDisplayString();
             Assert.AreEqual(expected, s);
 
-            ReadOnlyTestDictionary<int, string> dict4 = new ReadOnlyTestDictionary<int, string>(i_big,s_big);
+            var dict4 = new ReadOnlyTestDictionary<int, string>(i_big,s_big);
             s = dict4.DebuggerDisplayString();
             Assert.AreEqual(expected, s);
         }
@@ -209,7 +209,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] s_array = { "Eric", "Clapton", "Rules", "The", "World" };
             int[] i_array = { 1, 5, 6, 5, 19 };
 
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+            var dict = new Dictionary<string, int>();
             for (int i = 0; i < s_array.Length; ++i)
                 dict[s_array[i]] = i_array[i];
 
@@ -223,7 +223,7 @@ namespace Wintellect.PowerCollections.Tests
             string[] s_array = { "Eric", "Clapton", null, "The", "World" };
             int[] i_array = { 1, 5, 6, 5, 19 };
 
-            ReadWriteTestDictionary<string, int> dict1 = new ReadWriteTestDictionary<string, int>(s_array, i_array);
+            var dict1 = new ReadWriteTestDictionary<string, int>(s_array, i_array);
             IDictionary<string, int> dict2 = dict1.AsReadOnly();
 
             InterfaceTests.TestReadOnlyDictionaryGeneric<string, int>(dict2, s_array, i_array, "foo", true, null, null, null);

@@ -295,7 +295,7 @@ namespace Wintellect.PowerCollections
         {
             bool firstItem = true;
 
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new System.Text.StringBuilder();
 
             builder.Append("{");
 
@@ -348,7 +348,7 @@ namespace Wintellect.PowerCollections
 
             bool firstItem = true;
 
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new System.Text.StringBuilder();
 
             builder.Append("{");
 

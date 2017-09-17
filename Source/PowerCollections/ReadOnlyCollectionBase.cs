@@ -348,7 +348,7 @@ namespace Wintellect.PowerCollections
         {
             const int MAXLENGTH = 250;
 
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new System.Text.StringBuilder();
 
             builder.Append('{');
 

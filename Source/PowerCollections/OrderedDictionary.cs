@@ -45,7 +45,7 @@ namespace Wintellect.PowerCollections
         /// <param name="value">The value.</param>
         /// <returns>A new KeyValuePair.</returns>
         private static KeyValuePair<TKey,TValue> NewPair(TKey key, TValue value) {
-            KeyValuePair<TKey, TValue> pair = new KeyValuePair<TKey,TValue>(key,value);
+            var pair = new KeyValuePair<TKey,TValue>(key,value);
             return pair;
         }
 
@@ -56,7 +56,7 @@ namespace Wintellect.PowerCollections
         /// <returns>A new KeyValuePair.</returns>
         private static KeyValuePair<TKey, TValue> NewPair(TKey key)
         {
-            KeyValuePair<TKey, TValue> pair = new KeyValuePair<TKey,TValue>(key, default(TValue));
+            var pair = new KeyValuePair<TKey,TValue>(key, default(TValue));
             return pair;
         }
 
@@ -180,7 +180,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The cloned dictionary.</returns>
         public OrderedDictionary<TKey,TValue> Clone()
 		{
-			OrderedDictionary<TKey,TValue> newDict = new OrderedDictionary<TKey,TValue>(keyComparer, pairComparer, tree.Clone());
+			var newDict = new OrderedDictionary<TKey,TValue>(keyComparer, pairComparer, tree.Clone());
 			return newDict;
 		}
 
@@ -214,7 +214,7 @@ namespace Wintellect.PowerCollections
             if (!Util.IsCloneableType(typeof(TValue), out valueIsValueType))
                 NonCloneableType(typeof(TValue));
 
-            OrderedDictionary<TKey, TValue> newDict = new OrderedDictionary<TKey, TValue>(null, keyComparer, pairComparer);
+            var newDict = new OrderedDictionary<TKey, TValue>(null, keyComparer, pairComparer);
 
             foreach (KeyValuePair<TKey, TValue> pair in tree) {
                 // Clone the key and value parts of the pair. Value types can be cloned

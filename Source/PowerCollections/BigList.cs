@@ -226,7 +226,7 @@ namespace Wintellect.PowerCollections
                     throw new ArgumentOutOfRangeException(nameof(index));
 
                 Node current = root;
-                ConcatNode curConcat = current as ConcatNode;
+                var curConcat = current as ConcatNode;
 
                 while (curConcat != null) {
                     int leftCount = curConcat.left.Count;
@@ -240,7 +240,7 @@ namespace Wintellect.PowerCollections
                     curConcat = current as ConcatNode;
                 }
 
-                LeafNode curLeaf = (LeafNode)current;
+                var curLeaf = (LeafNode)current;
                 return curLeaf.items[index];
             }
 
@@ -261,7 +261,7 @@ namespace Wintellect.PowerCollections
                     root = root.SetAt(index, value);
 
                 Node current = root;
-                ConcatNode curConcat = current as ConcatNode;
+                var curConcat = current as ConcatNode;
 
                 while (curConcat != null) {
                     int leftCount = curConcat.left.Count;
@@ -284,7 +284,7 @@ namespace Wintellect.PowerCollections
                     curConcat = current as ConcatNode;
                 }
 
-                LeafNode curLeaf = (LeafNode)current;
+                var curLeaf = (LeafNode)current;
                 curLeaf.items[index] = value;
             }
         }
@@ -773,7 +773,7 @@ namespace Wintellect.PowerCollections
             else if (second.Count == 0)
                 return first.Clone();
             else {
-                BigList<T> result = new BigList<T>(first.root.Append(second.root, false));
+                var result = new BigList<T>(first.root.Append(second.root, false));
                 result.CheckBalance();
                 return result;
             }
@@ -1132,7 +1132,7 @@ namespace Wintellect.PowerCollections
                 AddBalancedNodeToRebalanceArray(rebalanceArray, node);
             }
             else {
-                ConcatNode n = (ConcatNode)node;          // leaf nodes are always balanced.
+                var n = (ConcatNode)node;          // leaf nodes are always balanced.
                 AddNodeToRebalanceArray(rebalanceArray, n.left, shared);
                 AddNodeToRebalanceArray(rebalanceArray, n.right, shared);
             }
@@ -1724,7 +1724,7 @@ namespace Wintellect.PowerCollections
             /// <returns>A new node with the given item changed.</returns>
             public override Node SetAt(int index, T item)
             {
-                T[] newItems = (T[])items.Clone();
+                var newItems = (T[])items.Clone();
                 newItems[index] = item;
                 return new LeafNode(count, newItems);
             }
@@ -1739,7 +1739,7 @@ namespace Wintellect.PowerCollections
             private bool MergeLeafInPlace(Node other)
             {
                 Debug.Assert(!shared);
-                LeafNode otherLeaf = (other as LeafNode);
+                var otherLeaf = (other as LeafNode);
                 int newCount;
                 if (otherLeaf != null && (newCount = otherLeaf.Count + this.count) <= MAXLEAF) {
                     // Combine the two leaf nodes into one.
@@ -1766,7 +1766,7 @@ namespace Wintellect.PowerCollections
             /// returns null.</returns>
             private Node MergeLeaf(Node other)
             {
-                LeafNode otherLeaf = (other as LeafNode);
+                var otherLeaf = (other as LeafNode);
                 int newCount;
                 if (otherLeaf != null && (newCount = otherLeaf.Count + this.count) <= MAXLEAF) {
                     // Combine the two leaf nodes into one.
@@ -1864,7 +1864,7 @@ namespace Wintellect.PowerCollections
                 }
 
                 // If we're appending a tree with a left leaf node, try to merge them if possible.
-                ConcatNode otherConcat = (node as ConcatNode);
+                var otherConcat = (node as ConcatNode);
                 if (otherConcat != null && MergeLeafInPlace(otherConcat.left)) {
                     if (! nodeIsUnused)
                         otherConcat.right.MarkShared();
@@ -1886,7 +1886,7 @@ namespace Wintellect.PowerCollections
                     return result;
 
                 // If we're appending a concat with a left leaf, try to merge them if possible.
-                ConcatNode otherConcat = (node as ConcatNode);
+                var otherConcat = (node as ConcatNode);
                 if (otherConcat != null && (result = MergeLeaf(otherConcat.left)) != null) {
                     if (! nodeIsUnused)
                         otherConcat.right.MarkShared();
@@ -1977,7 +1977,7 @@ namespace Wintellect.PowerCollections
                 if (shared)
                     return Insert(index, node, nodeIsUnused);       // Can't update a shared node in place.
 
-                LeafNode otherLeaf = (node as LeafNode);
+                var otherLeaf = (node as LeafNode);
                 int newCount;
 
                 if (otherLeaf != null && (newCount = otherLeaf.Count + this.count) <= MAXLEAF) {
@@ -2035,7 +2035,7 @@ namespace Wintellect.PowerCollections
             /// <returns>A new node with the give node inserted.</returns>
             public override Node Insert(int index, Node node, bool nodeIsUnused)
             {
-                LeafNode otherLeaf = (node as LeafNode);
+                var otherLeaf = (node as LeafNode);
                 int newCount;
 
                 if (otherLeaf != null && (newCount = otherLeaf.Count + this.count) <= MAXLEAF) {

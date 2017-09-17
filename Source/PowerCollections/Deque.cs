@@ -904,7 +904,7 @@ namespace Wintellect.PowerCollections
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))
                 throw new InvalidOperationException(string.Format(Strings.TypeNotCloneable, typeof(T).FullName));
 
-            Deque<T> clone = new Deque<T>();
+            var clone = new Deque<T>();
 
             // Clone each item, and add it to the new ordered set.
             foreach (T item in this) {
