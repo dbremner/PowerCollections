@@ -706,26 +706,9 @@ namespace Wintellect.PowerCollections.Tests
             deque1.Clear();
             for (int i = 0; i < 12; ++i)
                 deque1.Add(i);
-            try {
-                deque1.Capacity = 11;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                deque1.Capacity = -1;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                deque1.Capacity = int.MaxValue;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
+            var invalidCapacities = new[] {11, -1, Int32.MaxValue, Int32.MinValue,};
+            foreach (var invalidCapacity in invalidCapacities) {
+                TestHelpers.ThrowsOutOfRange(() => deque1.Capacity = invalidCapacity);
             }
         }
 
