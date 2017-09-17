@@ -959,7 +959,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clone()
         {
-            var dict1 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, (x, y) => TestPredicates.ReverseFirstLetter(x, y)) {
+            var dict1 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, ReverseFirstLetter) {
                 { "qubert", "dinosaur" },
                 { "Hello", "AAA" },
                 { "Hi", "aaa" },
