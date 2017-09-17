@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 
 namespace Wintellect.PowerCollections.Tests
@@ -254,36 +255,9 @@ namespace Wintellect.PowerCollections.Tests
             d.AddToBack(null);
             d.AddToFront("cool");
 
-            try {
-                d.Insert(-1, "hi");
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            try {
-                d.Insert(8, "hi");
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            try {
-                d.Insert(int.MinValue, "hi");
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            try {
-                d.Insert(int.MaxValue, "hi");
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
+            var invalidIndices = new[] {-1, 8, int.MinValue, int.MaxValue};
+            foreach (var invalidIndex in invalidIndices) {
+                ThrowsOutOfRange(() => d.Insert(invalidIndex, "hi"));
             }
         }
 
@@ -339,7 +313,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var invalidIndices = new[] {-1, 7, int.MinValue, int.MaxValue};
             foreach (var invalidIndex in invalidIndices) {
-                TestHelpers.ThrowsOutOfRange(() => d.RemoveAt(invalidIndex));
+                ThrowsOutOfRange(() => d.RemoveAt(invalidIndex));
             }
         }
 
@@ -708,7 +682,7 @@ namespace Wintellect.PowerCollections.Tests
                 deque1.Add(i);
             var invalidCapacities = new[] {11, -1, Int32.MaxValue, Int32.MinValue,};
             foreach (var invalidCapacity in invalidCapacities) {
-                TestHelpers.ThrowsOutOfRange(() => deque1.Capacity = invalidCapacity);
+                ThrowsOutOfRange(() => deque1.Capacity = invalidCapacity);
             }
         }
 
