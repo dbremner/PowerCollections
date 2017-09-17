@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
@@ -624,6 +625,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
         */
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void Maximum()
         {
             // Empty collection.
@@ -631,7 +633,7 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
 
             try {
-                maxS = Algorithms.Maximum(coll1);
+                _ = Algorithms.Maximum(coll1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -639,7 +641,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                maxS = Algorithms.Maximum(coll1, StringComparer.CurrentCulture);
+                _ = Algorithms.Maximum(coll1, StringComparer.CurrentCulture);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -647,7 +649,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                maxS = Algorithms.Maximum(coll1, string.CompareOrdinal);
+                _ = Algorithms.Maximum(coll1, string.CompareOrdinal);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -723,6 +725,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void Minimum()
         {
             // Empty collection.
@@ -730,7 +733,7 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
 
             try {
-                minS = Algorithms.Minimum(coll1);
+                _ = Algorithms.Minimum(coll1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -738,7 +741,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                minS = Algorithms.Minimum(coll1, StringComparer.CurrentCulture);
+                _ = Algorithms.Minimum(coll1, StringComparer.CurrentCulture);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -746,7 +749,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                minS = Algorithms.Minimum(coll1, string.CompareOrdinal);
+                _ = Algorithms.Minimum(coll1, string.CompareOrdinal);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2690,13 +2693,13 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void RangeExceptions()
         {
             IList<int> list = new BigList<int>(new int[] { 1 }, 100);
-            IList<int> range;
 
             try {
-                range = Algorithms.Range(list, 3, 98);
+                _ = Algorithms.Range(list, 3, 98);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2705,7 +2708,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, -1, 1);
+                _ = Algorithms.Range(list, -1, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2714,7 +2717,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 0, int.MaxValue);
+                _ = Algorithms.Range(list, 0, int.MaxValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2723,7 +2726,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 1, int.MinValue);
+                _ = Algorithms.Range(list, 1, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2732,7 +2735,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 45, int.MinValue);
+                _ = Algorithms.Range(list, 45, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2741,7 +2744,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 0, 101);
+                _ = Algorithms.Range(list, 0, 101);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2750,7 +2753,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 100, 1);
+                _ = Algorithms.Range(list, 100, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2759,7 +2762,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, int.MinValue, 1);
+                _ = Algorithms.Range(list, int.MinValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2768,7 +2771,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, int.MaxValue, 1);
+                _ = Algorithms.Range(list, int.MaxValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2821,13 +2824,13 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void ArrayRangeExceptions()
         {
             int[] list = new int[100];
-            IList<int> range;
 
             try {
-                range = Algorithms.Range(list, 3, 98);
+                _ = Algorithms.Range(list, 3, 98);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2836,7 +2839,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, -1, 1);
+                _ = Algorithms.Range(list, -1, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2845,7 +2848,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 0, int.MaxValue);
+                _ = Algorithms.Range(list, 0, int.MaxValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2854,7 +2857,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 1, int.MinValue);
+                _ = Algorithms.Range(list, 1, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2863,7 +2866,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 45, int.MinValue);
+                _ = Algorithms.Range(list, 45, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2872,7 +2875,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 0, 101);
+                _ = Algorithms.Range(list, 0, 101);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2881,7 +2884,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, 100, 1);
+                _ = Algorithms.Range(list, 100, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2890,7 +2893,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, int.MinValue, 1);
+                _ = Algorithms.Range(list, int.MinValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2899,7 +2902,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = Algorithms.Range(list, int.MaxValue, 1);
+                _ = Algorithms.Range(list, int.MaxValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {

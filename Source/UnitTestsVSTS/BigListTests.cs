@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
@@ -823,10 +824,10 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void IndexerExceptions()
         {
             BigList<int> list1;
-            int x;
 
             list1 = new BigList<int>();
             try {
@@ -838,7 +839,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                x = list1[0];
+                _ = list1[0];
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -857,7 +858,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                x = list1[-1];
+                _ = list1[-1];
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -874,7 +875,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                x = list1[3];
+                _ = list1[3];
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -891,7 +892,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                x = list1[int.MaxValue];
+                _ = list1[int.MaxValue];
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -908,7 +909,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                x = list1[int.MinValue];
+                _ = list1[int.MinValue];
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1492,6 +1493,7 @@ namespace Wintellect.PowerCollections.Tests
 
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void MultiCopies()
         {
             BigList<int> list1;
@@ -1546,7 +1548,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(int.MaxValue - 1, list1.Count);
 
             try {
-                list1 = new BigList<int>((BigList<int>)null, 5);
+                _ = new BigList<int>((BigList<int>)null, 5);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1554,7 +1556,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                list1 = new BigList<int>((IEnumerable<int>)null, 5);
+                _ = new BigList<int>((IEnumerable<int>)null, 5);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1562,7 +1564,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                list1 = new BigList<int>(new int[] { 1, 2, 3 }, -1);
+                _ = new BigList<int>(new int[] { 1, 2, 3 }, -1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1570,7 +1572,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                list1 = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3 }), -1);
+                _ = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3 }), -1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1578,7 +1580,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                list1 = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3 }), 2000000000);
+                _ = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3 }), 2000000000);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1586,7 +1588,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                list1 = new BigList<int>(new int[] { 1, 2, 3 }, 1000000000);
+                _ = new BigList<int>(new int[] { 1, 2, 3 }, 1000000000);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2004,13 +2006,13 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void RangeExceptions()
         {
             var list = new BigList<int>(new int[] { 1 }, 100);
-            IList<int> range;
 
             try {
-                range = list.Range(3, 98);
+                _ = list.Range(3, 98);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2019,7 +2021,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(-1, 1);
+                _ = list.Range(-1, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2028,7 +2030,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(0, int.MaxValue);
+                _ = list.Range(0, int.MaxValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2037,7 +2039,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(1, int.MinValue);
+                _ = list.Range(1, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2046,7 +2048,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(45, int.MinValue);
+                _ = list.Range(45, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2055,7 +2057,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(0, 101);
+                _ = list.Range(0, 101);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2064,7 +2066,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(100, 1);
+                _ = list.Range(100, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2073,7 +2075,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(int.MinValue, 1);
+                _ = list.Range(int.MinValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2082,7 +2084,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(int.MaxValue, 1);
+                _ = list.Range(int.MaxValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2534,6 +2536,7 @@ namespace Wintellect.PowerCollections.Tests
 
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void TooLarge()
         {
             var listMaxSize = new BigList<int>(new int[] { 6 }, int.MaxValue - 1);
@@ -2615,7 +2618,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                listMaxSize = listMaxSize + listMaxSize;
+                _ = listMaxSize + listMaxSize;
                 Assert.Fail("should throw");
             }
             catch (Exception e) {

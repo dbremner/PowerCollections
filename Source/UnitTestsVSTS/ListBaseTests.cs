@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections;
@@ -280,10 +281,10 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void RangeExceptions()
         {
             var list = new ReadWriteArrayList<int>(new int[0]);
-            IList<int> range;
 
             for (int i = 0; i < 50; ++i)
                 list.Add(i);
@@ -291,7 +292,7 @@ namespace Wintellect.PowerCollections.Tests
                 list.Add(i);
 
             try {
-                range = list.Range(3, 98);
+                _ = list.Range(3, 98);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -300,7 +301,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(-1, 1);
+                _ = list.Range(-1, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -309,7 +310,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(0, int.MaxValue);
+                _ = list.Range(0, int.MaxValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -318,7 +319,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(1, int.MinValue);
+                _ = list.Range(1, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -327,7 +328,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(45, int.MinValue);
+                _ = list.Range(45, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -336,7 +337,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(0, 101);
+                _ = list.Range(0, 101);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -345,7 +346,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(100, 1);
+                _ = list.Range(100, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -354,7 +355,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(int.MinValue, 1);
+                _ = list.Range(int.MinValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -363,7 +364,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(int.MaxValue, 1);
+                _ = list.Range(int.MaxValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -373,14 +374,14 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void ReadOnlyRangeExceptions()
         {
             int[] array = new int[100];
             var list = new ReadOnlyArrayList<int>(array);
-            IList<int> range;
 
             try {
-                range = list.Range(3, 98);
+                _ = list.Range(3, 98);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -389,7 +390,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(-1, 1);
+                _ = list.Range(-1, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -398,7 +399,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(0, int.MaxValue);
+                _ = list.Range(0, int.MaxValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -407,7 +408,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(1, int.MinValue);
+                _ = list.Range(1, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -416,7 +417,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(45, int.MinValue);
+                _ = list.Range(45, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -425,7 +426,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(0, 101);
+                _ = list.Range(0, 101);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -434,7 +435,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(100, 1);
+                _ = list.Range(100, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -443,7 +444,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(int.MinValue, 1);
+                _ = list.Range(int.MinValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -452,7 +453,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = list.Range(int.MaxValue, 1);
+                _ = list.Range(int.MaxValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {

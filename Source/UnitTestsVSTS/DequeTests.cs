@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 
@@ -1050,10 +1051,10 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        [SuppressMessage("ReSharper", "AssignmentIsFullyDiscarded")]
         public void RangeExceptions()
         {
             var deque = new Deque<int>();
-            IList<int> range;
 
             for (int i = 0; i < 50; ++i)
                 deque.AddToFront(i);
@@ -1061,7 +1062,7 @@ namespace Wintellect.PowerCollections.Tests
                 deque.AddToBack(i);
 
             try {
-                range = deque.Range(3, 98);
+                _ = deque.Range(3, 98);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1070,7 +1071,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = deque.Range(-1, 1);
+                _ = deque.Range(-1, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1079,7 +1080,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = deque.Range(0, int.MaxValue);
+                _ = deque.Range(0, int.MaxValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1088,7 +1089,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = deque.Range(1, int.MinValue);
+                _ = deque.Range(1, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1097,7 +1098,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = deque.Range(45, int.MinValue);
+                _ = deque.Range(45, int.MinValue);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1106,7 +1107,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = deque.Range(0, 101);
+                _ = deque.Range(0, 101);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1115,7 +1116,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = deque.Range(100, 1);
+                _ = deque.Range(100, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1124,7 +1125,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = deque.Range(int.MinValue, 1);
+                _ = deque.Range(int.MinValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -1133,7 +1134,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                range = deque.Range(int.MaxValue, 1);
+                _ = deque.Range(int.MaxValue, 1);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
