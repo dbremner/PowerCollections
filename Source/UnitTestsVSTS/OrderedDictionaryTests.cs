@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 
 namespace Wintellect.PowerCollections.Tests
@@ -902,16 +903,15 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
-        public void CantCloneContents()
-        {
-            var dict1 = new OrderedDictionary<int, NotCloneable> {
-                [4] = new NotCloneable(),
-                [5] = new NotCloneable()
-            };
+	    [TestMethod]
+	    public void CantCloneContents() {
+	        var dict1 = new OrderedDictionary<int, NotCloneable> {
+	            [4] = new NotCloneable(),
+	            [5] = new NotCloneable()
+	        };
 
-            OrderedDictionary<int, NotCloneable> dict2 = dict1.CloneContents();
-        }
+	        ThrowsInvalid(() => dict1.CloneContents());
+	    }
 
         // Check that a View has the correct keys and values in it.
         private void CheckView<TKey, TValue>(OrderedDictionary<TKey,TValue>.View view, TKey[] keys, TValue[] values, TKey nonKey)

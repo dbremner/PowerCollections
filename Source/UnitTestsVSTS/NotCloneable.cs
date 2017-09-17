@@ -6,7 +6,6 @@
     //BigListTests,
     //DequeTests,
     //MultiDictionaryTests,
-    //OrderedDictionaryTests
     //SetTests
     internal class NotCloneable { }
 }
