@@ -337,36 +337,9 @@ namespace Wintellect.PowerCollections.Tests
             d.AddToBack(null);
             d.AddToFront("cool");
 
-            try {
-                d.RemoveAt(-1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            try {
-                d.RemoveAt(7);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            try {
-                d.RemoveAt(int.MinValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            try {
-                d.RemoveAt(int.MaxValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
+            var invalidIndices = new[] {-1, 7, int.MinValue, int.MaxValue};
+            foreach (var invalidIndex in invalidIndices) {
+                TestHelpers.ThrowsOutOfRange(() => d.RemoveAt(invalidIndex));
             }
         }
 
