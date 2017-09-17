@@ -565,28 +565,32 @@ namespace Wintellect.PowerCollections.Tests
 			var dict4 = new OrderedDictionary<ComparableClass1,string>();
 		}
 
-		/// <summary>
-		/// Check that a OrderedDictionary can't be instantiated on an incomparable type.
-		/// </summary>
-		[TestMethod, ExpectedException(typeof(InvalidOperationException))]
-		public void NotComparable1()
-		{
-			var dict1 = new OrderedDictionary<UncomparableClass1,string>();
-		}
+	    /// <summary>
+	    /// Check that a OrderedDictionary can't be instantiated on an incomparable type.
+	    /// </summary>
+	    [TestMethod]
+	    public void NotComparable1()
+        {
+            ThrowsInvalid( () =>
+	        _ = new OrderedDictionary<UncomparableClass1, string>()
+                );
+	    }
 
-		/// <summary>
-		/// Check that a OrderedDictionary can't be instantiated on an incomparable type.
-		/// </summary>
-		[TestMethod, ExpectedException(typeof(InvalidOperationException))]
-		public void NotComparable2()
-		{
-			var dict2 = new OrderedDictionary<UncomparableClass2,string>();
-		}
+	    /// <summary>
+	    /// Check that a OrderedDictionary can't be instantiated on an incomparable type.
+	    /// </summary>
+	    [TestMethod]
+	    public void NotComparable2()
+        {
+            ThrowsInvalid( () =>
+            _ = new OrderedDictionary<UncomparableClass2, string>()
+                );
+	    }
 
-		/// <summary>
-		/// Check that IsReadOnly always returns false.
-		/// </summary>
-		[TestMethod]
+        /// <summary>
+        /// Check that IsReadOnly always returns false.
+        /// </summary>
+        [TestMethod]
 		public void IsReadOnly()
 		{
 			var dict1 = new OrderedDictionary<int,string>();
@@ -1233,41 +1237,52 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadWriteDictionaryGeneric(dict1, s_array_sorted, i_array_sorted, "foo", true, "ReadOnlyTestDictionary", null, null);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
-        public void FailFastEnumerator1()
+	    [TestMethod]
+	    public void FailFastEnumerator1()
         {
-            var dict1 = new OrderedDictionary<double, int>();
+	        var dict1 = new OrderedDictionary<double, int>();
 
-            double d = 1.218034;
-            for (int i = 0; i < 50; ++i) {
-                dict1[d] = i;
-                d = d * 1.3451 - .31;
-            }
+	        double d = 1.218034;
+	        for (int i = 0; i < 50; ++i) {
+	            dict1[d] = i;
+	            d = d * 1.3451 - .31;
+	        }
 
-            // enumeration of the Keys collection should throw once the dictionary is modified.
-            foreach (double k in dict1.Keys) {
-                if (k > 3.0)
-                    dict1[4.5] = 9;
-            }
-        }
+	        // enumeration of the Keys collection should throw once the dictionary is modified.
+	        void InvalidOperation()
+            {
+	            foreach (double k in dict1.Keys) {
+	                if (k > 3.0) {
+                        dict1[4.5] = 9;
+                    }
+                }
+	        }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
-        public void FailFastEnumerator2()
+	        ThrowsInvalid(InvalidOperation);
+	    }
+
+	    [TestMethod]
+	    public void FailFastEnumerator2()
         {
-            var dict1 = new OrderedDictionary<double, int>();
+	        var dict1 = new OrderedDictionary<double, int>();
 
-            double d = 1.218034;
-            for (int i = 0; i < 100; ++i) {
-                dict1[d] = i;
-                d = d * 1.3451 - .31;
-            }
+	        double d = 1.218034;
+	        for (int i = 0; i < 100; ++i) {
+	            dict1[d] = i;
+	            d = d * 1.3451 - .31;
+	        }
 
-            // enumeration of a view should throw once the dictionary is modified.
-            foreach (KeyValuePair<double,int> p in dict1.Range(1.7, true, 11.4, false)) {
-                if (p.Key > 7.0)
-                    dict1.Clear();
-            }
-        }
+	        // enumeration of a view should throw once the dictionary is modified.
+	        void InvalidOperation()
+            {
+	            foreach (KeyValuePair<double, int> p in dict1.Range(1.7, true, 11.4, false)) {
+	                if (p.Key > 7.0) {
+                        dict1.Clear();
+                    }
+                }
+	        }
+	        ThrowsInvalid(InvalidOperation);
+	    }
 
         [TestMethod]
         public void ComparerProperty()
