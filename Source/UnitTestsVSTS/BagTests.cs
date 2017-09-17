@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 #endregion
@@ -662,20 +663,20 @@ namespace Wintellect.PowerCollections.Tests
 
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons1()
         {
             var bagOdds = new Bag<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var bagDigits = new Bag<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenEqualityComparer());
-            bagOdds.SymmetricDifferenceWith(bagDigits);
+            ThrowsInvalid(() => bagOdds.SymmetricDifferenceWith(bagDigits));
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons2()
         {
             var bag1 = new Bag<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
             var bag2 = new Bag<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
-            bag1.Intersection(bag2);
+            ThrowsInvalid(() => bag1.Intersection(bag2));
         }
 
         [TestMethod]
@@ -687,7 +688,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void FailFastEnumerator1()
         {
             var bag1 = new Bag<double>();
@@ -699,13 +700,18 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // should throw once the bag is modified.
-            foreach (double k in bag1) {
-                if (k > 3.0)
-                    bag1.Add(1.0);
+            void InvalidOperation()
+            {
+                foreach (double k in bag1) {
+                    if (k > 3.0)
+                        bag1.Add(1.0);
+                }
             }
+
+            ThrowsInvalid(InvalidOperation);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void FailFastEnumerator2()
         {
             var bag1 = new Bag<double>();
@@ -717,10 +723,15 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // should throw once the bag is modified.
-            foreach (double k in bag1) {
-                if (k > 3.0)
-                    bag1.Clear();
+            void InvalidOperation()
+            {
+                foreach (double k in bag1) {
+                    if (k > 3.0)
+                        bag1.Clear();
+                }
             }
+
+            ThrowsInvalid(InvalidOperation);
         }
 
 
@@ -818,7 +829,7 @@ namespace Wintellect.PowerCollections.Tests
 
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void CantCloneContents()
         {
             var bag1 = new Bag<NotCloneable> {
@@ -826,7 +837,7 @@ namespace Wintellect.PowerCollections.Tests
                 new NotCloneable()
             };
 
-            Bag<NotCloneable> bag2 = bag1.CloneContents();
+            ThrowsInvalid(() => bag1.CloneContents());
         }
 
         // Strange comparer that uses modulo arithmetic.
