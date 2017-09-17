@@ -2412,11 +2412,11 @@ namespace Wintellect.PowerCollections.Tests
             const int SIZE = 1000;
             const int ITER = 100;
 
-            Comparison<double> comp = delegate(double x, double y) {
+            int Comp(double x, double y) {
                 x = Math.Abs(x);
                 y = Math.Abs(y);
                 return x.CompareTo(y);
-            };
+            }
 
             var rand = new Random(12);
 
@@ -2427,8 +2427,8 @@ namespace Wintellect.PowerCollections.Tests
                     list.Add(rand.NextDouble() - 0.5);
                 double[] copy = list.ToArray();
 
-                list.Sort(comp);
-                Array.Sort(copy, comp);
+                list.Sort((Comparison<double>) Comp);
+                Array.Sort(copy, (Comparison<double>) Comp);
 
                 InterfaceTests.TestEnumerableElements(list, copy);
             }

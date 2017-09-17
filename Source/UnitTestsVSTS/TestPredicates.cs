@@ -22,6 +22,15 @@ namespace Wintellect.PowerCollections.Tests {
             return x < 10;
         }
 
+        public static int ReverseFirstLetter(string x, string y) {
+            if (x[0] < y[0])
+                return 1;
+            else if (x[0] > y[0])
+                return -1;
+            else
+                return 0;
+        }
+
         public static bool Over5(int x) => x > 5;
 
         public static bool Over8(int x) => x > 8;

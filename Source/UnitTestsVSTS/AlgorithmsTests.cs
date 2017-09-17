@@ -2035,11 +2035,11 @@ namespace Wintellect.PowerCollections.Tests
             }
             Assert.AreEqual(1, set.Count);
 
-            Comparison<char> caseInsensitiveComparison = delegate(char x, char y) {
+            int CaseInsensitiveComparison(char x, char y) {
                 x = char.ToLower(x);
                 y = char.ToLower(y);
                 return x.CompareTo(y);
-            };
+            }
 
             set.Clear();
             list.Clear();
@@ -2047,7 +2047,7 @@ namespace Wintellect.PowerCollections.Tests
             list.AddRange(new char[] { 'A', 'B', 'C', 'a', 'b' });
             array = list.ToArray();
 
-            foreach (char[] entry in Algorithms.GenerateSortedPermutations(list, caseInsensitiveComparison)) {
+            foreach (char[] entry in Algorithms.GenerateSortedPermutations(list, CaseInsensitiveComparison)) {
                 prev = s;
                 InterfaceTests.TestEnumerableElementsAnyOrder((IEnumerable<char>)entry, array);
                 s = new String(entry);
@@ -3608,12 +3608,6 @@ namespace Wintellect.PowerCollections.Tests
             const int SIZE = 1000;
             const int ITER = 100;
 
-            Comparison<double> comp = delegate(double x, double y) {
-                x = Math.Abs(x);
-                y = Math.Abs(y);
-                return x.CompareTo(y);
-            };
-
             var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
@@ -3623,8 +3617,8 @@ namespace Wintellect.PowerCollections.Tests
                     list.Add(rand.NextDouble() - 0.5);
                 double[] copy = Enumerable.ToArray(list);
 
-                Algorithms.SortInPlace(list, comp);
-                Array.Sort(copy, comp);
+                Algorithms.SortInPlace(list, AbsComp);
+                Array.Sort(copy, AbsComp);
 
                 InterfaceTests.TestEnumerableElements(list, copy);
             }
@@ -3662,12 +3656,6 @@ namespace Wintellect.PowerCollections.Tests
             const int SIZE = 1000;
             const int ITER = 100;
 
-            Comparison<double> comp = delegate(double x, double y) {
-                x = Math.Abs(x);
-                y = Math.Abs(y);
-                return x.CompareTo(y);
-            };
-
             var rand = new Random(12);
 
             for (int iter = 0; iter < ITER; ++iter) {
@@ -3678,11 +3666,17 @@ namespace Wintellect.PowerCollections.Tests
                 IList<double> list = new List<double> (array);
                 double[] copy = Enumerable.ToArray(list);
 
-                Algorithms.SortInPlace(list, comp);
-                Array.Sort(copy, comp);
+                Algorithms.SortInPlace(list, AbsComp);
+                Array.Sort(copy, AbsComp);
 
                 InterfaceTests.TestEnumerableElements(list, copy);
             }
+        }
+
+        private static int AbsComp(double x, double y) {
+            x = Math.Abs(x);
+            y = Math.Abs(y);
+            return x.CompareTo(y);
         }
 
         [TestMethod]

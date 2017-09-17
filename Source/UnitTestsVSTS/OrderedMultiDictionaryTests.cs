@@ -897,16 +897,16 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CustomComparison()
         {
-            Comparison<string> reverseFirstLetter = delegate(string x, string y) {
+            int ReverseFirstLetter(string x, string y) {
                 if (x[0] < y[0])
                     return 1;
                 else if (x[0] > y[0])
                     return -1;
-                else 
+                else
                     return 0;
-            };
+            }
 
-            var dict1 = new OrderedMultiDictionary<string, string>(false, reverseFirstLetter) {
+            var dict1 = new OrderedMultiDictionary<string, string>(false, ReverseFirstLetter) {
                 { "hello", "AAA" },
                 { "hi", "aaa" },
                 { "qubert", "hello" },
@@ -924,7 +924,7 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestEnumerableElements(dict1.Keys, new string[] { "queztel", "hi", "alpha" });
 
-            var dict2 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, reverseFirstLetter) {
+            var dict2 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, ReverseFirstLetter) {
                 { "qubert", "dinosaur" },
                 { "Hello", "AAA" },
                 { "Hi", "aaa" },
@@ -959,16 +959,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clone()
         {
-            Comparison<string> reverseFirstLetter = delegate(string x, string y) {
-                if (x[0] < y[0])
-                    return 1;
-                else if (x[0] > y[0])
-                    return -1;
-                else
-                    return 0;
-            };
-
-            var dict1 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, reverseFirstLetter) {
+            var dict1 = new OrderedMultiDictionary<string, string>(false, StringComparer.InvariantCultureIgnoreCase.Compare, (x, y) => TestPredicates.ReverseFirstLetter(x, y)) {
                 { "qubert", "dinosaur" },
                 { "Hello", "AAA" },
                 { "Hi", "aaa" },
@@ -1058,15 +1049,14 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void CloneContents()
         {
-            Comparison<MyInt> myIntComparison = 
-                delegate(MyInt v1, MyInt v2) { 
-                    if (v1 == null) 
-                        return (v2 == null) ? 0 : -1; 
-                    else if (v2 == null)
-                        return 1;
-                    else
-                        return v2.value.CompareTo(v1.value); 
-                };
+            int MyIntComparison(MyInt v1, MyInt v2) {
+                if (v1 == null)
+                    return (v2 == null) ? 0 : -1;
+                else if (v2 == null)
+                    return 1;
+                else
+                    return v2.value.CompareTo(v1.value);
+            }
 
             int ScrewyCompare(int v1, int v2) {
                 return -v2.CompareTo(v1);
@@ -1074,7 +1064,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var dict1 = new OrderedMultiDictionary<int, MyInt>(true,
                 ScrewyCompare,
-                myIntComparison) {
+                MyIntComparison) {
                 { 4, new MyInt(143) },
                 { 7, new MyInt(2) },
                 { 11, new MyInt(9) },
@@ -1087,7 +1077,7 @@ namespace Wintellect.PowerCollections.Tests
             OrderedMultiDictionary<int, MyInt> dict2 = dict1.CloneContents();
             CompareClones(dict1, dict2);
 
-            var dict3 = new OrderedMultiDictionary<MyInt, int>(false, myIntComparison) {
+            var dict3 = new OrderedMultiDictionary<MyInt, int>(false, MyIntComparison) {
                 { new MyInt(4), 143 },
                 { new MyInt(7), 2 },
                 { new MyInt(11), 9 },
