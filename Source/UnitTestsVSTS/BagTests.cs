@@ -948,7 +948,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeUnique()
         {
-            UniqueStuff d = new UniqueStuff();
+            var d = new UniqueStuff();
             InterfaceTests.Unique u1 = new InterfaceTests.Unique("cool"), u2 = new InterfaceTests.Unique("elvis");
 
             d.objects = new InterfaceTests.Unique[] { 

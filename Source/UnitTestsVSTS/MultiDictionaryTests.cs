@@ -1271,7 +1271,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void SerializeUnique()
         {
-            UniqueStuff d = new UniqueStuff();
+            var d = new UniqueStuff();
 
             d.keys = new InterfaceTests.Unique[] {
                 new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5")

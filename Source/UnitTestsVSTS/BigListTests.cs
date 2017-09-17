@@ -2857,7 +2857,7 @@ namespace Wintellect.PowerCollections.Tests
     [TestMethod]
     public void SerializeUnique1()
     {
-        UniqueStuff d = new UniqueStuff();
+        var d = new UniqueStuff();
 
         d.objects = new InterfaceTests.Unique[] { 
                 new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5"), new InterfaceTests.Unique("6"), 
@@ -2890,7 +2890,7 @@ namespace Wintellect.PowerCollections.Tests
         public void SerializeUnique2()
         {
             const int LEN = 1387;
-            UniqueStuff d = new UniqueStuff();
+            var d = new UniqueStuff();
 
             d.objects = new InterfaceTests.Unique[LEN];
             for (int i = 0; i < LEN; ++i) 
