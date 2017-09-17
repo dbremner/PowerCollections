@@ -79,6 +79,14 @@ namespace Wintellect.PowerCollections
 			public Node left, right;
 			public T item;
 
+            public Node(T item, uint count, Node left = null, Node right = null)
+            {
+                this.item = item;
+                this.count = count;
+                this.left = left;
+                this.right = right;
+            }
+
             private const uint REDMASK = 0x80000000;
             private uint count;
 
@@ -130,16 +138,7 @@ namespace Wintellect.PowerCollections
             /// <returns>The cloned node.</returns>
             public Node Clone()
             {
-                var newNode = new Node();
-                newNode.item = item;
-
-                newNode.count = count;
-
-                if (left != null)
-                    newNode.left = left.Clone();
-
-                if (right != null)
-                    newNode.right = right.Clone();
+                var newNode = new Node(item, count, left?.Clone(), right?.Clone());
 
                 return newNode;
             }
@@ -401,9 +400,7 @@ namespace Wintellect.PowerCollections
             }
 
             // Create a new node.
-			node = new Node();
-			node.item = item;
-            node.Count = 1;
+			node = new Node(item, 1);
 
 			// Link the node into the tree.
 			if (wentLeft) 
