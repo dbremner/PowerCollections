@@ -757,28 +757,28 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadWriteCollectionGeneric(bag3, new int[] { -21, -17, 1, 1, 7, 7, 9, 11, 13, 15, 19 }, true);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons1()
         {
             var bagOdds = new OrderedBag<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var bagDigits = new OrderedBag<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, ComparersTests.CompareOddEven);
-            bagOdds.UnionWith(bagDigits);
+            ThrowsInvalid(() => bagOdds.UnionWith(bagDigits));
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons2()
         {
             var bagOdds = new OrderedBag<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var bagDigits = new OrderedBag<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenComparer());
-            bagOdds.SymmetricDifferenceWith(bagDigits);
+            ThrowsInvalid(() => bagOdds.SymmetricDifferenceWith(bagDigits));
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons3()
         {
             var bag1 = new OrderedBag<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
             var bag2 = new OrderedBag<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
-            bag1.Intersection(bag2);
+            ThrowsInvalid(() => bag1.Intersection(bag2));
         }
 
         [TestMethod]
@@ -794,19 +794,19 @@ namespace Wintellect.PowerCollections.Tests
         }
 
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void NotComparable1()
         {
-            var bag1 = new OrderedBag<UncomparableClass1>();
+            ThrowsInvalid(() => _ = new OrderedBag<UncomparableClass1>());
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void NotComparable2()
         {
-            var bag1 = new OrderedBag<UncomparableClass2>();
+            ThrowsInvalid(() => _ = new OrderedBag<UncomparableClass2>());
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void FailFastEnumerator1()
         {
             var bag1 = new OrderedBag<double>();
@@ -818,13 +818,18 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // should throw once the bag is modified.
-            foreach (double k in bag1) {
-                if (k > 3.0)
-                    bag1.Add(1.0);
+            void InvalidOperation()
+            {
+                foreach (double k in bag1) {
+                    if (k > 3.0)
+                        bag1.Add(1.0);
+                }
             }
+
+            ThrowsInvalid(InvalidOperation);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void FailFastEnumerator2()
         {
             var bag1 = new OrderedBag<double>();
@@ -836,10 +841,15 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // should throw once the bag is modified.
-            foreach (double k in bag1) {
-                if (k > 3.0)
-                    bag1.Clear();
+            void InvalidOperation()
+            {
+                foreach (double k in bag1) {
+                    if (k > 3.0)
+                        bag1.Clear();
+                }
             }
+
+            ThrowsInvalid(InvalidOperation);
         }
 
         // Check a View to make sure it has the right stuff.
@@ -944,20 +954,22 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadWriteCollectionGeneric(bag1, new int[] { 1, 1, 1, 3, 4, 4, 11, 14, 22 }, true);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
         public void ViewAddException1()
         {
             var bag1 = new OrderedBag<int>(new int[] { 1, 1, 3, 4, 6, 6, 6, 8, 9, 11, 14, 22 });
 
-            bag1.Range(3, true, 8, false).Add(8);
+            var range = bag1.Range(3, true, 8, false);
+            Throws<ArgumentException>(() => range.Add(8));
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
         public void ViewAddException2()
         {
             var bag1 = new OrderedBag<int>(new int[] { 1, 1, 3, 4, 6, 6, 6, 8, 9, 11, 14, 22 });
 
-            bag1.Range(3, true, 8, false).Add(2);
+            var range = bag1.Range(3, true, 8, false);
+            Throws<ArgumentException>(() => range.Add(2));
         }
 
         [TestMethod]
