@@ -23,7 +23,7 @@ namespace Wintellect.PowerCollections.Tests {
         }
 
         public static void ThrowsInvalid(Action action) =>
-            Throws<InvalidProgramException>(action);
+            Throws<InvalidOperationException>(action);
 
         public static void ThrowsOutOfRange(Action action) =>
             Throws<ArgumentOutOfRangeException>(action);
