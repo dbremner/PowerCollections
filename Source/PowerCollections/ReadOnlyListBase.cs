@@ -117,23 +117,6 @@ namespace Wintellect.PowerCollections
 
         /// <summary>
         /// Finds the first item in the list that satisfies the condition
-        /// defined by <paramref name="predicate"/>. If no item matches the condition, than
-        /// the default value for T (null or all-zero) is returned.
-        /// </summary>
-        /// <remarks>If the default value for T (null or all-zero) matches the condition defined by <paramref name="predicate"/>,
-        /// and the list might contain the default value, then it is impossible to distinguish the different between finding
-        /// the default value and not finding any item. To distinguish these cases, use <see cref="TryFind"/>.</remarks>
-        /// <param name="predicate">A delegate that defined the condition to check for.</param>
-        /// <returns>The first item that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
-        /// condition, the default value for T is returned.</returns>
-        /// <seealso cref="TryFind"/>
-        public virtual T FirstOrDefault(Func<T, bool> predicate)
-        {
-            return Enumerable.FirstOrDefault(this, predicate);
-        }
-
-        /// <summary>
-        /// Finds the first item in the list that satisfies the condition
         /// defined by <paramref name="predicate"/>. 
         /// </summary>
         /// <param name="predicate">A delegate that defines the condition to check for.</param>
@@ -144,23 +127,6 @@ namespace Wintellect.PowerCollections
         public virtual bool TryFind(Func<T, bool> predicate, out T foundItem)
         {
             return Algorithms.TryFindFirstWhere(this, predicate, out foundItem);
-        }
-
-        /// <summary>
-        /// Finds the last item in the list that satisfies the condition
-        /// defined by <paramref name="predicate"/>. If no item matches the condition, than
-        /// the default value for T (null or all-zero) is returned.
-        /// </summary>
-        /// <remarks>If the default value for T (null or all-zero) matches the condition defined by <paramref name="predicate"/>,
-        /// and the list might contain the default value, then it is impossible to distinguish the different between finding
-        /// the default value and not finding any item. To distinguish these cases, use <see cref="TryFindLast"/>.</remarks>
-        /// <param name="predicate">A delegate that defined the condition to check for.</param>
-        /// <returns>The last item that satisfies the condition <paramref name="predicate"/>. If no item satisfies that
-        /// condition, the default value for T is returned.</returns>
-        /// <seealso cref="TryFindLast"/>
-        public virtual T LastOrDefault(Func<T, bool> predicate)
-        {
-            return Enumerable.LastOrDefault(this, predicate);
         }
 
         /// <summary>

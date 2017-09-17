@@ -226,44 +226,6 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void Exists()
-        {
-            var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
-
-            Assert.IsTrue(set1.Any(delegate(double d) { return d > 100; }));
-            Assert.IsTrue(set1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
-            Assert.IsFalse(set1.Any(delegate(double d) { return d < -10.0; }));
-            set1.Clear();
-            Assert.IsFalse(set1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
-        }
-
-        [TestMethod]
-        public void TrueForAll()
-        {
-            var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
-
-            Assert.IsFalse(set1.All(delegate(double d) { return d > 100; }));
-            Assert.IsFalse(set1.All(delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.IsTrue(set1.All(delegate(double d) { return d > -10; }));
-            Assert.IsTrue(set1.All(delegate(double d) { return Math.Abs(d) < 200; }));
-            set1.Clear();
-            Assert.IsTrue(set1.All(delegate(double d) { return Math.Abs(d) == 0.04; }));
-        }
-
-        [TestMethod]
-        public void CountWhere()
-        {
-            var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -7.6, -0.04, 1.78, 10.11, 187.4 });
-
-            Assert.AreEqual(0, set1.CountWhere(delegate(double d) { return d > 200; }));
-            Assert.AreEqual(6, set1.CountWhere(delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.AreEqual(8, set1.CountWhere(delegate(double d) { return d > -10; }));
-            Assert.AreEqual(4, set1.CountWhere(delegate(double d) { return Math.Abs(d) > 5; }));
-            set1.Clear();
-            Assert.AreEqual(0, set1.CountWhere(delegate(double d) { return Math.Abs(d) < 10; }));
-        }
-
-        [TestMethod]
         public void RemoveAll()
         {
             var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
@@ -278,24 +240,6 @@ namespace Wintellect.PowerCollections.Tests
             set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             set1.RemoveAll(delegate(double d) { return d < 200; });
             Assert.AreEqual(0, set1.Count);
-        }
-
-        [TestMethod]
-        public void FindAll()
-        {
-            var set1 = new Set<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            double[] expected = { -7.6, 7.6, 10.11, 187.4 };
-            int i;
-
-            i = 0;
-            foreach (double x in set1.Where(delegate(double d) { return Math.Abs(d) > 5; })) {
-                int index = Array.IndexOf(expected, x);
-                Assert.IsTrue(index >= 0);
-                Assert.AreEqual(expected[index], x);
-                expected[index] = double.NaN;
-                ++i;
-            }
-            Assert.AreEqual(expected.Length, i);
         }
 
         [TestMethod, ExpectedException(typeof(InvalidOperationException))]

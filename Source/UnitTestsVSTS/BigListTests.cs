@@ -1628,77 +1628,6 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void Exists()
-        {
-            BigList<int> list1 = CreateList(0, 400);
-            list1[57] = 7123;
-
-            bool result;
-
-            result = list1.Any(delegate(int x) { return x > 7120; });
-            Assert.IsTrue(result);
-            result = list1.Any(delegate(int x) { return x > 7124; });
-            Assert.IsFalse(result);
-            result = list1.Any(delegate(int x) { return x % 187 == 44; });
-            Assert.IsTrue(result);
-            result = list1.Any(delegate(int x) { return x >= 0; });
-            Assert.IsTrue(result);
-
-            list1 = new BigList<int>();
-            result = list1.Any(delegate(int x) { return true; });
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod]
-        public void TrueForAll()
-        {
-            BigList<int> list1 = CreateList(0, 400);
-            list1[57] = 7123;
-
-            bool result;
-
-            result = list1.All(delegate(int x) { return x < 7124; });
-            Assert.IsTrue(result);
-            result = list1.All(delegate(int x) { return x < 500; });
-            Assert.IsFalse(result);
-            result = list1.All(delegate(int x) { return x % 187 == 44; });
-            Assert.IsFalse(result);
-            result = list1.All(delegate(int x) { return x >= 0; });
-            Assert.IsTrue(result);
-
-            list1 = new BigList<int>();
-            result = list1.All(delegate(int x) { return false; });
-            Assert.IsTrue(result);
-
-            var list2 = new List<int>();
-            result = list2.TrueForAll(delegate(int x) { return false; });
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void ConvertAll()
-        {
-            BigList<int> list1 = CreateList(0, 400);
-            BigList<string> list2;
-
-            list2 = list1.ConvertAll(delegate(int x) { return (x * 2).ToString(); });
-            string[] expected = new string[400];
-            for (int i = 0; i < 400; ++i)
-                expected[i] = (2 * i).ToString();
-#if DEBUG
-            list2.Validate();
-#endif //DEBUG
-            InterfaceTests.TestReadWriteListGeneric(list2, expected);
-
-            list1 = new BigList<int>();
-            list2 = list1.ConvertAll(delegate(int x) { return (x * 2).ToString(); });
-#if DEBUG
-            list2.Validate();
-#endif //DEBUG
-            InterfaceTests.TestReadWriteListGeneric(list2, new string[0]);
-        }
-
-        [TestMethod]
         public void Find()
         {
             var list1 = new BigList<int>(new int[] { 4, 8, 1, 3, 4, 9 });
@@ -1780,29 +1709,6 @@ namespace Wintellect.PowerCollections.Tests
             found = list1.TryFindLast(delegate(int x) { return x < 3; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
-        }
-
-        [TestMethod]
-        public void FindAll()
-        {
-            var list1 = new BigList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
-            IEnumerable<int> found;
-
-            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 1, 3, 9 });
-
-            found = list1.Where(delegate(int x) { return (x & 1) == 0; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 6 });
-
-            found = list1.Where(delegate(int x) { return x > 10; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { });
-
-            found = list1.Where(delegate(int x) { return x < 10; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 1, 3, 6, 9 });
-
-            list1 = new BigList<int>();
-            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { });
         }
 
         [TestMethod]

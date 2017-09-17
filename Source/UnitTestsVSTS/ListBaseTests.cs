@@ -772,29 +772,6 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void FindAll()
-        {
-            var list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
-            IEnumerable<int> found;
-
-            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 1, 3, 9 });
-
-            found = list1.Where(delegate(int x) { return (x & 1) == 0; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 6 });
-
-            found = list1.Where(delegate(int x) { return x > 10; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { });
-
-            found = list1.Where(delegate(int x) { return x < 10; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 1, 3, 6, 9 });
-
-            list1 = new ReadWriteArrayList<int>(new int[0]);
-            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { });
-        }
-
-        [TestMethod]
         public void FindIndex()
         {
             var list1 = new ReadWriteArrayList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
@@ -1119,29 +1096,6 @@ namespace Wintellect.PowerCollections.Tests
             found = list1.TryFindLast(delegate(int x) { return x < 3; }, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
-        }
-
-        [TestMethod]
-        public void FindAllReadOnly()
-        {
-            var list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
-            IEnumerable<int> found;
-
-            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 1, 3, 9 });
-
-            found = list1.Where(delegate(int x) { return (x & 1) == 0; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 6 });
-
-            found = list1.Where(delegate(int x) { return x > 10; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { });
-
-            found = list1.Where(delegate(int x) { return x < 10; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { 4, 8, 1, 3, 6, 9 });
-
-            list1 = new ReadOnlyArrayList<int>(new int[0]);
-            found = list1.Where(delegate(int x) { return (x & 1) == 1; });
-            InterfaceTests.TestEnumerableElements(found, new int[] { });
         }
 
         [TestMethod]

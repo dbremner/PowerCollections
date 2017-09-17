@@ -1192,20 +1192,6 @@ namespace Wintellect.PowerCollections
         }
 
         /// <summary>
-        /// Convert the list to a new list by applying a delegate to each item in the collection. The resulting list
-        /// contains the result of applying <paramref name="converter"/> to each item in the list, in
-        /// order. The current list is unchanged.
-        /// </summary>
-        /// <typeparam name="TDest">The type each item is being converted to.</typeparam>
-        /// <param name="converter">A delegate to the method to call, passing each item in <type name="BigList&lt;T&gt;"/>.</param>
-        /// <returns>The resulting BigList from applying <paramref name="converter"/> to each item in this list.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="converter"/> is null.</exception>
-        public new BigList<TDest> ConvertAll<TDest>(Func<T, TDest> converter)
-        {
-            return new BigList<TDest>(Enumerable.Select(this, converter));
-        }
-
-        /// <summary>
         /// Reverses the current list in place.
         /// </summary>
         public void Reverse()

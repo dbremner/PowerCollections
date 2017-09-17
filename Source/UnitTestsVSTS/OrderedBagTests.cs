@@ -460,44 +460,6 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void Exists()
-        {
-            var bag1 = new OrderedBag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
-
-            Assert.IsTrue(bag1.Any(delegate(double d) { return d > 100; }));
-            Assert.IsTrue(bag1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
-            Assert.IsFalse(bag1.Any(delegate(double d) { return d < -10.0; }));
-            bag1.Clear();
-            Assert.IsFalse(bag1.Any(delegate(double d) { return Math.Abs(d) == 0.04; }));
-        }
-
-        [TestMethod]
-        public void TrueForAll()
-        {
-            var bag1 = new OrderedBag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
-
-            Assert.IsFalse(bag1.All(delegate(double d) { return d > 100; }));
-            Assert.IsFalse(bag1.All(delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.IsTrue(bag1.All(delegate(double d) { return d > -10; }));
-            Assert.IsTrue(bag1.All(delegate(double d) { return Math.Abs(d) < 200; }));
-            bag1.Clear();
-            Assert.IsTrue(bag1.All(delegate(double d) { return Math.Abs(d) == 0.04; }));
-        }
-
-        [TestMethod]
-        public void CountWhere()
-        {
-            var bag1 = new OrderedBag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
-
-            Assert.AreEqual(0, bag1.CountWhere(delegate(double d) { return d > 200; }));
-            Assert.AreEqual(7, bag1.CountWhere(delegate(double d) { return Math.Abs(d) < 10; }));
-            Assert.AreEqual(10, bag1.CountWhere(delegate(double d) { return d > -10; }));
-            Assert.AreEqual(5, bag1.CountWhere(delegate(double d) { return Math.Abs(d) > 5; }));
-            bag1.Clear();
-            Assert.AreEqual(0, bag1.CountWhere(delegate(double d) { return Math.Abs(d) < 10; }));
-        }
-
-        [TestMethod]
         public void RemoveAll()
         {
             var bag1 = new OrderedBag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
@@ -512,21 +474,6 @@ namespace Wintellect.PowerCollections.Tests
             bag1 = new OrderedBag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
             bag1.RemoveAll(delegate(double d) { return d < 200; });
             Assert.AreEqual(0, bag1.Count);
-        }
-
-        [TestMethod]
-        public void FindAll()
-        {
-            var bag1 = new OrderedBag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
-            double[] expected = { -7.6, 7.6, 10.11, 187.4, 187.4 };
-            int i;
-
-            i = 0;
-            foreach (double x in bag1.Where(delegate(double d) { return Math.Abs(d) > 5; })) {
-                Assert.AreEqual(expected[i], x);
-                ++i;
-            }
-            Assert.AreEqual(expected.Length, i);
         }
 
         [TestMethod]
