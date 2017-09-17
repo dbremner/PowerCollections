@@ -9,6 +9,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Runtime.InteropServices;
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 
 namespace Wintellect.PowerCollections.Tests {
 	
@@ -1483,60 +1484,26 @@ namespace Wintellect.PowerCollections.Tests {
 #endif //DEBUG
         }
 
-        [TestMethod]
-        public void GetByIndexExceptions()
-        {
-            tree = new RedBlackTree<TestItem>(new DataComparer());
+	    [TestMethod]
+	    public void GetByIndexExceptions() {
+	        tree = new RedBlackTree<TestItem>(new DataComparer());
 
-            InsertValidate("foo", 3);
-            InsertValidate("bar", 4);
-            InsertValidate("bingo", 5);
-            InsertValidate("biff", 6);
-            InsertValidate("zip", 7);
-            InsertValidate("zap", 8);
+	        InsertValidate("foo", 3);
+	        InsertValidate("bar", 4);
+	        InsertValidate("bingo", 5);
+	        InsertValidate("biff", 6);
+	        InsertValidate("zip", 7);
+	        InsertValidate("zap", 8);
 
-            try {
-                TestItem item = tree.GetItemByIndex(-1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+	        var invalidIndices = new int[] {-1, 6, Int32.MaxValue, Int32.MinValue, };
 
-            try {
-                TestItem item = tree.GetItemByIndex(6);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+	        foreach (var invalidIndex in invalidIndices) {
+	            ThrowsOutOfRange(() => _ = tree.GetItemByIndex(invalidIndex));
+	        }
 
-            try {
-                TestItem item = tree.GetItemByIndex(Int32.MaxValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            try {
-                TestItem item = tree.GetItemByIndex(Int32.MinValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-
-            tree = new RedBlackTree<TestItem>(new DataComparer());
-
-            try {
-                TestItem item = tree.GetItemByIndex(0);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-        }
+	        tree = new RedBlackTree<TestItem>(new DataComparer());
+            ThrowsOutOfRange(() => tree.GetItemByIndex(0));
+	    }
 
     }
 
