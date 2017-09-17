@@ -216,7 +216,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var invalidIndices = new[] { -1, 9, Int32.MaxValue, Int32.MinValue, };
             foreach (var invalidIndex in invalidIndices) {
-                ThrowsOutOfRange(() => _ = bag1[invalidIndex]);
+                ThrowsOutOfRangeResult(() => bag1[invalidIndex]);
             }
         }
 
@@ -797,13 +797,13 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void NotComparable1()
         {
-            ThrowsInvalid(() => _ = new OrderedBag<UncomparableClass1>());
+            ThrowsInvalidResult(() => new OrderedBag<UncomparableClass1>());
         }
 
         [TestMethod]
         public void NotComparable2()
         {
-            ThrowsInvalid(() => _ = new OrderedBag<UncomparableClass2>());
+            ThrowsInvalidResult(() => new OrderedBag<UncomparableClass2>());
         }
 
         [TestMethod]

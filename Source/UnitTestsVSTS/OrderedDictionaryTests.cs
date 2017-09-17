@@ -571,9 +571,7 @@ namespace Wintellect.PowerCollections.Tests
 	    [TestMethod]
 	    public void NotComparable1()
         {
-            ThrowsInvalid( () =>
-	        _ = new OrderedDictionary<UncomparableClass1, string>()
-                );
+            ThrowsInvalidResult( () => new OrderedDictionary<UncomparableClass1, string>() );
 	    }
 
 	    /// <summary>
@@ -582,9 +580,7 @@ namespace Wintellect.PowerCollections.Tests
 	    [TestMethod]
 	    public void NotComparable2()
         {
-            ThrowsInvalid( () =>
-            _ = new OrderedDictionary<UncomparableClass2, string>()
-                );
+            ThrowsInvalidResult( () => new OrderedDictionary<UncomparableClass2, string>() );
 	    }
 
         /// <summary>

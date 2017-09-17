@@ -1498,7 +1498,7 @@ namespace Wintellect.PowerCollections.Tests {
 	        var invalidIndices = new int[] {-1, 6, Int32.MaxValue, Int32.MinValue, };
 
 	        foreach (var invalidIndex in invalidIndices) {
-	            ThrowsOutOfRange(() => _ = tree.GetItemByIndex(invalidIndex));
+	            ThrowsOutOfRangeResult(() => tree.GetItemByIndex(invalidIndex));
 	        }
 
 	        tree = new RedBlackTree<TestItem>(new DataComparer());

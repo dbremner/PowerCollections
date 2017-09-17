@@ -25,8 +25,14 @@ namespace Wintellect.PowerCollections.Tests {
         public static void ThrowsInvalid(Action action) =>
             Throws<InvalidOperationException>(action);
 
+        public static void ThrowsInvalidResult<T>(Func<T> func) =>
+            ThrowsInvalid(() => func());
+
         public static void ThrowsOutOfRange(Action action) =>
             Throws<ArgumentOutOfRangeException>(action);
+
+        public static void ThrowsOutOfRangeResult<T>(Func<T> func) =>
+            ThrowsOutOfRange(() => func());
 
         public static void ThrowsOutOfRange(string paramName, Action action) {
             try {

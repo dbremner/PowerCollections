@@ -205,7 +205,7 @@ namespace Wintellect.PowerCollections.Tests
             var invalidValues = new[] {-1, 5, Int32.MaxValue, Int32.MinValue};
 
             foreach (var invalidValue in invalidValues) {
-                ThrowsOutOfRange(() => _ = set1[invalidValue]);
+                ThrowsOutOfRangeResult(() => set1[invalidValue]);
             }
         }
 

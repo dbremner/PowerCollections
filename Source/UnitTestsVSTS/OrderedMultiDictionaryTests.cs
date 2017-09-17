@@ -948,16 +948,16 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void NotComparable1()
         {
-            ThrowsInvalid( () =>
-            _ = new OrderedMultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false)
+            ThrowsInvalidResult( () =>
+            new OrderedMultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false)
                 );
         }
 
         [TestMethod]
         public void NotComparable2()
         {
-            ThrowsInvalid( () =>
-             _ = new OrderedMultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true)
+            ThrowsInvalidResult( () =>
+            new OrderedMultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true)
                 );
         }
 
