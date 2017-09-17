@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 #endregion
 
 namespace Wintellect.PowerCollections.Tests
@@ -385,10 +385,9 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException), "Type \"Wintellect.PowerCollections.Tests.Unorderable\" does not implement IComparable<Wintellect.PowerCollections.Tests.Unorderable> or IComparable.")]
         public void UnorderableType2()
         {
-            IComparer<Unorderable> ordering = Comparers.DefaultComparer<Unorderable>();
+            ThrowsInvalid(() => Comparers.DefaultComparer<Unorderable>());
         }
     }
 }
