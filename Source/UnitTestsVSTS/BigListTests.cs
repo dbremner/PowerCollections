@@ -14,6 +14,7 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 #endregion
@@ -1475,7 +1476,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void CantCloneContents()
         {
             var list1 = new BigList<NotCloneable> {
@@ -1483,9 +1484,8 @@ namespace Wintellect.PowerCollections.Tests
                 new NotCloneable()
             };
 
-            BigList<NotCloneable> list2 = list1.CloneContents();
+            ThrowsInvalid(() => list1.CloneContents());
         }
-
 
 
         [TestMethod]
