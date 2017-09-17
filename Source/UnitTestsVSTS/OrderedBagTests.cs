@@ -1080,15 +1080,15 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void CantCloneContents()
         {
-            var bag1 = new OrderedBag<NotCloneable> {
-                new NotCloneable(),
-                new NotCloneable()
+            var bag1 = new OrderedBag<GenericComparable> {
+                new GenericComparable(1),
+                new GenericComparable(2)
             };
 
-            OrderedBag<NotCloneable> bag2 = bag1.CloneContents();
+            ThrowsInvalid(() => bag1.CloneContents());
         }
 
         [TestMethod]
