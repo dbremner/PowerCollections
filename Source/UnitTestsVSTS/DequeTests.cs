@@ -919,7 +919,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void CantCloneContents()
         {
             var deque1 = new Deque<NotCloneable> {
@@ -927,7 +927,7 @@ namespace Wintellect.PowerCollections.Tests
                 new NotCloneable()
             };
 
-            Deque<NotCloneable> deque2 = deque1.CloneContents();
+            ThrowsInvalid(() => deque1.CloneContents());
         }
 
         [TestMethod]
