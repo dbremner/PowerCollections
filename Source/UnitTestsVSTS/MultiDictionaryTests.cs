@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections.Tests;
+using static Wintellect.PowerCollections.Tests.TestPredicates;
+using static Wintellect.PowerCollections.Tests.UtilTests;
 
 namespace Wintellect.PowerCollections.Tests
 {
@@ -27,9 +29,9 @@ namespace Wintellect.PowerCollections.Tests
             ICollection<TValue> getValues;
 
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
 
             // Check Count.
             Assert.AreEqual(keys.Length, dict.Count);
@@ -1081,25 +1083,25 @@ namespace Wintellect.PowerCollections.Tests
             MultiDictionary<MyInt, int> dict4 = dict3.CloneContents();
             CompareClones(dict3, dict4);
 
-            var dict5 = new MultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct>(true) {
-                { new UtilTests.CloneableStruct(7), new UtilTests.CloneableStruct(-14) },
-                { new UtilTests.CloneableStruct(16), new UtilTests.CloneableStruct(13) },
-                { new UtilTests.CloneableStruct(7), new UtilTests.CloneableStruct(-14) },
-                { new UtilTests.CloneableStruct(7), new UtilTests.CloneableStruct(31415) },
-                { new UtilTests.CloneableStruct(1111), new UtilTests.CloneableStruct(0) }
+            var dict5 = new MultiDictionary<CloneableStruct, CloneableStruct>(true) {
+                { new CloneableStruct(7), new CloneableStruct(-14) },
+                { new CloneableStruct(16), new CloneableStruct(13) },
+                { new CloneableStruct(7), new CloneableStruct(-14) },
+                { new CloneableStruct(7), new CloneableStruct(31415) },
+                { new CloneableStruct(1111), new CloneableStruct(0) }
             };
-            MultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct> dict6 = dict5.CloneContents();
+            MultiDictionary<CloneableStruct, CloneableStruct> dict6 = dict5.CloneContents();
 
             Assert.IsTrue(dict5.Count == dict6.Count);
 
-            IEnumerable<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>> e1 = dict5.KeyValuePairs;
-            IEnumerable<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>> e2 = dict6.KeyValuePairs;
-            KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>[] pairs1 = Enumerable.ToArray(e1), pairs2 = Enumerable.ToArray(e2);
+            IEnumerable<KeyValuePair<CloneableStruct, CloneableStruct>> e1 = dict5.KeyValuePairs;
+            IEnumerable<KeyValuePair<CloneableStruct, CloneableStruct>> e2 = dict6.KeyValuePairs;
+            KeyValuePair<CloneableStruct, CloneableStruct>[] pairs1 = Enumerable.ToArray(e1), pairs2 = Enumerable.ToArray(e2);
             bool[] found = new bool[pairs2.Length];
 
             // Check that the arrays are equal, but not reference equals (e.g., have been cloned).
             Assert.IsTrue(pairs1.Length == pairs2.Length);
-            foreach (KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct> p1 in pairs1) {
+            foreach (KeyValuePair<CloneableStruct, CloneableStruct> p1 in pairs1) {
                 bool f = false;
                 for (int i = 0; i < pairs2.Length; ++i) {
                     if (!found[i] && object.Equals(p1.Key, pairs2[i].Key) && object.Equals(p1.Value, pairs2[i].Value)) {

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.UtilTests;
 
 namespace Wintellect.PowerCollections.Tests
 {
@@ -964,20 +965,20 @@ namespace Wintellect.PowerCollections.Tests
             Deque<int> deque4 = deque3.CloneContents();
             CompareClones(deque3, deque4);
 
-            var deque5 = new Deque<UtilTests.CloneableStruct> {
-                new UtilTests.CloneableStruct(143)
+            var deque5 = new Deque<CloneableStruct> {
+                new CloneableStruct(143)
             };
-            deque5.AddToFront(new UtilTests.CloneableStruct(5));
-            deque5.Add(new UtilTests.CloneableStruct(23));
-            deque5.AddToFront(new UtilTests.CloneableStruct(1));
-            deque5.AddToFront(new UtilTests.CloneableStruct(8));
-            Deque<UtilTests.CloneableStruct> deque6 = deque5.CloneContents();
+            deque5.AddToFront(new CloneableStruct(5));
+            deque5.Add(new CloneableStruct(23));
+            deque5.AddToFront(new CloneableStruct(1));
+            deque5.AddToFront(new CloneableStruct(8));
+            Deque<CloneableStruct> deque6 = deque5.CloneContents();
 
             Assert.AreEqual(deque5.Count, deque6.Count);
 
             // Check that the deques are equal, but not identical (e.g., have been cloned via ICloneable).
-            IEnumerator<UtilTests.CloneableStruct> e1 = deque5.GetEnumerator();
-            IEnumerator<UtilTests.CloneableStruct> e2 = deque6.GetEnumerator();
+            IEnumerator<CloneableStruct> e1 = deque5.GetEnumerator();
+            IEnumerator<CloneableStruct> e2 = deque6.GetEnumerator();
 
             // Check that the deques are equal, but not reference equals (e.g., have been cloned).
             while (e1.MoveNext()) {

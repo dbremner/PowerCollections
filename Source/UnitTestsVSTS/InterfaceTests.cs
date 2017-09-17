@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.TestPredicates;
 
 namespace Wintellect.PowerCollections.Tests {
 	/// <summary>
@@ -24,13 +25,15 @@ namespace Wintellect.PowerCollections.Tests {
         public static BinaryPredicate<KeyValuePair<TKey,TValue>> KeyValueEquals<TKey, TValue>(BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
         {
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
 
-            return delegate(KeyValuePair<TKey, TValue> pair1, KeyValuePair<TKey, TValue> pair2) {
+            bool KvpEquals(KeyValuePair<TKey, TValue> pair1, KeyValuePair<TKey, TValue> pair2) {
                 return keyEquals(pair1.Key, pair2.Key) && valueEquals(pair1.Value, pair2.Value);
-            };
+            }
+
+            return KvpEquals;
         }
 
         public static BinaryPredicate<KeyValuePair<TKey, TValue>> KeyValueEquals<TKey, TValue>()
@@ -89,7 +92,7 @@ namespace Wintellect.PowerCollections.Tests {
        public static void TestEnumerableElements<T>(IEnumerable<T> e, T[] expected, BinaryPredicate<T> equals) 
        {
            if (equals == null)
-               equals = delegate(T x, T y) { return object.Equals(x, y); };
+               equals = ObjectEquals;
 
            int i = 0;
            foreach (T item in e) {
@@ -110,7 +113,7 @@ namespace Wintellect.PowerCollections.Tests {
        public static void TestEnumerableElementsAnyOrder<T>(IEnumerable<T> e, T[] expected, BinaryPredicate<T> equals)
        {
            if (equals == null)
-               equals = delegate(T x, T y) { return object.Equals(x, y); };
+               equals = ObjectEquals;
 
            bool[] found = new bool[expected.Length];
            int i = 0;
@@ -250,7 +253,7 @@ namespace Wintellect.PowerCollections.Tests {
 		private static void TestCollectionGeneric<T>(ICollection<T> coll, T[] values, bool mustBeInOrder, BinaryPredicate<T> equals)
 		{
             if (equals == null)
-                equals = delegate(T x, T y) { return object.Equals(x, y); };
+                equals = ObjectEquals;
 
             bool[] used = new bool[values.Length];
 
@@ -689,9 +692,9 @@ namespace Wintellect.PowerCollections.Tests {
             TValue val;
 
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
 
             // Check Count.
             Assert.AreEqual(keys.Length, dict.Count);
@@ -738,9 +741,9 @@ namespace Wintellect.PowerCollections.Tests {
             BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
         {
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
 
             KeyValuePair<TKey, TValue>[] entries = new KeyValuePair<TKey, TValue>[keys.Length];
             for (int i = 0; i < keys.Length; ++i)
@@ -800,9 +803,9 @@ namespace Wintellect.PowerCollections.Tests {
             BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
         {
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
 
             KeyValuePair<TKey, TValue>[] entries = new KeyValuePair<TKey, TValue>[keys.Length];
             for (int i = 0; i < keys.Length; ++i)
@@ -866,7 +869,7 @@ namespace Wintellect.PowerCollections.Tests {
         public static void TestListGeneric<T>(IList<T> coll, T[] valueArray, BinaryPredicate<T> equals)
         {
             if (equals == null)
-                equals = delegate(T x, T y) { return object.Equals(x, y); };
+                equals = ObjectEquals;
 
             // Check basic read-only collection stuff.
             TestCollectionGeneric(coll, valueArray, true, equals);
@@ -1031,7 +1034,7 @@ namespace Wintellect.PowerCollections.Tests {
         public static void TestReadWriteListGeneric<T>(IList<T> coll, T[] valueArray, BinaryPredicate<T> equals)
         {
             if (equals == null)
-                equals = delegate(T x, T y) { return object.Equals(x, y); };
+                equals = ObjectEquals;
 
             TestListGeneric(coll, valueArray, equals);     // Basic read-only list stuff.
 
@@ -1504,7 +1507,7 @@ namespace Wintellect.PowerCollections.Tests {
         public static void TestReadOnlyListGeneric<T>(IList<T> coll, T[] valueArray, string name, BinaryPredicate<T> equals)
         {
             if (equals == null)
-                equals = delegate(T x, T y) { return object.Equals(x, y); };
+                equals = ObjectEquals;
 
             // Basic list stuff.
             TestListGeneric(coll, valueArray, equals);
@@ -1635,9 +1638,9 @@ namespace Wintellect.PowerCollections.Tests {
             BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
         {
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
             BinaryPredicate<ICollection<TValue>> valueCollectionEquals = CollectionEquals(valueEquals, mustBeInOrder);
 
             TestReadWriteDictionaryGeneric(dict, keys, values, nonKey, mustBeInOrder, name, keyEquals, valueCollectionEquals);
@@ -1647,9 +1650,9 @@ namespace Wintellect.PowerCollections.Tests {
             BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
         {
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
             BinaryPredicate<ICollection<TValue>> valueCollectionEquals = CollectionEquals(valueEquals, mustBeInOrder);
 
             TestReadOnlyDictionaryGeneric(dict, keys, values, nonKey, mustBeInOrder, name, keyEquals, valueCollectionEquals);
@@ -1659,9 +1662,9 @@ namespace Wintellect.PowerCollections.Tests {
             BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
         {
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
             BinaryPredicate<ICollection<TValue>> valueCollectionEquals = CollectionEquals(valueEquals, mustBeInOrder);
 
             TestDictionaryGeneric(dict, keys, values, nonKey, mustBeInOrder, keyEquals, valueCollectionEquals);

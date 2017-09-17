@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.UtilTests;
 
 namespace Wintellect.PowerCollections.Tests
 {
@@ -861,7 +862,7 @@ namespace Wintellect.PowerCollections.Tests
             CompareClones(dict1, dict2);
 
             var dict3 = new OrderedDictionary<MyInt, int>(
-                delegate (MyInt v1, MyInt v2) { return v2.value.CompareTo(v1.value); }) {
+                (v1, v2) => v2.value.CompareTo(v1.value)) {
                 [new MyInt(7)] = 144,
                 [new MyInt(16)] = 13,
                 [new MyInt(-6)] = -14,
@@ -872,20 +873,21 @@ namespace Wintellect.PowerCollections.Tests
             OrderedDictionary<MyInt, int> dict4 = dict3.CloneContents();
             CompareClones(dict3, dict4);
 
-            Comparison<UtilTests.CloneableStruct> comparison = delegate(UtilTests.CloneableStruct s1, UtilTests.CloneableStruct s2) {
+            int Comparison(CloneableStruct s1, CloneableStruct s2) {
                 return s1.value.CompareTo(s2.value);
-            };
-            var dict5 = new OrderedDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct>(comparison) {
-                [new UtilTests.CloneableStruct(7)] = new UtilTests.CloneableStruct(144),
-                [new UtilTests.CloneableStruct(16)] = new UtilTests.CloneableStruct(13),
-                [new UtilTests.CloneableStruct(-6)] = new UtilTests.CloneableStruct(-14),
-                [new UtilTests.CloneableStruct(0)] = new UtilTests.CloneableStruct(31415),
-                [new UtilTests.CloneableStruct(1111)] = new UtilTests.CloneableStruct(0)
-            };
-            OrderedDictionary<UtilTests.CloneableStruct,UtilTests.CloneableStruct> dict6 = dict5.CloneContents();
+            }
 
-            IEnumerator<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>> e1 = dict5.GetEnumerator();
-            IEnumerator<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>> e2 = dict6.GetEnumerator();
+            var dict5 = new OrderedDictionary<CloneableStruct, CloneableStruct>(Comparison) {
+                [new CloneableStruct(7)] = new CloneableStruct(144),
+                [new CloneableStruct(16)] = new CloneableStruct(13),
+                [new CloneableStruct(-6)] = new CloneableStruct(-14),
+                [new CloneableStruct(0)] = new CloneableStruct(31415),
+                [new CloneableStruct(1111)] = new CloneableStruct(0)
+            };
+            OrderedDictionary<CloneableStruct,CloneableStruct> dict6 = dict5.CloneContents();
+
+            IEnumerator<KeyValuePair<CloneableStruct, CloneableStruct>> e1 = dict5.GetEnumerator();
+            IEnumerator<KeyValuePair<CloneableStruct, CloneableStruct>> e2 = dict6.GetEnumerator();
 
             Assert.IsTrue(dict5.Count == dict6.Count);
 
@@ -1343,11 +1345,11 @@ namespace Wintellect.PowerCollections.Tests
                 new int[] { 19, 110, 19, 107, 99 },
                 "zippy", true, null, null);
 
-            Comparison<string> myComparison = delegate(string x, string y) {
+            int EqualFirstChar(string x, string y) {
                 return x[0].CompareTo(y[0]);
-            };
+            }
 
-            var dict3 = new OrderedDictionary<string, int>(dict1, Algorithms.GetReverseComparison(myComparison));
+            var dict3 = new OrderedDictionary<string, int>(dict1, Algorithms.GetReverseComparison((Comparison<string>) EqualFirstChar));
 
             InterfaceTests.TestDictionaryGeneric(dict3,
                 new string[] { "trackstar", "goofy", "foo", "bar", "GOOfy", "FOO"},

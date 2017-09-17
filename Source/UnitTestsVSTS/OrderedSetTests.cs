@@ -13,7 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using static Wintellect.PowerCollections.Tests.TestPredicates;
+using static Wintellect.PowerCollections.Tests.UtilTests;
 #endregion
 
 namespace Wintellect.PowerCollections.Tests
@@ -423,15 +424,15 @@ namespace Wintellect.PowerCollections.Tests
         {
             var set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
 
-            set1.RemoveAll(delegate(double d) { return Math.Abs(d) > 5; });
+            set1.RemoveAll(AbsOver5);
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new double[] { -0.04, 1.2, 1.78, 4.5 }, true, null);
 
             set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }); 
-            set1.RemoveAll(delegate(double d) { return d == 0; });
+            set1.RemoveAll(IsZero);
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new double[] { -7.6, -0.04, 1.2, 1.78, 4.5, 7.6, 10.11, 187.4 }, true, null);
 
             set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            set1.RemoveAll(delegate(double d) { return d < 200; });
+            set1.RemoveAll(Under200);
             Assert.AreEqual(0, set1.Count);
         }
 
@@ -996,23 +997,24 @@ namespace Wintellect.PowerCollections.Tests
             OrderedSet<int> set4 = set3.CloneContents();
             CompareClones(set3, set4);
 
-            Comparison<UtilTests.CloneableStruct> comparison = delegate(UtilTests.CloneableStruct s1, UtilTests.CloneableStruct s2) {
+            int Comparison(CloneableStruct s1, CloneableStruct s2) {
                 return s1.value.CompareTo(s2.value);
+            }
+
+            var set5 = new OrderedSet<CloneableStruct>(Comparison) {
+                new CloneableStruct(143),
+                new CloneableStruct(5),
+                new CloneableStruct(23),
+                new CloneableStruct(1),
+                new CloneableStruct(8)
             };
-            var set5 = new OrderedSet<UtilTests.CloneableStruct>(comparison) {
-                new UtilTests.CloneableStruct(143),
-                new UtilTests.CloneableStruct(5),
-                new UtilTests.CloneableStruct(23),
-                new UtilTests.CloneableStruct(1),
-                new UtilTests.CloneableStruct(8)
-            };
-            OrderedSet<UtilTests.CloneableStruct> set6 = set5.CloneContents();
+            OrderedSet<CloneableStruct> set6 = set5.CloneContents();
 
             Assert.AreEqual(set5.Count, set6.Count);
 
             // Check that the sets are equal, but not identical (e.g., have been cloned via ICloneable).
-            IEnumerator<UtilTests.CloneableStruct> e1 = set5.GetEnumerator();
-            IEnumerator<UtilTests.CloneableStruct> e2 = set6.GetEnumerator();
+            IEnumerator<CloneableStruct> e1 = set5.GetEnumerator();
+            IEnumerator<CloneableStruct> e2 = set6.GetEnumerator();
 
             // Check that the sets are equal, but not reference equals (e.g., have been cloned).
             while (e1.MoveNext()) {

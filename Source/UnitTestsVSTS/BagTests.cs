@@ -13,7 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using static Wintellect.PowerCollections.Tests.TestPredicates;
+using static Wintellect.PowerCollections.Tests.UtilTests;
 #endregion
 
 namespace Wintellect.PowerCollections.Tests
@@ -356,15 +357,15 @@ namespace Wintellect.PowerCollections.Tests
         {
             var bag1 = new Bag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
 
-            bag1.RemoveAll(delegate(double d) { return Math.Abs(d) > 5; });
+            bag1.RemoveAll(AbsOver5);
             InterfaceTests.TestReadWriteCollectionGeneric(bag1, new double[] { -0.04, 1.2, 1.2, 1.78, 4.5 }, false);
 
             bag1 = new Bag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
-            bag1.RemoveAll(delegate(double d) { return d == 0; });
+            bag1.RemoveAll(IsZero);
             InterfaceTests.TestReadWriteCollectionGeneric(bag1, new double[] { -7.6, -0.04, 1.2, 1.2, 1.78, 4.5, 7.6, 10.11, 187.4, 187.4 }, false);
 
             bag1 = new Bag<double>(new double[] { 4.5, 187.4, 1.2, 7.6, -7.6, -0.04, 1.2, 1.78, 10.11, 187.4 });
-            bag1.RemoveAll(delegate(double d) { return d < 200; });
+            bag1.RemoveAll(Under200);
             Assert.AreEqual(0, bag1.Count);
         }
 
@@ -792,21 +793,21 @@ namespace Wintellect.PowerCollections.Tests
             Bag<int> bag4 = bag3.CloneContents();
             CompareClones(bag3, bag4);
 
-            var bag5 = new Bag<UtilTests.CloneableStruct> {
-                new UtilTests.CloneableStruct(143),
-                new UtilTests.CloneableStruct(1),
-                new UtilTests.CloneableStruct(23),
-                new UtilTests.CloneableStruct(1),
-                new UtilTests.CloneableStruct(8)
+            var bag5 = new Bag<CloneableStruct> {
+                new CloneableStruct(143),
+                new CloneableStruct(1),
+                new CloneableStruct(23),
+                new CloneableStruct(1),
+                new CloneableStruct(8)
             };
-            Bag<UtilTests.CloneableStruct> bag6 = bag5.CloneContents();
+            Bag<CloneableStruct> bag6 = bag5.CloneContents();
 
             Assert.AreEqual(bag5.Count, bag6.Count);
 
             // Check that the bags are equal, but not identical (e.g., have been cloned via ICloneable).
-            foreach (UtilTests.CloneableStruct item in bag5) {
+            foreach (CloneableStruct item in bag5) {
                 int found = 0;
-                foreach (UtilTests.CloneableStruct other in bag6) {
+                foreach (CloneableStruct other in bag6) {
                     if (object.Equals(item, other)) {
                         found += 1;
                         Assert.IsFalse(item.Identical(other));

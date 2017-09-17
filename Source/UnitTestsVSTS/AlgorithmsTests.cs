@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.TestPredicates;
 
 
 namespace Wintellect.PowerCollections.Tests
@@ -32,17 +33,17 @@ namespace Wintellect.PowerCollections.Tests
             var d_list = new List<double>(new double[]{ 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             ICollection<double> removed;
 
-            removed = Algorithms.RemoveWhere((ICollection<double>)d_list, delegate(double d) { return Math.Abs(d) > 5; });
+            removed = Algorithms.RemoveWhere((ICollection<double>)d_list, AbsOver5);
             InterfaceTests.TestReadWriteCollectionGeneric(d_list, new double[] { 4.5, 1.2, -0.04, 1.78}, true);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true);
 
             d_list = new List<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            removed = Algorithms.RemoveWhere((ICollection<double>)d_list, delegate(double d) { return d == 0; });
+            removed = Algorithms.RemoveWhere((ICollection<double>)d_list, IsZero);
             InterfaceTests.TestReadWriteCollectionGeneric(d_list, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] {}, true);
 
             d_list = new List<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            removed = Algorithms.RemoveWhere((ICollection<double>)d_list, delegate(double d) { return d < 200; });
+            removed = Algorithms.RemoveWhere((ICollection<double>)d_list, Under200);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true);
             Assert.AreEqual(0, d_list.Count);
 
@@ -54,22 +55,22 @@ namespace Wintellect.PowerCollections.Tests
             IList<double> d_list = new List<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             ICollection<double> removed;
 
-            removed = Algorithms.RemoveWhere(d_list, delegate(double d) { return Math.Abs(d) > 5; });
+            removed = Algorithms.RemoveWhere(d_list, AbsOver5);
             InterfaceTests.TestListGeneric(d_list, new double[] { 4.5, 1.2, -0.04, 1.78 });
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true);
 
             d_list = new List<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            removed = Algorithms.RemoveWhere(d_list, delegate(double d) { return d == 0; });
+            removed = Algorithms.RemoveWhere(d_list, IsZero);
             InterfaceTests.TestListGeneric(d_list, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { }, true);
 
             d_list = new List<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            removed = Algorithms.RemoveWhere(d_list, delegate(double d) { return d < 200; });
+            removed = Algorithms.RemoveWhere(d_list, Under200);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true);
             Assert.AreEqual(0, d_list.Count);
 
             d_list = new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 };
-            removed = Algorithms.RemoveWhere(d_list, delegate(double d) { return Math.Abs(d) > 5; });
+            removed = Algorithms.RemoveWhere(d_list, AbsOver5);
             InterfaceTests.TestEnumerableElements(d_list, new double[] { 4.5, 1.2, -0.04, 1.78, 0, 0, 0, 0 });
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true);
         }
@@ -79,57 +80,56 @@ namespace Wintellect.PowerCollections.Tests
         {
             List<double> list;
             int index;
-            Func<double, bool> isNegative = delegate(double x) { return x < 0; };
 
             list = new List<double>();
-            index = Algorithms.Partition(list, isNegative);
+            index = Algorithms.Partition(list, IsNegative);
             Assert.AreEqual(0, index);
             Assert.AreEqual(0, list.Count);
 
             list = new List<double>(new double[] { -3.1 });
-            index = Algorithms.Partition(list, isNegative);
+            index = Algorithms.Partition(list, IsNegative);
             Assert.AreEqual(1, index);
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(-3.1, list[0]);
 
             list = new List<double>(new double[] { 3.1 });
-            index = Algorithms.Partition(list, isNegative);
+            index = Algorithms.Partition(list, IsNegative);
             Assert.AreEqual(0, index);
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(3.1, list[0]);
 
             list = new List<double>(new double[] { -2, 3.1 });
-            index = Algorithms.Partition(list, isNegative);
+            index = Algorithms.Partition(list, IsNegative);
             Assert.AreEqual(1, index);
             Assert.AreEqual(2, list.Count);
             Assert.AreEqual(-2d, list[0]);
             Assert.AreEqual(3.1, list[1]);
 
             list = new List<double>(new double[] { 2, -3.1 });
-            index = Algorithms.Partition(list, isNegative);
+            index = Algorithms.Partition(list, IsNegative);
             Assert.AreEqual(1, index);
             Assert.AreEqual(2, list.Count);
             Assert.AreEqual(-3.1, list[0]);
             Assert.AreEqual(2d, list[1]);
 
             list = new List<double>(new double[] { -2, -3.1 });
-            index = Algorithms.Partition(list, isNegative);
+            index = Algorithms.Partition(list, IsNegative);
             Assert.AreEqual(2, index);
             InterfaceTests.TestEnumerableElementsAnyOrder(list, new double[] { -2, -3.1 });
 
             list = new List<double>(new double[] { 2, 3.1 });
-            index = Algorithms.Partition(list, isNegative);
+            index = Algorithms.Partition(list, IsNegative);
             Assert.AreEqual(0, index);
             InterfaceTests.TestEnumerableElementsAnyOrder(list, new double[] { 2, 3.1 });
 
             list = new List<double>(new double[] { 2, 6, -8, -7, 3, -1, -2, 4, 2 });
-            index = Algorithms.Partition(list, isNegative);
+            index = Algorithms.Partition(list, IsNegative);
             Assert.AreEqual(4, index);
             InterfaceTests.TestEnumerableElementsAnyOrder(list.GetRange(0, index), new double[] { -8, -7, -1, -2 });
             InterfaceTests.TestEnumerableElementsAnyOrder(list.GetRange(index, list.Count - index), new double[] {2, 6, 3, 4, 2 });
 
             double[] array = new double[] { 2, 6, -8, -7, 3, -1, -2, 4, 2 };
-            index = Algorithms.Partition(array, isNegative);
+            index = Algorithms.Partition(array, IsNegative);
             Assert.AreEqual(4, index);
             InterfaceTests.TestEnumerableElementsAnyOrder(Algorithms.Range(array, 0, index), new double[] { -8, -7, -1, -2 });
             InterfaceTests.TestEnumerableElementsAnyOrder(Algorithms.Range(array, index, list.Count - index), new double[] { 2, 6, 3, 4, 2 });
@@ -140,69 +140,68 @@ namespace Wintellect.PowerCollections.Tests
         {
             List<double> list;
             int index;
-            Func<double, bool> isNegative = delegate(double x) { return x < 0; };
 
             list = new List<double>();
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(0, index);
             Assert.AreEqual(0, list.Count);
 
             list = new List<double>(new double[] { -3.1 });
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(1, index);
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(-3.1, list[0]);
 
             list = new List<double>(new double[] { 3.1 });
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(0, index);
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(3.1, list[0]);
 
             list = new List<double>(new double[] { -2, 3.1 });
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(1, index);
             Assert.AreEqual(2, list.Count);
             Assert.AreEqual(-2d, list[0]);
             Assert.AreEqual(3.1, list[1]);
 
             list = new List<double>(new double[] { 2, -3.1 });
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(1, index);
             Assert.AreEqual(2, list.Count);
             Assert.AreEqual(-3.1d, list[0]);
             Assert.AreEqual(2d, list[1]);
 
             list = new List<double>(new double[] { -2, -3.1 });
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(2, index);
             InterfaceTests.TestEnumerableElements(list, new double[] { -2, -3.1 });
 
             list = new List<double>(new double[] { 2, 3.1 });
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(0, index);
             InterfaceTests.TestEnumerableElements(list, new double[] { 2, 3.1 });
 
             list = new List<double>(new double[] { 2, 6, -8, -7, 3, -1, -2, 4, 2 });
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(4, index);
             InterfaceTests.TestEnumerableElements(list.GetRange(0, index), new double[] { -8, -7, -1, -2 });
             InterfaceTests.TestEnumerableElements(list.GetRange(index, list.Count - index), new double[] { 2, 6, 3, 4, 2 });
 
             double[] array = { 2, 6, -8, -7, 3, -1, -2, 4, 2 };
-            index = Algorithms.StablePartition(array, isNegative);
+            index = Algorithms.StablePartition(array, IsNegative);
             Assert.AreEqual(4, index);
             InterfaceTests.TestEnumerableElements(Algorithms.Range(array, 0, index), new double[] { -8, -7, -1, -2 });
             InterfaceTests.TestEnumerableElements(Algorithms.Range(array, index, list.Count - index), new double[] { 2, 6, 3, 4, 2 });
 
             list = new List<double>(new double[] { 2, 6, 9, 1 });
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(0, index);
             InterfaceTests.TestEnumerableElements(list.GetRange(0, index), new double[] {  });
             InterfaceTests.TestEnumerableElements(list.GetRange(index, list.Count - index), new double[] { 2, 6, 9, 1 });
 
             list = new List<double>(new double[] { -2, -6, -9, -1 });
-            index = Algorithms.StablePartition(list, isNegative);
+            index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(4, index);
             InterfaceTests.TestEnumerableElements(list.GetRange(0, index), new double[] { -2, -6, -9, -1 });
             InterfaceTests.TestEnumerableElements(list.GetRange(index, list.Count - index), new double[] {  });
@@ -268,20 +267,24 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<string> enum1 = EnumerableFromArray(new string[0]);
             IEnumerable<string> enum2 = EnumerableFromArray(new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
 
-            IEnumerable<string> result1 = Algorithms.Replace(enum1, delegate(string x) { return x == "foo";}, "bar");
+            IEnumerable<string> result1 = Algorithms.Replace(enum1, IsFoo, "bar");
             InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
-            result1 = Algorithms.Replace(enum2, delegate(string x) { return x[0] == 'h'; }, "baz");
+            result1 = Algorithms.Replace(enum2, x => x[0] == 'h', "baz");
             InterfaceTests.TestEnumerableElements(result1, new string[] { "foo", "bar", "FOO", "baz", "baz", "sailor", "foo", "bar", "baz" });
 
-            result1 = Algorithms.Replace(enum2, delegate(string x) { return x.Length == 3; }, "X");
+            result1 = Algorithms.Replace(enum2, Length3, "X");
             InterfaceTests.TestEnumerableElements(result1, new string[] { "X", "X", "X", "hello", "hello", "sailor", "X", "X", "hi" });
 
-            result1 = Algorithms.Replace(enum2, delegate(string x) { return x.Length == 3; }, null);
+            result1 = Algorithms.Replace(enum2, Length3, null);
             InterfaceTests.TestEnumerableElements(result1, new string[] { null, null, null, "hello", "hello", "sailor", null, null, "hi"});
 
             result1 = Algorithms.Replace(enum2, delegate(string x) { x = "zip"; return false; }, null);
             InterfaceTests.TestEnumerableElements(result1, new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
+        }
+
+        private bool IsFoo(string x) {
+            return x == "foo";
         }
 
         [TestMethod]
@@ -326,19 +329,19 @@ namespace Wintellect.PowerCollections.Tests
         {
             IList<string> list1 = new List<string>(new string[0]);
 
-            Algorithms.ReplaceInPlace(list1, delegate(string x) { return x == "foo"; }, "bar");
+            Algorithms.ReplaceInPlace(list1, IsFoo, "bar");
             InterfaceTests.TestListGeneric(list1, new string[0]);
 
             IList<string> list2 = new List<string>(new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
-            Algorithms.ReplaceInPlace(list2, delegate(string x) { return x[0] == 'h'; }, "baz");
+            Algorithms.ReplaceInPlace(list2, x => x[0] == 'h', "baz");
             InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "FOO", "baz", "baz", "sailor", "foo", "bar", "baz" });
 
             list2 = new List<string>(new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
-            Algorithms.ReplaceInPlace(list2, delegate(string x) { return x.Length == 3; }, "X");
+            Algorithms.ReplaceInPlace(list2, Length3, "X");
             InterfaceTests.TestListGeneric(list2, new string[] { "X", "X", "X", "hello", "hello", "sailor", "X", "X", "hi" });
 
             list2 = new List<string>(new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
-            Algorithms.ReplaceInPlace(list2, delegate(string x) { return x.Length == 3; }, null);
+            Algorithms.ReplaceInPlace(list2, Length3, null);
             InterfaceTests.TestListGeneric(list2, new string[] { null, null, null, "hello", "hello", "sailor", null, null, "hi" });
 
             list2 = new List<string>(new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
@@ -346,9 +349,13 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
 
             string[] array1 = { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" };
-            Algorithms.ReplaceInPlace(array1, delegate(string x) { return x.Length == 3; }, "X");
+            Algorithms.ReplaceInPlace(array1, Length3, "X");
             InterfaceTests.TestEnumerableElements(array1, new string[] { "X", "X", "X", "hello", "hello", "sailor", "X", "X", "hi" });
 
+        }
+
+        private bool Length3(string x) {
+            return x.Length == 3;
         }
 
         [TestMethod]
@@ -374,17 +381,19 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void EqualCollections2()
         {
-            BinaryPredicate<int> pred = delegate(int x, int y) { return x <= y; };
+            bool lte(int x, int y) {
+                return x <= y;
+            }
 
             IEnumerable<int> coll1 = EnumerableFromArray(new int[0]);
             IEnumerable<int> coll2 = EnumerableFromArray(new int[] { 4, 8, 1 });
             IEnumerable<int> coll3 = EnumerableFromArray(new int[] { 7, 19, 3 });
             IEnumerable<int> coll4 = EnumerableFromArray(new int[] { 7, 19, 3, 11 });
 
-            Assert.IsTrue(Algorithms.EqualCollections(coll1, coll1, pred));
-            Assert.IsTrue(Algorithms.EqualCollections(coll2, coll3, pred));
-            Assert.IsFalse(Algorithms.EqualCollections(coll2, coll4, pred));
-            Assert.IsFalse(Algorithms.EqualCollections(coll3, coll2, pred));
+            Assert.IsTrue(Algorithms.EqualCollections(coll1, coll1, lte));
+            Assert.IsTrue(Algorithms.EqualCollections(coll2, coll3, lte));
+            Assert.IsFalse(Algorithms.EqualCollections(coll2, coll4, lte));
+            Assert.IsFalse(Algorithms.EqualCollections(coll3, coll2, lte));
         }
 
         [TestMethod]
@@ -638,7 +647,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                maxS = Algorithms.Maximum(coll1, delegate(string s1, string s2) { return string.CompareOrdinal(s1, s2);});
+                maxS = Algorithms.Maximum(coll1, string.CompareOrdinal);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -685,7 +694,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(-1, maxIndex);
             maxIndex = Algorithms.IndexOfMaximum(coll1, StringComparer.CurrentCulture);
             Assert.AreEqual(-1, maxIndex);
-            maxIndex = Algorithms.IndexOfMaximum(coll1, delegate(string s1, string s2) { return string.CompareOrdinal(s1, s2); });
+            maxIndex = Algorithms.IndexOfMaximum(coll1, string.CompareOrdinal);
             Assert.AreEqual(-1, maxIndex);
 
             // float max
@@ -737,7 +746,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                minS = Algorithms.Minimum(coll1, delegate(string s1, string s2) { return string.CompareOrdinal(s1, s2); });
+                minS = Algorithms.Minimum(coll1, string.CompareOrdinal);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -790,7 +799,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(-1, minIndex);
             minIndex = Algorithms.IndexOfMinimum(coll1, StringComparer.CurrentCulture);
             Assert.AreEqual(-1, minIndex);
-            minIndex = Algorithms.IndexOfMinimum(coll1, delegate(string s1, string s2) { return string.CompareOrdinal(s1, s2); });
+            minIndex = Algorithms.IndexOfMinimum(coll1, string.CompareOrdinal);
             Assert.AreEqual(-1, minIndex);
 
             // float max
@@ -1004,12 +1013,12 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<string> coll16 = EnumerableFromArray(new string[] { "foo", "fOo", "bar" });
             InterfaceTests.TestEnumerableElements(Algorithms.RemoveDuplicates(coll16, StringComparer.InvariantCultureIgnoreCase), new string[] { "foo", "bar" });
 
-            BinaryPredicate<string> pred = delegate(string x, string y) {
-                return x[0] == y[0];
-            };
-
             IEnumerable<string> coll17 = EnumerableFromArray(new string[] { "fiddle", "faddle", "bar", "bing", "deli", "zippy", "zack", "zorch" });
-            InterfaceTests.TestEnumerableElements(Algorithms.RemoveDuplicates(coll17, pred), new string[] { "fiddle", "bar" , "deli", "zippy"});
+            InterfaceTests.TestEnumerableElements(Algorithms.RemoveDuplicates(coll17, Element0Equal), new string[] { "fiddle", "bar" , "deli", "zippy"});
+        }
+
+        private static bool Element0Equal(string x, string y) {
+            return x[0] == y[0];
         }
 
         [TestMethod]
@@ -1075,12 +1084,8 @@ namespace Wintellect.PowerCollections.Tests
             Algorithms.RemoveDuplicatesInPlace(array1, StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestEnumerableElements(array1, new string[] { "foo", "big", "foo", "SUPER", null, "hello", "there", "sailor", null, null, null, null, null, null });
 
-            BinaryPredicate<string> pred = delegate(string x, string y) {
-                return x[0] == y[0];
-            };
-
             IList<string> list30 = new List<string>(new string[] { "fiddle", "faddle", "bar", "bing", "deli", "zippy", "zack", "zorch" });
-            Algorithms.RemoveDuplicatesInPlace(list30, pred);
+            Algorithms.RemoveDuplicatesInPlace(list30, Element0Equal);
             InterfaceTests.TestEnumerableElements(list30, new string[] { "fiddle", "bar", "deli", "zippy" });
         }
 
@@ -1145,16 +1150,12 @@ namespace Wintellect.PowerCollections.Tests
             index = Algorithms.FirstConsecutiveEqual(list5, 5, StringComparer.InvariantCultureIgnoreCase);
             Assert.AreEqual(-1, index);
 
-            BinaryPredicate<string> pred = delegate(string x, string y) {
-                return x[0] == y[0];
-            };
-
             IList<string> list6  = new List<string>(new string[] { "bar", "banana", "fuji", "fiddle", "faddle", "lemon" });
-            index = Algorithms.FirstConsecutiveEqual(list6, 2, pred);
+            index = Algorithms.FirstConsecutiveEqual(list6, 2, Element0Equal);
             Assert.AreEqual(0, index);
-            index = Algorithms.FirstConsecutiveEqual(list6, 3, pred);
+            index = Algorithms.FirstConsecutiveEqual(list6, 3, Element0Equal);
             Assert.AreEqual(2, index);
-            index = Algorithms.FirstConsecutiveEqual(list6, 4, pred);
+            index = Algorithms.FirstConsecutiveEqual(list6, 4, Element0Equal);
             Assert.AreEqual(-1, index);
         }
 
@@ -1163,60 +1164,57 @@ namespace Wintellect.PowerCollections.Tests
         {
             int index;
 
-            Func<int, bool> isOdd = delegate(int x) { return (x & 1) == 1; };
-            Func<int, bool> isEven = delegate(int x) { return (x & 1) == 0; };
-
             IList<int> list1 = new List<int>();
-            index = Algorithms.FirstConsecutiveWhere(list1, 1, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list1, 1, Odd);
             Assert.AreEqual(-1, index);
-            index = Algorithms.FirstConsecutiveWhere(list1, 2, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list1, 2, Odd);
             Assert.AreEqual(-1, index);
-            index = Algorithms.FirstConsecutiveWhere(list1, 3, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list1, 3, Odd);
             Assert.AreEqual(-1, index);
 
             IList<int> list2 = new List<int>(new int[] { 3, 7, 5, 1 });
-            index = Algorithms.FirstConsecutiveWhere(list2, 1, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list2, 1, Odd);
             Assert.AreEqual(0, index);
-            index = Algorithms.FirstConsecutiveWhere(list2, 2, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list2, 2, Odd);
             Assert.AreEqual(0, index);
-            index = Algorithms.FirstConsecutiveWhere(list2, 3, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list2, 3, Odd);
             Assert.AreEqual(0, index);
-            index = Algorithms.FirstConsecutiveWhere(list2, 4, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list2, 4, Odd);
             Assert.AreEqual(0, index);
-            index = Algorithms.FirstConsecutiveWhere(list2, 5, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list2, 5, Odd);
             Assert.AreEqual(-1, index);
-            index = Algorithms.FirstConsecutiveWhere(list2, 1, isEven);
+            index = Algorithms.FirstConsecutiveWhere(list2, 1, Even);
             Assert.AreEqual(-1, index);
-            index = Algorithms.FirstConsecutiveWhere(list2, 2, isEven);
+            index = Algorithms.FirstConsecutiveWhere(list2, 2, Even);
             Assert.AreEqual(-1, index);
 
             //                                                                  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18
             IList<int> list3 = new List<int>(new int[] { 3, 0, 6, 2, 1, 9, 4, 1, 8, 6, 8, 12, 4,  3,  5,  3,  1,  5,  7 });
-            index = Algorithms.FirstConsecutiveWhere(list3, 1, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list3, 1, Odd);
             Assert.AreEqual(0, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 2, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list3, 2, Odd);
             Assert.AreEqual(4, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 3, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list3, 3, Odd);
             Assert.AreEqual(13, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 4, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list3, 4, Odd);
             Assert.AreEqual(13, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 5, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list3, 5, Odd);
             Assert.AreEqual(13, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 6, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list3, 6, Odd);
             Assert.AreEqual(13, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 7, isOdd);
+            index = Algorithms.FirstConsecutiveWhere(list3, 7, Odd);
             Assert.AreEqual(-1, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 1, isEven);
+            index = Algorithms.FirstConsecutiveWhere(list3, 1, Even);
             Assert.AreEqual(1, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 2, isEven);
+            index = Algorithms.FirstConsecutiveWhere(list3, 2, Even);
             Assert.AreEqual(1, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 3, isEven);
+            index = Algorithms.FirstConsecutiveWhere(list3, 3, Even);
             Assert.AreEqual(1, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 4, isEven);
+            index = Algorithms.FirstConsecutiveWhere(list3, 4, Even);
             Assert.AreEqual(8, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 5, isEven);
+            index = Algorithms.FirstConsecutiveWhere(list3, 5, Even);
             Assert.AreEqual(8, index);
-            index = Algorithms.FirstConsecutiveWhere(list3, 6, isEven);
+            index = Algorithms.FirstConsecutiveWhere(list3, 6, Even);
             Assert.AreEqual(-1, index);
         }
 
@@ -2114,7 +2112,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                Algorithms.ReplaceInPlace(list1, delegate(string x) { return x == null; }, "");
+                Algorithms.ReplaceInPlace(list1, IsNull, "");
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2154,7 +2152,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                Algorithms.RemoveWhere(list1, delegate(string x) { return x == null; });
+                Algorithms.RemoveWhere(list1, IsNull);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2162,7 +2160,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                Algorithms.Partition(list1, delegate(string x) { return x == null; });
+                Algorithms.Partition(list1, IsNull);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
@@ -2170,12 +2168,16 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             try {
-                Algorithms.StablePartition(list1, delegate(string x) { return x == null; });
+                Algorithms.StablePartition(list1, IsNull);
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentException);
             }
+        }
+
+        private bool IsNull(string x) {
+            return x == null;
         }
 
         [TestMethod]
@@ -2913,20 +2915,20 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            found = Algorithms.TryFindFirstWhere(coll1, delegate(int x) { return (x & 1) == 1; }, out result);
+            found = Algorithms.TryFindFirstWhere(coll1, Odd, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(1, result);
 
-            found = Algorithms.TryFindFirstWhere(coll1, delegate(int x) { return (x & 1) == 0; }, out result);
+            found = Algorithms.TryFindFirstWhere(coll1, Even, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(4, result);
 
-            found = Algorithms.TryFindFirstWhere(coll1, delegate(int x) { return x > 10; }, out result);
+            found = Algorithms.TryFindFirstWhere(coll1, Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             IEnumerable<int> coll2 = EnumerableFromArray(new int[] { });
-            found = Algorithms.TryFindFirstWhere(coll2, delegate(int x) { return (x & 1) == 1; }, out result);
+            found = Algorithms.TryFindFirstWhere(coll2, Odd, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
         }
@@ -2939,20 +2941,20 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            found = Algorithms.TryFindLastWhere(coll1, delegate(int x) { return (x & 1) == 1; }, out result);
+            found = Algorithms.TryFindLastWhere(coll1, Odd, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(9, result);
 
-            found = Algorithms.TryFindLastWhere(coll1, delegate(int x) { return (x & 1) == 0; }, out result);
+            found = Algorithms.TryFindLastWhere(coll1, Even, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(6, result);
 
-            found = Algorithms.TryFindLastWhere(coll1, delegate(int x) { return x > 10; }, out result);
+            found = Algorithms.TryFindLastWhere(coll1, Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             IEnumerable<int> coll2 = EnumerableFromArray(new int[] { });
-            found = Algorithms.TryFindLastWhere(coll2, delegate(int x) { return (x & 1) == 1; }, out result);
+            found = Algorithms.TryFindLastWhere(coll2, Odd, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
         }
@@ -2964,20 +2966,20 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            found = Algorithms.TryFindLastWhere(list1, delegate(int x) { return (x & 1) == 1; }, out result);
+            found = Algorithms.TryFindLastWhere(list1, Odd, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(9, result);
 
-            found = Algorithms.TryFindLastWhere(list1, delegate(int x) { return (x & 1) == 0; }, out result);
+            found = Algorithms.TryFindLastWhere(list1, Even, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(6, result);
 
-            found = Algorithms.TryFindLastWhere(list1, delegate(int x) { return x > 10; }, out result);
+            found = Algorithms.TryFindLastWhere(list1, Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             IList<int> list2 = new List<int>(new int[] { });
-            found = Algorithms.TryFindLastWhere(list2, delegate(int x) { return (x & 1) == 1; }, out result);
+            found = Algorithms.TryFindLastWhere(list2, Odd, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
         }
@@ -2988,17 +2990,17 @@ namespace Wintellect.PowerCollections.Tests
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 3, 4, 9 });
             int index;
 
-            index = Algorithms.FindFirstIndexWhere(coll1, delegate(int x) { return (x & 1) == 1; });
+            index = Algorithms.FindFirstIndexWhere(coll1, Odd);
             Assert.AreEqual(2, index);
 
-            index = Algorithms.FindFirstIndexWhere(coll1, delegate(int x) { return (x & 1) == 0; });
+            index = Algorithms.FindFirstIndexWhere(coll1, Even);
             Assert.AreEqual(0, index);
 
-            index = Algorithms.FindFirstIndexWhere(coll1, delegate(int x) { return x > 10; });
+            index = Algorithms.FindFirstIndexWhere(coll1, Over10);
             Assert.AreEqual(-1, index);
 
             IList<int> coll2 = new BigList<int>();
-            index = Algorithms.FindFirstIndexWhere(coll2, delegate(int x) { return (x & 1) == 1; });
+            index = Algorithms.FindFirstIndexWhere(coll2, Odd);
             Assert.AreEqual(-1, index);
         }
 
@@ -3009,17 +3011,17 @@ namespace Wintellect.PowerCollections.Tests
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
             int index;
 
-            index = Algorithms.FindLastIndexWhere(coll1, delegate(int x) { return (x & 1) == 1; });
+            index = Algorithms.FindLastIndexWhere(coll1, Odd);
             Assert.AreEqual(5, index);
 
-            index = Algorithms.FindLastIndexWhere(coll1, delegate(int x) { return (x & 1) == 0; });
+            index = Algorithms.FindLastIndexWhere(coll1, Even);
             Assert.AreEqual(4, index);
 
-            index = Algorithms.FindLastIndexWhere(coll1, delegate(int x) { return x > 10; });
+            index = Algorithms.FindLastIndexWhere(coll1, Over10);
             Assert.AreEqual(-1, index);
 
             IList<int> coll2 = new BigList<int>();
-            index = Algorithms.FindLastIndexWhere(coll2, delegate(int x) { return (x & 1) == 1; });
+            index = Algorithms.FindLastIndexWhere(coll2, Odd);
             Assert.AreEqual(-1, index);
         }
 
@@ -3029,24 +3031,28 @@ namespace Wintellect.PowerCollections.Tests
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
             IEnumerable<int> result;
 
-            result = Algorithms.FindIndicesWhere(coll1, delegate(int x) { return (x & 1) == 1; });
+            result = Algorithms.FindIndicesWhere(coll1, Odd);
             InterfaceTests.TestEnumerableElements(result, new int[] { 2, 3, 5 });
 
-            result = Algorithms.FindIndicesWhere(coll1, delegate(int x) { return (x & 1) == 0; });
+            result = Algorithms.FindIndicesWhere(coll1, Even);
             InterfaceTests.TestEnumerableElements(result, new int[] { 0, 1, 4});
 
-            result = Algorithms.FindIndicesWhere(coll1, delegate(int x) { return x < 10; });
+            result = Algorithms.FindIndicesWhere(coll1, Under10);
             InterfaceTests.TestEnumerableElements(result, new int[] { 0, 1, 2, 3, 4, 5 });
 
-            result = Algorithms.FindIndicesWhere(coll1, delegate(int x) { return x == 6; });
+            result = Algorithms.FindIndicesWhere(coll1, x => x == 6);
             InterfaceTests.TestEnumerableElements(result, new int[] { 4 });
 
-            result = Algorithms.FindIndicesWhere(coll1, delegate(int x) { return x > 10; });
+            result = Algorithms.FindIndicesWhere(coll1, Over10);
             InterfaceTests.TestEnumerableElements(result, new int[] {  });
 
             IList<int> coll2 = new BigList<int>();
-            result = Algorithms.FindIndicesWhere(coll2, delegate(int x) { return (x & 1) == 1; });
+            result = Algorithms.FindIndicesWhere(coll2, Odd);
             InterfaceTests.TestEnumerableElements(result, new int[] { });
+        }
+
+        public static bool Under10(int x) {
+            return x < 10;
         }
 
         [TestMethod]
@@ -3260,29 +3266,29 @@ namespace Wintellect.PowerCollections.Tests
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
             int index;
 
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), AbsDiff2);
             Assert.AreEqual(0, index);
 
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 8, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 8, 9 }), AbsDiff2);
             Assert.AreEqual(2, index);
 
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 11, 17, 1, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 11, 17, 1, 9 }), AbsDiff2);
             Assert.AreEqual(5, index);
 
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 10 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 10 }), AbsDiff2);
             Assert.AreEqual(1, index);
 
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 7, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 7, 9 }), AbsDiff2);
             Assert.AreEqual(2, index);
 
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 13, 5, 0 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 13, 5, 0 }), AbsDiff2);
             Assert.AreEqual(-1, index);
 
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { }), AbsDiff2);
             Assert.AreEqual(-1, index);
 
             IList<int> coll2 = new BigList<int>();
-            index = Algorithms.FirstIndexOfMany(coll2, EnumerableFromArray(new int[] { 3, 7, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.FirstIndexOfMany(coll2, EnumerableFromArray(new int[] { 3, 7, 9 }), AbsDiff2);
             Assert.AreEqual(-1, index);
         }
 
@@ -3292,30 +3298,34 @@ namespace Wintellect.PowerCollections.Tests
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
             int index;
 
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), AbsDiff2);
             Assert.AreEqual(5, index);
 
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 8, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 8, 9 }), AbsDiff2);
             Assert.AreEqual(3, index);
 
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 17, 1, 6 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 17, 1, 6 }), AbsDiff2);
             Assert.AreEqual(4, index);
 
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 10 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 10 }), AbsDiff2);
             Assert.AreEqual(1, index);
 
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 7, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 7, 9 }), AbsDiff2);
             Assert.AreEqual(5, index);
 
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 13, 5, 0 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 13, 5, 0 }), AbsDiff2);
             Assert.AreEqual(-1, index);
 
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { }), AbsDiff2);
             Assert.AreEqual(-1, index);
 
             IList<int> coll2 = new BigList<int>();
-            index = Algorithms.LastIndexOfMany(coll2, EnumerableFromArray(new int[] { 3, 7, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            index = Algorithms.LastIndexOfMany(coll2, EnumerableFromArray(new int[] { 3, 7, 9 }), AbsDiff2);
             Assert.AreEqual(-1, index);
+        }
+
+        private bool AbsDiff2(int x, int y) {
+            return Math.Abs(x - y) == 2;
         }
 
 
@@ -3325,29 +3335,29 @@ namespace Wintellect.PowerCollections.Tests
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
             IEnumerable<int> result;
 
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] { 0, 1, 4, 5 });
 
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 3, 8, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 3, 8, 9 }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] { 2, 3 });
 
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 3, 17, 1, 6 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 3, 17, 1, 6 }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] { 0, 1, 2, 3, 4 });
 
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 10 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 10 }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] { 1 });
 
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 3, 7, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 3, 7, 9 }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] {2, 3, 5 });
 
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 13, 5, 0 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 13, 5, 0 }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] {  });
 
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] {  });
 
             IList<int> coll2 = new BigList<int>();
-            result = Algorithms.IndicesOfMany(coll2, EnumerableFromArray(new int[] { 3, 7, 9 }), delegate(int x, int y) { return Math.Abs(x - y) == 2; });
+            result = Algorithms.IndicesOfMany(coll2, EnumerableFromArray(new int[] { 3, 7, 9 }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] {  });
         }
 
@@ -3401,7 +3411,7 @@ namespace Wintellect.PowerCollections.Tests
             index = Algorithms.SearchForSubsequence(list3, EnumerableFromArray(new string[] { "bar", "foO", "baR" }), StringComparer.InvariantCultureIgnoreCase);
             Assert.AreEqual(1, index);
 
-            index = Algorithms.SearchForSubsequence(list3, EnumerableFromArray(new string[] { "fat", "big", "bad", "Fiddle" }), delegate(string x, string y) { return x[0] == y[0]; });
+            index = Algorithms.SearchForSubsequence(list3, EnumerableFromArray(new string[] { "fat", "big", "bad", "Fiddle" }), Element0Equal);
             Assert.AreEqual(4, index);
 
             IList<int> list4 = new List<int>();

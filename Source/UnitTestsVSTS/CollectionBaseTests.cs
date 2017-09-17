@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections;
+using static Wintellect.PowerCollections.Tests.TestPredicates;
 
 namespace Wintellect.PowerCollections.Tests
 {
@@ -212,15 +213,15 @@ namespace Wintellect.PowerCollections.Tests
         {
             var coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
 
-            coll1.RemoveAll(delegate(double d) { return Math.Abs(d) > 5; });
+            coll1.RemoveAll(AbsOver5);
             InterfaceTests.TestReadWriteCollectionGeneric(coll1, new double[] { 4.5, 1.2,  -0.04, 1.78 }, true, null);
 
             coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            coll1.RemoveAll(delegate(double d) { return d == 0; });
+            coll1.RemoveAll(IsZero);
             InterfaceTests.TestReadWriteCollectionGeneric(coll1, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true, null);
 
             coll1 = new ReadWriteTestCollection<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            coll1.RemoveAll(delegate(double d) { return d < 200; });
+            coll1.RemoveAll(Under200);
             Assert.AreEqual(0, coll1.Count);
         }
 

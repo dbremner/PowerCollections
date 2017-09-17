@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections;
+using static Wintellect.PowerCollections.Tests.TestPredicates;
 
 namespace Wintellect.PowerCollections.Tests
 {
@@ -183,9 +184,9 @@ namespace Wintellect.PowerCollections.Tests
             ICollection<TValue> getValues;
 
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
 
             // Check Count.
             Assert.AreEqual(keys.Length, dict.Count);
@@ -292,9 +293,9 @@ namespace Wintellect.PowerCollections.Tests
             ICollection<TValue> getValues;
 
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
 
             // Check Count.
             Assert.AreEqual(keys.Length, dict.Count);

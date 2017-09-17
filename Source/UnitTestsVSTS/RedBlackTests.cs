@@ -605,13 +605,13 @@ namespace Wintellect.PowerCollections.Tests {
 
                     int lowerIndex, upperIndex;
                     if (lowerInclusive)
-                        lowerIndex = Algorithms.FindFirstIndexWhere(strs, delegate(string x) { return string.Compare(x, lower) >= 0; });
+                        lowerIndex = Algorithms.FindFirstIndexWhere(strs, x => string.Compare(x, lower) >= 0);
                     else
-                        lowerIndex = Algorithms.FindFirstIndexWhere(strs, delegate(string x) { return string.Compare(x, lower) > 0; });
+                        lowerIndex = Algorithms.FindFirstIndexWhere(strs, x => string.Compare(x, lower) > 0);
                     if (upperInclusive)
-                        upperIndex = Algorithms.FindLastIndexWhere(strs, delegate(string x) { return string.Compare(x, upper) <= 0; });
+                        upperIndex = Algorithms.FindLastIndexWhere(strs, x => string.Compare(x, upper) <= 0);
                     else
-                        upperIndex = Algorithms.FindLastIndexWhere(strs, delegate(string x) { return string.Compare(x, upper) < 0; });
+                        upperIndex = Algorithms.FindLastIndexWhere(strs, x => string.Compare(x, upper) < 0);
 
                     CheckEnumerateRange2(tree, lowerInclusive, lower, upperInclusive, upper, Algorithms.Range(strs, lowerIndex, upperIndex - lowerIndex + 1));
                 }

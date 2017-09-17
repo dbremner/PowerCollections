@@ -11,8 +11,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using static Wintellect.PowerCollections.Tests.TestPredicates;
+using static Wintellect.PowerCollections.Tests.UtilTests;
 #endregion
 
 namespace Wintellect.PowerCollections.Tests
@@ -1451,20 +1453,20 @@ namespace Wintellect.PowerCollections.Tests
             BigList<int> list4 = list3.CloneContents();
             CompareClones(list3, list4);
 
-            var list5 = new BigList<UtilTests.CloneableStruct> {
-                new UtilTests.CloneableStruct(143),
-                new UtilTests.CloneableStruct(5),
-                new UtilTests.CloneableStruct(23),
-                new UtilTests.CloneableStruct(1),
-                new UtilTests.CloneableStruct(8)
+            var list5 = new BigList<CloneableStruct> {
+                new CloneableStruct(143),
+                new CloneableStruct(5),
+                new CloneableStruct(23),
+                new CloneableStruct(1),
+                new CloneableStruct(8)
             };
-            BigList<UtilTests.CloneableStruct> list6 = list5.CloneContents();
+            BigList<CloneableStruct> list6 = list5.CloneContents();
 
             Assert.AreEqual(list5.Count, list6.Count);
 
             // Check that the lists are equal, but not identical (e.g., have been cloned via ICloneable).
-            IEnumerator<UtilTests.CloneableStruct> e1 = list5.GetEnumerator();
-            IEnumerator<UtilTests.CloneableStruct> e2 = list6.GetEnumerator();
+            IEnumerator<CloneableStruct> e1 = list5.GetEnumerator();
+            IEnumerator<CloneableStruct> e2 = list6.GetEnumerator();
 
             // Check that the lists are equal, but not reference equals (e.g., have been cloned).
             while (e1.MoveNext()) {
@@ -1634,37 +1636,37 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(1, list1.FirstOrDefault(delegate(int x) { return (x & 1) == 1; }));
-            found = list1.TryFind(delegate(int x) { return (x & 1) == 1; }, out result);
+            Assert.AreEqual(1, Enumerable.FirstOrDefault(list1, Odd));
+            found = list1.TryFind(Odd, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(1, result);
 
-            Assert.AreEqual(4, list1.FirstOrDefault(delegate(int x) { return (x & 1) == 0; }));
-            found = list1.TryFind(delegate(int x) { return (x & 1) == 0; }, out result);
+            Assert.AreEqual(4, Enumerable.FirstOrDefault(list1, Even));
+            found = list1.TryFind(Even, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(4, result);
 
-            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x > 10; }));
-            found = list1.TryFind(delegate(int x) { return x > 10; }, out result);
+            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Over10));
+            found = list1.TryFind(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new BigList<int>(new int[] { 4, 0, 1, 3, 4, 9 });
 
-            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x < 3; }));
-            found = list1.TryFind(delegate(int x) { return x < 3; }, out result);
+            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Under3));
+            found = list1.TryFind(Under3, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x > 10; }));
-            found = list1.TryFind(delegate(int x) { return x > 10; }, out result);
+            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Over10));
+            found = list1.TryFind(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new BigList<int>();
 
-            Assert.AreEqual(0, list1.FirstOrDefault(delegate(int x) { return x < 3; }));
-            found = list1.TryFind(delegate(int x) { return x < 3; }, out result);
+            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Under3));
+            found = list1.TryFind(Under3, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
         }
@@ -1676,37 +1678,37 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(9, list1.LastOrDefault(delegate(int x) { return (x & 1) == 1; }));
-            found = list1.TryFindLast(delegate(int x) { return (x & 1) == 1; }, out result);
+            Assert.AreEqual(9, Enumerable.LastOrDefault(list1, Odd));
+            found = list1.TryFindLast(Odd, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(9, result);
 
-            Assert.AreEqual(2, list1.LastOrDefault(delegate(int x) { return (x & 1) == 0; }));
-            found = list1.TryFindLast(delegate(int x) { return (x & 1) == 0; }, out result);
+            Assert.AreEqual(2, Enumerable.LastOrDefault(list1, Even));
+            found = list1.TryFindLast(Even, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(2, result);
 
-            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x > 10; }));
-            found = list1.TryFindLast(delegate(int x) { return x > 10; }, out result);
+            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Over10));
+            found = list1.TryFindLast(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new BigList<int>(new int[] { 4, 8, 1, 3, 0, 9 });
 
-            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x < 3; }));
-            found = list1.TryFindLast(delegate(int x) { return x < 3; }, out result);
+            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Under3));
+            found = list1.TryFindLast(Under3, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x > 10; }));
-            found = list1.TryFindLast(delegate(int x) { return x > 10; }, out result);
+            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Over10));
+            found = list1.TryFindLast(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new BigList<int>();
 
-            Assert.AreEqual(0, list1.LastOrDefault(delegate(int x) { return x < 3; }));
-            found = list1.TryFindLast(delegate(int x) { return x < 3; }, out result);
+            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Under3));
+            found = list1.TryFindLast(Under3, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
         }
@@ -1716,26 +1718,26 @@ namespace Wintellect.PowerCollections.Tests
         {
             var list1 = new BigList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
 
-            Assert.AreEqual(2, list1.FindIndex(delegate(int x) { return (x & 1) == 1; }));
-            Assert.AreEqual(0, list1.FindIndex(delegate(int x) { return (x & 1) == 0; }));
-            Assert.AreEqual(-1, list1.FindIndex(delegate(int x) { return x > 10; }));
-            Assert.AreEqual(4, list1.FindIndex(delegate(int x) { return x > 5; }));
-            Assert.AreEqual(3, list1.FindIndex(3, delegate(int x) { return (x & 1) == 1; }));
-            Assert.AreEqual(5, list1.FindIndex(3, delegate(int x) { return (x & 1) == 0; }));
-            Assert.AreEqual(-1, list1.FindIndex(5, delegate(int x) { return (x & 1) == 1; }));
-            Assert.AreEqual(2, list1.FindIndex(1, 4, delegate(int x) { return (x & 1) == 1; }));
-            Assert.AreEqual(3, list1.FindIndex(3, 2, delegate(int x) { return (x & 1) == 1; }));
-            Assert.AreEqual(-1, list1.FindIndex(3, 2, delegate(int x) { return (x & 1) == 0; }));
-            Assert.AreEqual(-1, list1.FindIndex(3, 0, delegate(int x) { return (x & 1) == 1; }));
+            Assert.AreEqual(2, list1.FindIndex(Odd));
+            Assert.AreEqual(0, list1.FindIndex(Even));
+            Assert.AreEqual(-1, list1.FindIndex(Over10));
+            Assert.AreEqual(4, list1.FindIndex(Over5));
+            Assert.AreEqual(3, list1.FindIndex(3, Odd));
+            Assert.AreEqual(5, list1.FindIndex(3, Even));
+            Assert.AreEqual(-1, list1.FindIndex(5, Odd));
+            Assert.AreEqual(2, list1.FindIndex(1, 4, Odd));
+            Assert.AreEqual(3, list1.FindIndex(3, 2, Odd));
+            Assert.AreEqual(-1, list1.FindIndex(3, 2, Even));
+            Assert.AreEqual(-1, list1.FindIndex(3, 0, Odd));
 
             list1 = new BigList<int>(new int[] { 4, 0, 1, 3, 4, 9 });
 
-            Assert.AreEqual(1, list1.FindIndex(delegate(int x) { return x < 3; }));
-            Assert.AreEqual(-1, list1.FindIndex(delegate(int x) { return x > 10; }));
+            Assert.AreEqual(1, list1.FindIndex(Under3));
+            Assert.AreEqual(-1, list1.FindIndex(Over10));
 
             list1 = new BigList<int>();
 
-            Assert.AreEqual(-1, list1.FindIndex(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(-1, list1.FindIndex(Under3));
         }
 
         [TestMethod]
@@ -1743,32 +1745,32 @@ namespace Wintellect.PowerCollections.Tests
         {
             var list1 = new BigList<int>(new int[] { 4, 2, 1, 3, 9, 4 });
 
-            Assert.AreEqual(4, list1.FindLastIndex(delegate(int x) { return (x & 1) == 1; }));
-            Assert.AreEqual(5, list1.FindLastIndex(delegate(int x) { return (x & 1) == 0; }));
-            Assert.AreEqual(-1, list1.FindLastIndex(delegate(int x) { return x > 10; }));
-            Assert.AreEqual(2, list1.FindLastIndex(delegate(int x) { return x < 3; }));
-            Assert.AreEqual(3, list1.FindLastIndex(3, delegate(int x) { return (x & 1) == 1; }));
-            Assert.AreEqual(1, list1.FindLastIndex(3, delegate(int x) { return (x & 1) == 0; }));
-            Assert.AreEqual(-1, list1.FindLastIndex(1, delegate(int x) { return (x & 1) == 1; }));
-            Assert.AreEqual(1, list1.FindLastIndex(1, delegate(int x) { return (x & 1) == 0; }));
-            Assert.AreEqual(-1, list1.FindLastIndex(3, delegate(int x) { return x > 10; }));
-            Assert.AreEqual(0, list1.FindLastIndex(3, delegate(int x) { return x > 3; }));
+            Assert.AreEqual(4, list1.FindLastIndex(Odd));
+            Assert.AreEqual(5, list1.FindLastIndex(Even));
+            Assert.AreEqual(-1, list1.FindLastIndex(Over10));
+            Assert.AreEqual(2, list1.FindLastIndex(Under3));
+            Assert.AreEqual(3, list1.FindLastIndex(3, Odd));
+            Assert.AreEqual(1, list1.FindLastIndex(3, Even));
+            Assert.AreEqual(-1, list1.FindLastIndex(1, Odd));
+            Assert.AreEqual(1, list1.FindLastIndex(1, Even));
+            Assert.AreEqual(-1, list1.FindLastIndex(3, Over10));
+            Assert.AreEqual(0, list1.FindLastIndex(3, Over3));
 
             list1 = new BigList<int>(new int[] { 4, 0, 8, 3, 4, 9 });
 
-            Assert.AreEqual(3, list1.FindLastIndex(delegate(int x) { return x < 4; }));
-            Assert.AreEqual(1, list1.FindLastIndex(delegate(int x) { return x < 1; }));
-            Assert.AreEqual(-1, list1.FindLastIndex(delegate(int x) { return x > 10; }));
-            Assert.AreEqual(3, list1.FindLastIndex(3, 1, delegate(int x) { return (x & 1) == 1; }));
-            Assert.AreEqual(-1, list1.FindLastIndex(3, 1, delegate(int x) { return (x & 1) == 0; }));
-            Assert.AreEqual(4, list1.FindLastIndex(5, 3, delegate(int x) { return (x & 1) == 0; }));
-            Assert.AreEqual(2, list1.FindLastIndex(3, 3, delegate(int x) { return (x & 1) == 0; }));
-            Assert.AreEqual(2, list1.FindLastIndex(4, 4, delegate(int x) { return x > 7; }));
-            Assert.AreEqual(-1, list1.FindLastIndex(3, 4, delegate(int x) { return x > 8; }));
+            Assert.AreEqual(3, list1.FindLastIndex(Under4));
+            Assert.AreEqual(1, list1.FindLastIndex(Under1));
+            Assert.AreEqual(-1, list1.FindLastIndex(Over10));
+            Assert.AreEqual(3, list1.FindLastIndex(3, 1, Odd));
+            Assert.AreEqual(-1, list1.FindLastIndex(3, 1, Even));
+            Assert.AreEqual(4, list1.FindLastIndex(5, 3, Even));
+            Assert.AreEqual(2, list1.FindLastIndex(3, 3, Even));
+            Assert.AreEqual(2, list1.FindLastIndex(4, 4, Over7));
+            Assert.AreEqual(-1, list1.FindLastIndex(3, 4, Over8));
 
             list1 = new BigList<int>();
 
-            Assert.AreEqual(-1, list1.FindLastIndex(delegate(int x) { return x < 3; }));
+            Assert.AreEqual(-1, list1.FindLastIndex(Under3));
         }
 
         [TestMethod]
@@ -2295,22 +2297,22 @@ namespace Wintellect.PowerCollections.Tests
             var d_list = new BigList<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             ICollection<double> removed;
 
-            removed = d_list.RemoveAll(delegate(double d) { return Math.Abs(d) > 5; });
+            removed = d_list.RemoveAll(AbsOver5);
             InterfaceTests.TestListGeneric(d_list, new double[] { 4.5, 1.2, -0.04, 1.78 }, null);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true, null);
 
             d_list = new BigList<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            removed = d_list.RemoveAll(delegate(double d) { return d == 0; });
+            removed = d_list.RemoveAll(IsZero);
             InterfaceTests.TestListGeneric(d_list, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, null);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { }, true, null);
 
             d_list = new BigList<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            removed = d_list.RemoveAll(delegate(double d) { return d < 200; });
+            removed = d_list.RemoveAll(Under200);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true, null);
             Assert.AreEqual(0, d_list.Count);
 
             d_list = new BigList<double>();
-            removed = d_list.RemoveAll(delegate(double d) { return d < 200; });
+            removed = d_list.RemoveAll(Under200);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] {  }, true, null);
             Assert.AreEqual(0, d_list.Count);
         }

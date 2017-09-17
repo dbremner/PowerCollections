@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections.Tests;
+using static Wintellect.PowerCollections.Tests.TestPredicates;
+using static Wintellect.PowerCollections.Tests.UtilTests;
 
 namespace Wintellect.PowerCollections.Tests
 {
@@ -27,9 +29,9 @@ namespace Wintellect.PowerCollections.Tests
             ICollection<TValue> getValues;
 
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
 
             // Check Count.
             Assert.AreEqual(keys.Length, dict.Count);
@@ -1066,8 +1068,12 @@ namespace Wintellect.PowerCollections.Tests
                         return v2.value.CompareTo(v1.value); 
                 };
 
+            int ScrewyCompare(int v1, int v2) {
+                return -v2.CompareTo(v1);
+            }
+
             var dict1 = new OrderedMultiDictionary<int, MyInt>(true,
-                delegate (int v1, int v2) { return -v2.CompareTo(v1); },
+                ScrewyCompare,
                 myIntComparison) {
                 { 4, new MyInt(143) },
                 { 7, new MyInt(2) },
@@ -1095,20 +1101,21 @@ namespace Wintellect.PowerCollections.Tests
             OrderedMultiDictionary<MyInt, int> dict4 = dict3.CloneContents();
             CompareClones(dict3, dict4);
 
-            Comparison<UtilTests.CloneableStruct> comparison = delegate(UtilTests.CloneableStruct s1, UtilTests.CloneableStruct s2) {
+            int Comparison(CloneableStruct s1, CloneableStruct s2) {
                 return s1.value.CompareTo(s2.value);
-            };
-            var dict5 = new OrderedMultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct>(true, comparison, comparison) {
-                { new UtilTests.CloneableStruct(7), new UtilTests.CloneableStruct(-14) },
-                { new UtilTests.CloneableStruct(16), new UtilTests.CloneableStruct(13) },
-                { new UtilTests.CloneableStruct(7), new UtilTests.CloneableStruct(-14) },
-                { new UtilTests.CloneableStruct(7), new UtilTests.CloneableStruct(31415) },
-                { new UtilTests.CloneableStruct(1111), new UtilTests.CloneableStruct(0) }
-            };
-            OrderedMultiDictionary<UtilTests.CloneableStruct, UtilTests.CloneableStruct> dict6 = dict5.CloneContents();
+            }
 
-            IEnumerator<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>> e1 = dict5.KeyValuePairs.GetEnumerator();
-            IEnumerator<KeyValuePair<UtilTests.CloneableStruct, UtilTests.CloneableStruct>> e2 = dict6.KeyValuePairs.GetEnumerator();
+            var dict5 = new OrderedMultiDictionary<CloneableStruct, CloneableStruct>(true, Comparison, Comparison) {
+                { new CloneableStruct(7), new CloneableStruct(-14) },
+                { new CloneableStruct(16), new CloneableStruct(13) },
+                { new CloneableStruct(7), new CloneableStruct(-14) },
+                { new CloneableStruct(7), new CloneableStruct(31415) },
+                { new CloneableStruct(1111), new CloneableStruct(0) }
+            };
+            OrderedMultiDictionary<CloneableStruct, CloneableStruct> dict6 = dict5.CloneContents();
+
+            IEnumerator<KeyValuePair<CloneableStruct, CloneableStruct>> e1 = dict5.KeyValuePairs.GetEnumerator();
+            IEnumerator<KeyValuePair<CloneableStruct, CloneableStruct>> e2 = dict6.KeyValuePairs.GetEnumerator();
 
             Assert.IsTrue(dict5.Count == dict6.Count);
 
@@ -1227,7 +1234,12 @@ namespace Wintellect.PowerCollections.Tests
 
             Comparison<int> comparison1 = ComparersTests.CompareOddEven;
             var dict4 = new OrderedMultiDictionary<int, string>(true, comparison1);
-            var dict5 = new OrderedMultiDictionary<int, string>(false, comparison1, delegate(string x, string y) { return - x.CompareTo(y); });
+
+            int ScrewyCompare(string x, string y) {
+                return -x.CompareTo(y);
+            }
+
+            var dict5 = new OrderedMultiDictionary<int, string>(false, comparison1, ScrewyCompare);
             Assert.AreEqual(dict4.KeyComparer, dict5.KeyComparer);
             Assert.IsFalse(dict4.KeyComparer == dict5.KeyComparer);
             Assert.IsFalse(object.Equals(dict4.KeyComparer, dict1.KeyComparer));
@@ -1253,8 +1265,13 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreSame(StringComparer.OrdinalIgnoreCase, dict3.ValueComparer);
 
             Comparison<int> comparison1 = ComparersTests.CompareOddEven;
-            var dict4 = new OrderedMultiDictionary<string, int>(true, delegate(string x, string y) { return x.CompareTo(y); }, comparison1);
-            var dict5 = new OrderedMultiDictionary<string, int>(false, delegate(string x, string y) { return - x.CompareTo(y); }, comparison1);
+
+            int StringCompare(string x, string y) {
+                return x.CompareTo(y);
+            }
+
+            var dict4 = new OrderedMultiDictionary<string, int>(true, StringCompare, comparison1);
+            var dict5 = new OrderedMultiDictionary<string, int>(false, (x, y) => -x.CompareTo(y), comparison1);
             Assert.AreEqual(dict4.ValueComparer, dict5.ValueComparer);
             Assert.IsFalse(dict4.ValueComparer == dict5.ValueComparer);
             Assert.IsFalse(object.Equals(dict4.ValueComparer, dict1.ValueComparer));
@@ -1276,9 +1293,9 @@ namespace Wintellect.PowerCollections.Tests
             ICollection<TValue> getValues;
 
             if (keyEquals == null)
-                keyEquals = delegate(TKey x, TKey y) { return object.Equals(x, y); };
+                keyEquals = ObjectEquals;
             if (valueEquals == null)
-                valueEquals = delegate(TValue x, TValue y) { return object.Equals(x, y); };
+                valueEquals = ObjectEquals;
 
             // Check Count.
             Assert.AreEqual(keys.Length, dict.Count);
