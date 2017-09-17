@@ -27,5 +27,16 @@ namespace Wintellect.PowerCollections.Tests {
 
         public static void ThrowsOutOfRange(Action action) =>
             Throws<ArgumentOutOfRangeException>(action);
+
+        public static void ThrowsOutOfRange(string paramName, Action action) {
+            try {
+                action();
+                Assert.Fail("Should throw");
+            }
+            catch (Exception e) {
+                Assert.IsTrue(e is ArgumentOutOfRangeException);
+                Assert.AreEqual(paramName, ((ArgumentOutOfRangeException) e).ParamName);
+            }
+        }
     }
 }
