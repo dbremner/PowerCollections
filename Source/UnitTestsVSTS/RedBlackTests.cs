@@ -1402,7 +1402,7 @@ namespace Wintellect.PowerCollections.Tests {
 
             int i = 0;
             try {
-                foreach (TestItem item in tree) {
+                foreach (TestItem unused in tree) {
                     ++i;
                     if (i == 4)
                         InsertValidate("hello", 23);
@@ -1422,7 +1422,7 @@ namespace Wintellect.PowerCollections.Tests {
 
             i = 0;
             try {
-                foreach (TestItem item in tree.EnumerateRangeReversed(tree.BoundedRangeTester(true, new TestItem("biff", 0), true, new TestItem("zap", 0)))) {
+                foreach (TestItem unused in tree.EnumerateRangeReversed(tree.BoundedRangeTester(true, new TestItem("biff", 0), true, new TestItem("zap", 0)))) {
                     ++i;
                     if (i == 3)
                         DeletePrintValidate("hello", 23);

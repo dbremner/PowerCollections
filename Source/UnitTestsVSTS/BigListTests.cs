@@ -2220,7 +2220,7 @@ namespace Wintellect.PowerCollections.Tests
             int i = 0;
 
             try {
-                foreach (string s in biglist1) {
+                foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
@@ -2234,7 +2234,7 @@ namespace Wintellect.PowerCollections.Tests
 
             i = 0;
             try {
-                foreach (string s in biglist1) {
+                foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
@@ -2248,7 +2248,7 @@ namespace Wintellect.PowerCollections.Tests
 
             i = 0;
             try {
-                foreach (string s in biglist1) {
+                foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
@@ -2262,7 +2262,7 @@ namespace Wintellect.PowerCollections.Tests
 
             i = 0;
             try {
-                foreach (string s in biglist1) {
+                foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
@@ -2276,7 +2276,7 @@ namespace Wintellect.PowerCollections.Tests
 
             i = 0;
             try {
-                foreach (string s in biglist1) {
+                foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)

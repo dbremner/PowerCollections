@@ -1932,7 +1932,7 @@ namespace Wintellect.PowerCollections.Tests
             string s;
 
             // Test permutations of 0 elements.
-            foreach (char[] entry in Algorithms.GeneratePermutations(list)) {
+            foreach (char[] unused in Algorithms.GeneratePermutations(list)) {
                 Assert.Fail("Shouldn't be any permutations");
             }
 
@@ -1968,7 +1968,7 @@ namespace Wintellect.PowerCollections.Tests
             string s, prev;
 
             // Test permutations of 0 elements.
-            foreach (char[] entry in Algorithms.GeneratePermutations(list)) {
+            foreach (char[] unused in Algorithms.GeneratePermutations(list)) {
                 Assert.Fail("Shouldn't be any permutations");
             }
 

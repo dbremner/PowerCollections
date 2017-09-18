@@ -153,7 +153,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(0, bag1.Count);
 
             bool found = false;
-            foreach (string s in bag1)
+            foreach (string unused in bag1)
                 found = true;
 
             Assert.IsFalse(found);
@@ -911,7 +911,7 @@ namespace Wintellect.PowerCollections.Tests
             // Make sure enumeration stops on change.
             int count = 0;
             try {
-                foreach (string s in bag1.DistinctItems()) {
+                foreach (string unused in bag1.DistinctItems()) {
                     if (count == 2)
                         bag1.Add("zippy");
                     ++count;

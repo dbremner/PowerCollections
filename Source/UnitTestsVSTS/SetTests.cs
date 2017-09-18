@@ -130,7 +130,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(0, set1.Count);
 
             bool found = false;
-            foreach (string s in set1)
+            foreach (string unused in set1)
                 found = true;
 
             Assert.IsFalse(found);

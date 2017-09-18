@@ -714,7 +714,7 @@ namespace Wintellect.PowerCollections.Tests {
             Assert.AreEqual(default(TValue), val);
             
             try {
-                TValue v = dict[nonKey];
+                var unused = dict[nonKey];
                 Assert.Fail("Should throw.");
             }
             catch (Exception e) {

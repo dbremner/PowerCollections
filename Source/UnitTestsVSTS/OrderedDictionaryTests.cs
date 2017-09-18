@@ -554,10 +554,10 @@ namespace Wintellect.PowerCollections.Tests
 		[TestMethod]
 		public void SimpleConstruction()
 		{
-			var dict1 = new OrderedDictionary<int,string>();
-			var dict2 = new OrderedDictionary<string,string>();
-			var dict3 = new OrderedDictionary<ComparableClass2,string>();
-			var dict4 = new OrderedDictionary<ComparableClass1,string>();
+			var unused = new OrderedDictionary<int,string>();
+			var unused1 = new OrderedDictionary<string,string>();
+			var unused2 = new OrderedDictionary<ComparableClass2,string>();
+			var unused3 = new OrderedDictionary<ComparableClass1,string>();
 		}
 
 	    /// <summary>
