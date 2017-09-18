@@ -522,10 +522,7 @@ namespace Wintellect.PowerCollections
         {
 			get
 			{
-                KeyValuePair<TKey,TValue> pairFound;
-				bool found;
-				
-				found = tree.Find(NewPair(key), false, false, out pairFound);
+			    bool found = tree.Find(NewPair(key), false, false, out var pairFound);
 				if (found)
 					return pairFound.Value;
 				else

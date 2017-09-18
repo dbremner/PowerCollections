@@ -906,11 +906,10 @@ namespace Wintellect.PowerCollections
                     // Go back up the stack until we find a place to the right
                     // we didn't just come from.
                     for (; ; ) {
-                        ConcatNode parent;
                         if (stackPtr == 0)
                             yield break;        // iteration is complete.
 
-                        parent = stack[--stackPtr];
+                        ConcatNode parent = stack[--stackPtr];
                         if (leftStack[stackPtr]) {
                             leftStack[stackPtr] = false;
                             ++stackPtr;
@@ -1063,9 +1062,6 @@ namespace Wintellect.PowerCollections
         /// </remarks>
         internal void Rebalance()
         {
-            Node[] rebalanceArray;
-            int slots;
-
             // The basic rebalancing algorithm is add nodes to a rabalance array, where a node at index K in the 
             // rebalance array has Fibonacci(K+1) to Fibonacci(K+2) items, and the entire list has the nodes
             // from largest to smallest concatenated.
@@ -1075,11 +1071,12 @@ namespace Wintellect.PowerCollections
             if (root.Depth <= 1 || (root.Depth-2 <= MAXFIB && Count >= FIBONACCI[root.Depth-2]))
                 return;      // already sufficiently balanced.
 
+            int slots;
             // How many slots does the rebalance array need?
             for (slots = 0; slots <= MAXFIB; ++slots)
                 if (root.Count < FIBONACCI[slots])
                     break;
-            rebalanceArray = new Node[slots];
+            var rebalanceArray = new Node[slots];
 
             // Add all the nodes to the rebalance array.
             AddNodeToRebalanceArray(rebalanceArray, root, false);
@@ -1133,13 +1130,11 @@ namespace Wintellect.PowerCollections
         /// <param name="balancedNode">Node to add.</param>
         private static void AddBalancedNodeToRebalanceArray(Node[] rebalanceArray, Node balancedNode)
         {
-            int slot;
-            int count;
             Node accum = null;
             Debug.Assert(balancedNode.IsBalanced());
 
-            count = balancedNode.Count;
-            slot = 0;
+            int count = balancedNode.Count;
+            int slot = 0;
             while (count >= FIBONACCI[slot + 1]) {
                 Node n = rebalanceArray[slot];
                 if (n != null) {
@@ -1265,9 +1260,7 @@ namespace Wintellect.PowerCollections
         /// larger than <paramref name="item"/>, the bitwise complement of Count is returned.</returns>
         public int BinarySearch(T item, IComparer<T> comparer)
         {
-            int count, index;
-
-            count = Algorithms.BinarySearch(this, item, comparer, out index);
+            int count = Algorithms.BinarySearch(this, item, comparer, out var index);
             if (count == 0)
                 return (~index);
             else

@@ -73,9 +73,9 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IsCloneableType()
         {
-            bool isCloneable, isValue;
+            bool isValue;
 
-            isCloneable = Util.IsCloneableType(typeof(int), out isValue);
+            bool isCloneable = Util.IsCloneableType(typeof(int), out isValue);
             Assert.IsTrue(isCloneable); Assert.IsTrue(isValue);
 
             isCloneable = Util.IsCloneableType(typeof(ICloneable), out isValue);
@@ -105,13 +105,12 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void TestGetHashCode()
         {
-            int r1, r2, result;
-            result = Util.GetHashCode("foo", EqualityComparer<string>.Default);
+            int result = Util.GetHashCode("foo", EqualityComparer<string>.Default);
             Assert.AreEqual(result, "foo".GetHashCode());
             result = Util.GetHashCode(null, EqualityComparer<string>.Default);
             Assert.AreEqual(result, 0x1786E23C);
-            r1 = Util.GetHashCode("Banana", StringComparer.InvariantCultureIgnoreCase);
-            r2 = Util.GetHashCode("banANA", StringComparer.InvariantCultureIgnoreCase);
+            int r1 = Util.GetHashCode("Banana", StringComparer.InvariantCultureIgnoreCase);
+            int r2 = Util.GetHashCode("banANA", StringComparer.InvariantCultureIgnoreCase);
             Assert.AreEqual(r1, r2);
         }
     }

@@ -552,7 +552,6 @@ namespace Wintellect.PowerCollections
                 // Clone the key and values parts. Value types can be cloned
                 // by just copying them, otherwise, ICloneable is used.
                 TKey keyClone;
-                TValue[] valuesClone;
 
                 if (keyIsValueType)
                     keyClone = item.Key;
@@ -563,7 +562,7 @@ namespace Wintellect.PowerCollections
                         keyClone = (TKey)(((ICloneable)item.Key).Clone());
                 }
 
-                valuesClone = new TValue[item.Count];
+                var valuesClone = new TValue[item.Count];
                 if (valueIsValueType)
                     Array.Copy(item.Values, valuesClone, item.Count);
                 else {

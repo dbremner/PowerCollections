@@ -177,7 +177,6 @@ namespace Wintellect.PowerCollections
 
             // Clone each item, and add it to the new ordered bag.
             foreach (KeyValuePair<T, int> pair in hash) {
-                KeyValuePair<T, int> newPair, dummy;
                 T newKey;
 
                 if (!itemIsValueType && pair.Key != null)
@@ -185,9 +184,9 @@ namespace Wintellect.PowerCollections
                 else
                     newKey = pair.Key;
 
-                newPair = NewPair(newKey, pair.Value);
+                KeyValuePair<T, int> newPair = NewPair(newKey, pair.Value);
 
-                newHash.Insert(newPair, true, out dummy);
+                newHash.Insert(newPair, true, out var dummy);
             }
 
             return new Bag<T>(equalityComparer, keyEqualityComparer, newHash, count); 
@@ -637,7 +636,8 @@ namespace Wintellect.PowerCollections
         public bool IsDisjointFrom(Bag<T> otherBag)
         {
             CheckConsistentComparison(otherBag);
-            Bag<T> smaller, larger;
+            Bag<T> smaller;
+            Bag<T> larger;
             if (otherBag.Count > this.Count) {
                 smaller = this; larger = otherBag;
             }
@@ -672,13 +672,11 @@ namespace Wintellect.PowerCollections
             if (otherBag == this)
                 return;             // Nothing to do
 
-            int copiesInThis, copiesInOther;
-
             // Enumerate each of the items in the other bag. Add items that need to be
             // added to this bag.
             foreach (T item in otherBag.DistinctItems()) {
-                copiesInThis = this.NumberOfCopies(item);
-                copiesInOther = otherBag.NumberOfCopies(item);
+                int copiesInThis = this.NumberOfCopies(item);
+                int copiesInOther = otherBag.NumberOfCopies(item);
 
                 if (copiesInOther > copiesInThis)
                     ChangeNumberOfCopies(item, copiesInOther);
@@ -702,7 +700,8 @@ namespace Wintellect.PowerCollections
         {
             CheckConsistentComparison(otherBag);
 
-            Bag<T> smaller, larger, result;
+            Bag<T> smaller;
+            Bag<T> larger;
             if (otherBag.Count > this.Count) {
                 smaller = this; larger = otherBag;
             }
@@ -710,7 +709,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherBag; larger = this;
             }
 
-            result = larger.Clone();
+            Bag<T> result = larger.Clone();
             result.UnionWith(smaller);
             return result; 
         }
@@ -737,13 +736,11 @@ namespace Wintellect.PowerCollections
                 return;
             }
 
-            int copiesInThis, copiesInOther;
-
             // Enumerate each of the items in the other bag. Add items that need to be
             // added to this bag.
             foreach (T item in otherBag.DistinctItems()) {
-                copiesInThis = this.NumberOfCopies(item);
-                copiesInOther = otherBag.NumberOfCopies(item);
+                int copiesInThis = this.NumberOfCopies(item);
+                int copiesInOther = otherBag.NumberOfCopies(item);
 
                 ChangeNumberOfCopies(item, copiesInThis + copiesInOther);
             }
@@ -767,7 +764,8 @@ namespace Wintellect.PowerCollections
         {
             CheckConsistentComparison(otherBag);
 
-            Bag<T> smaller, larger, result;
+            Bag<T> smaller;
+            Bag<T> larger;
             if (otherBag.Count > this.Count) {
                 smaller = this; larger = otherBag;
             }
@@ -775,7 +773,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherBag; larger = this;
             }
 
-            result = larger.Clone();
+            Bag<T> result = larger.Clone();
             result.SumWith(smaller);
             return result;
         }
@@ -847,7 +845,8 @@ namespace Wintellect.PowerCollections
         {
             CheckConsistentComparison(otherBag);
 
-            Bag<T> smaller, larger, result;
+            Bag<T> smaller;
+            Bag<T> larger;
             if (otherBag.Count > this.Count) {
                 smaller = this; larger = otherBag;
             }
@@ -855,15 +854,13 @@ namespace Wintellect.PowerCollections
                 smaller = otherBag; larger = this;
             }
 
-            int copiesInSmaller, copiesInLarger, copies;
-
             // Enumerate each of the items in the smaller bag. Add items that need to be
             // added to the intersection.
-            result = new Bag<T>(keyEqualityComparer);
+            var result = new Bag<T>(keyEqualityComparer);
             foreach (T item in smaller.DistinctItems()) {
-                copiesInLarger = larger.NumberOfCopies(item);
-                copiesInSmaller = smaller.NumberOfCopies(item);
-                copies = Math.Min(copiesInLarger, copiesInSmaller);
+                int copiesInLarger = larger.NumberOfCopies(item);
+                int copiesInSmaller = smaller.NumberOfCopies(item);
+                int copies = Math.Min(copiesInLarger, copiesInSmaller);
                 if (copies > 0) 
                     result.ChangeNumberOfCopies(item, copies);
             }
@@ -923,11 +920,9 @@ namespace Wintellect.PowerCollections
         /// <exception cref="InvalidOperationException">This bag and <paramref name="otherBag"/> don't use the same method for comparing items.</exception>
         public Bag<T> Difference(Bag<T> otherBag)
         {
-            Bag<T> result;
-
             CheckConsistentComparison(otherBag);
 
-            result = this.Clone();
+            Bag<T> result = this.Clone();
             result.DifferenceWith(otherBag);
             return result; 
         }
@@ -985,7 +980,8 @@ namespace Wintellect.PowerCollections
         {
             CheckConsistentComparison(otherBag);
 
-            Bag<T> smaller, larger, result;
+            Bag<T> smaller;
+            Bag<T> larger;
             if (otherBag.Count > this.Count) {
                 smaller = this; larger = otherBag;
             }
@@ -993,7 +989,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherBag; larger = this;
             }
 
-            result = larger.Clone();
+            Bag<T> result = larger.Clone();
             result.SymmetricDifferenceWith(smaller);
             return result;
         }

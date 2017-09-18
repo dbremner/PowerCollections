@@ -165,9 +165,7 @@ namespace Wintellect.PowerCollections
         /// <returns>The full hash code. It is never zero.</returns>
         private int GetFullHash(T item) 
         {
-            uint hash;
-
-            hash = (uint)Util.GetHashCode(item, equalityComparer);
+            var hash = (uint)Util.GetHashCode(item, equalityComparer);
 
             // The .NET framework tends to produce pretty bad hash codes.
             // Scramble them up to be much more random!
@@ -224,9 +222,8 @@ namespace Wintellect.PowerCollections
 
             if (usedSlots + additionalItems > thresholdGrow) {
                 // We need to expand the table. Figure out to what size.
-                int newSize;
-                
-                newSize = Math.Max(totalSlots, MINSIZE);
+
+                int newSize = Math.Max(totalSlots, MINSIZE);
                 while ((int)(newSize * loadFactor) < usedSlots + additionalItems) {
                     newSize *= 2;
                     if (newSize <= 0) {
@@ -308,10 +305,8 @@ namespace Wintellect.PowerCollections
 
             if (oldTable != null && table != null) {
                 foreach (Slot oldSlot in oldTable) {
-                    int hash, bucket, skip;
-
-                    hash = oldSlot.HashValue;
-                    GetHashValuesFromFullHash(hash, out bucket, out skip);
+                    int hash = oldSlot.HashValue;
+                    GetHashValuesFromFullHash(hash, out var bucket, out var skip);
 
                     // Find an empty bucket.
                     while (! table[bucket].Empty) {
@@ -401,13 +396,12 @@ namespace Wintellect.PowerCollections
         /// <returns>True if no duplicate existed, false if a duplicate was found.</returns>
         public bool Insert(T item, bool replaceOnDuplicate, out T previous)
         {
-            int hash, bucket, skip;
             int emptyBucket = -1;                      // If >= 0, an empty bucket we can use for a true insert
             bool duplicateMightExist = true;      // If true, still the possibility that a duplicate exists.
 
             EnsureEnoughSlots(1);            // Ensure enough room to insert. Also stops enumerations.
 
-            hash = GetHashValues(item, out bucket, out skip);
+            int hash = GetHashValues(item, out var bucket, out var skip);
 
             for (;;) {
                 if (table[bucket].Empty) {
@@ -468,8 +462,6 @@ namespace Wintellect.PowerCollections
         /// <returns>True if item was found and deleted, false if item wasn't found.</returns>
         public bool Delete(T item, out T itemDeleted)
         {
-            int hash, bucket, skip;
-
             StopEnumerations();
 
             if (count == 0) {
@@ -477,7 +469,7 @@ namespace Wintellect.PowerCollections
                 return false;
             }
 
-            hash = GetHashValues(item, out bucket, out skip);
+            int hash = GetHashValues(item, out var bucket, out var skip);
 
             for (; ; ) {
                 if (table[bucket].HashValue == hash && equalityComparer.Equals(table[bucket].item, item)) {
@@ -511,14 +503,12 @@ namespace Wintellect.PowerCollections
         /// <returns>True if the item was found, false otherwise.</returns>
         public bool Find(T find, bool replace, out T item)
         {
-            int hash, bucket, skip;
-
             if (count == 0) {
                 item = default(T);
                 return false;
             }
 
-            hash = GetHashValues(find, out bucket, out skip);
+            int hash = GetHashValues(find, out var bucket, out var skip);
 
             for (; ; ) {
                 if (table[bucket].HashValue == hash && equalityComparer.Equals(table[bucket].item, find)) {

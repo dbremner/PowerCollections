@@ -114,12 +114,11 @@ namespace Wintellect.PowerCollections.Tests
         {
             const int SIZE = 8000;
             int[] items = new int[SIZE];
-            BigList<int> biglist1;
             int i;
 
             for (i = 0; i < SIZE; ++i)
                 items[i] = i + 1;
-            biglist1 = new BigList<int>(items);
+            var biglist1 = new BigList<int>(items);
 
 #if DEBUG
             biglist1.Validate();

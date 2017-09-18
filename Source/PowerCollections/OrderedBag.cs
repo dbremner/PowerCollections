@@ -788,7 +788,8 @@ namespace Wintellect.PowerCollections
         public OrderedBag<T> Union(OrderedBag<T> otherBag)
         {
             CheckConsistentComparison(otherBag);
-            OrderedBag<T> smaller, larger, result;
+            OrderedBag<T> smaller;
+            OrderedBag<T> larger;
             if (otherBag.Count > this.Count) {
                 smaller = this; larger = otherBag;
             }
@@ -796,7 +797,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherBag; larger = this;
             }
 
-            result = larger.Clone();
+            OrderedBag<T> result = larger.Clone();
             result.UnionWith(smaller);
             return result;
         }
@@ -842,7 +843,8 @@ namespace Wintellect.PowerCollections
         public OrderedBag<T> Sum(OrderedBag<T> otherBag)
         {
             CheckConsistentComparison(otherBag);
-            OrderedBag<T> smaller, larger, result;
+            OrderedBag<T> smaller;
+            OrderedBag<T> larger;
             if (otherBag.Count > this.Count) {
                 smaller = this; larger = otherBag;
             }
@@ -850,7 +852,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherBag; larger = this;
             }
 
-            result = larger.Clone();
+            OrderedBag<T> result = larger.Clone();
             result.AddMany(smaller);
             return result;
         }
@@ -931,7 +933,8 @@ namespace Wintellect.PowerCollections
         public OrderedBag<T> Intersection(OrderedBag<T> otherBag)
         {
             CheckConsistentComparison(otherBag);
-            OrderedBag<T> smaller, larger, result;
+            OrderedBag<T> smaller;
+            OrderedBag<T> larger;
             if (otherBag.Count > this.Count) {
                 smaller = this; larger = otherBag;
             }
@@ -945,7 +948,7 @@ namespace Wintellect.PowerCollections
 
             // Enumerate each of the items in the smaller bag. Add items that need to be
             // added to the intersection.
-            result = new OrderedBag<T>(comparer);
+            var result = new OrderedBag<T>(comparer);
             foreach (T item in smaller) {
                 if (atBeginning || comparer.Compare(item, previous) != 0) {
                     copiesInLarger = larger.NumberOfCopies(item);

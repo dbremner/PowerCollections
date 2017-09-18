@@ -560,7 +560,8 @@ namespace Wintellect.PowerCollections
         public Set<T> Union(Set<T> otherSet)
         {
             CheckConsistentComparison(otherSet);
-            Set<T> smaller, larger, result;
+            Set<T> smaller;
+            Set<T> larger;
             if (otherSet.Count > this.Count) {
                 smaller = this; larger = otherSet;
             }
@@ -568,7 +569,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherSet; larger = this;
             }
 
-            result = larger.Clone();
+            Set<T> result = larger.Clone();
             result.AddMany(smaller);
             return result; 
         }
@@ -626,7 +627,8 @@ namespace Wintellect.PowerCollections
         public Set<T> Intersection(Set<T> otherSet)
         {
             CheckConsistentComparison(otherSet);
-            Set<T> smaller, larger, result;
+            Set<T> smaller;
+            Set<T> larger;
             if (otherSet.Count > this.Count) {
                 smaller = this; larger = otherSet;
             }
@@ -634,7 +636,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherSet; larger = this;
             }
 
-            result = new Set<T>(equalityComparer);
+            var result = new Set<T>(equalityComparer);
             foreach (T item in smaller) {
                 if (larger.Contains(item))
                     result.Add(item);
@@ -748,7 +750,8 @@ namespace Wintellect.PowerCollections
         public Set<T> SymmetricDifference(Set<T> otherSet)
         {
             CheckConsistentComparison(otherSet);
-            Set<T> smaller, larger, result;
+            Set<T> smaller;
+            Set<T> larger;
             if (otherSet.Count > this.Count) {
                 smaller = this; larger = otherSet;
             }
@@ -756,7 +759,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherSet; larger = this;
             }
 
-            result = larger.Clone();
+            Set<T> result = larger.Clone();
             foreach (T item in smaller) {
                 if (result.Contains(item))
                     result.Remove(item);

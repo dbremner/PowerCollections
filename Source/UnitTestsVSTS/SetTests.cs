@@ -96,9 +96,8 @@ namespace Wintellect.PowerCollections.Tests
         public void Add()
         {
             var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
-            bool b;
 
-            b = set1.Add("hello"); Assert.IsFalse(b);
+            bool b = set1.Add("hello"); Assert.IsFalse(b);
             b = set1.Add("foo"); Assert.IsFalse(b);
             b = set1.Add(""); Assert.IsFalse(b);
             b = set1.Add("HELLO"); Assert.IsTrue(b);
@@ -714,22 +713,25 @@ namespace Wintellect.PowerCollections.Tests
         {
             var setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-            Set<int> set1, set2, set3;
 
             // Algorithms work different depending on sizes, so try both ways.
-            set1 = setOdds.Clone(); set2 = setDigits.Clone();
+            Set<int> set1 = setOdds.Clone();
+            Set<int> set2 = setDigits.Clone();
             set1.UnionWith(set2);
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17, 19, 21, 23, 25 }, false);
 
-            set1 = setOdds.Clone(); set2 = setDigits.Clone();
+            set1 = setOdds.Clone();
+            set2 = setDigits.Clone();
             set2.UnionWith(set1);
             InterfaceTests.TestReadWriteCollectionGeneric(set2, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17, 19, 21, 23, 25 }, false);
 
-            set1 = setOdds.Clone(); set2 = setDigits.Clone();
-            set3 = set1.Union(set2);
+            set1 = setOdds.Clone();
+            set2 = setDigits.Clone();
+            Set<int> set3 = set1.Union(set2);
             InterfaceTests.TestReadWriteCollectionGeneric(set3, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17, 19, 21, 23, 25 }, false);
 
-            set1 = setOdds.Clone(); set2 = setDigits.Clone();
+            set1 = setOdds.Clone();
+            set2 = setDigits.Clone();
             set3 = set2.Union(set1);
             InterfaceTests.TestReadWriteCollectionGeneric(set3, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 15, 17, 19, 21, 23, 25 }, false);
 

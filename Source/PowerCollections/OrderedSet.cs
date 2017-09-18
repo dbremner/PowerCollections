@@ -715,7 +715,8 @@ namespace Wintellect.PowerCollections
         public OrderedSet<T> Union(OrderedSet<T> otherSet)
         {
             CheckConsistentComparison(otherSet);
-            OrderedSet<T> smaller, larger, result;
+            OrderedSet<T> smaller;
+            OrderedSet<T> larger;
             if (otherSet.Count > this.Count) {
                 smaller = this; larger = otherSet;
             }
@@ -723,7 +724,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherSet; larger = this;
             }
 
-            result = larger.Clone();
+            OrderedSet<T> result = larger.Clone();
             result.AddMany(smaller);
             return result;
         }
@@ -783,7 +784,8 @@ namespace Wintellect.PowerCollections
         public OrderedSet<T> Intersection(OrderedSet<T> otherSet)
         {
             CheckConsistentComparison(otherSet);
-            OrderedSet<T> smaller, larger, result;
+            OrderedSet<T> smaller;
+            OrderedSet<T> larger;
             if (otherSet.Count > this.Count) {
                 smaller = this; larger = otherSet;
             }
@@ -791,7 +793,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherSet; larger = this;
             }
 
-            result = new OrderedSet<T>(comparer);
+            var result = new OrderedSet<T>(comparer);
             foreach (T item in smaller) {
                 if (larger.Contains(item))
                     result.Add(item);
@@ -896,7 +898,8 @@ namespace Wintellect.PowerCollections
         public OrderedSet<T> SymmetricDifference(OrderedSet<T> otherSet)
         {
             CheckConsistentComparison(otherSet);
-            OrderedSet<T> smaller, larger, result;
+            OrderedSet<T> smaller;
+            OrderedSet<T> larger;
             if (otherSet.Count > this.Count) {
                 smaller = this; larger = otherSet;
             }
@@ -904,7 +907,7 @@ namespace Wintellect.PowerCollections
                 smaller = otherSet; larger = this;
             }
 
-            result = larger.Clone();
+            OrderedSet<T> result = larger.Clone();
             foreach (T item in smaller) {
                 if (result.Contains(item))
                     result.Remove(item);

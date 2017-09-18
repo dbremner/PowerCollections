@@ -32,9 +32,8 @@ namespace Wintellect.PowerCollections.Tests
         public void RemoveWhenTrueCollection()
         {
             var d_list = new List<double>(new double[]{ 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            ICollection<double> removed;
 
-            removed = Algorithms.RemoveWhere((ICollection<double>)d_list, AbsOver5);
+            ICollection<double> removed = Algorithms.RemoveWhere((ICollection<double>)d_list, AbsOver5);
             InterfaceTests.TestReadWriteCollectionGeneric(d_list, new double[] { 4.5, 1.2, -0.04, 1.78}, true);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true);
 
@@ -54,9 +53,8 @@ namespace Wintellect.PowerCollections.Tests
         public void RemoveWhenTrueList()
         {
             IList<double> d_list = new List<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            ICollection<double> removed;
 
-            removed = Algorithms.RemoveWhere(d_list, AbsOver5);
+            ICollection<double> removed = Algorithms.RemoveWhere(d_list, AbsOver5);
             InterfaceTests.TestListGeneric(d_list, new double[] { 4.5, 1.2, -0.04, 1.78 });
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true);
 
@@ -79,11 +77,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Partition()
         {
-            List<double> list;
-            int index;
-
-            list = new List<double>();
-            index = Algorithms.Partition(list, IsNegative);
+            var list = new List<double>();
+            int index = Algorithms.Partition(list, IsNegative);
             Assert.AreEqual(0, index);
             Assert.AreEqual(0, list.Count);
 
@@ -139,11 +134,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void StablePartition()
         {
-            List<double> list;
-            int index;
-
-            list = new List<double>();
-            index = Algorithms.StablePartition(list, IsNegative);
+            var list = new List<double>();
+            int index = Algorithms.StablePartition(list, IsNegative);
             Assert.AreEqual(0, index);
             Assert.AreEqual(0, list.Count);
 
@@ -755,15 +747,13 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // float min
-            double minD;
             IEnumerable<double> coll2 = EnumerableFromArray(new double[] { 7.6, -1.2, 19.2, 0, 178.3, -5.4, -17.8 });
-            minD = Algorithms.Minimum(coll2);
+            double minD = Algorithms.Minimum(coll2);
             Assert.AreEqual(minD, -17.8);
 
             // int min
-            int minI;
             IEnumerable<int> coll3 = EnumerableFromArray(new int[] { 7, 4, 1, -8, 19, 8, 43, 38, 1, 38, 4 });
-            minI = Algorithms.Minimum(coll3, ComparersTests.CompareOddEven);
+            int minI = Algorithms.Minimum(coll3, ComparersTests.CompareOddEven);
             Assert.AreEqual(minI, 1);
             minI = Algorithms.Minimum(coll3, new GOddEvenComparer());
             Assert.AreEqual(minI, 1);
@@ -3780,9 +3770,8 @@ namespace Wintellect.PowerCollections.Tests
         public void BinarySearch2()
         {
             IList<String> list = new List<String>(new String[] { "foo", "Giraffe", "gorge", "HELLO", "hello", "number", "NUMber", "ooze" });
-            int length, index;
 
-            length = Algorithms.BinarySearch(list, "GIRAFFE", StringComparer.InvariantCultureIgnoreCase, out index);
+            int length = Algorithms.BinarySearch(list, "GIRAFFE", StringComparer.InvariantCultureIgnoreCase, out var index);
             Assert.AreEqual(1, length);
             Assert.AreEqual(1, index);
 
@@ -4046,13 +4035,12 @@ namespace Wintellect.PowerCollections.Tests
         public void ToStringEnumerable()
         {
             string[] array = { "Hello", "Goodbye", null, "Clapton", "Rules" };
-            string s;
 
             Assert.AreEqual("null", Algorithms.ToString<decimal>(null));
             Assert.AreEqual("null", Algorithms.ToString<decimal>(null, true, "[[", "; ", "]]"));
 
             IEnumerable<string> coll1 = EnumerableFromArray(array);
-            s = Algorithms.ToString(coll1);
+            string s = Algorithms.ToString(coll1);
             Assert.AreEqual("{Hello,Goodbye,null,Clapton,Rules}", s);
 
             IEnumerable<string> coll2 = EnumerableFromArray(array);
@@ -4095,7 +4083,6 @@ namespace Wintellect.PowerCollections.Tests
             string[] s_array = { "Eric", "Clapton", null, "The", "World" };
             int[] i_array = { 1, 5, 6, 5, 19 };
             object[] o_array = { 1, "hi", new int[] {4,5}, null, new List<string>(new string[] {"foo", "bar", "baz"}) };
-            string s;
 
             Assert.AreEqual("null", Algorithms.ToString<string,int>(null));
 
@@ -4103,7 +4090,7 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < s_array.Length; ++i) 
                 dict1.Add(s_array[i], i_array[i]);
 
-            s = Algorithms.ToString(dict1);
+            string s = Algorithms.ToString(dict1);
             Assert.AreEqual(s, "{null->6, Clapton->5, Eric->1, The->5, World->19}", s);
 
             var dict2 = new OrderedDictionary<string, object>();

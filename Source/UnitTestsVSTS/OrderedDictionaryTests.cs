@@ -326,7 +326,6 @@ namespace Wintellect.PowerCollections.Tests
 		public void Remove()
 		{
 			var dict1 = new OrderedDictionary<double,int>();
-			bool b;
 
 			dict1[4.67] =  12;
 			dict1[double.NaN] =  -17;
@@ -337,7 +336,7 @@ namespace Wintellect.PowerCollections.Tests
 			dict1[4.67] =  222;
 			dict1[double.MaxValue] =  444;
 
-			b = dict1.Remove(double.NaN);
+		    bool b = dict1.Remove(double.NaN);
 			Assert.IsTrue(b);
 			b = dict1.Remove(double.NaN);
 			Assert.IsFalse(b);

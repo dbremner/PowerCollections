@@ -790,12 +790,6 @@ namespace Wintellect.PowerCollections
         /// <returns>True if an element was deleted, false if the range is empty.</returns>
         public bool DeleteItemFromRange(RangeTester rangeTester, bool deleteFirst, out T item)
         {
-            Node node;			// The current node.
-            Node parent;		// Parent of the current node.
-            Node gparent;		// Grandparent of the current node.
-            Node sib;			// Sibling of the current node.
-            Node keyNode;		// Node with the key that is being removed.
-
             // The tree may be changed.
             StopEnumerations();
 
@@ -811,9 +805,11 @@ namespace Wintellect.PowerCollections
             int nodeStackPtr = 0;  // first free item on the stack.
 
             // Start at the root.
-            node = root;
-            sib = parent = gparent = null;
-            keyNode = null;
+            Node node = root;			// The current node.
+            Node sib = null;			// Sibling of the current node.
+            Node parent = null;		// Parent of the current node.
+            Node gparent = null;		// Grandparent of the current node.
+            Node keyNode = null;		// Node with the key that is being removed.
 
             // Proceed down the tree, making the current node red so it can be removed.
             for (; ; ) {
@@ -1214,13 +1210,12 @@ namespace Wintellect.PowerCollections
 			}
 
 			// Validate sub-trees and get their size and heights.
-			int leftCount, leftBlackHeight;
-			int rightCount, rightBlackHeight;
-            int ourCount;
+		    int leftBlackHeight;
+		    int rightBlackHeight;
 
-			leftCount = ValidateSubTree(node.left, out leftBlackHeight);
-			rightCount = ValidateSubTree(node.right, out rightBlackHeight);
-            ourCount = leftCount + rightCount + 1;
+		    int leftCount = ValidateSubTree(node.left, out leftBlackHeight);
+			int rightCount = ValidateSubTree(node.right, out rightBlackHeight);
+            int ourCount = leftCount + rightCount + 1;
 
             Debug.Assert(ourCount == node.Count);
 

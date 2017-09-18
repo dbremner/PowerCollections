@@ -3529,14 +3529,12 @@ namespace Wintellect.PowerCollections
         /// <returns>An array containing the sorted version of the collection.</returns>
         public static T[] Sort<T>(IEnumerable<T> collection, IComparer<T> comparer)
         {
-            T[] array;
-
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            array = Enumerable.ToArray(collection);
+            T[] array = Enumerable.ToArray(collection);
 
             Array.Sort(array, comparer);
             return array;
@@ -3613,9 +3611,8 @@ namespace Wintellect.PowerCollections
             for (; ; ) {
                 if (l == r - 1) {
                     // We have exactly 2 elements to sort. Compare them and swap if needed.
-                    T e1, e2;
-                    e1 = list[l];
-                    e2 = list[r];
+                    T e1 = list[l];
+                    T e2 = list[r];
                     if (comparer.Compare(e1, e2) > 0) {
                         list[r] = e1;
                         list[l] = e2;
@@ -3750,14 +3747,12 @@ namespace Wintellect.PowerCollections
         /// <returns>An array containing the sorted version of the collection.</returns>
         public static T[] StableSort<T>(IEnumerable<T> collection, IComparer<T> comparer)
         {
-            T[] array;
-
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            array = Enumerable.ToArray(collection);
+            T[] array = Enumerable.ToArray(collection);
 
             StableSortInPlace(Algorithms.ReadWriteList(array), comparer);
             return array;
@@ -3840,10 +3835,10 @@ namespace Wintellect.PowerCollections
             for (; ; ) {
                 if (l == r - 1) {
                     // We have exactly 2 elements to sort. Compare them and swap if needed.
-                    T e1, e2;
-                    int o1, o2;
-                    e1 = list[l]; o1 = order[l];
-                    e2 = list[r]; o2 = order[r];
+                    T e1 = list[l];
+                    int o1 = order[l];
+                    T e2 = list[r];
+                    int o2 = order[r];
                     if ((c = comparer.Compare(e1, e2)) > 0 || (c == 0 && o1 > o2)) {
                         list[r] = e1; order[r] = o1;
                         list[l] = e2; order[l] = o2;
@@ -5428,9 +5423,8 @@ namespace Wintellect.PowerCollections
             if (list.IsReadOnly)
                 throw new ArgumentException(Strings.ListIsReadOnly, nameof(list));
 
-            int i, j;
-            i = 0;
-            j = list.Count - 1;
+            int i = 0;
+            int j = list.Count - 1;
             while (i < j) {
                 T temp = list[i];
                 list[i] = list[j];
