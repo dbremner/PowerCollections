@@ -737,7 +737,7 @@ namespace Wintellect.PowerCollections.Tests
 		public void Clone()
 		{
 			var dict1 = new OrderedDictionary<string,int>();
-			OrderedDictionary<string,int> dict2, dict3;
+			OrderedDictionary<string,int> dict2;
 
 			dict1["foo"] = 23;
 			dict1["a"] = 11;
@@ -752,7 +752,6 @@ namespace Wintellect.PowerCollections.Tests
 			dict1["p"] = 1234;
 
 			dict2 = dict1.Clone();
-            dict3 = (OrderedDictionary<string, int>)((ICloneable)dict1).Clone();
 
             Assert.IsFalse(dict2 == dict1);
 
@@ -764,9 +763,6 @@ namespace Wintellect.PowerCollections.Tests
 
 			CheckEnumeration(dict2, dict2.Reversed(), new string[] { "", "a", "b", "foo", "hello", "p", "q", "r4", "ww" }, new int[] { 981, 11, 7, 23, 198, 1234, 199, 9, -9 });
 			Assert.AreEqual(981, dict2[""]);
-
-            CheckEnumeration(dict3, dict3.Reversed(), new string[] { "", "a", "b", "foo", "hello", "p", "q", "r4", "ww" }, new int[] { 981, 11, 7, 23, 198, 1234, 199, 9, -9 });
-            Assert.AreEqual(981, dict3[""]);
 
             var dict4 = new OrderedDictionary<string, int>();
             OrderedDictionary<string, int> dict5;

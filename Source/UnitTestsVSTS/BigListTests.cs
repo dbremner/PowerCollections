@@ -1323,31 +1323,25 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clone()
         {
-            BigList<int> list1, list2, list3, list4;
+            BigList<int> list1, list2, list4;
 
             list1 = new BigList<int>();
             list2 = list1.Clone();
-            list3 = (BigList<int>)(((ICloneable)list1).Clone());
             list4 = new BigList<int>(list1);
             InterfaceTests.TestListGeneric(list2, new int[0], null);
-            InterfaceTests.TestListGeneric(list3, new int[0], null);
             InterfaceTests.TestListGeneric(list4, new int[0], null);
             list1.Add(5);
             InterfaceTests.TestListGeneric(list2, new int[0], null);
-            InterfaceTests.TestListGeneric(list3, new int[0], null);
             InterfaceTests.TestListGeneric(list4, new int[0], null);
 
             int[] array = {0, 1, 2, 3, 4};
             list1 = CreateList(0, 5);
             list2 = list1.Clone();
-            list3 = (BigList<int>)(((ICloneable)list1).Clone());
             list4 = new BigList<int>(list1);
             InterfaceTests.TestListGeneric(list2, array, null);
-            InterfaceTests.TestListGeneric(list3, array, null);
             InterfaceTests.TestListGeneric(list4, array, null);
             list2[3] = -1;
             InterfaceTests.TestListGeneric(list1, array, null);
-            InterfaceTests.TestListGeneric(list3, array, null);
             InterfaceTests.TestListGeneric(list4, array, null);
 
             array = new int[100];
@@ -1355,15 +1349,12 @@ namespace Wintellect.PowerCollections.Tests
                 array[i] = i;
             list1 = CreateList(0, 100);
             list2 = list1.Clone();
-            list3 = (BigList<int>)(((ICloneable)list1).Clone());
             list4 = new BigList<int>(list1);
             InterfaceTests.TestListGeneric(list2, array, null);
-            InterfaceTests.TestListGeneric(list3, array, null);
             InterfaceTests.TestListGeneric(list4, array, null);
             list4.Clear();
             InterfaceTests.TestListGeneric(list1, array, null);
             InterfaceTests.TestListGeneric(list2, array, null);
-            InterfaceTests.TestListGeneric(list3, array, null);
         }
 
         // Simple class for testing cloning.

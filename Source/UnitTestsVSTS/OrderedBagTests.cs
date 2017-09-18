@@ -735,13 +735,11 @@ namespace Wintellect.PowerCollections.Tests
         public void Clone()
         {
             var bag1 = new OrderedBag<int>(new int[] { 1, 7, 9, 11, 7, 13, 15, -17, 19, -21, 1 });
-            OrderedBag<int> bag2, bag3;
+            OrderedBag<int> bag2;
 
             bag2 = bag1.Clone();
-            bag3 = (OrderedBag<int>)((ICloneable)bag1).Clone();
 
             Assert.IsFalse(bag2 == bag1);
-            Assert.IsFalse(bag3 == bag1);
 
             // Modify bag1, make sure bag2, bag3 don't change.
             bag1.Remove(9);
@@ -749,7 +747,6 @@ namespace Wintellect.PowerCollections.Tests
             bag1.Add(8);
 
             InterfaceTests.TestReadWriteCollectionGeneric(bag2, new int[] { -21, -17, 1, 1, 7, 7, 9, 11, 13, 15, 19 }, true);
-            InterfaceTests.TestReadWriteCollectionGeneric(bag3, new int[] { -21, -17, 1, 1, 7, 7, 9, 11, 13, 15, 19 }, true);
         }
 
         [TestMethod]

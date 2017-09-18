@@ -784,18 +784,15 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clone()
         {
-            Deque<int> deque1, deque2, deque3, deque4;
+            Deque<int> deque1, deque2, deque4;
 
             deque1 = new Deque<int>();
             deque2 = deque1.Clone();
-            deque3 = (Deque<int>)(((ICloneable)deque1).Clone());
             deque4 = new Deque<int>(deque1);
             InterfaceTests.TestListGeneric(deque2, new int[0], null);
-            InterfaceTests.TestListGeneric(deque3, new int[0], null);
             InterfaceTests.TestListGeneric(deque4, new int[0], null);
             deque1.Add(5);
             InterfaceTests.TestListGeneric(deque2, new int[0], null);
-            InterfaceTests.TestListGeneric(deque3, new int[0], null);
             InterfaceTests.TestListGeneric(deque4, new int[0], null);
 
             int[] array = new int[100];
@@ -807,15 +804,12 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 62; i >= 0; --i)
                 deque1.AddToFront(i);
             deque2 = deque1.Clone();
-            deque3 = (Deque<int>)(((ICloneable)deque1).Clone());
             deque4 = new Deque<int>(deque1);
             InterfaceTests.TestListGeneric(deque2, array, null);
-            InterfaceTests.TestListGeneric(deque3, array, null);
             InterfaceTests.TestListGeneric(deque4, array, null);
             deque4.Clear();
             InterfaceTests.TestListGeneric(deque1, array, null);
             InterfaceTests.TestListGeneric(deque2, array, null);
-            InterfaceTests.TestListGeneric(deque3, array, null);
         }
 
         // Simple class for testing cloning.

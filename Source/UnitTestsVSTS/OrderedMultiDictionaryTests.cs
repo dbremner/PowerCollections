@@ -1003,22 +1003,6 @@ namespace Wintellect.PowerCollections.Tests
                 KvpCreate("qubert", "hoover"),
                 KvpCreate("qubert", "dinosaur")});
 
-            dict2 = ((OrderedMultiDictionary<string, string>)((ICloneable)dict1).Clone());
-
-            Assert.IsTrue(dict1 != dict2);
-
-            dict2.Add("qubert", "hoover");
-            dict2.Remove("queztel");
-            dict2.Add("hello", "banana");
-
-            InterfaceTests.TestEnumerableElements(dict2.KeyValuePairs, new [] {
-                KvpCreate("Alpha", "oz"),
-                KvpCreate("hello", "banana"),
-                KvpCreate("Hello", "AAA"),
-                KvpCreate("Hi", "aaa"),
-                KvpCreate("qubert", "hoover"),
-                KvpCreate("qubert", "dinosaur")});
-
             var dict4 = new OrderedMultiDictionary<string, int>(true);
             OrderedMultiDictionary<string, int> dict5;
             dict5 = dict4.Clone();

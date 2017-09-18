@@ -661,21 +661,18 @@ namespace Wintellect.PowerCollections.Tests
         public void Clone()
         {
             var set1 = new OrderedSet<int>(new int[] { 1, 7, 9, 11, 13, 15, -17, 19, -21 });
-            OrderedSet<int> set2, set3;
+            OrderedSet<int> set2;
 
             set2 = set1.Clone();
-            set3 = (OrderedSet<int>)((ICloneable)set1).Clone();
 
             Assert.IsFalse(set2 == set1);
-            Assert.IsFalse(set3 == set1);
 
-            // Modify set1, make sure set2, set3 don't change.
+            // Modify set1, make sure set2 doesn't change.
             set1.Remove(9);
             set1.Remove(-17);
             set1.Add(8);
 
             InterfaceTests.TestReadWriteCollectionGeneric(set2, new int[] { -21, -17, 1, 7, 9, 11, 13, 15, 19 }, true, null);
-            InterfaceTests.TestReadWriteCollectionGeneric(set3, new int[] { -21, -17, 1, 7, 9, 11, 13, 15, 19 }, true, null);
         }
 
         [TestMethod]

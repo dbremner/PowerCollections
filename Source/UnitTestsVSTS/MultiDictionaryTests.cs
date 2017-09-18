@@ -980,22 +980,6 @@ namespace Wintellect.PowerCollections.Tests
                 new KeyValuePair<string,string>("qubert", "hoover"),
                 new KeyValuePair<string,string>("qubert", "dinosaur")});
 
-            dict2 = ((MultiDictionary<string, string>)((ICloneable)dict1).Clone());
-
-            Assert.IsTrue(dict1 != dict2);
-
-            dict2.Add("qubert", "hoover");
-            dict2.Remove("queztel");
-            dict2.Add("hello", "banana");
-
-            InterfaceTests.TestEnumerableElementsAnyOrder(dict2.KeyValuePairs, new KeyValuePair<string, string>[] {
-                new KeyValuePair<string,string>("Alpha", "oz"),
-                new KeyValuePair<string,string>("Hello", "banana"),
-                new KeyValuePair<string,string>("Hello", "AAA"),
-                new KeyValuePair<string,string>("Hi", "aaa"),
-                new KeyValuePair<string,string>("qubert", "hoover"),
-                new KeyValuePair<string,string>("qubert", "dinosaur")});
-
             var dict4 = new MultiDictionary<string, int>(true);
             MultiDictionary<string, int> dict5;
             dict5 = dict4.Clone();
