@@ -786,12 +786,12 @@ namespace Wintellect.PowerCollections.Tests
         {
             var deque1 = new Deque<int>();
             Deque<int> deque2 = deque1.Clone();
-            var deque4 = new Deque<int>(deque1);
+            var deque3 = new Deque<int>(deque1);
             InterfaceTests.TestListGeneric(deque2, new int[0], null);
-            InterfaceTests.TestListGeneric(deque4, new int[0], null);
+            InterfaceTests.TestListGeneric(deque3, new int[0], null);
             deque1.Add(5);
             InterfaceTests.TestListGeneric(deque2, new int[0], null);
-            InterfaceTests.TestListGeneric(deque4, new int[0], null);
+            InterfaceTests.TestListGeneric(deque3, new int[0], null);
 
             int[] array = new int[100];
             for (int i = 0; i < 100; ++i)
@@ -802,10 +802,10 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 62; i >= 0; --i)
                 deque1.AddToFront(i);
             deque2 = deque1.Clone();
-            deque4 = new Deque<int>(deque1);
+            deque3 = new Deque<int>(deque1);
             InterfaceTests.TestListGeneric(deque2, array, null);
-            InterfaceTests.TestListGeneric(deque4, array, null);
-            deque4.Clear();
+            InterfaceTests.TestListGeneric(deque3, array, null);
+            deque3.Clear();
             InterfaceTests.TestListGeneric(deque1, array, null);
             InterfaceTests.TestListGeneric(deque2, array, null);
         }

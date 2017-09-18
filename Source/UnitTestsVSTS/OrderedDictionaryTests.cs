@@ -763,15 +763,15 @@ namespace Wintellect.PowerCollections.Tests
 			CheckEnumeration(dict2, dict2.Reversed(), new string[] { "", "a", "b", "foo", "hello", "p", "q", "r4", "ww" }, new int[] { 981, 11, 7, 23, 198, 1234, 199, 9, -9 });
 			Assert.AreEqual(981, dict2[""]);
 
-            var dict4 = new OrderedDictionary<string, int>();
-		    OrderedDictionary<string, int> dict5 = dict4.Clone();
-            Assert.IsFalse(dict4 == dict5);
-            Assert.IsTrue(dict4.Count == 0 && dict5.Count == 0);
-            dict4.Add("hello", 1);
-            Assert.IsTrue(dict4.Count == 1 && dict5.Count == 0);
-            dict5.Add("hi", 7);
-            dict4.Clear();
-            Assert.IsTrue(dict4.Count == 0 && dict5.Count == 1);
+            var dict3 = new OrderedDictionary<string, int>();
+		    OrderedDictionary<string, int> dict4 = dict3.Clone();
+            Assert.IsFalse(dict3 == dict4);
+            Assert.IsTrue(dict3.Count == 0 && dict4.Count == 0);
+            dict3.Add("hello", 1);
+            Assert.IsTrue(dict3.Count == 1 && dict4.Count == 0);
+            dict4.Add("hi", 7);
+            dict3.Clear();
+            Assert.IsTrue(dict3.Count == 0 && dict4.Count == 1);
         }
 
         // Simple class for testing cloning.

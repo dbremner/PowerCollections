@@ -980,15 +980,15 @@ namespace Wintellect.PowerCollections.Tests
                 new KeyValuePair<string,string>("qubert", "hoover"),
                 new KeyValuePair<string,string>("qubert", "dinosaur")});
 
-            var dict4 = new MultiDictionary<string, int>(true);
-            MultiDictionary<string, int> dict5 = dict4.Clone();
-            Assert.IsFalse(dict4 == dict5);
-            Assert.IsTrue(dict4.Count == 0 && dict5.Count == 0);
-            dict4.Add("hello", 1);
-            Assert.IsTrue(dict4.Count == 1 && dict5.Count == 0);
-            dict5.Add("hi", 7);
-            dict4.Clear();
-            Assert.IsTrue(dict4.Count == 0 && dict5.Count == 1);
+            var dict3 = new MultiDictionary<string, int>(true);
+            MultiDictionary<string, int> dict4 = dict3.Clone();
+            Assert.IsFalse(dict3 == dict4);
+            Assert.IsTrue(dict3.Count == 0 && dict4.Count == 0);
+            dict3.Add("hello", 1);
+            Assert.IsTrue(dict3.Count == 1 && dict4.Count == 0);
+            dict4.Add("hi", 7);
+            dict3.Clear();
+            Assert.IsTrue(dict3.Count == 0 && dict4.Count == 1);
         }
 
         void CompareClones<K, V>(MultiDictionary<K, V> d1, MultiDictionary<K, V> d2)

@@ -1325,32 +1325,32 @@ namespace Wintellect.PowerCollections.Tests
         {
             var list1 = new BigList<int>();
             BigList<int> list2 = list1.Clone();
-            var list4 = new BigList<int>(list1);
+            var list3 = new BigList<int>(list1);
             InterfaceTests.TestListGeneric(list2, new int[0], null);
-            InterfaceTests.TestListGeneric(list4, new int[0], null);
+            InterfaceTests.TestListGeneric(list3, new int[0], null);
             list1.Add(5);
             InterfaceTests.TestListGeneric(list2, new int[0], null);
-            InterfaceTests.TestListGeneric(list4, new int[0], null);
+            InterfaceTests.TestListGeneric(list3, new int[0], null);
 
             int[] array = {0, 1, 2, 3, 4};
             list1 = CreateList(0, 5);
             list2 = list1.Clone();
-            list4 = new BigList<int>(list1);
+            list3 = new BigList<int>(list1);
             InterfaceTests.TestListGeneric(list2, array, null);
-            InterfaceTests.TestListGeneric(list4, array, null);
+            InterfaceTests.TestListGeneric(list3, array, null);
             list2[3] = -1;
             InterfaceTests.TestListGeneric(list1, array, null);
-            InterfaceTests.TestListGeneric(list4, array, null);
+            InterfaceTests.TestListGeneric(list3, array, null);
 
             array = new int[100];
             for (int i = 0; i < 100; ++i)
                 array[i] = i;
             list1 = CreateList(0, 100);
             list2 = list1.Clone();
-            list4 = new BigList<int>(list1);
+            list3 = new BigList<int>(list1);
             InterfaceTests.TestListGeneric(list2, array, null);
-            InterfaceTests.TestListGeneric(list4, array, null);
-            list4.Clear();
+            InterfaceTests.TestListGeneric(list3, array, null);
+            list3.Clear();
             InterfaceTests.TestListGeneric(list1, array, null);
             InterfaceTests.TestListGeneric(list2, array, null);
         }
