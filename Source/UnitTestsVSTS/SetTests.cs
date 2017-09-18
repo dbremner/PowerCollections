@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 
@@ -244,7 +245,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(0, set1.Count);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void FailFastEnumerator1()
         {
             var set1 = new Set<double>();
@@ -256,13 +257,18 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // should throw once the set is modified.
-            foreach (double k in set1) {
-                if (k > 3.0)
-                    set1.Add(1.0);
+            void InvalidOperation()
+            {
+                foreach (double k in set1) {
+                    if (k > 3.0)
+                        set1.Add(1.0);
+                }
             }
+
+            ThrowsInvalid(InvalidOperation);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void FailFastEnumerator2()
         {
             var set1 = new Set<double>();
@@ -274,10 +280,16 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // should throw once the set is modified.
-            foreach (double k in set1) {
-                if (k > 3.0)
-                    set1.Clear();
+            void InvalidOperation()
+            {
+                foreach (double k in set1) {
+                    if (k > 3.0) {
+                        set1.Clear();
+                    }
+                }
             }
+
+            ThrowsInvalid(InvalidOperation);
         }
 
         [TestMethod]
@@ -400,7 +412,7 @@ namespace Wintellect.PowerCollections.Tests
 
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void CantCloneContents()
         {
             var set1 = new Set<NotCloneable> {
@@ -408,7 +420,7 @@ namespace Wintellect.PowerCollections.Tests
                 new NotCloneable()
             };
 
-            Set<NotCloneable> set2 = set1.CloneContents();
+            ThrowsInvalid(() => set1.CloneContents());
         }
 
         // Strange comparer that uses modulo arithmetic.
@@ -803,20 +815,20 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(0, set3.Count);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons1()
         {
             var setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenEqualityComparer());
-            setOdds.SymmetricDifferenceWith(setDigits);
+            ThrowsInvalid(() => setOdds.SymmetricDifferenceWith(setDigits));
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons2()
         {
             var set1 = new Set<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
             var set2 = new Set<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
-            set1.Intersection(set2);
+            ThrowsInvalid(() => set1.Intersection(set2));
         }
 
         [TestMethod]
