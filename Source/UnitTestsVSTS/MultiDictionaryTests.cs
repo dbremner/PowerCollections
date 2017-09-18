@@ -902,6 +902,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             // This should work -- all types are comparable in a hash way via object.Equals and object.GetHashCode.
             var dict1 = new MultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false);
+            Assert.IsNotNull(dict1);
         }
 
         [TestMethod]
@@ -909,6 +910,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             // This should work -- all types are comparable in a hash way via object.Equals and object.GetHashCode.
             var dict2 = new MultiDictionary<string, UncomparableClass2>(true);
+            Assert.IsNotNull(dict2);
         }
 
         class FirstLetterComparer : IEqualityComparer<string>
