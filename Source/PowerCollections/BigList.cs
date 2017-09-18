@@ -44,7 +44,7 @@ namespace Wintellect.PowerCollections
     /// </remarks>
     /// <typeparam name="T">The type of items to store in the BigList.</typeparam>
     [Serializable]
-    public class BigList<T>: ListBase<T>, ICloneable
+    public class BigList<T>: ListBase<T>
     {
         const uint MAXITEMS = int.MaxValue - 1;    // maximum number of items in a BigList.
 
@@ -626,18 +626,6 @@ namespace Wintellect.PowerCollections
                 root.MarkShared();
                 return new BigList<T>(root);
             }
-        }
-
-        /// <summary>
-        /// Creates a new BigList that is a copy of this list.
-        /// </summary>
-        /// <remarks>Copying a BigList takes constant time, and little 
-        /// additional memory, since the storage for the items of the two lists is shared. However, changing
-        /// either list will take additional time and memory. Portions of the list are copied when they are changed.</remarks>
-        /// <returns>A copy of the current list</returns>
-        object ICloneable.Clone()
-        {
-            return Clone();
         }
 
         /// <summary>

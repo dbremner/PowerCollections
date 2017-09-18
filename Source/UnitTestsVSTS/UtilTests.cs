@@ -92,9 +92,6 @@ namespace Wintellect.PowerCollections.Tests
 
             isCloneable = Util.IsCloneableType(typeof(CloneableStruct), out isValue);
             Assert.IsTrue(isCloneable); Assert.IsFalse(isValue);
-
-            isCloneable = Util.IsCloneableType(typeof(OrderedDictionary<int, double>), out isValue);
-            Assert.IsTrue(isCloneable); Assert.IsFalse(isValue);
         }
 
         [TestMethod]

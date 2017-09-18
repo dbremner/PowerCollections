@@ -28,7 +28,7 @@ namespace Wintellect.PowerCollections
     ///</remarks>
     ///<seealso cref="Set&lt;T&gt;"/>
     [Serializable]
-    public class OrderedSet<T> : CollectionBase<T>, ICollection<T>, ICloneable 
+    public class OrderedSet<T> : CollectionBase<T>, ICollection<T>
     {
         // The comparer used to compare items. 
         private readonly IComparer<T> comparer;
@@ -138,18 +138,6 @@ namespace Wintellect.PowerCollections
         #endregion Constructors
 
         #region Cloning
-
-        /// <summary>
-        /// Makes a shallow clone of this set; i.e., if items of the
-        /// set are reference types, then they are not cloned. If T is a value type,
-        /// then each element is copied as if by simple assignment.
-        /// </summary>
-        /// <remarks>Cloning the set takes time O(N), where N is the number of items in the set.</remarks>
-        /// <returns>The cloned set.</returns>
-        object ICloneable.Clone()
-        {
-            return this.Clone();     
-        }
 
         /// <summary>
         /// Makes a shallow clone of this set; i.e., if items of the

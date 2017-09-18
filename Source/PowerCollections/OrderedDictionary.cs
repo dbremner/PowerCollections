@@ -27,7 +27,7 @@ namespace Wintellect.PowerCollections
 	///</remarks>
 	///<seealso cref="Dictionary&lt;TKey,TValue&gt;"/>
     [Serializable]
-	public class OrderedDictionary<TKey,TValue>: DictionaryBase<TKey,TValue>, ICloneable
+	public class OrderedDictionary<TKey,TValue>: DictionaryBase<TKey,TValue>
 	{
         // The comparer for comparing keys. This is saved to return from the Comparer property,
         // but is otherwise not used.
@@ -606,19 +606,6 @@ namespace Wintellect.PowerCollections
 		public sealed override IEnumerator<KeyValuePair<TKey,TValue>> GetEnumerator()
 		{
             return tree.GetEnumerator();
-		}
-
-		#endregion
-
-		#region ICloneable Members
-
-		/// <summary>
-		/// Implements ICloneable.Clone. Makes a shallow clone of this dictionary; i.e., if keys or values are reference types, then they are not cloned.
-		/// </summary>
-		/// <returns>The cloned dictionary.</returns>
-		object ICloneable.Clone()
-		{
-            return Clone();	
 		}
 
 		#endregion

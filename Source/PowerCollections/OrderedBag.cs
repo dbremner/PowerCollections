@@ -31,7 +31,7 @@ namespace Wintellect.PowerCollections
     ///</remarks>
     ///<seealso cref="Bag&lt;T&gt;"/>
     [Serializable]
-    public class OrderedBag<T> : CollectionBase<T>, ICloneable 
+    public class OrderedBag<T> : CollectionBase<T>
     {
         // The comparer used to compare items. 
         private readonly IComparer<T> comparer;
@@ -141,18 +141,6 @@ namespace Wintellect.PowerCollections
         #endregion Constructors
 
         #region Cloning
-
-        /// <summary>
-        /// Makes a shallow clone of this bag; i.e., if items of the
-        /// bag are reference types, then they are not cloned. If T is a value type,
-        /// then each element is copied as if by simple assignment.
-        /// </summary>
-        /// <remarks>Cloning the bag takes time O(N), where N is the number of items in the bag.</remarks>
-        /// <returns>The cloned bag.</returns>
-        object ICloneable.Clone()
-        {
-            return this.Clone();
-        }
 
         /// <summary>
         /// Makes a shallow clone of this bag; i.e., if items of the

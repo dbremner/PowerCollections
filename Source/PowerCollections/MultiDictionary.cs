@@ -23,7 +23,7 @@ namespace Wintellect.PowerCollections
     ///<seealso cref="Dictionary&lt;TKey,TValue&gt;"/>
     ///<seealso cref="OrderedMultiDictionary&lt;TKey,TValue&gt;"/>
     [Serializable]
-    public class MultiDictionary<TKey, TValue> : MultiDictionaryBase<TKey, TValue>, ICloneable
+    public class MultiDictionary<TKey, TValue> : MultiDictionaryBase<TKey, TValue>
     {
         // The comparer for comparing keys
         private readonly IEqualityComparer<TKey> keyEqualityComparer;
@@ -511,15 +511,6 @@ namespace Wintellect.PowerCollections
         {
             return new MultiDictionary<TKey, TValue>(allowDuplicateValues, keyEqualityComparer, valueEqualityComparer, equalityComparer, 
                 hash.Clone(KeyAndValues.Copy));
-        }
-
-        /// <summary>
-        /// Implements ICloneable.Clone. Makes a shallow clone of this dictionary; i.e., if keys or values are reference types, then they are not cloned.
-        /// </summary>
-        /// <returns>The cloned dictionary.</returns>
-        object ICloneable.Clone()
-        {
-            return Clone();
         }
 
         /// <summary>

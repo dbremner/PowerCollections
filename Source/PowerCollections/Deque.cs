@@ -36,7 +36,7 @@ namespace Wintellect.PowerCollections
     /// </remarks>
     /// <typeparam name="T">The type of items stored in the Deque.</typeparam>
     [Serializable]
-    public class Deque<T> : ListBase<T>, ICloneable
+    public class Deque<T> : ListBase<T>
     {
         // The initial size of the buffer.
         private const int INITIAL_SIZE = 8;
@@ -876,16 +876,6 @@ namespace Wintellect.PowerCollections
         public Deque<T> Clone()
         {
             return new Deque<T>(this);
-        }
-
-        /// <summary>
-        /// Creates a new Deque that is a copy of this one.
-        /// </summary>
-        /// <remarks>Copying a Deque takes O(N) time, where N is the number of items in this Deque..</remarks>
-        /// <returns>A copy of the current deque.</returns>
-        object ICloneable.Clone()
-        {
-            return this.Clone();
         }
 
         /// <summary>
