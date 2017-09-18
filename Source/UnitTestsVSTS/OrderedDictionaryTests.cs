@@ -136,13 +136,7 @@ namespace Wintellect.PowerCollections.Tests
 			}
 		}
 
-        private void CheckArgumentException(Exception e)
-        {
-            Assert.IsTrue(e is ArgumentException);
-            Assert.IsTrue(((ArgumentException)e).ParamName == "key");
-        }
-
-        /// <summary>
+	    /// <summary>
         /// Test adding keys/values to the collection. Make sure the return value is right, and that
         /// the keys are present in the collection afterward.
         /// </summary>
@@ -159,20 +153,20 @@ namespace Wintellect.PowerCollections.Tests
                 dict1.Add(4.67, 187); Assert.Fail("Exception should be thrown");
             }
             catch (Exception e) {
-                CheckArgumentException(e);
+                Assert.IsTrue(e is ArgumentException);
             }
             dict1.Add(double.NegativeInfinity, 188921);
             try {
                 dict1.Add(double.NegativeInfinity, 421); Assert.Fail("Exception should be thrown");
             }
             catch (Exception e) {
-                CheckArgumentException(e);
+                Assert.IsTrue(e is ArgumentException);
             }
             try {
                 dict1.Add(4.67, 222); Assert.Fail("Exception should be thrown");
             }
             catch (Exception e) {
-                CheckArgumentException(e);
+                Assert.IsTrue(e is ArgumentException);
             }
 
             dict1.Add(double.MaxValue, 444);
@@ -1202,14 +1196,8 @@ namespace Wintellect.PowerCollections.Tests
                true);
         }
 
-        private void CheckNullKeyException(Exception e, string paramName) {
+	    private void CheckNullKeyException(Exception e) {
             Assert.IsTrue(e is ArgumentNullException);
-            Assert.IsTrue(((ArgumentNullException)e).ParamName == paramName);
-        }
-
-        private void CheckNullKeyException(Exception e)
-        {
-            CheckNullKeyException(e, "key");
         }
         [TestMethod]
         public void IDictionaryInterface()

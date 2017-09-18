@@ -296,7 +296,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -305,7 +304,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("start", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -314,7 +312,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -323,7 +320,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -332,7 +328,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -341,7 +336,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -350,7 +344,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("start", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -359,7 +352,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("start", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -368,7 +360,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("start", ((ArgumentOutOfRangeException)e).ParamName);
             }
         }
 
@@ -384,7 +375,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -393,7 +383,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("start", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -402,7 +391,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -411,7 +399,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -420,7 +407,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -429,7 +415,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("count", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -438,7 +423,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("start", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -447,7 +431,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("start", ((ArgumentOutOfRangeException)e).ParamName);
             }
 
             try {
@@ -456,7 +439,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
-                Assert.AreEqual("start", ((ArgumentOutOfRangeException)e).ParamName);
             }
         }
 
