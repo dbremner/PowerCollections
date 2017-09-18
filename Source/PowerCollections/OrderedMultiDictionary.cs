@@ -77,9 +77,7 @@ namespace Wintellect.PowerCollections
         /// <returns>A RangeTester delegate that selects the range of items with that range.</returns>
         private RedBlackTree<KeyValuePair<TKey,TValue>>.RangeTester KeyRange(TKey key)
         {
-            return delegate(KeyValuePair<TKey,TValue> pair) {
-                return keyComparer.Compare(pair.Key, key);
-            };
+            return pair => keyComparer.Compare(pair.Key, key);
         }
 
         /// <summary>

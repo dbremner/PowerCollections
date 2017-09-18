@@ -663,9 +663,7 @@ namespace Wintellect.PowerCollections
         /// <returns>A RangeTester delegate that tests for an item equal to <paramref name="equalTo"/>.</returns>
         public RangeTester EqualRangeTester(T equalTo)
         {
-            return delegate(T item) {
-                return comparer.Compare(item, equalTo);
-            };
+            return item => comparer.Compare(item, equalTo);
         }
 
         /// <summary>

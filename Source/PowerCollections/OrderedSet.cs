@@ -826,7 +826,7 @@ namespace Wintellect.PowerCollections
                 }
             }
             else {
-                RemoveAll(delegate(T item) { return otherSet.Contains(item); });
+                RemoveAll(item => otherSet.Contains(item));
             }
         }
 
