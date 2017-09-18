@@ -4473,6 +4473,7 @@ namespace Wintellect.PowerCollections
             if (comparison == null)
                 throw new ArgumentNullException(nameof(comparison));
 
+            //TODO this is wrong and will fail with some inputs
             return delegate(T x, T y) { return -comparison(x, y); };
         }
 
