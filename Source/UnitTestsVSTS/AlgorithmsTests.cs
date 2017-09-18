@@ -2540,8 +2540,7 @@ namespace Wintellect.PowerCollections.Tests
             IDictionary<string, string> result3 = Algorithms.ReadOnly(result2);
             Assert.AreSame(result2, result3);
 
-            IDictionary<string, string> dict4 = null;
-            IDictionary<string, string> result4 = Algorithms.ReadOnly(dict4);
+            var result4 = Algorithms.ReadOnly<string, string>(null);
             Assert.IsNull(result4);
 
             IDictionary<int, string> dict5 = new Dictionary<int, string>();
@@ -2563,8 +2562,7 @@ namespace Wintellect.PowerCollections.Tests
             IList<string> result2 = Algorithms.TypedAs<string>(list2);
             InterfaceTests.TestListGeneric(result2, new string[] {  });
 
-            IList list3 = null;
-            IList<string> result3 = Algorithms.TypedAs<string>(list3);
+            IList<string> result3 = Algorithms.TypedAs<string>(null);
             Assert.IsNull(result3);
         }
 
@@ -2581,8 +2579,7 @@ namespace Wintellect.PowerCollections.Tests
             ICollection<string> result2 = Algorithms.TypedAs<string>(coll2);
             InterfaceTests.TestReadonlyCollectionGeneric(result2, new string[] { }, true, "strongly-typed Collection");
 
-            ICollection coll3 = null;
-            ICollection<string> result3 = Algorithms.TypedAs<string>(coll3);
+            ICollection<string> result3 = Algorithms.TypedAs<string>((ICollection)null);
             Assert.IsNull(result3);
         }
 
@@ -2597,8 +2594,7 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<string> result2 = Algorithms.TypedAs<string>(enum2);
             InterfaceTests.TestEnumerableElements(result2, new string[] { });
 
-            IEnumerable enum3 = null;
-            IEnumerable<string> result3 = Algorithms.TypedAs<string>(enum3);
+            IEnumerable<string> result3 = Algorithms.TypedAs<string>((IEnumerable)null);
             Assert.IsNull(result3);
         }
 
@@ -2617,8 +2613,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(result2 == list2);   // should have just cast it away
             InterfaceTests.TestList(result2, new string[] { "foo", "bar", "hello", "sailor" });
 
-            IList<string> list3 = null;
-            IList result3 = Algorithms.Untyped(list3);
+            IList result3 = Algorithms.Untyped<string>(null);
             Assert.IsNull(result3);
         }
 
