@@ -547,12 +547,7 @@ namespace Wintellect.PowerCollections.Tests
 			}
         }
 
-        public class UncomparableClass2
-		{
-			public int Value = 0;
-		}
-
-		/// <summary>
+	    /// <summary>
 		/// Make sure that the parameterless constructor on SimpleDictionary can be called with
 		/// a comparable struct and class.
 		/// </summary>

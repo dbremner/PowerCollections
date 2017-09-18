@@ -72,11 +72,6 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        class UncomparableClass2
-        {
-            public int Value = 0;
-        }
-
         [TestMethod]
         public void RandomAddDelete() {
             const int SIZE = 5000;

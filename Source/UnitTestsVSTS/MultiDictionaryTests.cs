@@ -908,7 +908,7 @@ namespace Wintellect.PowerCollections.Tests
         public void NotComparable2()
         {
             // This should work -- all types are comparable in a hash way via object.Equals and object.GetHashCode.
-            var dict2 = new MultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true);
+            var dict2 = new MultiDictionary<string, UncomparableClass2>(true);
         }
 
         class FirstLetterComparer : IEqualityComparer<string>

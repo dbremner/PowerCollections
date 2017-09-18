@@ -100,6 +100,7 @@
     <Compile Include="SetTests.cs" />
     <Compile Include="TestHelpers.cs" />
     <Compile Include="TestPredicates.cs" />
+    <Compile Include="UncomparableClass2.cs" />
     <Compile Include="UtilTests.cs" />
     <Compile Include="VSCodeGenAccessors.cs" />
   </ItemGroup>

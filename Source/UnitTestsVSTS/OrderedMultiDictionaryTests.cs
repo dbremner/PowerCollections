@@ -957,7 +957,7 @@ namespace Wintellect.PowerCollections.Tests
         public void NotComparable2()
         {
             ThrowsInvalidResult( () =>
-            new OrderedMultiDictionary<string, OrderedDictionaryTests.UncomparableClass2>(true)
+            new OrderedMultiDictionary<string, UncomparableClass2>(true)
                 );
         }
 
