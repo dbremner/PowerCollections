@@ -683,28 +683,28 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadWriteCollectionGeneric(set3, new int[] { -21, -17, 1, 7, 9, 11, 13, 15, 19 }, true, null);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons1()
         {
             var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, ComparersTests.CompareOddEven);
-            setOdds.UnionWith(setDigits);
+            ThrowsInvalid(() => setOdds.UnionWith(setDigits));
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons2()
         {
             var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenComparer());
-            setOdds.SymmetricDifferenceWith(setDigits);
+            ThrowsInvalid(() => setOdds.SymmetricDifferenceWith(setDigits));
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void InconsistentComparisons3()
         {
             var set1 = new OrderedSet<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
             var set2 = new OrderedSet<string>(new string[] { "bada", "bing"}, StringComparer.InvariantCulture);
-            set1.Intersection(set2);
+            ThrowsInvalid(() => set1.IntersectionWith(set2));
         }
 
         [TestMethod]
@@ -720,19 +720,19 @@ namespace Wintellect.PowerCollections.Tests
         }
 
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void NotComparable1()
         {
-            var set1 = new OrderedSet<UncomparableClass1>();
+            ThrowsInvalidResult(() => new OrderedSet<UncomparableClass1>());
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void NotComparable2()
         {
-            var set1 = new OrderedSet<UncomparableClass2>();
+            ThrowsInvalidResult(() => new OrderedSet<UncomparableClass2>());
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void FailFastEnumerator1()
         {
             var set1 = new OrderedSet<double>();
@@ -744,13 +744,18 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // should throw once the set is modified.
-            foreach (double k in set1) {
-                if (k > 3.0)
-                    set1.Add(1.0);
+            void InvalidOperation()
+            {
+                foreach (double k in set1) {
+                    if (k > 3.0)
+                        set1.Add(1.0);
+                }
             }
+
+            ThrowsInvalid(InvalidOperation);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+        [TestMethod]
         public void FailFastEnumerator2()
         {
             var set1 = new OrderedSet<double>();
@@ -762,10 +767,15 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             // should throw once the set is modified.
-            foreach (double k in set1) {
-                if (k > 3.0)
-                    set1.Clear();
+            void InvalidOperation()
+            {
+                foreach (double k in set1) {
+                    if (k > 3.0)
+                        set1.Clear();
+                }
             }
+
+            ThrowsInvalid(InvalidOperation);
         }
 
         // Check a View to make sure it has the right stuff.
