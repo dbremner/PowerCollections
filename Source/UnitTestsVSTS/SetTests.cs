@@ -296,9 +296,8 @@ namespace Wintellect.PowerCollections.Tests
         public void Clone()
         {
             var set1 = new Set<int>(new int[] { 1, 7, 9, 11, 13, 15, -17, 19, -21 });
-            Set<int> set2;
 
-            set2 = set1.Clone();
+            Set<int> set2 = set1.Clone();
 
             Assert.IsFalse(set2 == set1);
 

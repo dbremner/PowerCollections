@@ -1323,11 +1323,9 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clone()
         {
-            BigList<int> list1, list2, list4;
-
-            list1 = new BigList<int>();
-            list2 = list1.Clone();
-            list4 = new BigList<int>(list1);
+            var list1 = new BigList<int>();
+            BigList<int> list2 = list1.Clone();
+            var list4 = new BigList<int>(list1);
             InterfaceTests.TestListGeneric(list2, new int[0], null);
             InterfaceTests.TestListGeneric(list4, new int[0], null);
             list1.Add(5);

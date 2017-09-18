@@ -784,11 +784,9 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Clone()
         {
-            Deque<int> deque1, deque2, deque4;
-
-            deque1 = new Deque<int>();
-            deque2 = deque1.Clone();
-            deque4 = new Deque<int>(deque1);
+            var deque1 = new Deque<int>();
+            Deque<int> deque2 = deque1.Clone();
+            var deque4 = new Deque<int>(deque1);
             InterfaceTests.TestListGeneric(deque2, new int[0], null);
             InterfaceTests.TestListGeneric(deque4, new int[0], null);
             deque1.Add(5);

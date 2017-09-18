@@ -1004,8 +1004,7 @@ namespace Wintellect.PowerCollections.Tests
                 KvpCreate("qubert", "dinosaur")});
 
             var dict4 = new OrderedMultiDictionary<string, int>(true);
-            OrderedMultiDictionary<string, int> dict5;
-            dict5 = dict4.Clone();
+            OrderedMultiDictionary<string, int> dict5 = dict4.Clone();
             Assert.IsFalse(dict4 == dict5);
             Assert.IsTrue(dict4.Count == 0 && dict5.Count == 0);
             dict4.Add("hello", 1);

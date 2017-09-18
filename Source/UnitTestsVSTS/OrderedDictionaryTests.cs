@@ -737,9 +737,8 @@ namespace Wintellect.PowerCollections.Tests
 		public void Clone()
 		{
 			var dict1 = new OrderedDictionary<string,int>();
-			OrderedDictionary<string,int> dict2;
 
-			dict1["foo"] = 23;
+		    dict1["foo"] = 23;
 			dict1["a"] = 11;
 			dict1["b"] = 119;
 			dict1[""] = 981;
@@ -751,7 +750,7 @@ namespace Wintellect.PowerCollections.Tests
 			dict1["ww"] = -9;
 			dict1["p"] = 1234;
 
-			dict2 = dict1.Clone();
+			OrderedDictionary<string, int> dict2 = dict1.Clone();
 
             Assert.IsFalse(dict2 == dict1);
 
@@ -765,8 +764,7 @@ namespace Wintellect.PowerCollections.Tests
 			Assert.AreEqual(981, dict2[""]);
 
             var dict4 = new OrderedDictionary<string, int>();
-            OrderedDictionary<string, int> dict5;
-            dict5 = dict4.Clone();
+		    OrderedDictionary<string, int> dict5 = dict4.Clone();
             Assert.IsFalse(dict4 == dict5);
             Assert.IsTrue(dict4.Count == 0 && dict5.Count == 0);
             dict4.Add("hello", 1);

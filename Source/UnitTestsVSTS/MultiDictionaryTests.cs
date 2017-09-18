@@ -981,8 +981,7 @@ namespace Wintellect.PowerCollections.Tests
                 new KeyValuePair<string,string>("qubert", "dinosaur")});
 
             var dict4 = new MultiDictionary<string, int>(true);
-            MultiDictionary<string, int> dict5;
-            dict5 = dict4.Clone();
+            MultiDictionary<string, int> dict5 = dict4.Clone();
             Assert.IsFalse(dict4 == dict5);
             Assert.IsTrue(dict4.Count == 0 && dict5.Count == 0);
             dict4.Add("hello", 1);

@@ -661,9 +661,8 @@ namespace Wintellect.PowerCollections.Tests
         public void Clone()
         {
             var set1 = new OrderedSet<int>(new int[] { 1, 7, 9, 11, 13, 15, -17, 19, -21 });
-            OrderedSet<int> set2;
 
-            set2 = set1.Clone();
+            OrderedSet<int> set2 = set1.Clone();
 
             Assert.IsFalse(set2 == set1);
 

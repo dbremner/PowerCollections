@@ -640,9 +640,8 @@ namespace Wintellect.PowerCollections.Tests
         public void Clone()
         {
             var bag1 = new Bag<int>(new int[] { 1, 7, 9, 11, 7, 13, 15, -17, 19, -21, 1 });
-            Bag<int> bag2;
 
-            bag2 = bag1.Clone();
+            Bag<int> bag2 = bag1.Clone();
 
             Assert.IsFalse(bag2 == bag1);
 
