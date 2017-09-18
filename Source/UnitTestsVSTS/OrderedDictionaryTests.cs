@@ -317,7 +317,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(11, dict1["bar"]);
 
             try {
-                int i = dict1["foobar"];
+                int unused = dict1["foobar"];
                 Assert.Fail("should throw");
             }
             catch (Exception e) {
