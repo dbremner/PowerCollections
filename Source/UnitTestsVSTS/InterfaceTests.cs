@@ -363,8 +363,6 @@ namespace Wintellect.PowerCollections.Tests {
         private static void CheckReadonlyCollectionException(Exception e, string name)
         {
             Assert.IsTrue(e is NotSupportedException);
-            if (name != null)
-                Assert.AreEqual(string.Format(Strings.CannotModifyCollection, name), e.Message);
         }
 
         /// <summary>
