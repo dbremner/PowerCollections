@@ -18,7 +18,7 @@ namespace Wintellect.PowerCollections {
         /// onto an untyped IEnumerable interface.
         /// </summary>
         [Serializable]
-        private class TypedEnumerable<T> : IEnumerable<T>
+        private sealed class TypedEnumerable<T> : IEnumerable<T>
         {
             private readonly IEnumerable wrappedEnumerable;
 

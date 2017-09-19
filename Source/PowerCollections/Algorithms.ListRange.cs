@@ -22,7 +22,7 @@ namespace Wintellect.PowerCollections {
         /// the wrapped list do not.
         /// </summary>
         [Serializable]
-        private class ListRange<T> : ListBase<T>, ICollection<T>
+        private sealed class ListRange<T> : ListBase<T>, ICollection<T>
         {
             private readonly IList<T> wrappedList;
             private readonly int start;

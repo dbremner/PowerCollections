@@ -19,7 +19,7 @@ namespace Wintellect.PowerCollections {
         /// modify are fowarded through to the wrapped collection.
         /// </summary>
         [Serializable]
-        private class ReadOnlyCollection<T> : ICollection<T>
+        private sealed class ReadOnlyCollection<T> : ICollection<T>
         {
             private readonly ICollection<T> wrappedCollection;  // The collection we are wrapping (never null).
 

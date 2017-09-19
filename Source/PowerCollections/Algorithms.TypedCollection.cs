@@ -19,7 +19,7 @@ namespace Wintellect.PowerCollections {
         /// is read-only.
         /// </summary>
         [Serializable]
-        private class TypedCollection<T> : ICollection<T>
+        private sealed class TypedCollection<T> : ICollection<T>
         {
             private readonly ICollection wrappedCollection;
 

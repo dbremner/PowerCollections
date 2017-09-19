@@ -18,7 +18,7 @@ namespace Wintellect.PowerCollections {
         /// around a generic IList&lt;T&gt; interface.
         /// </summary>
         [Serializable]
-        private class UntypedList<T> : IList
+        private sealed class UntypedList<T> : IList
         {
             private readonly IList<T> wrappedList;
 

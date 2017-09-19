@@ -18,7 +18,7 @@ namespace Wintellect.PowerCollections {
         /// IDictionary &lt;TKey,TValue&gt;.
         /// </summary>
         [Serializable]
-        private class ReadOnlyDictionary<TKey, TValue> : IDictionary<TKey, TValue>
+        private sealed class ReadOnlyDictionary<TKey, TValue> : IDictionary<TKey, TValue>
         {
             // The dictionary that is wrapped
             private readonly IDictionary<TKey, TValue> wrappedDictionary;

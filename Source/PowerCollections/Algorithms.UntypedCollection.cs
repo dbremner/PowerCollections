@@ -18,7 +18,7 @@ namespace Wintellect.PowerCollections {
         /// view onto a typed ICollection&lt;T&gt; interface.
         /// </summary>
         [Serializable]
-        private class UntypedCollection<T> : ICollection
+        private sealed class UntypedCollection<T> : ICollection
         {
             private readonly ICollection<T> wrappedCollection;
 
