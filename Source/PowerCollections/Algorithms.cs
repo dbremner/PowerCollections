@@ -128,7 +128,7 @@ namespace Wintellect.PowerCollections {
             else if (list.IsReadOnly)
                 return list;
             else
-                return new ReadOnlyList<T>(list);
+                return new System.Collections.ObjectModel.ReadOnlyCollection<T>(list);
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Wintellect.PowerCollections {
             else if (dictionary.IsReadOnly)
                 return dictionary;
             else
-                return new ReadOnlyDictionary<TKey,TValue>(dictionary);
+                return new System.Collections.ObjectModel.ReadOnlyDictionary<TKey,TValue>(dictionary);
         }
 
         /// <summary>
