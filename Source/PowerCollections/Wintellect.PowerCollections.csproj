@@ -90,10 +90,23 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="CreateNewKey.pfx" />
+    <Compile Include="Algorithms.ArrayRange.cs" />
+    <Compile Include="Algorithms.ArrayWrapper.cs" />
     <Compile Include="Algorithms.cs" />
+    <Compile Include="Algorithms.ListRange.cs" />
+    <Compile Include="Algorithms.ReadOnlyCollection.cs" />
+    <Compile Include="Algorithms.ReadOnlyDictionary.cs" />
+    <Compile Include="Algorithms.ReadOnlyList.cs" />
+    <Compile Include="Algorithms.TypedCollection.cs" />
+    <Compile Include="Algorithms.TypedEnumerable.cs" />
+    <Compile Include="Algorithms.TypedEnumerator.cs" />
+    <Compile Include="Algorithms.TypedList.cs" />
+    <Compile Include="Algorithms.UntypedCollection.cs" />
+    <Compile Include="Algorithms.UntypedList.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Bag.cs" />
     <Compile Include="BigList.cs" />
+    <Compile Include="BinaryPredicate.cs" />
     <Compile Include="CollectionBase.cs" />
     <Compile Include="Comparers.cs" />
     <Compile Include="Deque.cs" />
