@@ -21,7 +21,7 @@ namespace Wintellect.PowerCollections
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [Serializable]
-    public abstract class ListBase<T> : CollectionBase<T>, IList<T>, IList
+    public abstract class ListBase<T> : CollectionBase<T>, IList<T>, IList, IReadOnlyList<T>
     {
         /// <summary>
         /// The property must be overridden by the derived class to return the number of 

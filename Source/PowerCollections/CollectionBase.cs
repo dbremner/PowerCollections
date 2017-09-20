@@ -28,7 +28,7 @@ namespace Wintellect.PowerCollections
     /// <typeparam name="T">The item type of the collection.</typeparam>
     [Serializable]
     [DebuggerDisplay("{DebuggerDisplayString()}")]
-    public abstract class CollectionBase<T> : ICollection<T>, ICollection
+    public abstract class CollectionBase<T> : ICollection<T>, ICollection, IReadOnlyCollection<T>
     {
 
         /// <summary>

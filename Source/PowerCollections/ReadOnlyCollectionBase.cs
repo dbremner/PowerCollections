@@ -29,7 +29,7 @@ namespace Wintellect.PowerCollections
     /// <typeparam name="T">The item type of the collection.</typeparam>
     [Serializable]
     [DebuggerDisplay("{DebuggerDisplayString()}")]
-    public abstract class ReadOnlyCollectionBase<T> : ICollection<T>, ICollection
+    public abstract class ReadOnlyCollectionBase<T> : ICollection<T>, ICollection, IReadOnlyCollection<T>
     {
         /// <summary>
         /// Throws an NotSupportedException stating that this collection cannot be modified.
