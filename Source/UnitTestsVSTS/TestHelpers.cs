@@ -13,25 +13,19 @@ namespace Wintellect.PowerCollections.Tests {
         /// <typeparam name="TException"></typeparam>
         /// <param name="action"></param>
         public static void Throws<TException>(Action action) where TException : Exception {
-            try {
-                action();
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is TException);
-            }
+            Assert.ThrowsException<TException>(action);
         }
 
         public static void ThrowsInvalid(Action action) =>
-            Throws<InvalidOperationException>(action);
+            Assert.ThrowsException<InvalidOperationException>(action);
 
         public static void ThrowsInvalidResult<T>(Func<T> func) =>
-            ThrowsInvalid(() => func());
+            Assert.ThrowsException<InvalidOperationException>(() => func());
 
         public static void ThrowsOutOfRange(Action action) =>
-            Throws<ArgumentOutOfRangeException>(action);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(action);
 
         public static void ThrowsOutOfRangeResult<T>(Func<T> func) =>
-            ThrowsOutOfRange(() => func());
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => func());
     }
 }
