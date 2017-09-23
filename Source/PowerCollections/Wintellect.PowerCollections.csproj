@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Util.WrapEnumerable.cs" />
     <None Include="app.config" />
     <None Include="CreateNewKey.pfx" />
     <Compile Include="Algorithms.ArrayRange.cs" />
@@ -109,7 +110,12 @@
     <Compile Include="BigList.cs" />
     <Compile Include="BinaryPredicate.cs" />
     <Compile Include="CollectionBase.cs" />
+    <Compile Include="Comparers.ComparisonComparer.cs" />
+    <Compile Include="Comparers.ComparisonKeyValueComparer.cs" />
     <Compile Include="Comparers.cs" />
+    <Compile Include="Comparers.KeyValueComparer.cs" />
+    <Compile Include="Comparers.KeyValueEqualityComparer.cs" />
+    <Compile Include="Comparers.PairComparer.cs" />
     <Compile Include="Deque.cs" />
     <Compile Include="DictionaryBase.cs" />
     <Compile Include="Hash.cs" />

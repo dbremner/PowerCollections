@@ -7,15 +7,14 @@
 //******************************
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Wintellect.PowerCollections
 {
-	/// <summary>
-	/// A holder class for various internal utility functions that need to be shared.
-	/// </summary>
-    internal static class Util
+    /// <summary>
+    /// A holder class for various internal utility functions that need to be shared.
+    /// </summary>
+    internal static partial class Util
     {
         /// <summary>
         /// Determine if a type is cloneable: either a value type or implementing
@@ -53,35 +52,6 @@ namespace Wintellect.PowerCollections
                 name = name.Substring(0, index);
 
             return name;
-        }
-
-        /// <summary>
-        /// Wrap an enumerable so that clients can't get to the underlying 
-        /// implementation via a down-cast.
-        /// </summary>
-        [Serializable]
-        class WrapEnumerable<T> : IEnumerable<T>
-        {
-            IEnumerable<T> wrapped;
-
-            /// <summary>
-            /// Create the wrapper around an enumerable.
-            /// </summary>
-            /// <param name="wrapped">IEnumerable to wrap.</param>
-            public WrapEnumerable(IEnumerable<T> wrapped)
-            {
-                this.wrapped = wrapped;
-            }
-
-            public IEnumerator<T> GetEnumerator()
-            {
-                return wrapped.GetEnumerator();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return ((IEnumerable)wrapped).GetEnumerator();
-            }
         }
 
         /// <summary>
