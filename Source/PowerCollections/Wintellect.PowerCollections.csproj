@@ -96,8 +96,6 @@
     <Compile Include="Algorithms.ListRange.cs" />
     <Compile Include="Algorithms.ReadOnlyCollection.cs" />
     <Compile Include="Algorithms.TypedCollection.cs" />
-    <Compile Include="Algorithms.TypedEnumerable.cs" />
-    <Compile Include="Algorithms.TypedEnumerator.cs" />
     <Compile Include="Algorithms.TypedList.cs" />
     <Compile Include="Algorithms.UntypedCollection.cs" />
     <Compile Include="Algorithms.UntypedList.cs" />

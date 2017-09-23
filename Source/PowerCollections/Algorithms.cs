@@ -175,7 +175,7 @@ namespace Wintellect.PowerCollections {
             else if (untypedCollection is IEnumerable<T> enumerable)
                 return enumerable;
             else
-                return new TypedEnumerable<T>(untypedCollection);
+                return untypedCollection.Cast<T>();
         }
 
         /// <summary>

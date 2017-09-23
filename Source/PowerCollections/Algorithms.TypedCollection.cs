@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Wintellect.PowerCollections {
     public static partial class Algorithms
@@ -74,7 +75,9 @@ namespace Wintellect.PowerCollections {
             }
 
             public IEnumerator<T> GetEnumerator()
-            {  return new TypedEnumerator<T>(wrappedCollection.GetEnumerator()); }
+            {
+                return wrappedCollection.Cast<T>().GetEnumerator();
+            }
 
             IEnumerator IEnumerable.GetEnumerator()
             {  return wrappedCollection.GetEnumerator(); }
