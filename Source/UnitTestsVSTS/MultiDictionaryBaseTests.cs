@@ -269,7 +269,7 @@ namespace Wintellect.PowerCollections.Tests
             KeyValuePair<TKey,TValue>[] pairs = new KeyValuePair<TKey,TValue>[valueCount];
             for (iKey = 0; iKey < keys.Length; ++iKey) {
                 for (iValue = 0; iValue < values[iKey].Length; ++iValue) {
-                    pairs[a++] = new KeyValuePair<TKey,TValue>(keys[iKey], values[iKey][iValue]);
+                    pairs[a++] = Kvp.Of(keys[iKey], values[iKey][iValue]);
                 }
             }
             InterfaceTests.TestReadonlyCollectionGeneric(dict.KeyValuePairs, pairs, true, null);
@@ -378,7 +378,7 @@ namespace Wintellect.PowerCollections.Tests
             KeyValuePair<TKey, TValue>[] pairs = new KeyValuePair<TKey, TValue>[valueCount];
             for (iKey = 0; iKey < keys.Length; ++iKey) {
                 for (iValue = 0; iValue < values[iKey].Length; ++iValue) {
-                    pairs[a++] = new KeyValuePair<TKey, TValue>(keys[iKey], values[iKey][iValue]);
+                    pairs[a++] = Kvp.Of(keys[iKey], values[iKey][iValue]);
                 }
             }
             InterfaceTests.TestReadonlyCollectionGeneric(dict.KeyValuePairs, pairs, true, null);

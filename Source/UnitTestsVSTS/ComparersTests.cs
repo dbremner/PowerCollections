@@ -256,16 +256,16 @@ namespace Wintellect.PowerCollections.Tests
         {
             IComparer<KeyValuePair<int, string>> comparer = Comparers.ComparerKeyValueFromComparerKey<int, string>(new GOddEvenComparer());
 
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(7, "foo"), new KeyValuePair<int, string>(6, "bar")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(7, "bar"), new KeyValuePair<int, string>(8, "foo")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(12, "baz"), new KeyValuePair<int, string>(11, "baz")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(12, "a"), new KeyValuePair<int, string>(143, "foo")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(5, "b"), new KeyValuePair<int, string>(7, "d")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(9, "c"), new KeyValuePair<int, string>(5, "c")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(6, "e"), new KeyValuePair<int, string>(8, "b")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(14, "f"), new KeyValuePair<int, string>(-8, "a")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(0, "g"), new KeyValuePair<int, string>(0, "r")) == 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(-3, "q"), new KeyValuePair<int, string>(-3, "f")) == 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(7, "foo"), Kvp.Of(6, "bar")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(7, "bar"), Kvp.Of(8, "foo")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(12, "baz"), Kvp.Of(11, "baz")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(12, "a"), Kvp.Of(143, "foo")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(5, "b"), Kvp.Of(7, "d")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(9, "c"), Kvp.Of(5, "c")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(6, "e"), Kvp.Of(8, "b")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(14, "f"), Kvp.Of(-8, "a")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(0, "g"), Kvp.Of(0, "r")) == 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(-3, "q"), Kvp.Of(-3, "f")) == 0);
         }
 
         [TestMethod]
@@ -273,9 +273,9 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEqualityComparer<KeyValuePair<int, string>> comparer = Comparers.EqualityComparerKeyValueFromComparerKey<int, string>(new GOddEvenEqualityComparer());
 
-            Assert.IsTrue(comparer.Equals(new KeyValuePair<int, string>(0, "g"), new KeyValuePair<int, string>(2, "r")));
-            Assert.IsTrue(comparer.Equals(new KeyValuePair<int, string>(-1, "g"), new KeyValuePair<int, string>(7, "w")));
-            Assert.IsFalse(comparer.Equals(new KeyValuePair<int, string>(-3, "q"), new KeyValuePair<int, string>(4, "q")));
+            Assert.IsTrue(comparer.Equals(Kvp.Of(0, "g"), Kvp.Of(2, "r")));
+            Assert.IsTrue(comparer.Equals(Kvp.Of(-1, "g"), Kvp.Of(7, "w")));
+            Assert.IsFalse(comparer.Equals(Kvp.Of(-3, "q"), Kvp.Of(4, "q")));
         }
 
         [TestMethod]
@@ -283,20 +283,20 @@ namespace Wintellect.PowerCollections.Tests
         {
             IComparer<KeyValuePair<int, string>> comparer = Comparers.ComparerPairFromKeyValueComparers(new GOddEvenComparer(), StringComparer.InvariantCultureIgnoreCase);
 
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(7, "foo"), new KeyValuePair<int, string>(6, "bar")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(7, "bar"), new KeyValuePair<int, string>(8, "foo")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(12, "baz"), new KeyValuePair<int, string>(11, "baz")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(12, "a"), new KeyValuePair<int, string>(143, "foo")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(5, "b"), new KeyValuePair<int, string>(7, "d")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(9, "c"), new KeyValuePair<int, string>(5, "c")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(6, "e"), new KeyValuePair<int, string>(8, "b")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(14, "f"), new KeyValuePair<int, string>(-8, "a")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(0, "g"), new KeyValuePair<int, string>(0, "r")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(-3, "q"), new KeyValuePair<int, string>(-3, "f")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(0, "g"), new KeyValuePair<int, string>(0, "R")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(-3, "q"), new KeyValuePair<int, string>(-3, "F")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(0, "Foo"), new KeyValuePair<int, string>(0, "foo")) == 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(-3, "q"), new KeyValuePair<int, string>(-3, "q")) == 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(7, "foo"), Kvp.Of(6, "bar")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(7, "bar"), Kvp.Of(8, "foo")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(12, "baz"), Kvp.Of(11, "baz")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(12, "a"), Kvp.Of(143, "foo")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(5, "b"), Kvp.Of(7, "d")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(9, "c"), Kvp.Of(5, "c")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(6, "e"), Kvp.Of(8, "b")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(14, "f"), Kvp.Of(-8, "a")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(0, "g"), Kvp.Of(0, "r")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(-3, "q"), Kvp.Of(-3, "f")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(0, "g"), Kvp.Of(0, "R")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(-3, "q"), Kvp.Of(-3, "F")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(0, "Foo"), Kvp.Of(0, "foo")) == 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(-3, "q"), Kvp.Of(-3, "q")) == 0);
         }
 
         [TestMethod]
@@ -304,16 +304,16 @@ namespace Wintellect.PowerCollections.Tests
         {
             IComparer<KeyValuePair<int, string>> comparer = Comparers.ComparerKeyValueFromComparisonKey<int, string>(CompareOddEven);
 
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(7, "foo"), new KeyValuePair<int, string>(6, "bar")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(7, "bar"), new KeyValuePair<int, string>(8, "foo")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(12, "baz"), new KeyValuePair<int, string>(11, "baz")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(12, "a"), new KeyValuePair<int, string>(143, "foo")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(5, "b"), new KeyValuePair<int, string>(7, "d")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(9, "c"), new KeyValuePair<int, string>(5, "c")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(6, "e"), new KeyValuePair<int, string>(8, "b")) < 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(14, "f"), new KeyValuePair<int, string>(-8, "a")) > 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(0, "g"), new KeyValuePair<int, string>(0, "r")) == 0);
-            Assert.IsTrue(comparer.Compare(new KeyValuePair<int, string>(-3, "q"), new KeyValuePair<int, string>(-3, "f")) == 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(7, "foo"), Kvp.Of(6, "bar")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(7, "bar"), Kvp.Of(8, "foo")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(12, "baz"), Kvp.Of(11, "baz")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(12, "a"), Kvp.Of(143, "foo")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(5, "b"), Kvp.Of(7, "d")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(9, "c"), Kvp.Of(5, "c")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(6, "e"), Kvp.Of(8, "b")) < 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(14, "f"), Kvp.Of(-8, "a")) > 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(0, "g"), Kvp.Of(0, "r")) == 0);
+            Assert.IsTrue(comparer.Compare(Kvp.Of(-3, "q"), Kvp.Of(-3, "f")) == 0);
         }
 
         [TestMethod]

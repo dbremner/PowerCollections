@@ -745,7 +745,7 @@ namespace Wintellect.PowerCollections.Tests {
 
             KeyValuePair<TKey, TValue>[] entries = new KeyValuePair<TKey, TValue>[keys.Length];
             for (int i = 0; i < keys.Length; ++i)
-                entries[i] = new KeyValuePair<TKey, TValue>(keys[i], values[i]);
+                entries[i] = Kvp.Of(keys[i], values[i]);
 
             TestDictionaryGeneric(dict, keys, values, nonKey, mustBeInOrder, keyEquals, valueEquals);
             TestReadonlyCollectionGeneric((ICollection<KeyValuePair<TKey,TValue>>)dict, entries, mustBeInOrder, name, KeyValueEquals(keyEquals, valueEquals));
@@ -807,7 +807,7 @@ namespace Wintellect.PowerCollections.Tests {
 
             KeyValuePair<TKey, TValue>[] entries = new KeyValuePair<TKey, TValue>[keys.Length];
             for (int i = 0; i < keys.Length; ++i)
-                entries[i] = new KeyValuePair<TKey, TValue>(keys[i], values[i]);
+                entries[i] = Kvp.Of(keys[i], values[i]);
 
             TestDictionaryGeneric(dict, keys, values, nonKey, mustBeInOrder, keyEquals, valueEquals);
             TestCollectionGeneric((ICollection<KeyValuePair<TKey, TValue>>)dict, entries, mustBeInOrder, KeyValueEquals(keyEquals, valueEquals));

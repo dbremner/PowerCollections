@@ -76,7 +76,7 @@ namespace Wintellect.PowerCollections.Tests
             KeyValuePair<TKey, TValue>[] pairs = new KeyValuePair<TKey, TValue>[dict.Values.Count];
             for (iKey = 0; iKey < keys.Length; ++iKey) {
                 for (iValue = 0; iValue < values[iKey].Length; ++iValue) {
-                    pairs[a++] = new KeyValuePair<TKey, TValue>(keys[iKey], values[iKey][iValue]);
+                    pairs[a++] = Kvp.Of(keys[iKey], values[iKey][iValue]);
                 }
             }
             InterfaceTests.TestReadonlyCollectionGeneric(dict.KeyValuePairs, pairs, false, null, InterfaceTests.KeyValueEquals(keyEquals,valueEquals));
@@ -242,8 +242,8 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElementsAnyOrder(dict2.Keys, new string[] { "foo" });
             InterfaceTests.TestEnumerableElementsAnyOrder(dict2["FOO"], new string[] { "BAR", "bar" });
             InterfaceTests.TestEnumerableElementsAnyOrder
-                (dict2.KeyValuePairs, new KeyValuePair<string, string>[] { new KeyValuePair<string,string>("foo", "BAR"),
-                  new KeyValuePair<string,string>("foo", "bar")}, InterfaceTests.KeyValueEquals<string, string>());
+                (dict2.KeyValuePairs, new KeyValuePair<string, string>[] { Kvp.Of("foo", "BAR"),
+                Kvp.Of("foo", "bar")}, InterfaceTests.KeyValueEquals<string, string>());
         }
 
         [TestMethod]
@@ -703,14 +703,14 @@ namespace Wintellect.PowerCollections.Tests
                 "bar", "BAZ", "FOO", "FOo", "bAZ", "Foo", "foo", "Gizzle", "hello"};
             KeyValuePair<string, string>[] expectedPairs = new KeyValuePair<string, string>[expectedKeys.Length];
             for (int i = 0; i < expectedKeys.Length; ++i)
-                expectedPairs[i] = new KeyValuePair<string, string>(expectedKeys[i], expectedVals[i]);
+                expectedPairs[i] = Kvp.Of(expectedKeys[i], expectedVals[i]);
 
             InterfaceTests.TestReadonlyCollectionGeneric(pairs, expectedPairs, false, null);
 
-            Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3a", "baz")));
-            Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3A", "baz")));
-            Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("6a", "foo")));
-            Assert.IsFalse(pairs.Contains(new KeyValuePair<string, string>("7A", "bar")));
+            Assert.IsTrue(pairs.Contains(Kvp.Of("3a", "baz")));
+            Assert.IsTrue(pairs.Contains(Kvp.Of("3A", "baz")));
+            Assert.IsTrue(pairs.Contains(Kvp.Of("6a", "foo")));
+            Assert.IsFalse(pairs.Contains(Kvp.Of("7A", "bar")));
         }
 
         [TestMethod]
@@ -738,14 +738,14 @@ namespace Wintellect.PowerCollections.Tests
             "bar", "baz", "BAZ", "FOO", "foo", "FOo", "bAZ", "Foo", "foo", "Gizzle", "hello"};
             KeyValuePair<string, string>[] expectedPairs = new KeyValuePair<string, string>[expectedKeys.Length];
             for (int i = 0; i < expectedKeys.Length; ++i)
-                expectedPairs[i] = new KeyValuePair<string, string>(expectedKeys[i], expectedVals[i]);
+                expectedPairs[i] = Kvp.Of(expectedKeys[i], expectedVals[i]);
 
             InterfaceTests.TestReadonlyCollectionGeneric(pairs, expectedPairs, false, null);
 
-            Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3a", "baz")));
-            Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("3A", "baz")));
-            Assert.IsTrue(pairs.Contains(new KeyValuePair<string, string>("6a", "foo")));
-            Assert.IsFalse(pairs.Contains(new KeyValuePair<string, string>("7A", "bar")));
+            Assert.IsTrue(pairs.Contains(Kvp.Of("3a", "baz")));
+            Assert.IsTrue(pairs.Contains(Kvp.Of("3A", "baz")));
+            Assert.IsTrue(pairs.Contains(Kvp.Of("6a", "foo")));
+            Assert.IsFalse(pairs.Contains(Kvp.Of("7A", "bar")));
         }
 
         [TestMethod]
@@ -869,11 +869,11 @@ namespace Wintellect.PowerCollections.Tests
             };
 
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1.KeyValuePairs, new KeyValuePair<string, string>[] {
-                new KeyValuePair<string,string>("qubert", "hello"),
-                new KeyValuePair<string,string>("hello", "aaa"),
-                new KeyValuePair<string,string>("hello", "AAA"),
-                new KeyValuePair<string,string>("alpha", "omega"),
-                new KeyValuePair<string,string>("alpha", "oz")});
+                Kvp.Of("qubert", "hello"),
+                Kvp.Of("hello", "aaa"),
+                Kvp.Of("hello", "AAA"),
+                Kvp.Of("alpha", "omega"),
+                Kvp.Of("alpha", "oz")});
 
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1.Keys, new string[] { "qubert", "hello", "alpha" });
 
@@ -889,12 +889,12 @@ namespace Wintellect.PowerCollections.Tests
             };
 
             InterfaceTests.TestEnumerableElementsAnyOrder(dict2.KeyValuePairs, new KeyValuePair<string, string>[] {
-                new KeyValuePair<string,string>("alpha", "oz"),
-                new KeyValuePair<string,string>("Hello", "AAA"),
-                new KeyValuePair<string,string>("Hi", "aaa"),
-                new KeyValuePair<string,string>("qubert", "hippy"),
-                new KeyValuePair<string,string>("qubert", "dinosaur"),
-                new KeyValuePair<string,string>("queztel", "hello")});
+                Kvp.Of("alpha", "oz"),
+                Kvp.Of("Hello", "AAA"),
+                Kvp.Of("Hi", "aaa"),
+                Kvp.Of("qubert", "hippy"),
+                Kvp.Of("qubert", "dinosaur"),
+                Kvp.Of("queztel", "hello")});
         }
 
         [TestMethod]
@@ -965,20 +965,20 @@ namespace Wintellect.PowerCollections.Tests
             dict2.Add("hello", "banana");
 
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1.KeyValuePairs, new KeyValuePair<string, string>[] {
-                new KeyValuePair<string,string>("Alpha", "oz"),
-                new KeyValuePair<string,string>("Hello", "AAA"),
-                new KeyValuePair<string,string>("Hi", "aaa"),
-                new KeyValuePair<string,string>("qubert", "hippy"),
-                new KeyValuePair<string,string>("qubert", "dinosaur"),
-                new KeyValuePair<string,string>("queztel", "hello")});
+                Kvp.Of("Alpha", "oz"),
+                Kvp.Of("Hello", "AAA"),
+                Kvp.Of("Hi", "aaa"),
+                Kvp.Of("qubert", "hippy"),
+                Kvp.Of("qubert", "dinosaur"),
+                Kvp.Of("queztel", "hello")});
 
             InterfaceTests.TestEnumerableElementsAnyOrder(dict2.KeyValuePairs, new KeyValuePair<string, string>[] {
-                new KeyValuePair<string,string>("Alpha", "oz"),
-                new KeyValuePair<string,string>("Hello", "banana"),
-                new KeyValuePair<string,string>("Hello", "AAA"),
-                new KeyValuePair<string,string>("Hi", "aaa"),
-                new KeyValuePair<string,string>("qubert", "hoover"),
-                new KeyValuePair<string,string>("qubert", "dinosaur")});
+                Kvp.Of("Alpha", "oz"),
+                Kvp.Of("Hello", "banana"),
+                Kvp.Of("Hello", "AAA"),
+                Kvp.Of("Hi", "aaa"),
+                Kvp.Of("qubert", "hoover"),
+                Kvp.Of("qubert", "dinosaur")});
 
             var dict3 = new MultiDictionary<string, int>(true);
             MultiDictionary<string, int> dict4 = dict3.Clone();

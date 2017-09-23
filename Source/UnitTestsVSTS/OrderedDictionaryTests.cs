@@ -1130,10 +1130,10 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestReadWriteCollectionGeneric((ICollection<KeyValuePair<int, string>>)dict1, 
                 new KeyValuePair<int,string>[] {
-                    new KeyValuePair<int,string>(3, "foo"), 
-                    new KeyValuePair<int,string>(8, "bar"), 
-                    new KeyValuePair<int,string>(9, "baz"), 
-                    new KeyValuePair<int,string>(12, "biff") },
+                    Kvp.Of(3, "foo"),
+                    Kvp.Of(8, "bar"),
+                    Kvp.Of(9, "baz"),
+                    Kvp.Of(12, "biff") },
                 true);
         }
 
@@ -1157,12 +1157,12 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestReadWriteCollectionGeneric((ICollection<KeyValuePair<int, string>>)dict1,
                new KeyValuePair<int, string>[] {
-                    new KeyValuePair<int,string>(0, "fribble"), 
-                    new KeyValuePair<int,string>(3, "hello"), 
-                    new KeyValuePair<int,string>(8, "banana"), 
-                    new KeyValuePair<int,string>(9, "baz"), 
-                    new KeyValuePair<int,string>(12, "biff"),
-                    new KeyValuePair<int,string>(123, "biff")},
+                    Kvp.Of(0, "fribble"),
+                    Kvp.Of(3, "hello"),
+                    Kvp.Of(8, "banana"),
+                    Kvp.Of(9, "baz"),
+                    Kvp.Of(12, "biff"),
+                    Kvp.Of(123, "biff")},
                true);
         }
 
@@ -1184,8 +1184,8 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestReadWriteCollectionGeneric((ICollection<KeyValuePair<int, string>>)dict1,
                new KeyValuePair<int, string>[] {
-                    new KeyValuePair<int,string>(9, "baz"), 
-                    new KeyValuePair<int,string>(12, "biff") },
+                   Kvp.Of(9, "baz"),
+                   Kvp.Of(12, "biff") },
                true);
         }
 

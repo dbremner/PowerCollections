@@ -34,7 +34,7 @@ namespace Wintellect.PowerCollections.Tests
         public override IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             for (int i = 0; i < keys.Length; ++i)
-                yield return new KeyValuePair<TKey, TValue>(keys[i], values[i]);
+                yield return Kvp.Of(keys[i], values[i]);
         }
 
         public override bool TryGetValue(TKey key, out TValue value)
@@ -72,7 +72,7 @@ namespace Wintellect.PowerCollections.Tests
         public override IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             for (int i = 0; i < keys.Count; ++i)
-                yield return new KeyValuePair<TKey, TValue>(keys[i], values[i]);
+                yield return Kvp.Of(keys[i], values[i]);
         }
 
         public override bool TryGetValue(TKey key, out TValue value)
