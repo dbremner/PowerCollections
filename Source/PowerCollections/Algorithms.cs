@@ -333,17 +333,26 @@ namespace Wintellect.PowerCollections {
         /// with the appropriate replacements made.</returns>
         public static IEnumerable<T> Replace<T>(IEnumerable<T> collection, T itemFind, T replaceWith, IEqualityComparer<T> equalityComparer)
         {
-            if (collection == null)
+            if (collection == null) {
                 throw new ArgumentNullException(nameof(collection));
-            if (equalityComparer == null)
-                throw new ArgumentNullException(nameof(equalityComparer));
-
-            foreach (T item in collection) {
-                if (equalityComparer.Equals(item, itemFind))
-                    yield return replaceWith;
-                else
-                    yield return item;
             }
+
+            if (equalityComparer == null) {
+                throw new ArgumentNullException(nameof(equalityComparer));
+            }
+
+            IEnumerable<T> Substitute() {    
+                foreach (T item in collection) {
+                    if (equalityComparer.Equals(item, itemFind)) {
+                        yield return replaceWith;
+                    }
+                    else {
+                        yield return item;
+                    }
+                }
+            }
+
+            return Substitute();
         }
 
         /// <summary>
@@ -357,17 +366,26 @@ namespace Wintellect.PowerCollections {
         /// with the appropriate replacements made.</returns>
         public static IEnumerable<T> Replace<T>(IEnumerable<T> collection, Func<T, bool> predicate, T replaceWith)
         {
-            if (collection == null)
+            if (collection == null) {
                 throw new ArgumentNullException(nameof(collection));
-            if (predicate == null)
-                throw new ArgumentNullException(nameof(predicate));
-
-            foreach (T item in collection) {
-                if (predicate(item))
-                    yield return replaceWith;
-                else
-                    yield return item;
             }
+
+            if (predicate == null) {
+                throw new ArgumentNullException(nameof(predicate));
+            }
+
+            IEnumerable<T> Substitute() {    
+                foreach (T item in collection) {
+                    if (predicate(item)) {
+                        yield return replaceWith;
+                    }
+                    else {
+                        yield return item;
+                    }
+                }
+            }
+
+            return Substitute();
         }
 
         /// <summary>

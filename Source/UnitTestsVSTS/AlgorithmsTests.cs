@@ -347,6 +347,19 @@ namespace Wintellect.PowerCollections.Tests
 
         }
 
+        [TestMethod]
+        public void ReplaceNullArguments() {
+            var empty = new int[] { };
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.Replace(collection: null, predicate: i => true, replaceWith: 0));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.Replace(collection: empty, predicate: null, replaceWith: 0));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.Replace(collection: null, itemFind: 0, replaceWith: 1));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.Replace(collection: empty, itemFind: 0, replaceWith: 1, equalityComparer: null));
+        }
+
         private bool Length3(string x) {
             return x.Length == 3;
         }
