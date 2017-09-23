@@ -23,7 +23,7 @@ namespace Wintellect.PowerCollections {
         {
             public override bool Equals(T x, T y)
             {
-                return (x == y);
+                return ReferenceEquals(x, y);
             }
 
             public override int GetHashCode(T obj)
