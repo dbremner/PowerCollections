@@ -18,15 +18,15 @@ namespace Wintellect.PowerCollections {
         /// this implementation is not appropriate for ordering.
         /// </summary>
         [Serializable]
-        private class IdentityComparer<T> : IEqualityComparer<T>
+        private class IdentityComparer<T> : EqualityComparer<T>
             where T:class
         {
-            public bool Equals(T x, T y)
+            public override bool Equals(T x, T y)
             {
                 return (x == y);
             }
 
-            public int GetHashCode(T obj)
+            public override int GetHashCode(T obj)
             {
                 return System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(obj);
             }
