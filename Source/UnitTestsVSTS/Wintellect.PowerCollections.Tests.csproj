@@ -98,6 +98,7 @@
     <Compile Include="OrderedBagTests.cs" />
     <Compile Include="OrderedDictionaryTests.cs" />
     <Compile Include="OrderedMultiDictionaryTests.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="OrderedSetTests.cs" />
     <Compile Include="RedBlackTests.cs" />
     <Compile Include="SetTests.cs" />
