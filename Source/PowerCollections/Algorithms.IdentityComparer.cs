@@ -34,7 +34,7 @@ namespace Wintellect.PowerCollections {
             // For comparing two IComparers to see if they compare the same thing.
             public override bool Equals(object obj)
             {
-                return (obj != null && obj is IdentityComparer<T>);
+                return (obj is IdentityComparer<T>);
             }
 
             // For comparing two IComparers to see if they compare the same thing.
