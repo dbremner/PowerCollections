@@ -477,6 +477,9 @@ namespace Wintellect.PowerCollections {
         /// <exception cref="ArgumentNullException"><paramref name="collection"/> is null.</exception>
         public static IEnumerable<T> RemoveDuplicates<T>(IEnumerable<T> collection)
         {
+            if (collection == null) {
+                throw new ArgumentNullException(nameof(collection));
+            }
             return RemoveDuplicates(collection, EqualityComparer<T>.Default);
         }
 
@@ -492,8 +495,9 @@ namespace Wintellect.PowerCollections {
         /// <exception cref="ArgumentNullException"><paramref name="collection"/> or <paramref name="equalityComparer"/> is null.</exception>
         public static IEnumerable<T> RemoveDuplicates<T>(IEnumerable<T> collection, IEqualityComparer<T> equalityComparer)
         {
-            if (equalityComparer == null)
+            if (equalityComparer == null) {
                 throw new ArgumentNullException(nameof(equalityComparer));
+            }
 
             return RemoveDuplicates(collection, equalityComparer.Equals);
 
@@ -517,18 +521,21 @@ namespace Wintellect.PowerCollections {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            var current = default(T);
-            bool atBeginning = true;
+            IEnumerable<T> Iterate() {
+                var current = default(T);
+                bool atBeginning = true;
+                foreach (T item in collection) {
+                    // Is the new item different from the current item?
+                    if (atBeginning || !predicate(current, item)) {
+                        current = item;
+                        yield return item;
+                    }
 
-            foreach (T item in collection) {
-                // Is the new item different from the current item?
-                if (atBeginning || !predicate(current, item)) {
-                    current = item;
-                    yield return item;
+                    atBeginning = false;
                 }
-
-                atBeginning = false;
             }
+
+            return Iterate();
         }
 
         /// <summary>

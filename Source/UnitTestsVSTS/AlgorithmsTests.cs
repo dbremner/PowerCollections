@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Security.Cryptography;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 
@@ -1019,6 +1020,17 @@ namespace Wintellect.PowerCollections.Tests
 
             IEnumerable<string> coll17 = EnumerableFromArray(new string[] { "fiddle", "faddle", "bar", "bing", "deli", "zippy", "zack", "zorch" });
             InterfaceTests.TestEnumerableElements(Algorithms.RemoveDuplicates(coll17, Element0Equal), new string[] { "fiddle", "bar" , "deli", "zippy"});
+        }
+
+        [TestMethod]
+        public void RemoveDuplicatesNullArguments() {
+            var empty = new int[] { };
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.RemoveDuplicates<int>(null));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.RemoveDuplicates(empty, equalityComparer:null));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.RemoveDuplicates(empty, predicate:null));
         }
 
         private static bool Element0Equal(string x, string y) {
