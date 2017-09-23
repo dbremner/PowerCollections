@@ -40,7 +40,7 @@ namespace Wintellect.PowerCollections {
             // For comparing two IComparers to see if they compare the same thing.
             public override int GetHashCode()
             {
-                return 0x7143DDEF;
+                return this.GetType().Name.GetHashCode() ^ typeof(T).GetHashCode();
             }
         }
     }

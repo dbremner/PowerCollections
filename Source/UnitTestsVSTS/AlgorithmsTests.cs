@@ -3971,6 +3971,13 @@ namespace Wintellect.PowerCollections.Tests
 
             IEqualityComparer<string> comparer2 = Algorithms.GetIdentityComparer<string>();
             Assert.IsTrue(comparer2.Equals(comparer));
+
+            IEqualityComparer<string> comparer3 = Algorithms.GetIdentityComparer<string>();
+            IEqualityComparer<object> comparer4 = Algorithms.GetIdentityComparer<object>();
+            IEqualityComparer<object> comparer5 = Algorithms.GetIdentityComparer<object>();
+            Assert.AreEqual(comparer.GetHashCode(), comparer2.GetHashCode());
+            Assert.AreNotEqual(comparer3.GetHashCode(), comparer4.GetHashCode());
+            Assert.AreEqual(comparer5.GetHashCode(), comparer4.GetHashCode());
         }
 
         private static int CompareOddEven(int e1, int e2)
