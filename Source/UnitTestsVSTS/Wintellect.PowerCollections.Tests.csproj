@@ -89,6 +89,7 @@
     <Compile Include="DictionaryBaseTests.cs" />
     <Compile Include="HashTests.cs" />
     <Compile Include="InterfaceTests.cs" />
+    <Compile Include="Kvp.cs" />
     <Compile Include="ListBaseTests.cs" />
     <Compile Include="MainProgram.cs" />
     <Compile Include="MultiDictionaryBaseTests.cs" />
