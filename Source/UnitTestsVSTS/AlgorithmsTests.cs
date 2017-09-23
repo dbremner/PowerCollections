@@ -2315,7 +2315,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
-        public void EqualSets()
+        public void EqualBags()
         {
             IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
             IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
@@ -2323,37 +2323,37 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
             IEnumerable<int> set5 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
 
-            Assert.IsFalse(Algorithms.EqualSets(set2, set1));
-            Assert.IsFalse(Algorithms.EqualSets(set1, set2));
+            Assert.IsFalse(Algorithms.EqualBags(set2, set1));
+            Assert.IsFalse(Algorithms.EqualBags(set1, set2));
 
-            Assert.IsFalse(Algorithms.EqualSets(set3, set1));
-            Assert.IsFalse(Algorithms.EqualSets(set1, set3));
+            Assert.IsFalse(Algorithms.EqualBags(set3, set1));
+            Assert.IsFalse(Algorithms.EqualBags(set1, set3));
 
-            Assert.IsTrue(Algorithms.EqualSets(set4, set5));
-            Assert.IsTrue(Algorithms.EqualSets(set5, set4));
+            Assert.IsTrue(Algorithms.EqualBags(set4, set5));
+            Assert.IsTrue(Algorithms.EqualBags(set5, set4));
 
-            Assert.IsFalse(Algorithms.EqualSets(set1, set4));
-            Assert.IsFalse(Algorithms.EqualSets(set4, set1));
+            Assert.IsFalse(Algorithms.EqualBags(set1, set4));
+            Assert.IsFalse(Algorithms.EqualBags(set4, set1));
 
-            Assert.IsFalse(Algorithms.EqualSets(set3, set4));
-            Assert.IsFalse(Algorithms.EqualSets(set4, set3));
+            Assert.IsFalse(Algorithms.EqualBags(set3, set4));
+            Assert.IsFalse(Algorithms.EqualBags(set4, set3));
 
-            Assert.IsTrue(Algorithms.EqualSets(set3, set3));
+            Assert.IsTrue(Algorithms.EqualBags(set3, set3));
 
-            Assert.IsTrue(Algorithms.EqualSets(set2, set2));
+            Assert.IsTrue(Algorithms.EqualBags(set2, set2));
 
             IEnumerable<string> set10 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
             IEnumerable<string> set11 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
             IEnumerable<string> set12 = EnumerableFromArray(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });
-            Assert.IsFalse(Algorithms.EqualSets(set10, set11, StringComparer.InvariantCultureIgnoreCase));
-            Assert.IsFalse(Algorithms.EqualSets(set10, set12, StringComparer.InvariantCultureIgnoreCase));
-            Assert.IsTrue(Algorithms.EqualSets(set11, set12, StringComparer.InvariantCultureIgnoreCase));
+            Assert.IsFalse(Algorithms.EqualBags(set10, set11, StringComparer.InvariantCultureIgnoreCase));
+            Assert.IsFalse(Algorithms.EqualBags(set10, set12, StringComparer.InvariantCultureIgnoreCase));
+            Assert.IsTrue(Algorithms.EqualBags(set11, set12, StringComparer.InvariantCultureIgnoreCase));
         }
 
         [TestMethod]
-        public void GetSetEqualityComparer()
+        public void GetBagEqualityComparer()
         {
-            IEqualityComparer<IEnumerable<int>> comparer = Algorithms.GetSetEqualityComparer<int>();
+            IEqualityComparer<IEnumerable<int>> comparer = Algorithms.GetBagEqualityComparer<int>();
 
             IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
             IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
@@ -2385,7 +2385,7 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.IsTrue(comparer.Equals(set2, set2));
 
-            IEqualityComparer<IEnumerable<string>> comparer2 = Algorithms.GetSetEqualityComparer(StringComparer.InvariantCultureIgnoreCase);
+            IEqualityComparer<IEnumerable<string>> comparer2 = Algorithms.GetBagEqualityComparer(StringComparer.InvariantCultureIgnoreCase);
             IEnumerable<string> set10 = EnumerableFromArray(new string[] { "apple", "banana", "BAGEL", "APPLE", "cheese", null, "meat", "bAGEL" });
             IEnumerable<string> set11 = EnumerableFromArray(new string[] { "CHEESE", "bAgEL", "BAGEL", null, "pancakes", null });
             IEnumerable<string> set12 = EnumerableFromArray(new string[] { null, "PANCAKES", "bagel", "bagel", "cheese", null });

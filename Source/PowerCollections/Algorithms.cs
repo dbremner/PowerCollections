@@ -1507,8 +1507,8 @@ namespace Wintellect.PowerCollections {
         }
 
         /// <summary>
-        /// Determines if two collections are equal, considered as sets. Two sets are equal if they
-        /// have have the same items, with order not being significant.
+        /// Determines if two collections are equal, considered as bags. Two bags are equal if they
+        /// have the same items, with order not being significant.
         /// </summary>
         /// <remarks>
         /// <para>The default sense of equality for T is used, as defined by T's
@@ -1520,14 +1520,14 @@ namespace Wintellect.PowerCollections {
         /// <param name="collection2">The second collection.</param>
         /// <returns>True if <paramref name="collection1"/> are <paramref name="collection2"/> are equal, considered as sets.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="collection1"/> or <paramref name="collection2"/> is null.</exception>
-        public static bool EqualSets<T>(IEnumerable<T> collection1, IEnumerable<T> collection2)
+        public static bool EqualBags<T>(IEnumerable<T> collection1, IEnumerable<T> collection2)
         {
-            return EqualSets(collection1, collection2, EqualityComparer<T>.Default);
+            return EqualBags(collection1, collection2, EqualityComparer<T>.Default);
         }
 
         /// <summary>
-        /// Determines if two collections are equal, considered as sets. Two sets are equal if they
-        /// have have the same items, with order not being significant.
+        /// Determines if two collections are equal, considered as bags. Bags are equal if they
+        /// have the same items, with order not being significant.
         /// </summary>
         /// <remarks>
         /// <para>If both collections are Set, Bag, OrderedSet, or OrderedBag
@@ -1539,7 +1539,7 @@ namespace Wintellect.PowerCollections {
         /// Only the Equals and GetHashCode member functions of this interface are called.</param>
         /// <returns>True if <paramref name="collection1"/> are <paramref name="collection2"/> are equal, considered as sets.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="collection1"/> or <paramref name="collection2"/> is null.</exception>
-        public static bool EqualSets<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
+        public static bool EqualBags<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
         {
             if (collection1 == null)
                 throw new ArgumentNullException(nameof(collection1));
@@ -3528,10 +3528,10 @@ namespace Wintellect.PowerCollections {
         /// </example>
         /// <returns>IEqualityComparer&lt;IEnumerable&lt;T&gt;&gt; implementation suitable for 
         /// comparing collections of T for equality, without regard to order.</returns>
-        /// <seealso cref="Algorithms.EqualSets{T}"/>
-        public static IEqualityComparer<IEnumerable<T>> GetSetEqualityComparer<T>()
+        /// <seealso cref="Algorithms.EqualBags{T}"/>
+        public static IEqualityComparer<IEnumerable<T>> GetBagEqualityComparer<T>()
         {
-            return GetSetEqualityComparer(EqualityComparer<T>.Default);
+            return GetBagEqualityComparer(EqualityComparer<T>.Default);
         }
 
         /// <summary>
@@ -3551,13 +3551,13 @@ namespace Wintellect.PowerCollections {
         /// <param name="equalityComparer">An IEqualityComparer&lt;T&gt; implementation used to compare individual T's.</param>
         /// <returns>IEqualityComparer&lt;IEnumerable&lt;T&gt;&gt; implementation suitable for 
         /// comparing collections of T for equality, without regard to order.</returns>
-        /// <seealso cref="Algorithms.EqualSets"/>
-        public static IEqualityComparer<IEnumerable<T>> GetSetEqualityComparer<T>(IEqualityComparer<T> equalityComparer)
+        /// <seealso cref="Algorithms.EqualBags"/>
+        public static IEqualityComparer<IEnumerable<T>> GetBagEqualityComparer<T>(IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            return new SetEqualityComparer<T>(equalityComparer);
+            return new BagEqualityComparer<T>(equalityComparer);
         }
 
         #endregion Sorting

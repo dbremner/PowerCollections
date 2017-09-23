@@ -13,23 +13,23 @@ namespace Wintellect.PowerCollections {
     public static partial class Algorithms
     {
         /// <summary>
-        /// A private class used to implement GetSetEqualityComparer(). This
+        /// A private class used to implement GetBagEqualityComparer(). This
         /// class implements IEqualityComparer&lt;IEnumerable&lt;T&gt;gt; to compare
         /// two enumerables for equality, where order is not significant.
         /// </summary>
         [Serializable]
-        private class SetEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
+        private class BagEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
         {
             private readonly IEqualityComparer<T> equalityComparer;
 
-            public SetEqualityComparer(IEqualityComparer<T> equalityComparer)
+            public BagEqualityComparer(IEqualityComparer<T> equalityComparer)
             {
                 this.equalityComparer = equalityComparer;
             }
 
             public bool Equals(IEnumerable<T> x, IEnumerable<T> y)
             {
-                return Algorithms.EqualSets(x, y, equalityComparer);
+                return Algorithms.EqualBags(x, y, equalityComparer);
             }
 
             public int GetHashCode(IEnumerable<T> obj)

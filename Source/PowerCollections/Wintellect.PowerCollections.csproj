@@ -99,7 +99,7 @@
     <Compile Include="Algorithms.ListRange.cs" />
     <Compile Include="Algorithms.ReadOnlyCollection.cs" />
     <Compile Include="Algorithms.ReverseComparerClass.cs" />
-    <Compile Include="Algorithms.SetEqualityComparer.cs" />
+    <Compile Include="Algorithms.BagEqualityComparer.cs" />
     <Compile Include="Algorithms.TypedCollection.cs" />
     <Compile Include="Algorithms.TypedList.cs" />
     <Compile Include="Algorithms.UntypedCollection.cs" />
