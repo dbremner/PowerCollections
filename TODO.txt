@@ -1,0 +1,83 @@
+Check uses of yield for delayed argument checks issues.
+
+Line numbers may have shifted during flight.
+
+Source\PowerCollections\Algorithms.cs(344):                        yield return replaceWith;
+Source\PowerCollections\Algorithms.cs(346):                        yield return item;
+Source\PowerCollections\Algorithms.cs(354):        /// Replace all items in a collection that a predicate evalues at true with a value, yielding another collection. .
+Source\PowerCollections\Algorithms.cs(373):                        yield return replaceWith;
+Source\PowerCollections\Algorithms.cs(375):                        yield return item;
+Source\PowerCollections\Algorithms.cs(460):        /// Remove consecutive equal items from a collection, yielding another collection. In each run of consecutive equal items
+Source\PowerCollections\Algorithms.cs(475):        /// Remove consecutive equal items from a collection, yielding another collection. In each run of consecutive equal items
+Source\PowerCollections\Algorithms.cs(494):        /// Remove consecutive "equal" items from a collection, yielding another collection. In each run of consecutive equal items
+Source\PowerCollections\Algorithms.cs(518):                    yield return item;
+Source\PowerCollections\Algorithms.cs(884):                    yield return index;
+Source\PowerCollections\Algorithms.cs(999):                    yield return index;
+Source\PowerCollections\Algorithms.cs(1210):                    yield return index;
+Source\PowerCollections\Algorithms.cs(1242):                        yield return index;
+Source\PowerCollections\Algorithms.cs(1810):                    yield return (itemFirst, itemSecond);
+Source\PowerCollections\Algorithms.cs(1959):        /// Randomly shuffles the items in a collection, yielding a new collection.
+Source\PowerCollections\Algorithms.cs(1970):        /// Randomly shuffles the items in a collection, yielding a new collection.
+Source\PowerCollections\Algorithms.cs(2136):                yield break;
+Source\PowerCollections\Algorithms.cs(2141):            yield return array;
+Source\PowerCollections\Algorithms.cs(2144):                yield break;
+Source\PowerCollections\Algorithms.cs(2164):                    yield return array;
+Source\PowerCollections\Algorithms.cs(2177):                        yield break;
+Source\PowerCollections\Algorithms.cs(2224):                yield break;
+Source\PowerCollections\Algorithms.cs(2228):            yield return array;
+Source\PowerCollections\Algorithms.cs(2230):                yield break;
+Source\PowerCollections\Algorithms.cs(2243):                        yield break;
+Source\PowerCollections\Algorithms.cs(2266):                yield return array;
+Source\PowerCollections\Algorithms.cs(2680):                    // Get the left, middle, and right-most elements and sort them, yielding e1=smallest, e2=median, e3=largest
+Source\PowerCollections\Algorithms.cs(2906):                    // Get the left, middle, and right-most elements and sort them, yielding e1=smallest, e2=median, e3=largest
+Source\PowerCollections\Algorithms.cs(3195):                        yield break;
+Source\PowerCollections\Algorithms.cs(3197):                    // Yield the smallest item.
+Source\PowerCollections\Algorithms.cs(3198):                    yield return smallestItem;
+Source\PowerCollections\Algorithms.cs(3782):                    yield return item;
+Source\PowerCollections\Algorithms.cs(4285):                yield return source[i];
+Source\PowerCollections\Algorithms.cs(4338):                    yield return source[i];
+Source\PowerCollections\Algorithms.cs(4340):                    yield return source[i];
+Source\PowerCollections\Bag.cs(265):        /// If an item is present multiple times in the bag, the representative item is yielded by the
+Source\PowerCollections\Bag.cs(281):                    yield return pair.Key;
+Source\PowerCollections\Bag.cs(308):                yield return pair.Key;
+Source\PowerCollections\BigList.cs(894):                        yield return currentLeaf.items[i];
+Source\PowerCollections\BigList.cs(901):                        yield break;    // Done!
+Source\PowerCollections\BigList.cs(910):                            yield break;        // iteration is complete.
+Source\PowerCollections\CollectionBase.cs(281):                yield return item;
+Source\PowerCollections\Deque.cs(279):                yield return this[i];
+Source\PowerCollections\DictionaryBase.cs(474):                    yield return pair.Key;
+Source\PowerCollections\DictionaryBase.cs(505):                    yield return pair.Value;
+Source\PowerCollections\Hash.cs(544):                        yield return slot.item;
+Source\PowerCollections\ListBase.cs(91):                yield return this[i];
+Source\PowerCollections\MultiDictionary.cs(436):                yield return item.Key;
+Source\PowerCollections\MultiDictionary.cs(455):                yield return keyAndValues.Values[i];
+Source\PowerCollections\MultiDictionaryBase.cs(532):                    yield return new KeyValuePair<TKey, ICollection<TValue>>(key, new ValuesForKeyCollection(this, key));
+Source\PowerCollections\MultiDictionaryBase.cs(600):            /// doesn't yield any values. A helper.
+Source\PowerCollections\MultiDictionaryBase.cs(602):            /// <returns>An IEnumerator&lt;TValue&gt; that yields no values.</returns>
+Source\PowerCollections\MultiDictionaryBase.cs(605):                yield break;
+Source\PowerCollections\MultiDictionaryBase.cs(694):                                    yield return enumValues.Current;
+Source\PowerCollections\MultiDictionaryBase.cs(735):                        yield return new ValuesForKeyCollection(myDictionary, key);
+Source\PowerCollections\MultiDictionaryBase.cs(800):                                    yield return new KeyValuePair<TKey,TValue>(key, enumValues.Current);
+Source\PowerCollections\OrderedBag.cs(299):            // Enumerate the items, but only yield ones not equal to the previous one.
+Source\PowerCollections\OrderedBag.cs(302):                    yield return item;
+Source\PowerCollections\OrderedMultiDictionary.cs(449):            // Enumerate pairs; yield a new key when the key changes.
+Source\PowerCollections\OrderedMultiDictionary.cs(453):                    yield return lastKey;
+Source\PowerCollections\OrderedMultiDictionary.cs(463):        /// can't use the yield return construct.
+Source\PowerCollections\OrderedMultiDictionary.cs(472):                yield return pair.Value;
+Source\PowerCollections\ReadOnlyCollectionBase.cs(256):                yield return item;
+Source\PowerCollections\ReadOnlyDictionaryBase.cs(423):                    yield return pair.Key;
+Source\PowerCollections\ReadOnlyDictionaryBase.cs(454):                    yield return pair.Value;
+Source\PowerCollections\ReadOnlyListBase.cs(73):                yield return this[i];
+Source\PowerCollections\ReadOnlyMultiDictionaryBase.cs(406):                    yield return new KeyValuePair<TKey, ICollection<TValue>>(key, new ValuesForKeyCollection(this, key));
+Source\PowerCollections\ReadOnlyMultiDictionaryBase.cs(448):            /// doesn't yield any values. A helper.
+Source\PowerCollections\ReadOnlyMultiDictionaryBase.cs(450):            /// <returns>An IEnumerator&lt;TValue&gt; that yields no values.</returns>
+Source\PowerCollections\ReadOnlyMultiDictionaryBase.cs(453):                yield break;
+Source\PowerCollections\ReadOnlyMultiDictionaryBase.cs(543):                                    yield return enumValues.Current;
+Source\PowerCollections\ReadOnlyMultiDictionaryBase.cs(584):                        yield return new ValuesForKeyCollection(myDictionary, key);
+Source\PowerCollections\ReadOnlyMultiDictionaryBase.cs(649):                                    yield return new KeyValuePair<TKey, TValue>(key, enumValues.Current);
+Source\PowerCollections\RedBlack.cs(708):                        yield return item;
+Source\PowerCollections\RedBlack.cs(715):                    yield return node.item;
+Source\PowerCollections\RedBlack.cs(722):                        yield return item;
+Source\PowerCollections\RedBlack.cs(758):                        yield return item;
+Source\PowerCollections\RedBlack.cs(765):                    yield return node.item;
+Source\PowerCollections\RedBlack.cs(772):                        yield return item;
