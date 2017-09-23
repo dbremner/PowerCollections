@@ -1089,9 +1089,10 @@ namespace Wintellect.PowerCollections {
                 throw new ArgumentNullException(nameof(predicate));
 
             // Scan the list for the items.
+            var itemsToLookForList = itemsToLookFor.ToList();
             int index = 0;
             foreach (T x in list) {
-                foreach (T y in itemsToLookFor) {
+                foreach (T y in itemsToLookForList) {
                     if (predicate(x, y)) {
                         return index;
                     }
@@ -1172,8 +1173,9 @@ namespace Wintellect.PowerCollections {
                 throw new ArgumentNullException(nameof(predicate));
 
             // Scan the list
+            var itemsToLookForList = itemsToLookFor.ToList();
             for (int index = list.Count - 1; index >= 0; --index) {
-                foreach (T y in itemsToLookFor) {
+                foreach (T y in itemsToLookForList) {
                     if (predicate(list[index], y)) {
                         return index;
                     }
@@ -1251,9 +1253,10 @@ namespace Wintellect.PowerCollections {
                 throw new ArgumentNullException(nameof(predicate));
 
             // Scan the list for the items.
+            var itemsToLookForList = itemsToLookFor.ToList();
             int index = 0;
             foreach (T x in list) {
-                foreach (T y in itemsToLookFor) {
+                foreach (T y in itemsToLookForList) {
                     if (predicate(x, y)) {
                         yield return index;
                     }
@@ -1821,8 +1824,9 @@ namespace Wintellect.PowerCollections {
             if (second == null)
                 throw new ArgumentNullException(nameof(second));
 
+            var secondList = second.ToList();
             foreach (TFirst itemFirst in first)
-                foreach (TSecond itemSecond in second)
+                foreach (TSecond itemSecond in secondList)
                     yield return (itemFirst, itemSecond);
         }
 
