@@ -3316,47 +3316,6 @@ namespace Wintellect.PowerCollections {
         #region Comparers/Comparison utilities 
 
         /// <summary>
-        /// A private class used by the LexicographicalComparer method to compare sequences
-        /// (IEnumerable) of T by there Lexicographical ordering.
-        /// </summary>
-        [Serializable]
-        private class LexicographicalComparerClass<T> : IComparer<IEnumerable<T>>
-        {
-            readonly IComparer<T> itemComparer;
-
-            /// <summary>
-            /// Creates a new instance that comparer sequences of T by their lexicographical
-            /// ordered.
-            /// </summary>
-            /// <param name="itemComparer">The IComparer used to compare individual items of type T.</param>
-            public LexicographicalComparerClass(IComparer<T> itemComparer)
-            {
-                this.itemComparer = itemComparer;
-            }
-
-            public int Compare(IEnumerable<T> x, IEnumerable<T> y)
-            {
-                return LexicographicalCompare(x, y, itemComparer);
-            }
-
-
-            // For comparing this comparer to others.
-
-            public override bool Equals(object obj)
-            {
-                if (obj is LexicographicalComparerClass<T> lexicographicalComparer)
-                    return this.itemComparer.Equals(lexicographicalComparer.itemComparer);
-                else
-                    return false;
-            }
-
-            public override int GetHashCode()
-            {
-                return itemComparer.GetHashCode();
-            }
-        }
-
-        /// <summary>
         /// Creates an IComparer instance that can be used for comparing ordered
         /// sequences of type T; that is IEnumerable&lt;Tgt;. This comparer can be used
         /// for collections or algorithms that use sequences of T as an item type. The Lexicographical
@@ -3404,44 +3363,6 @@ namespace Wintellect.PowerCollections {
         }
 
         /// <summary>
-        /// An IComparer instance that can be used to reverse the sense of 
-        /// a wrapped IComparer instance.
-        /// </summary>
-        [Serializable]
-        private class ReverseComparerClass<T> : IComparer<T>
-        {
-            readonly IComparer<T> comparer;
-
-            /// <summary>
-            /// </summary>
-            /// <param name="comparer">The comparer to reverse.</param>
-            public ReverseComparerClass(IComparer<T> comparer)
-            {
-                this.comparer = comparer;
-            }
-
-            public int Compare(T x, T y)
-            {
-                return - comparer.Compare(x, y);
-            }
-
-            // For comparing this comparer to others.
-
-            public override bool Equals(object obj)
-            {
-                if (obj is ReverseComparerClass<T> reverseComparer)
-                    return this.comparer.Equals(reverseComparer.comparer);
-                else
-                    return false;
-            }
-
-            public override int GetHashCode()
-            {
-                return comparer.GetHashCode();
-            }
-        }
-
-        /// <summary>
         /// Reverses the order of comparison of an IComparer&lt;T&gt;. The resulting comparer can be used,
         /// for example, to sort a collection in descending order. Equality and hash codes are unchanged.
         /// </summary>
@@ -3455,38 +3376,6 @@ namespace Wintellect.PowerCollections {
                 throw new ArgumentNullException(nameof(comparer));
 
             return new ReverseComparerClass<T>(comparer);
-        }
-
-        /// <summary>
-        /// A class, implementing IEqualityComparer&lt;T&gt;, that compares objects
-        /// for object identity only. Only Equals and GetHashCode can be used;
-        /// this implementation is not appropriate for ordering.
-        /// </summary>
-        [Serializable]
-        private class IdentityComparer<T> : IEqualityComparer<T>
-            where T:class
-        {
-            public bool Equals(T x, T y)
-            {
-                return (x == y);
-            }
-
-            public int GetHashCode(T obj)
-            {
-                return System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(obj);
-            }
-
-            // For comparing two IComparers to see if they compare the same thing.
-            public override bool Equals(object obj)
-            {
-                return (obj != null && obj is IdentityComparer<T>);
-            }
-
-            // For comparing two IComparers to see if they compare the same thing.
-            public override int GetHashCode()
-            {
-                return 0x7143DDEF;
-            }
         }
 
         /// <summary>
@@ -3549,39 +3438,6 @@ namespace Wintellect.PowerCollections {
         }
 
         /// <summary>
-        /// A private class used to implement GetCollectionEqualityComparer(). This
-        /// class implements IEqualityComparer&lt;IEnumerable&lt;T&gt;gt; to compare
-        /// two enumerables for equality, where order is significant.
-        /// </summary>
-        [Serializable]
-        private class CollectionEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
-        {
-            private readonly IEqualityComparer<T> equalityComparer;
-
-            public CollectionEqualityComparer(IEqualityComparer<T> equalityComparer)
-            {
-                this.equalityComparer = equalityComparer;
-            }
-
-            public bool Equals(IEnumerable<T> x, IEnumerable<T> y)
-            {
-                return Algorithms.EqualCollections(x, y, equalityComparer);
-            }
-
-            public int GetHashCode(IEnumerable<T> obj)
-            {
-                int hash = 0x374F293E;
-                foreach (T t in obj) {
-                    int itemHash = Util.GetHashCode(t, equalityComparer);
-                    hash += itemHash;
-                    hash = (hash << 9) | (hash >> 23);
-                }
-
-                return hash & 0x7FFFFFFF;
-            }
-        }
-
-        /// <summary>
         /// Gets an IEqualityComparer&lt;IEnumerable&lt;T&gt;&gt; implementation 
         /// that can be used to compare collections of elements (of type T). Two collections
         /// of T's are equal if they have the same number of items, and corresponding 
@@ -3628,38 +3484,6 @@ namespace Wintellect.PowerCollections {
                 throw new ArgumentNullException(nameof(equalityComparer));
 
             return new CollectionEqualityComparer<T>(equalityComparer);
-        }
-
-        /// <summary>
-        /// A private class used to implement GetSetEqualityComparer(). This
-        /// class implements IEqualityComparer&lt;IEnumerable&lt;T&gt;gt; to compare
-        /// two enumerables for equality, where order is not significant.
-        /// </summary>
-        [Serializable]
-        private class SetEqualityComparer<T> : IEqualityComparer<IEnumerable<T>>
-        {
-            private readonly IEqualityComparer<T> equalityComparer;
-
-            public SetEqualityComparer(IEqualityComparer<T> equalityComparer)
-            {
-                this.equalityComparer = equalityComparer;
-            }
-
-            public bool Equals(IEnumerable<T> x, IEnumerable<T> y)
-            {
-                return Algorithms.EqualSets(x, y, equalityComparer);
-            }
-
-            public int GetHashCode(IEnumerable<T> obj)
-            {
-                int hash = 0x624F273C;
-                foreach (T t in obj) {
-                    int itemHash = Util.GetHashCode(t, equalityComparer);
-                    hash += itemHash;
-                }
-
-                return hash & 0x7FFFFFFF;
-            }
         }
 
         /// <summary>
