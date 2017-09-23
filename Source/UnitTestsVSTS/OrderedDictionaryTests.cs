@@ -892,7 +892,7 @@ namespace Wintellect.PowerCollections.Tests
 	            [5] = new NotCloneable()
 	        };
 
-	        ThrowsInvalid(() => dict1.CloneContents());
+	        Assert.ThrowsException<InvalidOperationException>(() => dict1.CloneContents());
 	    }
 
         // Check that a View has the correct keys and values in it.
@@ -1230,7 +1230,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
 	        }
 
-	        ThrowsInvalid(InvalidOperation);
+	        Assert.ThrowsException<InvalidOperationException>(() => InvalidOperation());
 	    }
 
 	    [TestMethod]
@@ -1253,7 +1253,7 @@ namespace Wintellect.PowerCollections.Tests
                     }
                 }
 	        }
-	        ThrowsInvalid(InvalidOperation);
+	        Assert.ThrowsException<InvalidOperationException>(() => InvalidOperation());
 	    }
 
         [TestMethod]

@@ -264,7 +264,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
 
-            ThrowsInvalid(InvalidOperation);
+            Assert.ThrowsException<InvalidOperationException>((() => InvalidOperation()));
         }
 
         [TestMethod]
@@ -288,7 +288,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
 
-            ThrowsInvalid(InvalidOperation);
+            Assert.ThrowsException<InvalidOperationException>(() => InvalidOperation());
         }
 
         [TestMethod]
@@ -415,7 +415,7 @@ namespace Wintellect.PowerCollections.Tests
                 new NotCloneable()
             };
 
-            ThrowsInvalid(() => set1.CloneContents());
+            Assert.ThrowsException<InvalidOperationException>(() => set1.CloneContents());
         }
 
         // Strange comparer that uses modulo arithmetic.
@@ -818,7 +818,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var setOdds = new Set<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var setDigits = new Set<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenEqualityComparer());
-            ThrowsInvalid(() => setOdds.SymmetricDifferenceWith(setDigits));
+            Assert.ThrowsException<InvalidOperationException>(() => setOdds.SymmetricDifferenceWith(setDigits));
         }
 
         [TestMethod]
@@ -826,7 +826,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var set1 = new Set<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
             var set2 = new Set<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
-            ThrowsInvalid(() => set1.Intersection(set2));
+            Assert.ThrowsException<InvalidOperationException>(() => set1.Intersection(set2));
         }
 
         [TestMethod]

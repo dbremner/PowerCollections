@@ -664,7 +664,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var bagOdds = new Bag<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var bagDigits = new Bag<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenEqualityComparer());
-            ThrowsInvalid(() => bagOdds.SymmetricDifferenceWith(bagDigits));
+            Assert.ThrowsException<InvalidOperationException>(() => bagOdds.SymmetricDifferenceWith(bagDigits));
         }
 
         [TestMethod]
@@ -672,7 +672,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var bag1 = new Bag<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
             var bag2 = new Bag<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
-            ThrowsInvalid(() => bag1.Intersection(bag2));
+            Assert.ThrowsException<InvalidOperationException>(() => bag1.Intersection(bag2));
         }
 
         [TestMethod]
@@ -704,7 +704,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
 
-            ThrowsInvalid(InvalidOperation);
+            Assert.ThrowsException<InvalidOperationException>((() => InvalidOperation()));
         }
 
         [TestMethod]
@@ -727,7 +727,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
 
-            ThrowsInvalid(InvalidOperation);
+            Assert.ThrowsException<InvalidOperationException>((() => InvalidOperation()));
         }
 
 
@@ -833,7 +833,7 @@ namespace Wintellect.PowerCollections.Tests
                 new NotCloneable()
             };
 
-            ThrowsInvalid(() => bag1.CloneContents());
+            Assert.ThrowsException<InvalidOperationException>(() => bag1.CloneContents());
         }
 
         // Strange comparer that uses modulo arithmetic.

@@ -1502,7 +1502,7 @@ namespace Wintellect.PowerCollections.Tests {
 	        }
 
 	        tree = new RedBlackTree<TestItem>(new DataComparer());
-            ThrowsOutOfRange(() => tree.GetItemByIndex(0));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => tree.GetItemByIndex(0));
 	    }
 
     }

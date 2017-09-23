@@ -679,7 +679,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, ComparersTests.CompareOddEven);
-            ThrowsInvalid(() => setOdds.UnionWith(setDigits));
+            Assert.ThrowsException<InvalidOperationException>(() => setOdds.UnionWith(setDigits));
         }
 
         [TestMethod]
@@ -687,7 +687,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var setOdds = new OrderedSet<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var setDigits = new OrderedSet<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenComparer());
-            ThrowsInvalid(() => setOdds.SymmetricDifferenceWith(setDigits));
+            Assert.ThrowsException<InvalidOperationException>(() => setOdds.SymmetricDifferenceWith(setDigits));
         }
 
         [TestMethod]
@@ -695,7 +695,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var set1 = new OrderedSet<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
             var set2 = new OrderedSet<string>(new string[] { "bada", "bing"}, StringComparer.InvariantCulture);
-            ThrowsInvalid(() => set1.IntersectionWith(set2));
+            Assert.ThrowsException<InvalidOperationException>(() => set1.IntersectionWith(set2));
         }
 
         [TestMethod]
@@ -743,7 +743,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
 
-            ThrowsInvalid(InvalidOperation);
+            Assert.ThrowsException<InvalidOperationException>(() => InvalidOperation());
         }
 
         [TestMethod]
@@ -766,7 +766,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
 
-            ThrowsInvalid(InvalidOperation);
+            Assert.ThrowsException<InvalidOperationException>((() => InvalidOperation()));
         }
 
         // Check a View to make sure it has the right stuff.
@@ -873,7 +873,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
 
-            Throws<ArgumentException>(() => set1.Range(3, true, 8, false).Add(8));
+            Assert.ThrowsException<ArgumentException>(() => set1.Range(3, true, 8, false).Add(8));
         }
 
         [TestMethod]
@@ -881,7 +881,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var set1 = new OrderedSet<int>(new int[] { 1, 3, 4, 6, 8, 9, 11, 14, 22 });
 
-            Throws<ArgumentException>(() => set1.Range(3, true, 8, false).Add(2));
+            Assert.ThrowsException<ArgumentException>(() => set1.Range(3, true, 8, false).Add(2));
         }
 
         [TestMethod]
@@ -1010,7 +1010,7 @@ namespace Wintellect.PowerCollections.Tests
                 new GenericComparable(1)
             };
 
-            ThrowsInvalid(() => set1.CloneContents());
+            Assert.ThrowsException<InvalidOperationException>(() => set1.CloneContents());
         }
 
         [TestMethod]

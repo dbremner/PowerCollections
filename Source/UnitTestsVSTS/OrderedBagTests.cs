@@ -753,7 +753,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var bagOdds = new OrderedBag<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var bagDigits = new OrderedBag<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, ComparersTests.CompareOddEven);
-            ThrowsInvalid(() => bagOdds.UnionWith(bagDigits));
+            Assert.ThrowsException<InvalidOperationException>(() => bagOdds.UnionWith(bagDigits));
         }
 
         [TestMethod]
@@ -761,7 +761,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var bagOdds = new OrderedBag<int>(new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25 });
             var bagDigits = new OrderedBag<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, new GOddEvenComparer());
-            ThrowsInvalid(() => bagOdds.SymmetricDifferenceWith(bagDigits));
+            Assert.ThrowsException<InvalidOperationException>(() => bagOdds.SymmetricDifferenceWith(bagDigits));
         }
 
         [TestMethod]
@@ -769,7 +769,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var bag1 = new OrderedBag<string>(new string[] { "foo", "Bar" }, StringComparer.CurrentCulture);
             var bag2 = new OrderedBag<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
-            ThrowsInvalid(() => bag1.Intersection(bag2));
+            Assert.ThrowsException<InvalidOperationException>(() => bag1.Intersection(bag2));
         }
 
         [TestMethod]
@@ -817,7 +817,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
 
-            ThrowsInvalid(InvalidOperation);
+            Assert.ThrowsException<InvalidOperationException>(() => InvalidOperation());
         }
 
         [TestMethod]
@@ -840,7 +840,7 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
 
-            ThrowsInvalid(InvalidOperation);
+            Assert.ThrowsException<InvalidOperationException>(() => InvalidOperation());
         }
 
         // Check a View to make sure it has the right stuff.
@@ -951,7 +951,7 @@ namespace Wintellect.PowerCollections.Tests
             var bag1 = new OrderedBag<int>(new int[] { 1, 1, 3, 4, 6, 6, 6, 8, 9, 11, 14, 22 });
 
             var range = bag1.Range(3, true, 8, false);
-            Throws<ArgumentException>(() => range.Add(8));
+            Assert.ThrowsException<ArgumentException>(() => range.Add(8));
         }
 
         [TestMethod]
@@ -960,7 +960,7 @@ namespace Wintellect.PowerCollections.Tests
             var bag1 = new OrderedBag<int>(new int[] { 1, 1, 3, 4, 6, 6, 6, 8, 9, 11, 14, 22 });
 
             var range = bag1.Range(3, true, 8, false);
-            Throws<ArgumentException>(() => range.Add(2));
+            Assert.ThrowsException<ArgumentException>(() => range.Add(2));
         }
 
         [TestMethod]
@@ -1091,7 +1091,7 @@ namespace Wintellect.PowerCollections.Tests
                 new GenericComparable(2)
             };
 
-            ThrowsInvalid(() => bag1.CloneContents());
+            Assert.ThrowsException<InvalidOperationException>(() => bag1.CloneContents());
         }
 
         [TestMethod]

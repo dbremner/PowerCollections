@@ -257,7 +257,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var invalidIndices = new[] {-1, 8, int.MinValue, int.MaxValue};
             foreach (var invalidIndex in invalidIndices) {
-                ThrowsOutOfRange(() => d.Insert(invalidIndex, "hi"));
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => d.Insert(invalidIndex, "hi"));
             }
         }
 
@@ -313,7 +313,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var invalidIndices = new[] {-1, 7, int.MinValue, int.MaxValue};
             foreach (var invalidIndex in invalidIndices) {
-                ThrowsOutOfRange(() => d.RemoveAt(invalidIndex));
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => d.RemoveAt(invalidIndex));
             }
         }
 
@@ -682,7 +682,7 @@ namespace Wintellect.PowerCollections.Tests
                 deque1.Add(i);
             var invalidCapacities = new[] {11, -1, Int32.MaxValue, Int32.MinValue,};
             foreach (var invalidCapacity in invalidCapacities) {
-                ThrowsOutOfRange(() => deque1.Capacity = invalidCapacity);
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.Capacity = invalidCapacity);
             }
         }
 
@@ -910,7 +910,7 @@ namespace Wintellect.PowerCollections.Tests
                 new NotCloneable()
             };
 
-            ThrowsInvalid(() => deque1.CloneContents());
+            Assert.ThrowsException<InvalidOperationException>(() => deque1.CloneContents());
         }
 
         [TestMethod]

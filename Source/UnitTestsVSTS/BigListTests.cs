@@ -1453,7 +1453,7 @@ namespace Wintellect.PowerCollections.Tests
                 new NotCloneable()
             };
 
-            ThrowsInvalid(() => list1.CloneContents());
+            Assert.ThrowsException<InvalidOperationException>(() => list1.CloneContents());
         }
 
 

@@ -1133,7 +1133,7 @@ namespace Wintellect.PowerCollections.Tests
                 [5] = new NotCloneable[] { new NotCloneable(), new NotCloneable() }
             };
 
-            ThrowsInvalid(() => dict1.CloneContents());
+            Assert.ThrowsException<InvalidOperationException>(() => dict1.CloneContents());
         }
 
 
