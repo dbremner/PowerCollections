@@ -247,7 +247,7 @@ namespace Wintellect.PowerCollections.Tests {
 		///     GetEnumerator, CopyTo, Count, Contains
 		/// </summary>
 		/// <param name="coll">ICollection to test. </param>
-		/// <param name="valueArray">The elements that should be in the collection.</param>
+		/// <param name="values">The elements that should be in the collection.</param>
 		/// <param name="mustBeInOrder">Must the elements be in order?</param>
         /// <param name="equals">Predicate to test for equality; null for default.</param>
 		private static void TestCollectionGeneric<T>(ICollection<T> coll, T[] values, bool mustBeInOrder, BinaryPredicate<T> equals)
