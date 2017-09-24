@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 

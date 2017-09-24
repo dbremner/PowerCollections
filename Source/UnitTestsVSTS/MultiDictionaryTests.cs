@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections.Tests;
-using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 

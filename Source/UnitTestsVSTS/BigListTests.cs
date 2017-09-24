@@ -14,7 +14,6 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 #endregion

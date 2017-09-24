@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 #endregion
@@ -211,7 +210,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var invalidIndices = new[] { -1, 9, Int32.MaxValue, Int32.MinValue, };
             foreach (var invalidIndex in invalidIndices) {
-                ThrowsOutOfRangeResult(() => bag1[invalidIndex]);
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => bag1[invalidIndex]);
             }
         }
 
@@ -788,13 +787,15 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void NotComparable1()
         {
-            ThrowsInvalidResult(() => new OrderedBag<UncomparableClass1>());
+            Assert.ThrowsException<InvalidOperationException>(
+                () => new OrderedBag<UncomparableClass1>());
         }
 
         [TestMethod]
         public void NotComparable2()
         {
-            ThrowsInvalidResult(() => new OrderedBag<UncomparableClass2>());
+            Assert.ThrowsException<InvalidOperationException>(
+                () => new OrderedBag<UncomparableClass2>());
         }
 
         [TestMethod]

@@ -10,7 +10,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 
 namespace Wintellect.PowerCollections.Tests
@@ -528,7 +527,8 @@ namespace Wintellect.PowerCollections.Tests
 	    [TestMethod]
 	    public void NotComparable1()
         {
-            ThrowsInvalidResult( () => new OrderedDictionary<UncomparableClass1, string>() );
+            Assert.ThrowsException<InvalidOperationException>(
+                () => new OrderedDictionary<UncomparableClass1, string>() );
 	    }
 
 	    /// <summary>
@@ -537,7 +537,8 @@ namespace Wintellect.PowerCollections.Tests
 	    [TestMethod]
 	    public void NotComparable2()
         {
-            ThrowsInvalidResult( () => new OrderedDictionary<UncomparableClass2, string>() );
+            Assert.ThrowsException<InvalidOperationException>(
+                () => new OrderedDictionary<UncomparableClass2, string>() );
 	    }
 
         /// <summary>

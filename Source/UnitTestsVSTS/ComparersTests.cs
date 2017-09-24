@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Wintellect.PowerCollections.Tests.TestHelpers;
 #endregion
 
 namespace Wintellect.PowerCollections.Tests
@@ -387,7 +386,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void UnorderableType2()
         {
-            ThrowsInvalid(() => Comparers.DefaultComparer<Unorderable>());
+            Assert.ThrowsException<InvalidOperationException>(() => Comparers.DefaultComparer<Unorderable>());
         }
     }
 }

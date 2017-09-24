@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Wintellect.PowerCollections.Tests;
-using static Wintellect.PowerCollections.Tests.TestHelpers;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 using static Wintellect.PowerCollections.Tests.UtilTests;
 
@@ -948,7 +947,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void NotComparable1()
         {
-            ThrowsInvalidResult( () =>
+            Assert.ThrowsException<InvalidOperationException>( () =>
             new OrderedMultiDictionary<OrderedDictionaryTests.UncomparableClass1, string>(false)
                 );
         }
@@ -956,7 +955,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void NotComparable2()
         {
-            ThrowsInvalidResult( () =>
+            Assert.ThrowsException<InvalidOperationException>( () =>
             new OrderedMultiDictionary<string, UncomparableClass2>(true)
                 );
         }

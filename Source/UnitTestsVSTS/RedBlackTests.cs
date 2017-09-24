@@ -9,7 +9,6 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Runtime.InteropServices;
-using static Wintellect.PowerCollections.Tests.TestHelpers;
 
 namespace Wintellect.PowerCollections.Tests {
 	
@@ -1498,7 +1497,7 @@ namespace Wintellect.PowerCollections.Tests {
 	        var invalidIndices = new int[] {-1, 6, Int32.MaxValue, Int32.MinValue, };
 
 	        foreach (var invalidIndex in invalidIndices) {
-	            ThrowsOutOfRangeResult(() => tree.GetItemByIndex(invalidIndex));
+	            Assert.ThrowsException<ArgumentOutOfRangeException>(() => tree.GetItemByIndex(invalidIndex));
 	        }
 
 	        tree = new RedBlackTree<TestItem>(new DataComparer());
