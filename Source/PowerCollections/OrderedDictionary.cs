@@ -34,7 +34,7 @@ namespace Wintellect.PowerCollections
         private readonly IComparer<TKey> keyComparer;
 
 		// The comparer for comparing key-value pairs.
-		private IComparer<KeyValuePair<TKey,TValue>> pairComparer;
+		private readonly IComparer<KeyValuePair<TKey,TValue>> pairComparer;
 
 		private RedBlackTree<KeyValuePair<TKey,TValue>> tree;
 

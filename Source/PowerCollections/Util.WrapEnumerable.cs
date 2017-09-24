@@ -21,7 +21,7 @@ namespace Wintellect.PowerCollections
         [Serializable]
         class WrapEnumerable<T> : IEnumerable<T>
         {
-            IEnumerable<T> wrapped;
+            readonly IEnumerable<T> wrapped;
 
             /// <summary>
             /// Create the wrapper around an enumerable.
