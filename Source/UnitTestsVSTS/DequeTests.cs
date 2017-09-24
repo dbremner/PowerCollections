@@ -391,34 +391,10 @@ namespace Wintellect.PowerCollections.Tests
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
             }
-            try {
-                d[-1] = s;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                d[6] = s;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                d[int.MaxValue] = s;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                d[int.MinValue] = s;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[-1] = s);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[6] = s);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[int.MaxValue] = s);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[int.MinValue] = s);
 
             d.Clear();
             d.AddToBack("a");
@@ -454,34 +430,10 @@ namespace Wintellect.PowerCollections.Tests
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
             }
-            try {
-                d[-1] = s;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                d[4] = s;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                d[int.MaxValue] = s;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                d[int.MinValue] = s;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[-1] = s);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[4] = s);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[int.MaxValue] = s);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[int.MinValue] = s);
         }
 
         [TestMethod]
@@ -489,72 +441,24 @@ namespace Wintellect.PowerCollections.Tests
         {
             var d = new Deque<double>();
 
-            try {
-                d.GetAtFront();
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => d.GetAtFront());
 
-            try {
-                d.GetAtBack();
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => d.GetAtBack());
 
-            try {
-                d.RemoveFromFront();
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => d.RemoveFromFront());
 
-            try {
-                d.RemoveFromBack();
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => d.RemoveFromBack());
 
             d.AddToBack(2.3);
             d.RemoveFromFront();
 
-            try {
-                d.GetAtFront();
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => d.GetAtFront());
 
-            try {
-                d.GetAtBack();
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => d.GetAtBack());
 
-            try {
-                d.RemoveFromFront();
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => d.RemoveFromFront());
 
-            try {
-                d.RemoveFromBack();
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => d.RemoveFromBack());
 
         }
 
@@ -708,77 +612,23 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < 100; ++i)
                 deque1.AddToBack(i);
 
-            try {
-                deque1.RemoveRange(3, 98);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.RemoveRange(3, 98));
 
-            try {
-                deque1.RemoveRange(-1, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.RemoveRange(-1, 1));
 
-            try {
-                deque1.RemoveRange(0, int.MaxValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.RemoveRange(0, int.MaxValue));
 
-            try {
-                deque1.RemoveRange(1, int.MinValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.RemoveRange(1, int.MinValue));
 
-            try {
-                deque1.RemoveRange(45, int.MinValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.RemoveRange(45, int.MinValue));
 
-            try {
-                deque1.RemoveRange(0, 101);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.RemoveRange(0, 101));
 
-            try {
-                deque1.RemoveRange(100, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.RemoveRange(100, 1));
 
-            try {
-                deque1.RemoveRange(int.MinValue, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.RemoveRange(int.MinValue, 1));
 
-            try {
-                deque1.RemoveRange(int.MaxValue, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => deque1.RemoveRange(int.MaxValue, 1));
         }
 
         [TestMethod]

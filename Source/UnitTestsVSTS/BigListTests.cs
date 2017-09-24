@@ -619,77 +619,23 @@ namespace Wintellect.PowerCollections.Tests
         {
             BigList<int> list1 = CreateList(0, 100);
 
-            try {
-                list1.GetRange(3, 98);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(3, 98));
 
-            try {
-                list1.GetRange(-1, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(-1, 1));
 
-            try {
-                list1.GetRange(0, int.MaxValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(0, int.MaxValue));
 
-            try {
-                list1.GetRange(1, int.MinValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(1, int.MinValue));
 
-            try {
-                list1.GetRange(45, int.MinValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(45, int.MinValue));
 
-            try {
-                list1.GetRange(0, 101);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(0, 101));
 
-            try {
-                list1.GetRange(100, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(100, 1));
 
-            try {
-                list1.GetRange(int.MinValue, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(int.MinValue, 1));
 
-            try {
-                list1.GetRange(int.MaxValue, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(int.MaxValue, 1));
 
         }
 
@@ -820,13 +766,7 @@ namespace Wintellect.PowerCollections.Tests
             BigList<int> list1;
 
             list1 = new BigList<int>();
-            try {
-                list1[0] = 1;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1[0] = 1);
 
             try {
                 var unused = list1[0];
@@ -837,13 +777,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             list1 = new BigList<int>();
-            try {
-                list1[-1] = 1;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1[-1] = 1);
 
             try {
                 var unused = list1[-1];
@@ -854,13 +788,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             list1 = new BigList<int>();
-            try {
-                list1[3] = 1;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1[3] = 1);
 
             try {
                 var unused = list1[3];
@@ -871,13 +799,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             list1 = new BigList<int>();
-            try {
-                list1[int.MaxValue] = 1;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1[int.MaxValue] = 1);
 
             try {
                 var unused = list1[int.MaxValue];
@@ -888,13 +810,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             list1 = new BigList<int>();
-            try {
-                list1[int.MinValue] = 1;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1[int.MinValue] = 1);
 
             try {
                 var unused = list1[int.MinValue];
@@ -1016,53 +932,17 @@ namespace Wintellect.PowerCollections.Tests
             list1 = CreateList(0, 10);
             list2 = CreateList(4, 5);
 
-            try {
-                list1.Insert(-1, 5);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.Insert(-1, 5));
 
-            try {
-                list1.Insert(11, 5);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.Insert(11, 5));
 
-            try {
-                list1.InsertRange(-1, list2);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.InsertRange(-1, list2));
 
-            try {
-                list1.InsertRange(11, list2);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.InsertRange(11, list2));
 
-            try {
-                list1.InsertRange(-1, new int[] { 3, 4, 5 });
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.InsertRange(-1, new int[] { 3, 4, 5 }));
 
-            try {
-                list1.InsertRange(11, new int[] { 3, 4, 5 });
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.InsertRange(11, new int[] { 3, 4, 5 }));
         }
 
         [TestMethod]

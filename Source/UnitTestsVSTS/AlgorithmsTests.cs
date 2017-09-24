@@ -1347,13 +1347,7 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElements(array1, new string[] { "foo", "bar", "baz", "hello", "a1", "glove" });
 
             IEnumerable<string> enum4 = EnumerableFromArray(new string[] { "b1", "b2", "b3", "b4" });
-            try {
-                Algorithms.Copy(enum4, array1, 5, 3);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Algorithms.Copy(enum4, array1, 5, 3));
             InterfaceTests.TestEnumerableElements(array1, new string[] { "foo", "bar", "baz", "hello", "a1", "glove" });
 
             Algorithms.Copy(enum1, array1, 0, 1);
@@ -1459,13 +1453,7 @@ namespace Wintellect.PowerCollections.Tests
 
             list1 = new List<string>(new string[] { "a1", "a2", "a3", "a4" });
             array2 = new string[] { "foo", "bar", "baz", "smell", "the", "glove" };
-            try {
-                Algorithms.Copy(list1, 1, array2, 4, 3);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Algorithms.Copy(list1, 1, array2, 4, 3));
         }
 
         [TestMethod]

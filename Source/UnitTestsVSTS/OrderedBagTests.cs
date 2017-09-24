@@ -864,21 +864,9 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.AreEqual(items[items.Length - 1], view.GetLast());
             }
             else {
-                try {
-                    view.GetFirst();
-                    Assert.Fail("should throw");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is InvalidOperationException);
-                }
+                Assert.ThrowsException<InvalidOperationException>(() => view.GetFirst());
 
-                try {
-                    view.GetLast();
-                    Assert.Fail("should throw");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is InvalidOperationException);
-                }
+                Assert.ThrowsException<InvalidOperationException>(() => view.GetLast());
             }
 
             Assert.IsFalse(view.Contains(nonItem));
@@ -1259,37 +1247,13 @@ namespace Wintellect.PowerCollections.Tests
         {
             var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
 
-            try {
-                bag1.GetFirst();
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => bag1.GetFirst());
 
-            try {
-                bag1.GetLast();
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => bag1.GetLast());
 
-            try {
-                bag1.RemoveFirst();
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => bag1.RemoveFirst());
 
-            try {
-                bag1.RemoveLast();
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => bag1.RemoveLast());
         }
 
         [TestMethod]

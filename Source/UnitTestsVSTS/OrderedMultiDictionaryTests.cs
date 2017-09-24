@@ -1373,21 +1373,9 @@ namespace Wintellect.PowerCollections.Tests
 
             if (cantAddNonKey) {
                 // Make sure Add throws exception
-                try {
-                    dict[nonKey] = new TValue[1] { nonValue };
-                    Assert.Fail("should throw");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is ArgumentException);
-                }
+                Assert.ThrowsException<ArgumentException>(() => dict[nonKey] = new TValue[1] { nonValue });
 
-                try {
-                    dict.Add(nonKey, nonValue);
-                    Assert.Fail("should throw");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is ArgumentException);
-                }
+                Assert.ThrowsException<ArgumentException>(() => dict.Add(nonKey, nonValue));
             }
             
             // Test IDictionary<TKey,IEnumerable<TValue>> implementation

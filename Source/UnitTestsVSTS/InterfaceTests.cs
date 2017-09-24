@@ -213,31 +213,9 @@ namespace Wintellect.PowerCollections.Tests {
 
 			// Check CopyTo exceptions.
             if (coll.Count > 0) {
-			    try
-			    {
-				    coll.CopyTo(null, 0);
-				    Assert.Fail("Copy to null should throw exception");
-			    }
-			    catch (Exception e)
-			    {
-				    Assert.IsTrue(e is ArgumentNullException);
-			    }
-			    try
-			    {
-				    coll.CopyTo(newKeys, 3);
-				    Assert.Fail("CopyTo should throw argument exception");
-			    }
-			    catch (Exception e)
-			    {
-				    Assert.IsTrue(e is ArgumentException);
-			    }
-                try {
-                    coll.CopyTo(newKeys, -1);
-                    Assert.Fail("CopyTo should throw argument out of range exception");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is ArgumentOutOfRangeException);
-                }
+			    Assert.ThrowsException<ArgumentNullException>(() => coll.CopyTo(null, 0));
+			    Assert.ThrowsException<ArgumentException>(() => coll.CopyTo(newKeys, 3));
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.CopyTo(newKeys, -1));
             }
 
     }
@@ -331,41 +309,13 @@ namespace Wintellect.PowerCollections.Tests {
             if (coll.Count != 0)
 			{
 				// Check CopyTo exceptions.
-				try
-				{
-					coll.CopyTo(null, 0);
-					Assert.Fail("Copy to null should throw exception");
-				}
-				catch (Exception e)
-				{
-					Assert.IsTrue(e is ArgumentNullException);
-				}
-				try
-				{
-					coll.CopyTo(newKeys, 3);
-					Assert.Fail("CopyTo should throw argument exception");
-				}
-				catch (Exception e)
-				{
-                    Assert.IsTrue(e is ArgumentException);
-				}
-                try {
-                    coll.CopyTo(newKeys, -1);
-                    Assert.Fail("CopyTo should throw argument out of range exception");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is ArgumentOutOfRangeException);
-                }
+				Assert.ThrowsException<ArgumentNullException>(() => coll.CopyTo(null, 0));
+				Assert.ThrowsException<ArgumentException>(() => coll.CopyTo(newKeys, 3));
+                Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.CopyTo(newKeys, -1));
             }
         }
 
-        // Check collection read-only exceptions
-        private static void CheckReadonlyCollectionException(Exception e, string name)
-        {
-            Assert.IsTrue(e is NotSupportedException);
-        }
-
-        /// <summary>
+	    /// <summary>
 		///  Test a readonly ICollection&lt;string&gt; that should contain the given values, possibly in order. Checks only the following items:
 		///     GetEnumerator, CopyTo, Count, Contains, IsReadOnly
 		/// </summary>
@@ -387,32 +337,14 @@ namespace Wintellect.PowerCollections.Tests {
 
             // Check that Clear throws correct exception
             if (coll.Count > 0) {
-                try {
-                    coll.Clear();
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => coll.Clear());
             }
 
             // Check that Add throws correct exception
-            try {
-                coll.Add(default(T));
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => coll.Add(default(T)));
 
             // Check throws correct exception
-            try {
-                coll.Remove(default(T));
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => coll.Remove(default(T)));
 
         }
 
@@ -1516,31 +1448,13 @@ namespace Wintellect.PowerCollections.Tests {
 
             // Check exceptions.
             if (coll.Count > 0) {
-                try {
-                    coll.Clear();
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => coll.Clear());
             }
 
-            try {
-                coll.Insert(0, default(T));
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => coll.Insert(0, default(T)));
 
             if (coll.Count > 0) {
-                try {
-                    coll.RemoveAt(0);
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => coll.RemoveAt(0));
 
                 try {
                     coll[0] = default(T);

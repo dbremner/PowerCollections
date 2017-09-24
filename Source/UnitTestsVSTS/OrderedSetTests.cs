@@ -787,21 +787,9 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.AreEqual(items[items.Length - 1], view.GetLast());
             }
             else {
-                try {
-                    view.GetFirst();
-                    Assert.Fail("should throw");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is InvalidOperationException);
-                }
+                Assert.ThrowsException<InvalidOperationException>(() => view.GetFirst());
 
-                try {
-                    view.GetLast();
-                    Assert.Fail("should throw");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is InvalidOperationException);
-                }
+                Assert.ThrowsException<InvalidOperationException>(() => view.GetLast());
             }
 
             Assert.IsFalse(view.Contains(nonItem));
@@ -1154,37 +1142,13 @@ namespace Wintellect.PowerCollections.Tests
         {
             var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
 
-            try {
-                set1.GetFirst();
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => set1.GetFirst());
 
-            try {
-                set1.GetLast();
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => set1.GetLast());
 
-            try {
-                set1.RemoveFirst();
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => set1.RemoveFirst());
 
-            try {
-                set1.RemoveLast();
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => set1.RemoveLast());
         }
 
         [TestMethod]
