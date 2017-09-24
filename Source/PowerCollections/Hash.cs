@@ -565,7 +565,7 @@ namespace Wintellect.PowerCollections
         /// <param name="cloneItem">If non-null, this function is applied to each item when cloning. It must be the 
         /// case that this function does not modify the hash code or equality function.</param>
         /// <returns>A shallow clone that contains the same items.</returns>
-        public Hash<T> Clone(Converter<T,T> cloneItem)
+        internal Hash<T> Clone(Converter<T,T> cloneItem)
         {
             var clone = new Hash<T>(equalityComparer) {
                 count = this.count,

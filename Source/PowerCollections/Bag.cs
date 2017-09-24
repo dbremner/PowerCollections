@@ -151,7 +151,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <remarks>Cloning the bag takes time O(N), where N is the number of unquie items in the bag.</remarks>
         /// <returns>The cloned bag.</returns>
-        public Bag<T> Clone()
+        internal Bag<T> Clone()
         {
             var newBag = new Bag<T>(equalityComparer, keyEqualityComparer, hash.Clone(null), count);
             return newBag;
@@ -167,7 +167,7 @@ namespace Wintellect.PowerCollections
         /// <para>Cloning the bag takes time O(N log N), where N is the number of items in the bag.</para></remarks>
         /// <returns>The cloned bag.</returns>
         /// <exception cref="InvalidOperationException">T is a reference type that does not implement ICloneable.</exception>
-        public Bag<T> CloneContents()
+        internal Bag<T> CloneContents()
         {
             bool itemIsValueType;
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))

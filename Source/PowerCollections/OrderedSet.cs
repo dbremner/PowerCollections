@@ -146,7 +146,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <remarks>Cloning the set takes time O(N), where N is the number of items in the set.</remarks>
         /// <returns>The cloned set.</returns>
-        public OrderedSet<T> Clone()
+        internal OrderedSet<T> Clone()
         {
             var newSet = new OrderedSet<T>(comparer, tree.Clone());
             return newSet;
@@ -162,7 +162,7 @@ namespace Wintellect.PowerCollections
         /// <para>Cloning the set takes time O(N log N), where N is the number of items in the set.</para></remarks>
         /// <returns>The cloned set.</returns>
         /// <exception cref="InvalidOperationException">T is a reference type that does not implement ICloneable.</exception>
-        public OrderedSet<T> CloneContents() 
+        internal OrderedSet<T> CloneContents() 
         {
             bool itemIsValueType;
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))

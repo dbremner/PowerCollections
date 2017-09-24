@@ -178,7 +178,7 @@ namespace Wintellect.PowerCollections
 		/// </summary>
         /// <remarks>Cloning the dictionary takes time O(N), where N is the number of keys in the dictionary.</remarks>
         /// <returns>The cloned dictionary.</returns>
-        public OrderedDictionary<TKey,TValue> Clone()
+        internal OrderedDictionary<TKey,TValue> Clone()
 		{
 			var newDict = new OrderedDictionary<TKey,TValue>(keyComparer, pairComparer, tree.Clone());
 			return newDict;
@@ -203,7 +203,7 @@ namespace Wintellect.PowerCollections
         /// <para>Cloning the dictionary takes time O(N log N), where N is the number of keys in the dictionary.</para></remarks>
         /// <returns>The cloned dictionary.</returns>
         /// <exception cref="InvalidOperationException">TKey or TValue is a reference type that does not implement ICloneable.</exception>
-		public OrderedDictionary<TKey,TValue> CloneContents()
+        internal OrderedDictionary<TKey,TValue> CloneContents()
 		{
             bool keyIsValueType, valueIsValueType;
 

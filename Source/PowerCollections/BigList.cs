@@ -618,7 +618,7 @@ namespace Wintellect.PowerCollections
         /// additional memory, since the storage for the items of the two lists is shared. However, changing
         /// either list will take additional time and memory. Portions of the list are copied when they are changed.</remarks>
         /// <returns>A copy of the current list</returns>
-        public BigList<T> Clone()
+        internal BigList<T> Clone()
         {
             if (root == null)
                 return new BigList<T>();
@@ -638,7 +638,7 @@ namespace Wintellect.PowerCollections
         /// <para>If T is a reference type, cloning the list takes time approximate O(N), where N is the number of items in the list.</para></remarks>
         /// <returns>The cloned set.</returns>
         /// <exception cref="InvalidOperationException">T is a reference type that does not implement ICloneable.</exception>
-        public BigList<T> CloneContents()
+        internal BigList<T> CloneContents()
         {
             if (root == null)
                 return new BigList<T>();

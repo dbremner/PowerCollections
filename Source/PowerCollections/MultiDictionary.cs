@@ -507,7 +507,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <remarks>Cloning the dictionary takes time O(N), where N is the number of key-value pairs in the dictionary.</remarks>
         /// <returns>The cloned dictionary.</returns>
-        public MultiDictionary<TKey, TValue> Clone()
+        internal MultiDictionary<TKey, TValue> Clone()
         {
             return new MultiDictionary<TKey, TValue>(allowDuplicateValues, keyEqualityComparer, valueEqualityComparer, equalityComparer, 
                 hash.Clone(KeyAndValues.Copy));
@@ -532,7 +532,7 @@ namespace Wintellect.PowerCollections
         /// <para>Cloning the dictionary takes time O(N log N), where N is the number of key-value pairs in the dictionary.</para></remarks>
         /// <returns>The cloned dictionary.</returns>
         /// <exception cref="InvalidOperationException">TKey or TValue is a reference type that does not implement ICloneable.</exception>
-        public MultiDictionary<TKey, TValue> CloneContents()
+        internal MultiDictionary<TKey, TValue> CloneContents()
         {
             bool keyIsValueType, valueIsValueType;
 

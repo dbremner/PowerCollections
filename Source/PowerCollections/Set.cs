@@ -112,7 +112,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <remarks>Cloning the set takes time O(N), where N is the number of items in the set.</remarks>
         /// <returns>The cloned set.</returns>
-        public Set<T> Clone()
+        internal Set<T> Clone()
         {
             var newSet = new Set<T>(equalityComparer, hash.Clone(null));
             return newSet; 
@@ -128,7 +128,7 @@ namespace Wintellect.PowerCollections
         /// <para>Cloning the set takes time O(N), where N is the number of items in the set.</para></remarks>
         /// <returns>The cloned set.</returns>
         /// <exception cref="InvalidOperationException">T is a reference type that does not implement ICloneable.</exception>
-        public Set<T> CloneContents()
+        internal Set<T> CloneContents()
         {
             bool itemIsValueType;
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))

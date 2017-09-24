@@ -149,7 +149,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <remarks>Cloning the bag takes time O(N), where N is the number of items in the bag.</remarks>
         /// <returns>The cloned bag.</returns>
-        public OrderedBag<T> Clone()
+        internal OrderedBag<T> Clone()
         {
             var newBag = new OrderedBag<T>(comparer, tree.Clone());
             return newBag;
@@ -165,7 +165,7 @@ namespace Wintellect.PowerCollections
         /// <para>Cloning the bag takes time O(N log N), where N is the number of items in the bag.</para></remarks>
         /// <returns>The cloned bag.</returns>
         /// <exception cref="InvalidOperationException">T is a reference type that does not implement ICloneable.</exception>
-        public OrderedBag<T> CloneContents()
+        internal OrderedBag<T> CloneContents()
         {
             bool itemIsValueType;
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))

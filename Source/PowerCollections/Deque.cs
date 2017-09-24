@@ -873,7 +873,7 @@ namespace Wintellect.PowerCollections
         /// </summary>
         /// <remarks>Copying a Deque takes O(N) time, where N is the number of items in this Deque..</remarks>
         /// <returns>A copy of the current deque.</returns>
-        public Deque<T> Clone()
+        internal Deque<T> Clone()
         {
             return new Deque<T>(this);
         }
@@ -888,7 +888,7 @@ namespace Wintellect.PowerCollections
         /// <para>Cloning the Deque takes time O(N), where N is the number of items in the Deque.</para></remarks>
         /// <returns>The cloned Deque.</returns>
         /// <exception cref="InvalidOperationException">T is a reference type that does not implement ICloneable.</exception>
-        public Deque<T> CloneContents()
+        internal Deque<T> CloneContents()
         {
             bool itemIsValueType;
             if (!Util.IsCloneableType(typeof(T), out itemIsValueType))
