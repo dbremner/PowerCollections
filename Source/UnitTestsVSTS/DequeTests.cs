@@ -821,77 +821,23 @@ namespace Wintellect.PowerCollections.Tests
             for (int i = 0; i < 50; ++i)
                 deque.AddToBack(i);
 
-            try {
-                var unused = deque.Range(3, 98);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = deque.Range(3, 98);});
 
-            try {
-                var unused = deque.Range(-1, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = deque.Range(-1, 1);});
 
-            try {
-                var unused = deque.Range(0, int.MaxValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = deque.Range(0, int.MaxValue);});
 
-            try {
-                var unused = deque.Range(1, int.MinValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = deque.Range(1, int.MinValue);});
 
-            try {
-                var unused = deque.Range(45, int.MinValue);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = deque.Range(45, int.MinValue);});
 
-            try {
-                var unused = deque.Range(0, 101);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = deque.Range(0, 101);});
 
-            try {
-                var unused = deque.Range(100, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = deque.Range(100, 1);});
 
-            try {
-                var unused = deque.Range(int.MinValue, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = deque.Range(int.MinValue, 1);});
 
-            try {
-                var unused = deque.Range(int.MaxValue, 1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = deque.Range(int.MaxValue, 1);});
         }
 
         [TestMethod]

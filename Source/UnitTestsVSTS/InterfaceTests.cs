@@ -475,37 +475,13 @@ namespace Wintellect.PowerCollections.Tests {
             Assert.IsTrue(dict.IsFixedSize);
 
             // Check exceptions.
-            try {
-                dict.Clear();
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => dict.Clear());
 
-            try {
-                dict.Add(keys[0], values[0]);
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => dict.Add(keys[0], values[0]));
 
-            try {
-                dict.Remove(keys[0]);
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => dict.Remove(keys[0]));
 
-            try {
-                dict[keys[0]] = values[0];
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => dict[keys[0]] = values[0]);
         }
 
         /// <summary>
@@ -533,13 +509,7 @@ namespace Wintellect.PowerCollections.Tests {
 
             // Check exceptions for adding existing elements.
             for (int i = 0; i < keys.Length; ++i) {
-                try {
-                    dict.Add(keys[i], values[i]);
-                    Assert.Fail("should have thrown exception");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is ArgumentException);
-                }
+                Assert.ThrowsException<ArgumentException>(() => dict.Add(keys[i], values[i]));
             }
 
             // Check Clear.
@@ -547,21 +517,9 @@ namespace Wintellect.PowerCollections.Tests {
             Assert.AreEqual(0, dict.Count);
 
             // Check Add with incorrect types.
-            try {
-                dict.Add(new object(), values[0]);
-                Assert.Fail("should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => dict.Add(new object(), values[0]));
 
-            try {
-                dict.Add(keys[0], new object());
-                Assert.Fail("should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => dict.Add(keys[0], new object()));
 
             // Check Add().
             for (int i = 0; i < keys.Length; ++i)
@@ -582,21 +540,9 @@ namespace Wintellect.PowerCollections.Tests {
             Assert.AreEqual(0, dict.Count);
 
             // Check indexer with incorrect types.
-            try {
-                dict[new object()] = values[0];
-                Assert.Fail("should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => dict[new object()] = values[0]);
 
-            try {
-                dict[keys[0]] = new object();
-                Assert.Fail("should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => dict[keys[0]] = new object());
 
             // Check adding via the indexer
             for (int i = 0; i < keys.Length; ++i)
@@ -643,13 +589,7 @@ namespace Wintellect.PowerCollections.Tests {
             Assert.IsFalse(result);
             Assert.AreEqual(default(TValue), val);
             
-            try {
-                var unused = dict[nonKey];
-                Assert.Fail("Should throw.");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is KeyNotFoundException);
-            }
+            Assert.ThrowsException<KeyNotFoundException>(() => {var unused = dict[nonKey];});
 
             // Check Keys, Values collections
             TestReadonlyCollectionGeneric(dict.Keys, keys, mustBeInOrder, null, keyEquals);
@@ -683,38 +623,14 @@ namespace Wintellect.PowerCollections.Tests {
             TestReadonlyCollectionGeneric((ICollection<KeyValuePair<TKey,TValue>>)dict, entries, mustBeInOrder, name, KeyValueEquals(keyEquals, valueEquals));
 
             // Check exceptions.
-            try {
-                dict.Clear();
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => dict.Clear());
 
             if (keys.Length > 0) {
-                try {
-                    dict.Add(keys[0], values[0]);
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => dict.Add(keys[0], values[0]));
 
-                try {
-                    dict.Remove(keys[0]);
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => dict.Remove(keys[0]));
 
-                try {
-                    dict[keys[0]] = values[0];
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => dict[keys[0]] = values[0]);
             }
         }
 
@@ -748,13 +664,7 @@ namespace Wintellect.PowerCollections.Tests {
 
             // Check exceptions for adding existing elements.
             for (int i = 0; i < keys.Length; ++i) {
-                try {
-                    dict.Add(keys[i], values[i]);
-                    Assert.Fail("should have thrown exception");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is ArgumentException);
-                }
+                Assert.ThrowsException<ArgumentException>(() => dict.Add(keys[i], values[i]));
             }
 
             // Check Clear.
@@ -1015,13 +925,7 @@ namespace Wintellect.PowerCollections.Tests {
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
             }
-            try {
-                T dummy = coll[-2];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[-2];});
             try {
                 coll[coll.Count] = item;
                 Assert.Fail("Should throw");
@@ -1029,20 +933,8 @@ namespace Wintellect.PowerCollections.Tests {
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
             }
-            try {
-                T dummy = coll[coll.Count];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                T dummy = coll[int.MaxValue];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[coll.Count];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[int.MaxValue];});
             try {
                 coll[int.MaxValue] = item;
                 Assert.Fail("Should throw");
@@ -1050,55 +942,13 @@ namespace Wintellect.PowerCollections.Tests {
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
             }
-            try {
-                coll.Insert(-1, item);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.Insert(coll.Count + 1, item);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.Insert(int.MaxValue, item);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.RemoveAt(coll.Count);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.RemoveAt(-1);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.RemoveAt(int.MaxValue);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.RemoveAt(coll.Count);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(-1, item));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(coll.Count + 1, item));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(int.MaxValue, item));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.RemoveAt(coll.Count));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.RemoveAt(-1));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.RemoveAt(int.MaxValue));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.RemoveAt(coll.Count));
 
             // Insert at the beginning.
             coll.Insert(0, item);
@@ -1229,13 +1079,7 @@ namespace Wintellect.PowerCollections.Tests {
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
             }
-            try {
-                object dummy = coll[-2];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[-2];});
             try {
                 coll[coll.Count] = item;
                 Assert.Fail("Should throw");
@@ -1264,73 +1108,19 @@ namespace Wintellect.PowerCollections.Tests {
             catch (Exception e) {
                 Assert.IsTrue(e is ArgumentOutOfRangeException);
             }
-            try {
-                coll.Insert(-1, item);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.Insert(coll.Count + 1, item);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.Insert(int.MaxValue, item);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.RemoveAt(coll.Count);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.RemoveAt(-1);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.RemoveAt(int.MaxValue);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll.RemoveAt(coll.Count);
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(-1, item));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(coll.Count + 1, item));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(int.MaxValue, item));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.RemoveAt(coll.Count));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.RemoveAt(-1));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.RemoveAt(int.MaxValue));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.RemoveAt(coll.Count));
 
             // Check operations with bad type.
             if (typeof(T) != typeof(object)) {
-                try {
-                    coll.Add(new object());
-                    Assert.Fail("should throw");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is ArgumentException);
-                }
+                Assert.ThrowsException<ArgumentException>(() => coll.Add(new object()));
 
-                try {
-                    coll.Insert(0, new object());
-                    Assert.Fail("should throw");
-                }
-                catch (Exception e) {
-                    Assert.IsTrue(e is ArgumentException);
-                }
+                Assert.ThrowsException<ArgumentException>(() => coll.Insert(0, new object()));
 
                 int index = coll.IndexOf(new object());
                 Assert.AreEqual(-1, index);
@@ -1456,13 +1246,7 @@ namespace Wintellect.PowerCollections.Tests {
             if (coll.Count > 0) {
                 Assert.ThrowsException<NotSupportedException>(() => coll.RemoveAt(0));
 
-                try {
-                    coll[0] = default(T);
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => coll[0] = default(T));
             }
         }
 
@@ -1486,63 +1270,21 @@ namespace Wintellect.PowerCollections.Tests {
             Assert.IsTrue(coll.IsFixedSize);
 
             // Check exceptions.
-            try {
-                coll.Clear();
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => coll.Clear());
 
             // Check exceptions.
-            try {
-                coll.Clear();
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => coll.Clear());
 
-            try {
-                coll.Insert(0, default(T));
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => coll.Insert(0, default(T)));
 
-            try {
-                coll.Add(default(T));
-                Assert.Fail("Should throw exception");
-            }
-            catch (Exception e) {
-                CheckReadonlyCollectionException(e, name);
-            }
+            Assert.ThrowsException<NotSupportedException>(() => coll.Add(default(T)));
 
             if (coll.Count > 0) {
-                try {
-                    coll.RemoveAt(0);
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => coll.RemoveAt(0));
 
-                try {
-                    coll.Remove(coll[0]);
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => coll.Remove(coll[0]));
 
-                try {
-                    coll[0] = default(T);
-                    Assert.Fail("Should throw exception");
-                }
-                catch (Exception e) {
-                    CheckReadonlyCollectionException(e, name);
-                }
+                Assert.ThrowsException<NotSupportedException>(() => coll[0] = default(T));
             }
         }
 

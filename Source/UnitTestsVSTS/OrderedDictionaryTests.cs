@@ -149,25 +149,10 @@ namespace Wintellect.PowerCollections.Tests
                 {double.PositiveInfinity, 0}
             };
 
-            try {
-                dict1.Add(4.67, 187); Assert.Fail("Exception should be thrown");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => dict1.Add(4.67, 187));
             dict1.Add(double.NegativeInfinity, 188921);
-            try {
-                dict1.Add(double.NegativeInfinity, 421); Assert.Fail("Exception should be thrown");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
-            try {
-                dict1.Add(4.67, 222); Assert.Fail("Exception should be thrown");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => dict1.Add(double.NegativeInfinity, 421));
+            Assert.ThrowsException<ArgumentException>(() => dict1.Add(4.67, 222));
 
             dict1.Add(double.MaxValue, 444);
 
@@ -237,21 +222,11 @@ namespace Wintellect.PowerCollections.Tests
                 { double.MaxValue, 441 }
             };
             dict1.Replace(4.67, -89);
-            try {
-                dict1.Replace(double.NegativeInfinity, 187); Assert.Fail("Exception should be thrown");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is KeyNotFoundException);
-            }
+            Assert.ThrowsException<KeyNotFoundException>(() => dict1.Replace(double.NegativeInfinity, 187));
             dict1.Add(double.NegativeInfinity, 188921);
             dict1.Replace(double.MaxValue, -1);
             dict1.Replace(double.NaN, 188);
-            try {
-                dict1.Replace(12, 3); Assert.Fail("Exception should be thrown");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is KeyNotFoundException);
-            }
+            Assert.ThrowsException<KeyNotFoundException>(() => dict1.Replace(12, 3));
 
             dict1.Replace(double.MaxValue, 33);
 
@@ -310,13 +285,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(18, dict1[null]);
             Assert.AreEqual(11, dict1["bar"]);
 
-            try {
-                int unused = dict1["foobar"];
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is KeyNotFoundException);
-            }
+            Assert.ThrowsException<KeyNotFoundException>(() => {var unused = dict1["foobar"];});
         }
 
 		/// <summary>
