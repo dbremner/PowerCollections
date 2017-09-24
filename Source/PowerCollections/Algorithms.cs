@@ -11,8 +11,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-#pragma warning disable 419  // Ambigious cref in XML comment
-
 // Everything should be CLS compliant.
 [assembly: CLSCompliant(true)]
 
@@ -3482,7 +3480,9 @@ namespace Wintellect.PowerCollections {
         /// </example>
         /// <returns>IEqualityComparer&lt;IEnumerable&lt;T&gt;&gt; implementation suitable for 
         /// comparing collections of T for equality.</returns>
-        /// <seealso cref="Algorithms.EqualCollections{T}"/>
+        /// <seealso>
+        ///     <cref>Algorithms.EqualCollections{T}</cref>
+        /// </seealso>
         public static IEqualityComparer<IEnumerable<T>> GetCollectionEqualityComparer<T>()
         {
             return GetCollectionEqualityComparer(EqualityComparer<T>.Default);
@@ -3506,7 +3506,9 @@ namespace Wintellect.PowerCollections {
         /// <param name="equalityComparer">An IEqualityComparer&lt;T&gt; implementation used to compare individual T's.</param>
         /// <returns>IEqualityComparer&lt;IEnumerable&lt;T&gt;&gt; implementation suitable for 
         /// comparing collections of T for equality.</returns>
-        /// <seealso cref="Algorithms.EqualCollections{T}"/>
+        /// <seealso>
+        ///     <cref>Algorithms.EqualCollections{T}</cref>
+        /// </seealso>
         public static IEqualityComparer<IEnumerable<T>> GetCollectionEqualityComparer<T>(IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
@@ -3532,7 +3534,9 @@ namespace Wintellect.PowerCollections {
         /// </example>
         /// <returns>IEqualityComparer&lt;IEnumerable&lt;T&gt;&gt; implementation suitable for 
         /// comparing collections of T for equality, without regard to order.</returns>
-        /// <seealso cref="Algorithms.EqualBags{T}"/>
+        /// <seealso>
+        ///     <cref>Algorithms.EqualBags{T}</cref>
+        /// </seealso>
         public static IEqualityComparer<IEnumerable<T>> GetBagEqualityComparer<T>()
         {
             return GetBagEqualityComparer(EqualityComparer<T>.Default);
@@ -3555,7 +3559,9 @@ namespace Wintellect.PowerCollections {
         /// <param name="equalityComparer">An IEqualityComparer&lt;T&gt; implementation used to compare individual T's.</param>
         /// <returns>IEqualityComparer&lt;IEnumerable&lt;T&gt;&gt; implementation suitable for 
         /// comparing collections of T for equality, without regard to order.</returns>
-        /// <seealso cref="Algorithms.EqualBags"/>
+        /// <seealso>
+        ///     <cref>Algorithms.EqualBags</cref>
+        /// </seealso>
         public static IEqualityComparer<IEnumerable<T>> GetBagEqualityComparer<T>(IEqualityComparer<T> equalityComparer)
         {
             if (equalityComparer == null)
