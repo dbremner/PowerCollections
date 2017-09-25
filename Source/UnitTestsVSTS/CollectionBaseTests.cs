@@ -6,11 +6,9 @@
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
-using System;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Wintellect.PowerCollections;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 
 namespace Wintellect.PowerCollections.Tests

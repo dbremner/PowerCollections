@@ -7,7 +7,6 @@
 //******************************
 
 using System;
-using Wintellect.PowerCollections.Tests;
 
 [assembly: CLSCompliant(true)]
 

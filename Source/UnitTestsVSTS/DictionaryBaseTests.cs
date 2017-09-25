@@ -8,9 +8,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Wintellect.PowerCollections;
 
 namespace Wintellect.PowerCollections.Tests
 {

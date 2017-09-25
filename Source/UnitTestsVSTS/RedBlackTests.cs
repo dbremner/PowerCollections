@@ -8,7 +8,6 @@
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Runtime.InteropServices;
 
 namespace Wintellect.PowerCollections.Tests {
     /// <summary>
