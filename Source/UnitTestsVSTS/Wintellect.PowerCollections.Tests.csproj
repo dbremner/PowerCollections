@@ -90,6 +90,10 @@
     <Compile Include="ComparersTests.cs" />
     <Compile Include="DequeTests.cs" />
     <Compile Include="DictionaryBaseTests.cs" />
+    <Compile Include="GOddEvenComparable.cs" />
+    <Compile Include="GOddEvenComparer.cs" />
+    <Compile Include="GOddEvenEqualityComparer.cs" />
+    <Compile Include="GOddEvenEquatable.cs" />
     <Compile Include="HashTests.cs" />
     <Compile Include="InterfaceTests.cs" />
     <Compile Include="Kvp.cs" />
@@ -98,6 +102,8 @@
     <Compile Include="MultiDictionaryBaseTests.cs" />
     <Compile Include="MultiDictionaryTests.cs" />
     <Compile Include="NotCloneable.cs" />
+    <Compile Include="OddEvenComparable.cs" />
+    <Compile Include="OddEvenComparer.cs" />
     <Compile Include="OrderedBagTests.cs" />
     <Compile Include="OrderedDictionaryTests.cs" />
     <Compile Include="OrderedMultiDictionaryTests.cs" />
@@ -105,8 +111,10 @@
     <Compile Include="OrderedSetTests.cs" />
     <Compile Include="RedBlackTests.cs" />
     <Compile Include="SetTests.cs" />
+    <Compile Include="TestItem.cs" />
     <Compile Include="TestPredicates.cs" />
     <Compile Include="UncomparableClass2.cs" />
+    <Compile Include="Unorderable.cs" />
     <Compile Include="UtilTests.cs" />
     <Compile Include="VSCodeGenAccessors.cs" />
   </ItemGroup>
