@@ -739,41 +739,11 @@ namespace Wintellect.PowerCollections.Tests {
             }
 
             // Check exceptions from index out of range.
-            try {
-                T dummy = coll[-1];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                T dummy = coll[int.MinValue];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                T dummy = coll[-2];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                T dummy = coll[coll.Count];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                T dummy = coll[int.MaxValue];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[-1];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[int.MinValue];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[-2];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[coll.Count];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[int.MaxValue];});
         }
 
         /// <summary>
@@ -815,41 +785,11 @@ namespace Wintellect.PowerCollections.Tests {
             }
 
             // Check exceptions from index out of range.
-            try {
-                object dummy = coll[-1];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                object dummy = coll[int.MinValue];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                object dummy = coll[-2];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                object dummy = coll[coll.Count];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                object dummy = coll[int.MaxValue];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[-1];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[int.MinValue];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[-2];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[coll.Count];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[int.MaxValue];});
 
             // Check bad type.
             if (typeof(T) != typeof(object)) {
@@ -911,37 +851,13 @@ namespace Wintellect.PowerCollections.Tests {
 
             T item = valueArray.Length > 0 ? valueArray[valueArray.Length / 2] : default(T);
             // Check exceptions from index out of range.
-            try {
-                coll[-1] = item;
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll[int.MinValue] = item;
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll[-1] = item);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll[int.MinValue] = item);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[-2];});
-            try {
-                coll[coll.Count] = item;
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll[coll.Count] = item);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[coll.Count];});
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[int.MaxValue];});
-            try {
-                coll[int.MaxValue] = item;
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll[int.MaxValue] = item);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(-1, item));
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(coll.Count + 1, item));
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(int.MaxValue, item));
@@ -1065,49 +981,13 @@ namespace Wintellect.PowerCollections.Tests {
 
             T item = valueArray.Length > 0 ? valueArray[valueArray.Length / 2] : default(T);
             // Check exceptions from index out of range.
-            try {
-                coll[-1] = item;
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll[int.MinValue] = item;
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll[-1] = item);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll[int.MinValue] = item);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[-2];});
-            try {
-                coll[coll.Count] = item;
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                object dummy = coll[coll.Count];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                object dummy = coll[int.MaxValue];
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                coll[int.MaxValue] = item;
-                Assert.Fail("Should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll[coll.Count] = item);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[coll.Count];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var dummy = coll[int.MaxValue];});
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll[int.MaxValue] = item);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(-1, item));
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(coll.Count + 1, item));
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.Insert(int.MaxValue, item));

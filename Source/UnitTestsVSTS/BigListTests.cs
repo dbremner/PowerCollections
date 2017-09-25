@@ -1306,53 +1306,17 @@ namespace Wintellect.PowerCollections.Tests
             list1 = new BigList<int>(new int[] { 6 }, int.MaxValue - 1);
             Assert.AreEqual(int.MaxValue - 1, list1.Count);
 
-            try {
-                var unused = new BigList<int>((BigList<int>)null, 5);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentNullException);
-            }
+            Assert.ThrowsException<ArgumentNullException>(() => {var unused = new BigList<int>((BigList<int>)null, 5);});
 
-            try {
-                var unused = new BigList<int>((IEnumerable<int>)null, 5);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentNullException);
-            }
+            Assert.ThrowsException<ArgumentNullException>(() => {var unused = new BigList<int>((IEnumerable<int>)null, 5);});
 
-            try {
-                var unused = new BigList<int>(new int[] { 1, 2, 3 }, -1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = new BigList<int>(new int[] { 1, 2, 3 }, -1);});
 
-            try {
-                var unused = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3 }), -1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3 }), -1);});
 
-            try {
-                var unused = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3 }), 2000000000);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => {var unused = new BigList<int>(new BigList<int>(new int[] { 1, 2, 3 }), 2000000000);});
 
-            try {
-                var unused = new BigList<int>(new int[] { 1, 2, 3 }, 1000000000);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => {var unused = new BigList<int>(new int[] { 1, 2, 3 }, 1000000000);});
         }
 
         [TestMethod]
@@ -1918,74 +1882,54 @@ namespace Wintellect.PowerCollections.Tests
             var biglist1 = new BigList<string>(new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" });
             int i = 0;
 
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         biglist1.Add("hi");
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         biglist1.AddToFront("hi");
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         biglist1.RemoveRange(2, 4);
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         biglist1[5] = "hi";
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in biglist1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         biglist1.Clear();
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
         }
 
         [TestMethod]
@@ -2245,61 +2189,19 @@ namespace Wintellect.PowerCollections.Tests
             listMaxSize = new BigList<int>(new int[] { 6 }, int.MaxValue - 16);
             Assert.AreEqual(int.MaxValue - 16, listMaxSize.Count);
 
-            try {
-                listMaxSize.AddRange(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => listMaxSize.AddRange(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }));
 
-            try {
-                listMaxSize.AddRangeToFront(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => listMaxSize.AddRangeToFront(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }));
 
-            try {
-                listMaxSize.AddRange(new BigList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }));
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => listMaxSize.AddRange(new BigList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 })));
 
-            try {
-                listMaxSize.AddRangeToFront(new BigList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }));
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => listMaxSize.AddRangeToFront(new BigList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 })));
 
-            try {
-                listMaxSize.InsertRange(12345, new BigList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }));
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => listMaxSize.InsertRange(12345, new BigList<int>(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 })));
 
-            try {
-                listMaxSize.InsertRange(123456, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => listMaxSize.InsertRange(123456, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }));
 
-            try {
-                var unused = listMaxSize + listMaxSize;
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(() => {var unused = listMaxSize + listMaxSize;});
         }
 
         /// <summary>

@@ -1400,17 +1400,13 @@ namespace Wintellect.PowerCollections.Tests {
             InsertValidate("zap", 8);
 
             int i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (TestItem unused in tree) {
                     ++i;
                     if (i == 4)
                         InsertValidate("hello", 23);
                 }
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             Assert.AreEqual(4, i);     // should have stopped right away.
             Assert.AreEqual(7, tree.ElementCount);   // element should have been found.
@@ -1420,17 +1416,13 @@ namespace Wintellect.PowerCollections.Tests {
 #endif //DEBUG
 
             i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (TestItem unused in tree.EnumerateRangeReversed(tree.BoundedRangeTester(true, new TestItem("biff", 0), true, new TestItem("zap", 0)))) {
                     ++i;
                     if (i == 3)
                         DeletePrintValidate("hello", 23);
                 }
-                Assert.Fail("Should have thrown exception");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             Assert.AreEqual(3, i);     // should have stopped right away.
             Assert.AreEqual(6, tree.ElementCount);   // element should have been deleted.

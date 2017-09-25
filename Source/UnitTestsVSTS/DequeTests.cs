@@ -362,34 +362,10 @@ namespace Wintellect.PowerCollections.Tests
             d.AddToBack("e");
             d.AddToBack("f");
 
-            try {
-                s = d[-1];
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                s = d[6];
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                s = d[int.MaxValue];
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                s = d[int.MinValue];
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => s = d[-1]);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => s = d[6]);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => s = d[int.MaxValue]);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => s = d[int.MinValue]);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[-1] = s);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[6] = s);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[int.MaxValue] = s);
@@ -401,34 +377,10 @@ namespace Wintellect.PowerCollections.Tests
             d.AddToBack("c");
             d.AddToBack("d");
 
-            try {
-                s = d[-1];
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                s = d[4];
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                s = d[int.MaxValue];
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
-            try {
-                s = d[int.MinValue];
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentOutOfRangeException);
-            }
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => s = d[-1]);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => s = d[4]);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => s = d[int.MaxValue]);
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => s = d[int.MinValue]);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[-1] = s);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[4] = s);
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => d[int.MaxValue] = s);
@@ -476,74 +428,54 @@ namespace Wintellect.PowerCollections.Tests
             var deque1 = new Deque<string>(new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" });
             int i = 0;
 
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in deque1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         deque1.AddToBack("hi");
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in deque1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         deque1.AddToFront("hi");
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in deque1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         deque1.RemoveRange(2, 4);
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in deque1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         deque1[5] = "hi";
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
 
             i = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in deque1) {
                     ++i;
                     Assert.IsTrue(i < 4);
                     if (i == 3)
                         deque1.Clear();
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            });
         }
 
         [TestMethod]

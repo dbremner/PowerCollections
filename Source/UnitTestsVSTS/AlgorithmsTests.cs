@@ -637,29 +637,14 @@ namespace Wintellect.PowerCollections.Tests
             string maxS;
             IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
 
-            try {
-                var unused = Algorithms.Maximum(coll1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(
+                () => {var unused = Algorithms.Maximum(coll1);});
 
-            try {
-                var unused = Algorithms.Maximum(coll1, StringComparer.CurrentCulture);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(
+                () => {var unused = Algorithms.Maximum(coll1, StringComparer.CurrentCulture);});
 
-            try {
-                var unused = Algorithms.Maximum(coll1, string.CompareOrdinal);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-            }
+            Assert.ThrowsException<InvalidOperationException>(
+                () => {var unused = Algorithms.Maximum(coll1, string.CompareOrdinal);});
 
             // float max
             double maxD;
@@ -2004,93 +1989,27 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.ThrowsException<ArgumentException>(() => Algorithms.Copy(new string[] { "hello", "sailor" }, list1, 2, 3));
 
-            try {
-                Algorithms.Copy(new string[] { "hello", "sailor" }, 0, list1, 2, 3);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.Copy(new string[] { "hello", "sailor" }, 0, list1, 2, 3));
 
-            try {
-                Algorithms.ReverseInPlace(list1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.ReverseInPlace(list1));
 
-            try {
-                Algorithms.ReplaceInPlace(list1, (string)null, "");
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.ReplaceInPlace(list1, (string)null, ""));
 
-            try {
-                Algorithms.ReplaceInPlace(list1, IsNull, "");
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.ReplaceInPlace(list1, IsNull, ""));
 
-            try {
-                Algorithms.RemoveDuplicatesInPlace(list1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.RemoveDuplicatesInPlace(list1));
 
-            try {
-                Algorithms.RandomShuffleInPlace(list1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.RandomShuffleInPlace(list1));
 
-            try {
-                Algorithms.SortInPlace(list1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.SortInPlace(list1));
 
-            try {
-                Algorithms.StableSortInPlace(list1);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.StableSortInPlace(list1));
 
-            try {
-                Algorithms.RemoveWhere(list1, IsNull);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.RemoveWhere(list1, IsNull));
 
-            try {
-                Algorithms.Partition(list1, IsNull);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.Partition(list1, IsNull));
 
-            try {
-                Algorithms.StablePartition(list1, IsNull);
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is ArgumentException);
-            }
+            Assert.ThrowsException<ArgumentException>(() => Algorithms.StablePartition(list1, IsNull));
         }
 
         private bool IsNull(string x) {

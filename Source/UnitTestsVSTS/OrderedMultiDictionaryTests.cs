@@ -1145,56 +1145,44 @@ namespace Wintellect.PowerCollections.Tests
             };
 
             int iter = 0;
-            try {
-                foreach (KeyValuePair<string, int> pair in dict1.KeyValuePairs) {
+            Assert.ThrowsException<InvalidOperationException>(() => {
+                foreach (var pair in dict1.KeyValuePairs) {
                     if (pair.Key == "foo")
                         dict1.Replace("bar", 19);
                     ++iter;
                 }
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-                Assert.AreEqual(3, iter);
-            }
+            });
+            Assert.AreEqual(3, iter);
 
             iter = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string key in dict1.Keys) {
                     if (key == "foo")
                         dict1.Add("grump", 117);
                     ++iter;
                 }
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-                Assert.AreEqual(2, iter);
-            }
+            });
+            Assert.AreEqual(2, iter);
 
             iter = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (int value in dict1["foo"]) {
                     if (value == 12)
                         dict1.Remove("grump", 117);
                     ++iter;
                 }
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-                Assert.AreEqual(2, iter);
-            }
+            });
+            Assert.AreEqual(2, iter);
 
             iter = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string key in dict1.Keys) {
                     if (key == "foo")
                         dict1.Clear();
                     ++iter;
                 }
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-                Assert.AreEqual(2, iter);
-            }
+            });
+            Assert.AreEqual(2, iter);
 
         }
 

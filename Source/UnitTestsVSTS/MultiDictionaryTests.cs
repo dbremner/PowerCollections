@@ -1125,22 +1125,19 @@ namespace Wintellect.PowerCollections.Tests
             dict1.Add("bar", 17);
 
             throwNow = false;
-            try {
-                foreach (KeyValuePair<string, int> pair in dict1.KeyValuePairs) {
+            Assert.ThrowsException<InvalidOperationException>(() => {
+                foreach (var pair in dict1.KeyValuePairs) {
                     throwNow = false;
                     if (pair.Key == "foo") {
                         dict1.Replace("bar", 19);
                         throwNow = true;
                     }
                 }
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-                Assert.IsTrue(throwNow);
-            }
+            });
+            Assert.IsTrue(throwNow);
 
             throwNow = false;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string key in dict1.Keys) {
                     throwNow = false;
                     if (key == "foo") {
@@ -1148,14 +1145,11 @@ namespace Wintellect.PowerCollections.Tests
                         throwNow = true;
                     }
                 }
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-                Assert.IsTrue(throwNow);
-            }
+            });
+            Assert.IsTrue(throwNow);
 
             throwNow = false;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (int value in dict1["foo"]) {
                     throwNow = false;
                     if (value == 12) {
@@ -1163,14 +1157,11 @@ namespace Wintellect.PowerCollections.Tests
                         throwNow = true;
                     }
                 }
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-                Assert.IsTrue(throwNow);
-            }
+            });
+            Assert.IsTrue(throwNow);
 
             throwNow = false;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string key in dict1.Keys) {
                     throwNow = false;
                     if (key == "foo") {
@@ -1178,11 +1169,8 @@ namespace Wintellect.PowerCollections.Tests
                         throwNow = true;
                     }
                 }
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-                Assert.IsTrue(throwNow);
-            }
+            });
+            Assert.IsTrue(throwNow);
 
         }
 

@@ -905,18 +905,14 @@ namespace Wintellect.PowerCollections.Tests
 
             // Make sure enumeration stops on change.
             int count = 0;
-            try {
+            Assert.ThrowsException<InvalidOperationException>(() => {
                 foreach (string unused in bag1.DistinctItems()) {
                     if (count == 2)
                         bag1.Add("zippy");
                     ++count;
                 }
-                Assert.Fail("should throw");
-            }
-            catch (Exception e) {
-                Assert.IsTrue(e is InvalidOperationException);
-                Assert.AreEqual(3, count);
-            }
+            });
+            Assert.AreEqual(3, count);
         }
 
         [TestMethod]
