@@ -269,7 +269,7 @@ namespace Wintellect.PowerCollections.Tests
             result1 = Algorithms.Replace(enum2, Length3, null);
             InterfaceTests.TestEnumerableElements(result1, new string[] { null, null, null, "hello", "hello", "sailor", null, null, "hi"});
 
-            result1 = Algorithms.Replace(enum2, (string x) => { x = "zip"; return false; }, null);
+            result1 = Algorithms.Replace(enum2, x => { x = "zip"; return false; }, null);
             InterfaceTests.TestEnumerableElements(result1, new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
         }
 
@@ -335,7 +335,7 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestListGeneric(list2, new string[] { null, null, null, "hello", "hello", "sailor", null, null, "hi" });
 
             list2 = new List<string>(new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
-            Algorithms.ReplaceInPlace(list2, (string x) => { x = "zip"; return false; }, null);
+            Algorithms.ReplaceInPlace(list2, x => { x = "zip"; return false; }, null);
             InterfaceTests.TestListGeneric(list2, new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
 
             string[] array1 = { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" };
@@ -3135,7 +3135,7 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElements(result4, new string[] { "YYY", "xxx", "missy", "l", "foo", "Fiddle", "diddle", "A"});
 
             IEnumerable<double> enum5 = EnumerableFromArray(new double[] { 4.2, -8.7, 1, 0, 1, -6.7, -3, 2.8, 9, -7.1, 7.2 });
-            IEnumerable<double> result5 = Algorithms.Sort(enum5, (double x, double y) => {
+            IEnumerable<double> result5 = Algorithms.Sort(enum5, (x, y) => {
                 x = Math.Abs(x); y = Math.Abs(y);
                 if (x < y)
                     return -1;
@@ -3221,7 +3221,7 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<string> str1 = EnumerableFromArray(new string[] { "foo", "fiddle", "g1", "igloo"});
             IEnumerable<string> str2 = EnumerableFromArray(new string[] { "fast", "gross", "g3", "horse", "splurge" });
             IEnumerable<string> str3 = EnumerableFromArray(new string[] { "finagle", "gimpy", "hippo", "rascal" });
-            IEnumerable<string> mergeStr = Algorithms.MergeSorted((string x, string y) => { if (x[0] < y[0]) return -1; else if (x[0] > y[0]) return 1; else return 0; },
+            IEnumerable<string> mergeStr = Algorithms.MergeSorted((x, y) => { if (x[0] < y[0]) return -1; else if (x[0] > y[0]) return 1; else return 0; },
                 str1, str2, str3);
             InterfaceTests.TestEnumerableElements(mergeStr, new string[] { "foo", "fiddle", "fast", "finagle", "g1", "gross", "g3", "gimpy", "horse", "hippo", "igloo", "rascal", "splurge" });
         }

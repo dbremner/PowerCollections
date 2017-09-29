@@ -1025,7 +1025,7 @@ namespace Wintellect.PowerCollections.Tests
         public void CloneContents()
         {
             var bag1 = new OrderedBag<MyInt>(
-                (MyInt v1, MyInt v2) => {
+                (v1, v2) => {
                     if (v1 == null) {
                         return (v2 == null) ? 0 : -1;
                     }
