@@ -601,7 +601,7 @@ namespace Wintellect.PowerCollections.Tests
         // Simple class for testing cloning.
         private class MyInt : ICloneable
         {
-            public int value;
+            public readonly int value;
             public MyInt(int value)
             {
                 this.value = value;

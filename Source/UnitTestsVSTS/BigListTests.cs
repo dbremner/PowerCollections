@@ -1142,7 +1142,7 @@ namespace Wintellect.PowerCollections.Tests
         // Simple class for testing cloning.
         private class MyInt : ICloneable
         {
-            public int value;
+            public readonly int value;
             public MyInt(int value)
             {
                 this.value = value;
@@ -1537,7 +1537,7 @@ namespace Wintellect.PowerCollections.Tests
 #pragma warning disable 659  // missing GetHashCode
         private sealed class MyDouble
         {
-            private double val;
+            private readonly double val;
 
             public MyDouble(double value)
             {

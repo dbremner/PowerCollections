@@ -458,7 +458,7 @@ namespace Wintellect.PowerCollections.Tests
 
 	    private class ComparableClass1: IComparable<ComparableClass1>
 		{
-			public int Value = 0;
+			public readonly int Value = 0;
 			int IComparable<ComparableClass1>.CompareTo(ComparableClass1 other)
 			{
 				if (Value > other.Value)
@@ -472,7 +472,7 @@ namespace Wintellect.PowerCollections.Tests
 
 	    private class ComparableClass2: IComparable
 		{
-			public int Value = 0;
+			public readonly int Value = 0;
 			int IComparable.CompareTo(object other)
 			{
 				if (other is ComparableClass2)

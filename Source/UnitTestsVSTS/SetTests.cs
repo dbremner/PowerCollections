@@ -314,7 +314,7 @@ namespace Wintellect.PowerCollections.Tests
         // Simple class for testing cloning.
         private class MyInt : ICloneable
         {
-            public int value;
+            public readonly int value;
             public MyInt(int value)
             {
                 this.value = value;
@@ -415,7 +415,7 @@ namespace Wintellect.PowerCollections.Tests
         // Strange comparer that uses modulo arithmetic.
         private class ModularComparer: IEqualityComparer<int>
         {
-            private int mod;
+            private readonly int mod;
 
             public ModularComparer(int mod)
             {
@@ -464,7 +464,7 @@ namespace Wintellect.PowerCollections.Tests
         // Simple class for testing that the generic IEquatable is used.
         private class GenComparable : IEquatable<GenComparable>
         {
-            public int value;
+            public readonly int value;
             public GenComparable(int value)
             {
                 this.value = value;

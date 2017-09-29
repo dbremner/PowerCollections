@@ -16,7 +16,7 @@ namespace Wintellect.PowerCollections.Tests
     // A simple read-write collection.
     internal class ReadWriteTestCollection<T> : CollectionBase<T>
     {
-        private List<T> items;
+        private readonly List<T> items;
 
         public ReadWriteTestCollection(T[] items)
         {
@@ -55,7 +55,7 @@ namespace Wintellect.PowerCollections.Tests
         // A simple read-only collection.
         private class ReadOnlyTestCollection<T> : ReadOnlyCollectionBase<T>
         {
-            private T[] items;
+            private readonly T[] items;
 
             public ReadOnlyTestCollection(T[] items)
             {

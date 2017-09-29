@@ -23,7 +23,7 @@ namespace Wintellect.PowerCollections.Tests
     {
         private class ComparableClass1 : IComparable<ComparableClass1>
         {
-            public int Value = 0;
+            public readonly int Value = 0;
             int IComparable<ComparableClass1>.CompareTo(ComparableClass1 other)
             {
                 if (Value > other.Value)
@@ -37,7 +37,7 @@ namespace Wintellect.PowerCollections.Tests
 
         private class ComparableClass2 : IComparable
         {
-            public int Value = 0;
+            public readonly int Value = 0;
             int IComparable.CompareTo(object other)
             {
                 if (other is ComparableClass2) {
@@ -58,7 +58,7 @@ namespace Wintellect.PowerCollections.Tests
         // Not comparable, because the type parameter on ComparableClass is incorrect.
         private class UncomparableClass1 : IComparable<ComparableClass1>
         {
-            public int Value = 0;
+            public readonly int Value = 0;
             int IComparable<ComparableClass1>.CompareTo(ComparableClass1 other)
             {
                 if (Value > other.Value)
@@ -976,7 +976,7 @@ namespace Wintellect.PowerCollections.Tests
         // Simple class for testing cloning.
         private class MyInt : ICloneable
         {
-            public int value;
+            public readonly int value;
             public MyInt(int value)
             {
                 this.value = value;

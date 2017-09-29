@@ -87,7 +87,7 @@ namespace Wintellect.PowerCollections.Tests
     // A simple read-only list using an array.
     public class ReadOnlyArrayList<T> : ReadOnlyListBase<T>
     {
-        private T[] array;
+        private readonly T[] array;
 
         public ReadOnlyArrayList(T[] items)
         {
@@ -755,7 +755,7 @@ namespace Wintellect.PowerCollections.Tests
 #pragma warning disable 659  // missing GetHashCode
         private sealed class MyDouble
         {
-            private double val;
+            private readonly double val;
 
             public MyDouble(double value)
             {

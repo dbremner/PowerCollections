@@ -119,8 +119,8 @@ namespace Wintellect.PowerCollections.Tests
 
     internal class ReadOnlyTestMultiDictionary<TKey, TValue> : ReadOnlyMultiDictionaryBase<TKey, TValue>
     {
-        private List<TKey> keys;
-        private List<List<TValue>> values;
+        private readonly List<TKey> keys;
+        private readonly List<List<TValue>> values;
 
         public ReadOnlyTestMultiDictionary(List<TKey> keys, List<List<TValue>> values)
         {

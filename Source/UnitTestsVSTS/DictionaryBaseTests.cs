@@ -15,8 +15,8 @@ namespace Wintellect.PowerCollections.Tests
     // A simple read-only dictionary.
     internal class ReadOnlyTestDictionary<TKey, TValue> : ReadOnlyDictionaryBase<TKey, TValue>
     {
-        private TKey[] keys;
-        private TValue[] values;
+        private readonly TKey[] keys;
+        private readonly TValue[] values;
 
         public ReadOnlyTestDictionary(TKey[] keys, TValue[] values)
         {
@@ -53,8 +53,8 @@ namespace Wintellect.PowerCollections.Tests
     // A simple read-write dictionary.
     internal class ReadWriteTestDictionary<TKey, TValue> : DictionaryBase<TKey, TValue>
     {
-        private List<TKey> keys;
-        private List<TValue> values;
+        private readonly List<TKey> keys;
+        private readonly List<TValue> values;
 
         public ReadWriteTestDictionary(TKey[] keys, TValue[] values)
         {

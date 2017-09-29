@@ -3477,8 +3477,8 @@ namespace Wintellect.PowerCollections.Tests
 
         private struct KeyWithOrder<T>: IComparable<KeyWithOrder<T>> where T: IComparable<T>
         {
-            public T value;
-            public int order;
+            public readonly T value;
+            public readonly int order;
 
             public KeyWithOrder(T value, int order)
             {
@@ -3858,7 +3858,7 @@ namespace Wintellect.PowerCollections.Tests
     /// </summary>
     internal class IListWrapper<T> : IList<T>
     {
-        private IList<T> wrapped;
+        private readonly IList<T> wrapped;
 
         public IListWrapper(IList<T> wrapped)
         {
@@ -3943,7 +3943,7 @@ namespace Wintellect.PowerCollections.Tests
     /// </summary>
     internal class ICollectionWrapper<T> : ICollection<T>
     {
-        private ICollection<T> wrapped;
+        private readonly ICollection<T> wrapped;
 
         public ICollectionWrapper(ICollection<T> wrapped)
         {
