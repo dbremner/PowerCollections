@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -500,7 +500,7 @@ namespace Wintellect.PowerCollections.Tests
             {
                 return value.ToString();
             }
-        
+
             #region IEquatable<GenComparable> Members
 
             bool IEquatable<GenComparable>.Equals(GenComparable other)
@@ -881,8 +881,8 @@ namespace Wintellect.PowerCollections.Tests
         {
             var d = new UniqueStuff();
 
-            d.objects = new InterfaceTests.Unique[] { 
-                new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5"), new InterfaceTests.Unique("6"), 
+            d.objects = new InterfaceTests.Unique[] {
+                new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5"), new InterfaceTests.Unique("6"),
                 new InterfaceTests.Unique("cool"), new InterfaceTests.Unique("elvis"), new InterfaceTests.Unique("hello"), new InterfaceTests.Unique("foo"), new InterfaceTests.Unique("world"), new InterfaceTests.Unique("elvis"), new InterfaceTests.Unique(null), null,
                 new InterfaceTests.Unique("7"), new InterfaceTests.Unique("8"), new InterfaceTests.Unique("9"), new InterfaceTests.Unique("10"), new InterfaceTests.Unique("11"), new InterfaceTests.Unique("12") };
             d.set = new Set<InterfaceTests.Unique> {

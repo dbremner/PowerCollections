@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -89,7 +89,7 @@ namespace Wintellect.PowerCollections.Tests {
             TestEnumerableElements(e, expected, null);
        }
 
-       public static void TestEnumerableElements<T>(IEnumerable<T> e, T[] expected, BinaryPredicate<T> equals) 
+       public static void TestEnumerableElements<T>(IEnumerable<T> e, T[] expected, BinaryPredicate<T> equals)
        {
            if (equals == null)
                equals = ObjectEquals;
@@ -122,7 +122,7 @@ namespace Wintellect.PowerCollections.Tests {
                for (index = 0; index < expected.Length; ++index) {
                    if (!found[index] && equals(expected[index], item))
                        break;
-               } 
+               }
                Assert.IsTrue(index < expected.Length);
                Assert.IsTrue(equals(expected[index], item));
                found[index] = true;
@@ -331,7 +331,7 @@ namespace Wintellect.PowerCollections.Tests {
         public static void TestReadonlyCollectionGeneric<T>(ICollection<T> coll, T[] valueArray, bool mustBeInOrder, string name, BinaryPredicate<T> equals)
         {
             TestCollectionGeneric(coll, valueArray, mustBeInOrder, equals);
-      
+
             // Test read-only flag.
             Assert.IsTrue(coll.IsReadOnly);
 
@@ -371,13 +371,13 @@ namespace Wintellect.PowerCollections.Tests {
             Assert.AreEqual(0, coll.Count);
 
             // Add all the items back.
-            foreach (T item in valueArray) 
+            foreach (T item in valueArray)
                 coll.Add(item);
             Assert.AreEqual(valueArray.Length, coll.Count);
             TestCollectionGeneric(coll, valueArray, mustBeInOrder, equals);
 
             // Remove all the items again.
-            foreach (T item in valueArray) 
+            foreach (T item in valueArray)
                 coll.Remove(item);
             Assert.AreEqual(0, coll.Count);
         }
@@ -392,7 +392,7 @@ namespace Wintellect.PowerCollections.Tests {
         /// <param name="values">values for the dictionary</param>
         /// <param name="nonKey">A TKey that isn't in the dictionary</param>
         /// <param name="mustBeInOrder">True if the entries must be in order.</param>
-        public static void TestDictionary<TKey, TValue>(IDictionary dict, TKey[] keys, TValue[] values, TKey nonKey, bool mustBeInOrder) 
+        public static void TestDictionary<TKey, TValue>(IDictionary dict, TKey[] keys, TValue[] values, TKey nonKey, bool mustBeInOrder)
         {
             // Check Count.
             Assert.AreEqual(keys.Length, dict.Count);
@@ -412,7 +412,7 @@ namespace Wintellect.PowerCollections.Tests {
             // Check synchronization
             Assert.IsFalse(dict.IsSynchronized);
             Assert.IsNotNull(dict.SyncRoot);
-            
+
             // Check Keys, Values collections
             TestCollection(dict.Keys, keys, mustBeInOrder);
             TestCollection(dict.Values, values, mustBeInOrder);
@@ -588,7 +588,7 @@ namespace Wintellect.PowerCollections.Tests {
             result = dict.TryGetValue(nonKey, out val);
             Assert.IsFalse(result);
             Assert.AreEqual(default(TValue), val);
-            
+
             Assert.ThrowsException<KeyNotFoundException>(() => {var unused = dict[nonKey];});
 
             // Check Keys, Values collections
@@ -645,7 +645,7 @@ namespace Wintellect.PowerCollections.Tests {
         /// <param name="mustBeInOrder">True if the entries must be in order.</param>
         /// <param name="nonKey">A TKey that isn't in the dictionary</param>
         /// <param name="name">Name of the dictionary, used in exceptions.</param>
-        public static void TestReadWriteDictionaryGeneric<TKey, TValue>(IDictionary<TKey,TValue> dict, TKey[] keys, TValue[] values, TKey nonKey, bool mustBeInOrder, string name, 
+        public static void TestReadWriteDictionaryGeneric<TKey, TValue>(IDictionary<TKey,TValue> dict, TKey[] keys, TValue[] values, TKey nonKey, bool mustBeInOrder, string name,
             BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
         {
             if (keyEquals == null)
@@ -1192,7 +1192,7 @@ namespace Wintellect.PowerCollections.Tests {
             TestReadOnlyDictionaryGeneric(dict, keys, values, nonKey, mustBeInOrder, name, keyEquals, valueCollectionEquals);
         }
 
-        public static void TestMultiDictionaryGeneric<TKey, TValue>(IDictionary<TKey, ICollection<TValue>> dict, TKey[] keys, TValue[][] values, TKey nonKey, TValue nonValue, bool mustBeInOrder, 
+        public static void TestMultiDictionaryGeneric<TKey, TValue>(IDictionary<TKey, ICollection<TValue>> dict, TKey[] keys, TValue[][] values, TKey nonKey, TValue nonValue, bool mustBeInOrder,
             BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
         {
             if (keyEquals == null)
@@ -1226,7 +1226,7 @@ namespace Wintellect.PowerCollections.Tests {
             {
                 if (x == null || y == null)
                     return x == y;
-                else 
+                else
                     return string.Equals(x.val, y.val);
             }
         }

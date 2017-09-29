@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -18,7 +18,7 @@ namespace Wintellect.PowerCollections.Tests
         private TKey[] keys;
         private TValue[] values;
 
-        public ReadOnlyTestDictionary(TKey[] keys, TValue[] values) 
+        public ReadOnlyTestDictionary(TKey[] keys, TValue[] values)
         {
             this.keys = keys;
             this.values = values;
@@ -56,7 +56,7 @@ namespace Wintellect.PowerCollections.Tests
         private List<TKey> keys;
         private List<TValue> values;
 
-        public ReadWriteTestDictionary(TKey[] keys, TValue[] values) 
+        public ReadWriteTestDictionary(TKey[] keys, TValue[] values)
         {
             this.keys = new List<TKey>(keys);
             this.values = new List<TValue>(values);
@@ -191,7 +191,7 @@ namespace Wintellect.PowerCollections.Tests
             }
 
             string expected = "{1->foo0bar, 3->foo1bar, 5->foo2bar, 7->foo3bar, 9->foo4bar, 11->foo5bar, 13->foo6bar, 15->foo7bar, 17->foo8bar, 19->foo9bar, 21->foo10bar, 23->foo11bar, 25->foo12bar, 27->foo13bar, 29->foo14bar, 31->foo15bar, 33->foo16bar, 35->foo17bar, 37->foo18bar, ...}";
- 
+
             var dict3 = new ReadWriteTestDictionary<int, string>(i_big,s_big);
             s = dict3.DebuggerDisplayString();
             Assert.AreEqual(expected, s);

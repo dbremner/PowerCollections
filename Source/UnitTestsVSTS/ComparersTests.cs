@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -21,7 +21,7 @@ namespace Wintellect.PowerCollections.Tests
     [TestClass]
     public class ComparersTests
     {
-        // Comparison function 
+        // Comparison function
         public static int CompareOddEven(int e1, int e2)
         {
             if ((e1 & 1) == 1 && (e2 & 1) == 0)

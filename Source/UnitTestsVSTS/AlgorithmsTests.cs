@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -1968,7 +1968,7 @@ namespace Wintellect.PowerCollections.Tests
                 s = new String(entry);
                 Assert.IsFalse(set.Contains(s));
                 set.Add(s);
-                
+
                 if (prev != null)
                     Assert.IsTrue(string.Compare(prev, s, StringComparison.CurrentCultureIgnoreCase) < 0);
             }
@@ -2309,7 +2309,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> first = EnumerableFromArray(new int[] { 1, 8, 4 });
             IEnumerable<string> second = EnumerableFromArray(new string[] { "foo", "bar" });
-            (int, string)[] expected = {(1, "foo"), (1, "bar"), (8, "foo"), 
+            (int, string)[] expected = {(1, "foo"), (1, "bar"), (8, "foo"),
                 (8, "bar"), (4, "foo"), (4, "bar")};
 
             InterfaceTests.TestEnumerableElementsAnyOrder(Algorithms.CartesianProduct(first, second), expected);
@@ -3806,7 +3806,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual("[[1; 2; 3]]", s);
 
             IEnumerable<object> coll7 = EnumerableFromArray(new object[] {
-                "hello", 
+                "hello",
                 8,
                 EnumerableFromArray(new int[] {1,2,3}),
                 -8.9});
@@ -3829,14 +3829,14 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual("null", Algorithms.ToString<string,int>(null));
 
             var dict1 = new OrderedDictionary<string, int>();
-            for (int i = 0; i < s_array.Length; ++i) 
+            for (int i = 0; i < s_array.Length; ++i)
                 dict1.Add(s_array[i], i_array[i]);
 
             string s = Algorithms.ToString(dict1);
             Assert.AreEqual(s, "{null->6, Clapton->5, Eric->1, The->5, World->19}", s);
 
             var dict2 = new OrderedDictionary<string, object>();
-            for (int i = 0; i < s_array.Length; ++i) 
+            for (int i = 0; i < s_array.Length; ++i)
                 dict2.Add(s_array[i], o_array[i]);
 
             s = Algorithms.ToString(dict2);

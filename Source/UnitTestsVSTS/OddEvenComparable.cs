@@ -32,7 +32,7 @@ namespace Wintellect.PowerCollections.Tests
 
         public override bool Equals(object obj)
         {
-            if (obj is OddEvenComparable) 
+            if (obj is OddEvenComparable)
                 return CompareTo((OddEvenComparable) obj) == 0;
             else
                 return false;

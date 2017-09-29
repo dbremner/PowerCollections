@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -25,7 +25,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void RandomAddDelete()
         {
-            const int SIZE = 5000; 
+            const int SIZE = 5000;
             int[] count = new int[SIZE];
             var rand = new Random(3);
             var bag1 = new Bag<int>();
@@ -962,8 +962,8 @@ namespace Wintellect.PowerCollections.Tests
             var d = new UniqueStuff();
             InterfaceTests.Unique u1 = new InterfaceTests.Unique("cool"), u2 = new InterfaceTests.Unique("elvis");
 
-            d.objects = new InterfaceTests.Unique[] { 
-                new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5"), new InterfaceTests.Unique("6"), 
+            d.objects = new InterfaceTests.Unique[] {
+                new InterfaceTests.Unique("1"), new InterfaceTests.Unique("2"), new InterfaceTests.Unique("3"), new InterfaceTests.Unique("4"), new InterfaceTests.Unique("5"), new InterfaceTests.Unique("6"),
                 u1, u2, new InterfaceTests.Unique("hello"), new InterfaceTests.Unique("foo"), new InterfaceTests.Unique("world"), u2, new InterfaceTests.Unique(null), null,
                 new InterfaceTests.Unique("7"), new InterfaceTests.Unique("8"), new InterfaceTests.Unique("9"), u1, u2, new InterfaceTests.Unique("3") };
             d.bag = new Bag<InterfaceTests.Unique> {

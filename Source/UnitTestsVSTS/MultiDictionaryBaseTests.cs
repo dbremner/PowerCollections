@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -112,7 +112,7 @@ namespace Wintellect.PowerCollections.Tests
 
         protected override IEnumerator<TKey> EnumerateKeys()
         {
-            for (int i = 0; i < keys.Count; ++i) 
+            for (int i = 0; i < keys.Count; ++i)
                 yield return keys[i];
         }
     }
@@ -395,10 +395,10 @@ namespace Wintellect.PowerCollections.Tests
         private ReadWriteTestMultiDictionary<string, int> CreateTestReadWriteDictionary()
         {
             string[] s_array = new string[] { "Eric", "Clapton", "Rules", "The", "World" };
-            int[][] i_array = new int[][] { new int[] { 1, 9, 11 }, 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 1, 2, 3, 4, 5, 6}, 
+            int[][] i_array = new int[][] { new int[] { 1, 9, 11 },
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 1, 2, 3, 4, 5, 6},
                                         new int[] { 8}};
             var s_list = new List<string>(s_array);
             var i_list = new List<List<int>>();
@@ -412,10 +412,10 @@ namespace Wintellect.PowerCollections.Tests
         private ReadOnlyTestMultiDictionary<string, int> CreateTestReadOnlyDictionary()
         {
             string[] s_array = new string[] { "Eric", "Clapton", "Rules", "The", "World" };
-            int[][] i_array = new int[][] { new int[] { 1, 9, 11 }, 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 1, 2, 3, 4, 5, 6}, 
+            int[][] i_array = new int[][] { new int[] { 1, 9, 11 },
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 1, 2, 3, 4, 5, 6},
                                         new int[] { 8}};
             var s_list = new List<string>(s_array);
             var i_list = new List<List<int>>();
@@ -430,10 +430,10 @@ namespace Wintellect.PowerCollections.Tests
         public void ReadWriteDictionary()
         {
             string[] s_array = new string[] { "Eric", "Clapton", "Rules", "The", "World" };
-            int[][] i_array = new int[][] { new int[] { 1, 9, 11 }, 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 1, 2, 3, 4, 5, 6}, 
+            int[][] i_array = new int[][] { new int[] { 1, 9, 11 },
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 1, 2, 3, 4, 5, 6},
                                         new int[] { 8}};
 
             ReadWriteTestMultiDictionary<string, int> dict = CreateTestReadWriteDictionary();
@@ -448,10 +448,10 @@ namespace Wintellect.PowerCollections.Tests
         public void ReadOnlyDictionary()
         {
             string[] s_array = new string[] { "Eric", "Clapton", "Rules", "The", "World" };
-            int[][] i_array = new int[][] { new int[] { 1, 9, 11 }, 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 1, 2, 3, 4, 5, 6}, 
+            int[][] i_array = new int[][] { new int[] { 1, 9, 11 },
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 1, 2, 3, 4, 5, 6},
                                         new int[] { 8}};
 
             ReadOnlyTestMultiDictionary<string, int> dict = CreateTestReadOnlyDictionary();
@@ -480,11 +480,11 @@ namespace Wintellect.PowerCollections.Tests
             dict.Add("Bizzle", 8);
 
             string[] s_array = new string[] { "Eric", "Clapton", "Rules", "The", "World", "Bizzle", "Fizzle", "Gizzle" };
-            int[][] i_array = new int[][] { 
-                                        new int[] { 1, 9, 11, 16 }, 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4, 9, -8, 18}, 
-                                        new int[] { 1, 2, 3, 4, 5, 6, 11, 22}, 
+            int[][] i_array = new int[][] {
+                                        new int[] { 1, 9, 11, 16 },
+                                        new int[] { 6, 10},
+                                        new int[] { 4, 9, -8, 18},
+                                        new int[] { 1, 2, 3, 4, 5, 6, 11, 22},
                                         new int[] { 8},
                                         new int[] {3, 2, 1, 8},
                                         new int[] {1, 11},
@@ -504,11 +504,11 @@ namespace Wintellect.PowerCollections.Tests
             dict.AddMany("Dazzle", AlgorithmsTests.EnumerableFromArray(new int[] { }));
 
             string[] s_array = new string[] { "Eric", "Clapton", "Rules", "The", "World", "Bizzle" };
-            int[][] i_array = new int[][] { 
-                                        new int[] { 1, 9, 11 }, 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4, 9, -8, 18}, 
-                                        new int[] { 1, 2, 3, 4, 5, 6}, 
+            int[][] i_array = new int[][] {
+                                        new int[] { 1, 9, 11 },
+                                        new int[] { 6, 10},
+                                        new int[] { 4, 9, -8, 18},
+                                        new int[] { 1, 2, 3, 4, 5, 6},
                                         new int[] { 8},
                                         new int[] {3, 2, 1}};
 
@@ -531,8 +531,8 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict.Remove("The", 11));
 
             string[] s_array = new string[] { "Clapton", "The" };
-            int[][] i_array = new int[][] { 
-                                        new int[] { 6, 10}, 
+            int[][] i_array = new int[][] {
+                                        new int[] { 6, 10},
                                         new int[] { 1, 3, 4, 5}};
 
             CheckOrderedMultiDictionaryContents(dict, s_array, i_array, "foo", 113, null, null);
@@ -550,10 +550,10 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict.Remove(new KeyValuePair<string, ICollection<int>>("foo", new int[] { 0, 1 })));
 
             string[] s_array = new string[] { "Clapton", "Rules", "The", "World" };
-            int[][] i_array = new int[][] { 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 1, 3, 5, 6}, 
+            int[][] i_array = new int[][] {
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 1, 3, 5, 6},
                                         new int[] { 8}};
 
             CheckOrderedMultiDictionaryContents(dict, s_array, i_array, "foo", 113, null, null);
@@ -571,10 +571,10 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(0, dict.RemoveMany("foo", new int[] { 0, 1 }));
 
             string[] s_array = new string[] { "Clapton", "Rules", "The", "World" };
-            int[][] i_array = new int[][] { 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 1, 3, 5, 6}, 
+            int[][] i_array = new int[][] {
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 1, 3, 5, 6},
                                         new int[] { 8}};
 
             CheckOrderedMultiDictionaryContents(dict, s_array, i_array, "foo", 113, null, null);
@@ -590,9 +590,9 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict.Replace("Fizzle", 100));
 
             string[] s_array = new string[] { "Clapton", "Rules", "World", "Eric", "The", "Fizzle" };
-            int[][] i_array = new int[][] { 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
+            int[][] i_array = new int[][] {
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
                                         new int[] { 8},
                                         new int[] {18},
                                         new int[] {7},
@@ -612,9 +612,9 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict.ReplaceMany("Fizzle", new int[] { 100, 2 }));
 
             string[] s_array = new string[] { "Clapton", "Rules", "World", "Eric", "Fizzle" };
-            int[][] i_array = new int[][] { 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
+            int[][] i_array = new int[][] {
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
                                         new int[] { 8},
                                         new int[] {18, 13, 33},
                                         new int[] {100, 2}};
@@ -636,10 +636,10 @@ namespace Wintellect.PowerCollections.Tests
             valueColl.Add(12);
 
             string[] s_array = new string[] { "Eric", "Clapton", "Rules", "The", "World" };
-            int[][] i_array = new int[][] { new int[] { 9, 11, -4, 12 }, 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 1, 2, 3, 4, 5, 6}, 
+            int[][] i_array = new int[][] { new int[] { 9, 11, -4, 12 },
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 1, 2, 3, 4, 5, 6},
                                         new int[] { 8}};
             CheckOrderedMultiDictionaryContents(dict, s_array, i_array, "foo", 113, null, null);
 
@@ -660,10 +660,10 @@ namespace Wintellect.PowerCollections.Tests
             valueColl.Add(5);
 
             s_array = new string[] { "Clapton", "Rules", "World", "Foo"};
-            i_array = new int[][] { 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 8}, 
+            i_array = new int[][] {
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 8},
                                         new int[] { 3, 4, 5}};
             CheckOrderedMultiDictionaryContents(dict, s_array, i_array, "fizzle", 113, null, null);
 
@@ -688,10 +688,10 @@ namespace Wintellect.PowerCollections.Tests
         public void ConvertToString()
         {
             string[] s_array = { "Eric", "null", "Rules", "The", "World" };
-            int[][] i_array = { new int[] { 1, 9, 11 }, 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 1, 2, 3, 4, 5, 6}, 
+            int[][] i_array = { new int[] { 1, 9, 11 },
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 1, 2, 3, 4, 5, 6},
                                         new int[] { 8}};
             var s_list = new List<string>(s_array);
             var i_list = new List<List<int>>();
@@ -719,10 +719,10 @@ namespace Wintellect.PowerCollections.Tests
         public void DebuggerDisplay()
         {
             string[] s_array = { "Eric", "null", "Rules", "The", "World" };
-            int[][] i_array = { new int[] { 1, 9, 11 }, 
-                                        new int[] { 6, 10}, 
-                                        new int[] { 4}, 
-                                        new int[] { 1, 2, 3, 4, 5, 6}, 
+            int[][] i_array = { new int[] { 1, 9, 11 },
+                                        new int[] { 6, 10},
+                                        new int[] { 4},
+                                        new int[] { 1, 2, 3, 4, 5, 6},
                                         new int[] { 8}};
             var s_list = new List<string>(s_array);
             var i_list = new List<List<int>>();
@@ -762,7 +762,7 @@ namespace Wintellect.PowerCollections.Tests
 
             s_list = new List<string>(dict5.Keys);
             i_list = new List<List<int>>();
-            foreach (string key in s_list) 
+            foreach (string key in s_list)
                 i_list.Add(new List<int>(dict5[key]));
 
             var dict6 = new ReadOnlyTestMultiDictionary<string, int>(s_list, i_list);

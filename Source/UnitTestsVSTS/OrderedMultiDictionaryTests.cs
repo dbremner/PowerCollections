@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -298,7 +298,7 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElements(dict1.Keys, new string[] { "FOO" });
             InterfaceTests.TestEnumerableElements(dict1["fOo"], new double[] { -9, 1.2, 4, 8, 9.8 });
             InterfaceTests.TestEnumerableElements
-                (dict1.KeyValuePairs, new KeyValuePair<string, double>[] { 
+                (dict1.KeyValuePairs, new KeyValuePair<string, double>[] {
                             new KeyValuePair<string,double>("FOO", -9),
                             new KeyValuePair<string,double>("foo", 1.2),
                             new KeyValuePair<string,double>("foo", 4),
@@ -320,7 +320,7 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElements(dict1.Keys, new string[] { "a", "foo"});
             InterfaceTests.TestEnumerableElements(dict1["fOo"], new double[] { -9, -9, -9, 1.2, 4, 8, 9.8, 9.8 });
             InterfaceTests.TestEnumerableElements
-                (dict1.KeyValuePairs, new KeyValuePair<string, double>[] { 
+                (dict1.KeyValuePairs, new KeyValuePair<string, double>[] {
                             new KeyValuePair<string,double>("a", 1),
                             new KeyValuePair<string,double>("a", 2),
                             new KeyValuePair<string,double>("a", 2),
@@ -1116,7 +1116,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         class NotCloneable: IComparable<NotCloneable>
-        { 
+        {
             public int  CompareTo(NotCloneable other)
             {
  	            return 0;
@@ -1372,7 +1372,7 @@ namespace Wintellect.PowerCollections.Tests
 
                 Assert.ThrowsException<ArgumentException>(() => dict.Add(nonKey, nonValue));
             }
-            
+
             // Test IDictionary<TKey,IEnumerable<TValue>> implementation
             InterfaceTests.TestReadWriteMultiDictionaryGeneric(dict, keys, values, nonKey, nonValue, true, "OrderedMultiDictionary", null, null);
         }

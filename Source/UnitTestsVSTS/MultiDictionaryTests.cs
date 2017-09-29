@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -259,7 +259,7 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1.Keys, new string[] { "foo" });
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1["fOo"], new double[] { -9, 1.2, 4, 8, 9.8 });
             InterfaceTests.TestEnumerableElementsAnyOrder
-                (dict1.KeyValuePairs, new KeyValuePair<string, double>[] { 
+                (dict1.KeyValuePairs, new KeyValuePair<string, double>[] {
                             new KeyValuePair<string,double>("foo", -9),
                             new KeyValuePair<string,double>("foo", 1.2),
                             new KeyValuePair<string,double>("foo", 4),
@@ -281,7 +281,7 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1.Keys, new string[] { "a", "foo" });
             InterfaceTests.TestEnumerableElementsAnyOrder(dict1["fOo"], new double[] { -9, -9, -9, 1.2, 4, 8, 9.8, 9.8 });
             InterfaceTests.TestEnumerableElementsAnyOrder
-                (dict1.KeyValuePairs, new KeyValuePair<string, double>[] { 
+                (dict1.KeyValuePairs, new KeyValuePair<string, double>[] {
                             new KeyValuePair<string,double>("a", 1),
                             new KeyValuePair<string,double>("a", 2),
                             new KeyValuePair<string,double>("a", 2),
@@ -1230,9 +1230,9 @@ namespace Wintellect.PowerCollections.Tests
 
             var result = (MultiDictionary<string, double>)InterfaceTests.SerializeRoundTrip(d);
 
-            CheckMultiDictionaryContents(result, 
+            CheckMultiDictionaryContents(result,
                 new string[] {"FOO", "WORLD", "Hello", "eLVis", null},
-                new double[][] {new double[]{7,7}, new double[]{-9.5}, new double[] {11,12,13}, new double[] {0.9, 1.4}, new double[] {1.4}}, 
+                new double[][] {new double[]{7,7}, new double[]{-9.5}, new double[] {11,12,13}, new double[] {0.9, 1.4}, new double[] {1.4}},
                 "zippy", 123, StringComparer.InvariantCultureIgnoreCase.Equals, null);
         }
 
@@ -1288,7 +1288,7 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsFalse(object.Equals(result.values[i], d.values[i]));
             }
         }
-        
+
     }
 }
 

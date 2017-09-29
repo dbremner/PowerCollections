@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -400,7 +400,7 @@ namespace Wintellect.PowerCollections.Tests
             set1.RemoveAll(AbsOver5);
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new double[] { -0.04, 1.2, 1.78, 4.5 }, true, null);
 
-            set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }); 
+            set1 = new OrderedSet<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
             set1.RemoveAll(IsZero);
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new double[] { -7.6, -0.04, 1.2, 1.78, 4.5, 7.6, 10.11, 187.4 }, true, null);
 

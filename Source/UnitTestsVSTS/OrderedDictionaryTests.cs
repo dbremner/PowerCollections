@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -39,7 +39,7 @@ namespace Wintellect.PowerCollections.Tests
 		/// </summary>
 		/// <param name="seed">Seed for random number generators</param>
 		/// <param name="length">Length of array</param>
-		/// <param name="max">Maximum value of number. Should be much 
+		/// <param name="max">Maximum value of number. Should be much
 		/// greater than length.</param>
 		/// <param name="allowDups">Whether to allow duplicate elements.</param>
 		/// <returns></returns>
@@ -114,7 +114,7 @@ namespace Wintellect.PowerCollections.Tests
 		}
 
 		/// <summary>
-		/// Insert a bunch of entries into the tree, make sure that the count is correct, 
+		/// Insert a bunch of entries into the tree, make sure that the count is correct,
 		/// and that they iterate correct in order.
 		/// </summary>
 		[TestMethod]
@@ -209,7 +209,7 @@ namespace Wintellect.PowerCollections.Tests
 #endif
 
         /// <summary>
-        /// Test updating. 
+        /// Test updating.
         /// </summary>
         [TestMethod]
         public void Update()
@@ -314,7 +314,7 @@ namespace Wintellect.PowerCollections.Tests
 			Assert.IsTrue(b);
 			b = dict1.Remove(4.67);
 			Assert.IsFalse(b);
-			
+
 			InterfaceTests.TestReadonlyCollectionGeneric(dict1.Keys, new double[] { double.NegativeInfinity, double.MaxValue, double.PositiveInfinity }, true, "KeysCollection");
 			InterfaceTests.TestReadonlyCollectionGeneric(dict1.Values, new int[] { 421, 444, 0 }, true, "ValuesCollection");
 		}
@@ -356,7 +356,7 @@ namespace Wintellect.PowerCollections.Tests
         public void GetValueElseAdd()
         {
             var dict1 = new OrderedDictionary<double, int>();
-            bool b; 
+            bool b;
             int val;
 
             val = 12;
@@ -425,7 +425,7 @@ namespace Wintellect.PowerCollections.Tests
 		}
 
 		/// <summary>
-		/// Test ContainsKey. Make sure it returns the right valuesl. 
+		/// Test ContainsKey. Make sure it returns the right valuesl.
 		/// </summary>
 		[TestMethod]
 		public void ContainsKey()
@@ -488,7 +488,7 @@ namespace Wintellect.PowerCollections.Tests
 					else
 						return 0;
 				}
-				else 
+				else
 					throw new ArgumentException(Strings.ArgOfWrongType, nameof(other));
 			}
 		}
@@ -645,7 +645,7 @@ namespace Wintellect.PowerCollections.Tests
 
 			dict1.Remove(null);
 			Assert.IsFalse(dict1.ContainsKey(null));
-		}	
+		}
 
 		/// <summary>
 		/// Check that enumerators are enumerating the correct keys and values.
@@ -904,7 +904,7 @@ namespace Wintellect.PowerCollections.Tests
                 ["p"] = 1234
             };
 
-            CheckView(dict1.Range("a", true, "z", false), 
+            CheckView(dict1.Range("a", true, "z", false),
                                         new string[] { "a", "b", "foo", "hello", "p", "q", "r4", "ww" },
                                         new int[] { 11, 7, 23, 198, 1234, 199, 9, -9 },
                                         "");
@@ -1080,9 +1080,9 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestCollection((ICollection)dict1,
                 new DictionaryEntry[] {
-                    new DictionaryEntry(3, "foo"), 
-                    new DictionaryEntry(8, "bar"), 
-                    new DictionaryEntry(9, "baz"), 
+                    new DictionaryEntry(3, "foo"),
+                    new DictionaryEntry(8, "bar"),
+                    new DictionaryEntry(9, "baz"),
                     new DictionaryEntry(12, "biff") },
                 true);
         }
@@ -1098,7 +1098,7 @@ namespace Wintellect.PowerCollections.Tests
                 [3] = "foo"
             };
 
-            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<KeyValuePair<int, string>>)dict1, 
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<KeyValuePair<int, string>>)dict1,
                 new KeyValuePair<int,string>[] {
                     Kvp.Of(3, "foo"),
                     Kvp.Of(8, "bar"),

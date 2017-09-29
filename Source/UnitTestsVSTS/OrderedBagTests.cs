@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -297,8 +297,8 @@ namespace Wintellect.PowerCollections.Tests
             bool b;
 
             b = bag1.Remove("Eric"); Assert.IsFalse(b);
-            bag1.Add("hello"); 
-            bag1.Add("foo"); 
+            bag1.Add("hello");
+            bag1.Add("foo");
             bag1.Add(null);
             bag1.Add(null);
             bag1.Add("HELLO");
@@ -310,10 +310,10 @@ namespace Wintellect.PowerCollections.Tests
             b = bag1.Remove(null); Assert.IsTrue(b);
             b = bag1.Remove(null); Assert.IsFalse(b);
             bag1.Add("Hello");
-            bag1.Add("Eric"); 
-            bag1.Add(null); 
+            bag1.Add("Eric");
+            bag1.Add(null);
             b = bag1.Remove(null); Assert.IsTrue(b);
-            bag1.Add("ERIC"); 
+            bag1.Add("ERIC");
             b = bag1.Remove("eRic"); Assert.IsTrue(b);
             b = bag1.Remove("eRic"); Assert.IsTrue(b);
             bag1.Clear();
@@ -1289,7 +1289,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var result = (OrderedBag<string>)InterfaceTests.SerializeRoundTrip(d);
 
-            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result, 
+            InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result,
                 new string[] { null, null, "1", "10", "11", "12", "2", "3", "4", "5", "6", "7", "8", "9", "cool", "eLVIs", "elvis", "foo", "hello", "Hello", "WORLD" }, true);
         }
 

@@ -2,7 +2,7 @@
 // Written by Peter Golde
 // Copyright (c) 2004-2007, Wintellect
 //
-// Use and restribution of this code is subject to the license agreement 
+// Use and restribution of this code is subject to the license agreement
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
@@ -110,8 +110,8 @@ namespace Wintellect.PowerCollections.Tests {
 		private void DeletePrintValidate(string key, int data, bool first) {
 			TestItem itemFound;
 			int countBefore = tree.ElementCount;
-			bool success = tree.Delete(new TestItem(key), 
-				                                 first ? true : false, 
+			bool success = tree.Delete(new TestItem(key),
+				                                 first ? true : false,
 				                                 out itemFound);
 #if DEBUG
 			tree.Print();
@@ -329,14 +329,14 @@ namespace Wintellect.PowerCollections.Tests {
 			InsertPrintValidate("a2", 9);
 			InsertPrintValidate("a7", 10);
 			InsertPrintValidate("i", 11);
-			InsertPrintValidate("h", 112);		
+			InsertPrintValidate("h", 112);
 
 			DeletePrintValidate("m", 101);
 			DeletePrintValidate("b", 102);
 			DeletePrintValidate("t", 103);
 			DeletePrintValidate("o", 104);
 			DeletePrintValidate("z", 105);
-			DeletePrintValidate("h", 112);		
+			DeletePrintValidate("h", 112);
 			DeletePrintValidate("g", 106);
 			DeletePrintValidate("a5", 107);
 			DeletePrintValidate("c", 8);
@@ -444,7 +444,7 @@ namespace Wintellect.PowerCollections.Tests {
 				Assert.AreEqual(item.key, keys[tree.ElementCount - i - 1], "Keys weren't enumerated in reverse order");
 				++i;
 			}
-		
+
 		}
 
         private void CheckEnumerateRange(RedBlackTree<TestItem> tree, bool useFirst, string first, bool useLast, string last, string[] keys)
@@ -794,7 +794,7 @@ namespace Wintellect.PowerCollections.Tests {
 			FindOnlyKey("a7", 10);
 			FindOnlyKey("i", 211);
 			FindOnlyKey("h", 212);
-		}	
+		}
 
 		/// <summary>
 		/// Insert values into tree using "do-nothing" policy and then find values in the tree.
@@ -845,7 +845,7 @@ namespace Wintellect.PowerCollections.Tests {
 			FindOnlyKey("a7", 10);
 			FindOnlyKey("i", 11);
 			FindOnlyKey("h", 112);
-		}	
+		}
 
 		/// <summary>
 		/// Insert values into tree using insert-first policy and then find values in the tree.
@@ -895,7 +895,7 @@ namespace Wintellect.PowerCollections.Tests {
 			FindLastKey("a7", 10);
 			FindLastKey("i", 11);
 			FindLastKey("h", 112);
-			
+
 			FindFirstKey("m", 201);
 			FindFirstKey("b", 202);
 			FindFirstKey("t", 203);
@@ -911,7 +911,7 @@ namespace Wintellect.PowerCollections.Tests {
 
             CheckAllIndices();
 		}
-	
+
 		/// <summary>
 		/// Insert values into tree using insert-last policy and then find values in the tree.
 		/// </summary>
@@ -960,7 +960,7 @@ namespace Wintellect.PowerCollections.Tests {
 			FindFirstKey("a7", 10);
 			FindFirstKey("i", 11);
 			FindFirstKey("h", 112);
-			
+
 			FindLastKey("m", 201);
 			FindLastKey("b", 202);
 			FindLastKey("t", 203);
@@ -973,10 +973,10 @@ namespace Wintellect.PowerCollections.Tests {
 			FindLastKey("a7", 10);
 			FindLastKey("i", 211);
 			FindLastKey("h", 212);
-        
+
             CheckAllIndices();
         }
-	
+
 		/// <summary>
 		/// Insert values into tree delete values in the tree, making sure first/last works.
 		/// </summary>
@@ -1023,7 +1023,7 @@ namespace Wintellect.PowerCollections.Tests {
 			DeletePrintValidate("z", 305, true);
 			DeletePrintValidate("z", 205, true);
 			DeletePrintValidate("z", 105, true);
-        
+
             CheckAllIndices();
         }
 
@@ -1119,7 +1119,7 @@ namespace Wintellect.PowerCollections.Tests {
 		/// </summary>
 		/// <param name="seed">Seed for random number generators</param>
 		/// <param name="length">Length of array</param>
-		/// <param name="max">Maximum value of number. Should be much 
+		/// <param name="max">Maximum value of number. Should be much
 		/// greater than length.</param>
 		/// <param name="allowDups">Whether to allow duplicate elements.</param>
 		/// <returns></returns>
@@ -1203,7 +1203,7 @@ namespace Wintellect.PowerCollections.Tests {
 		}
 
 		/// <summary>
-		/// Insert LENGTH items in random order into the tree using the "replace" policy, 
+		/// Insert LENGTH items in random order into the tree using the "replace" policy,
 		/// and then find them all.
 		/// Do this ITER times.
 		/// </summary>
@@ -1222,10 +1222,10 @@ namespace Wintellect.PowerCollections.Tests {
 					FindOnlyKey(StringFromInt(a[el]), Array.LastIndexOf(a, a[el]));
 				}
 			}
-		}	
+		}
 
 		/// <summary>
-		/// Insert LENGTH items in random order into the tree using the "replace" policy, 
+		/// Insert LENGTH items in random order into the tree using the "replace" policy,
 		/// and then find them all.
 		/// Do this ITER times.
 		/// </summary>
@@ -1245,10 +1245,10 @@ namespace Wintellect.PowerCollections.Tests {
 					FindOnlyKey(StringFromInt(a[el]), Array.IndexOf(a, a[el]));
 				}
 			}
-		}	
+		}
 
 		/// <summary>
-		/// Insert LENGTH items in random order into the tree using the "replace" policy, 
+		/// Insert LENGTH items in random order into the tree using the "replace" policy,
 		/// and then find them all.
 		/// Do this ITER times.
 		/// </summary>
@@ -1269,10 +1269,10 @@ namespace Wintellect.PowerCollections.Tests {
 					FindLastKey(StringFromInt(a[el]), Array.IndexOf(a, a[el]));
 				}
 			}
-		}		
+		}
 
 		/// <summary>
-		/// Insert LENGTH items in random order into the tree using the "replace" policy, 
+		/// Insert LENGTH items in random order into the tree using the "replace" policy,
 		/// and then find them all.
 		/// Do this ITER times.
 		/// </summary>
@@ -1294,7 +1294,7 @@ namespace Wintellect.PowerCollections.Tests {
 				}
 			}
 		}
-		
+
 		/// <summary>
 		/// Insert and delete items from the tree at random, finally removing all
 		/// the items that are in the tree. Validate the tree after each step.
@@ -1305,7 +1305,7 @@ namespace Wintellect.PowerCollections.Tests {
 				bool[] a = new bool[LENGTH];
 				var rand = new Random(iter + 5000);
 				TestItem itemFound;
-			
+
 				for (int i = 0; i < LENGTH * 10; ++i) {
 					int v = rand.Next(LENGTH);
 					string key = StringFromInt(v);
