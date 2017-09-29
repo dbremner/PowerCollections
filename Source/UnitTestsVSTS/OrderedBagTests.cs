@@ -1284,7 +1284,6 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result,
                 new string[] { null, null, "1", "10", "11", "12", "2", "3", "4", "5", "6", "7", "8", "9", "cool", "eLVIs", "elvis", "foo", "hello", "Hello", "WORLD" }, true);
         }
-
     }
 }
 

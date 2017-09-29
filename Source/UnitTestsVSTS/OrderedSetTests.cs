@@ -979,7 +979,6 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.IsTrue(e1.Current.Equals(e2.Current));
                 Assert.IsFalse(e1.Current.Identical(e2.Current));
             }
-
         }
 
         [TestMethod]
@@ -1164,7 +1163,6 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result, new string[] { null, "1", "10", "11", "12", "2", "3", "4", "5", "6", "7", "8", "9", "cool", "elvis", "foo", "hello", "world" }, true, StringComparer.InvariantCultureIgnoreCase.Equals);
         }
-
     }
 }
 

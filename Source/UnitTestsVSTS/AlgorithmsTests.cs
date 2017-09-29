@@ -2007,7 +2007,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
             IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
-            
+
             // Algorithms work different depending on sizes, so try both ways.
             IEnumerable<int> result = Algorithms.SetIntersection(enumOdds, enumDigits);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 3, 5, 7, 3, 1, 7, 9, 3 });
@@ -2026,7 +2026,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
             IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
-            
+
             // Algorithms work different depending on sizes, so try both ways.
             IEnumerable<int> result = Algorithms.SetUnion(enumOdds, enumDigits);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 1, 1, 1, 2, 2, 3, 3, 3, 4, 5, 5, 6, 7, 7, 7, 7, 7, 7, 8, 9, 11, 11, 13, 15, 17, 17, 19 });
@@ -2045,7 +2045,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
             IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
-            
+
             // Algorithms work different depending on sizes, so try both ways.
             IEnumerable<int> result = Algorithms.SetDifference(enumOdds, enumDigits);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 1, 1, 11, 11, 13, 15, 17, 17, 19 });
@@ -2066,7 +2066,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
             IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
-            
+
             // Algorithms work different depending on sizes, so try both ways.
             IEnumerable<int> result = Algorithms.SetSymmetricDifference(enumOdds, enumDigits);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 1, 1, 2, 2, 4, 5, 6, 7, 7, 7, 7, 8, 11, 11, 13, 15, 17, 17, 19 });

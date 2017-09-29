@@ -974,7 +974,6 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsFalse(object.Equals(result.objects[i], d.objects[i]));
             }
         }
-
     }
 }
 

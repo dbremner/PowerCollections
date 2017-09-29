@@ -124,7 +124,6 @@ namespace Wintellect.PowerCollections.Tests
             var coll6 = new ReadOnlyTestCollection<int>(new int[] { 1, 2, 3 });
             s = coll6.ToString();
             Assert.AreEqual("{1,2,3}", s);
-
         }
 
         [TestMethod]

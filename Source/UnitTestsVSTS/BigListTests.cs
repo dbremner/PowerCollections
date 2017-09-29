@@ -1244,7 +1244,6 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void MultiCopies()
         {
-            
             // Check empty special case.
             BigList<int> list1 = new BigList<int>(new int[] { 1, 2, 3 }, 0);
             InterfaceTests.TestListGeneric(list1, new int[0], null);
