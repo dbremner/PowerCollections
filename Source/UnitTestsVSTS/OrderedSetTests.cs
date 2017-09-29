@@ -622,6 +622,8 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.ThrowsException<ArgumentNullException>(() => set1.IsSubsetOf(null));
             Assert.ThrowsException<ArgumentNullException>(() => set1.IsProperSubsetOf(null));
+
+            Assert.ThrowsException<ArgumentNullException>(() => set1.IsSupersetOf(null));
         }
 
         [TestMethod]
