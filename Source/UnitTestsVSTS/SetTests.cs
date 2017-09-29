@@ -137,9 +137,7 @@ namespace Wintellect.PowerCollections.Tests
         public void Remove()
         {
             var set1 = new Set<string>(StringComparer.InvariantCultureIgnoreCase);
-            bool b;
-
-            b = set1.Remove("Eric"); Assert.IsFalse(b);
+            bool b = set1.Remove("Eric"); Assert.IsFalse(b);
             b = set1.Add("hello"); Assert.IsFalse(b);
             b = set1.Add("foo"); Assert.IsFalse(b);
             b = set1.Add(""); Assert.IsFalse(b);
@@ -439,9 +437,7 @@ namespace Wintellect.PowerCollections.Tests
         public void CustomIComparer()
         {
             var set1 = new Set<int>(new ModularComparer(5));
-            bool b;
-
-            b = set1.Add(4); Assert.IsFalse(b);
+            bool b = set1.Add(4); Assert.IsFalse(b);
             b = set1.Add(11); Assert.IsFalse(b);
             b = set1.Add(9); Assert.IsTrue(b);
             b = set1.Add(15); Assert.IsFalse(b);
@@ -510,9 +506,7 @@ namespace Wintellect.PowerCollections.Tests
         public void GenericIEquatable()
         {
             var set1 = new Set<GenComparable>();
-            bool b;
-
-            b = set1.Add(new GenComparable(4)); Assert.IsFalse(b);
+            bool b = set1.Add(new GenComparable(4)); Assert.IsFalse(b);
             b = set1.Add(new GenComparable(11)); Assert.IsFalse(b);
             b = set1.Add(new GenComparable(4)); Assert.IsTrue(b);
             b = set1.Add(new GenComparable(15)); Assert.IsFalse(b);

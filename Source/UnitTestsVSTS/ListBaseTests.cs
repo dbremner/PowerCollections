@@ -707,9 +707,7 @@ namespace Wintellect.PowerCollections.Tests
         public void IndexOf()
         {
             var list = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
-            int index;
-
-            index = list.IndexOf(1);
+            int index = list.IndexOf(1);
             Assert.AreEqual(2, index);
 
             index = list.IndexOf(4);
@@ -775,9 +773,7 @@ namespace Wintellect.PowerCollections.Tests
         public void IndexOf2()
         {
             var list = new ReadWriteArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
-            int index;
-
-            index = list.IndexOf(new MyDouble(1));
+            int index = list.IndexOf(new MyDouble(1));
             Assert.AreEqual(2, index);
 
             index = list.IndexOf(new MyDouble(1.1));
@@ -801,9 +797,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             //                                                                        0  1  2  3  4  5  6  7   8  9 10 11 12 13 14
             var list = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
-            int index;
-
-            index = list.LastIndexOf(1);
+            int index = list.LastIndexOf(1);
             Assert.AreEqual(13, index);
 
             index = list.LastIndexOf(4);
@@ -863,9 +857,7 @@ namespace Wintellect.PowerCollections.Tests
         public void LastIndexOf2()
         {
             var list = new ReadWriteArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
-            int index;
-
-            index = list.LastIndexOf(new MyDouble(1));
+            int index = list.LastIndexOf(new MyDouble(1));
             Assert.AreEqual(3, index);
 
             index = list.LastIndexOf(new MyDouble(1.1));
@@ -1032,9 +1024,7 @@ namespace Wintellect.PowerCollections.Tests
         public void IndexOfReadOnly()
         {
             var list = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
-            int index;
-
-            index = list.IndexOf(1);
+            int index = list.IndexOf(1);
             Assert.AreEqual(2, index);
 
             index = list.IndexOf(4);
@@ -1082,9 +1072,7 @@ namespace Wintellect.PowerCollections.Tests
         public void IndexOf2ReadOnly()
         {
             var list = new ReadOnlyArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
-            int index;
-
-            index = list.IndexOf(new MyDouble(1));
+            int index = list.IndexOf(new MyDouble(1));
             Assert.AreEqual(2, index);
 
             index = list.IndexOf(new MyDouble(1.1));
@@ -1108,9 +1096,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             //                                                                        0  1  2  3  4  5  6  7   8  9 10 11 12 13 14
             var list = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
-            int index;
-
-            index = list.LastIndexOf(1);
+            int index = list.LastIndexOf(1);
             Assert.AreEqual(13, index);
 
             index = list.LastIndexOf(4);
@@ -1170,9 +1156,7 @@ namespace Wintellect.PowerCollections.Tests
         public void LastIndexOf2ReadOnly()
         {
             var list = new ReadOnlyArrayList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
-            int index;
-
-            index = list.LastIndexOf(new MyDouble(1));
+            int index = list.LastIndexOf(new MyDouble(1));
             Assert.AreEqual(3, index);
 
             index = list.LastIndexOf(new MyDouble(1.1));

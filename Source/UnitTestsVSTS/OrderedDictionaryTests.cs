@@ -357,9 +357,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             var dict1 = new OrderedDictionary<double, int>();
             bool b;
-            int val;
-
-            val = 12;
+            int val = 12;
             b = dict1.GetValueElseAdd(4.67, ref val);
             Assert.IsFalse(b); Assert.AreEqual(12, val);
 

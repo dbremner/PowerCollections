@@ -717,9 +717,7 @@ namespace Wintellect.PowerCollections.Tests {
             InsertValidate("o");
             InsertValidate("c");
 
-            int index;
-
-            index = tree.FindIndex(new TestItem("a7"), true);
+            int index = tree.FindIndex(new TestItem("a7"), true);
             Assert.AreEqual(2, index);
             index = tree.FindIndex(new TestItem("a7"), false);
             Assert.AreEqual(2, index);

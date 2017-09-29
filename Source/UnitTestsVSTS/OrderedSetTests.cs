@@ -157,9 +157,7 @@ namespace Wintellect.PowerCollections.Tests
         public void Add()
         {
             var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
-            bool b;
-
-            b = set1.Add("hello"); Assert.IsFalse(b);
+            bool b = set1.Add("hello"); Assert.IsFalse(b);
             b = set1.Add("foo"); Assert.IsFalse(b);
             b = set1.Add(""); Assert.IsFalse(b);
             b = set1.Add("HELLO"); Assert.IsTrue(b);
@@ -176,9 +174,7 @@ namespace Wintellect.PowerCollections.Tests
         public void GetItemByIndex()
         {
             var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
-            bool b;
-
-            b = set1.Add("hello"); Assert.IsFalse(b);
+            bool b = set1.Add("hello"); Assert.IsFalse(b);
             b = set1.Add("foo"); Assert.IsFalse(b);
             b = set1.Add(""); Assert.IsFalse(b);
             b = set1.Add("HELLO"); Assert.IsTrue(b);
@@ -205,9 +201,7 @@ namespace Wintellect.PowerCollections.Tests
         public void IndexOf()
         {
             var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
-            bool b;
-
-            b = set1.Add("hello"); Assert.IsFalse(b);
+            bool b = set1.Add("hello"); Assert.IsFalse(b);
             b = set1.Add("foo"); Assert.IsFalse(b);
             b = set1.Add(""); Assert.IsFalse(b);
             b = set1.Add("HELLO"); Assert.IsTrue(b);
@@ -230,9 +224,7 @@ namespace Wintellect.PowerCollections.Tests
         public void AsList()
         {
             var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
-            bool b;
-
-            b = set1.Add("hello"); Assert.IsFalse(b);
+            bool b = set1.Add("hello"); Assert.IsFalse(b);
             b = set1.Add("foo"); Assert.IsFalse(b);
             b = set1.Add(""); Assert.IsFalse(b);
             b = set1.Add("HELLO"); Assert.IsTrue(b);
@@ -277,9 +269,7 @@ namespace Wintellect.PowerCollections.Tests
         public void Remove()
         {
             var set1 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
-            bool b;
-
-            b = set1.Remove("Eric"); Assert.IsFalse(b);
+            bool b = set1.Remove("Eric"); Assert.IsFalse(b);
             b = set1.Add("hello"); Assert.IsFalse(b);
             b = set1.Add("foo"); Assert.IsFalse(b);
             b = set1.Add(""); Assert.IsFalse(b);

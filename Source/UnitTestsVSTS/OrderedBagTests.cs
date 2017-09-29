@@ -292,9 +292,7 @@ namespace Wintellect.PowerCollections.Tests
         public void Remove()
         {
             var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
-            bool b;
-
-            b = bag1.Remove("Eric"); Assert.IsFalse(b);
+            bool b = bag1.Remove("Eric"); Assert.IsFalse(b);
             bag1.Add("hello");
             bag1.Add("foo");
             bag1.Add(null);
@@ -322,9 +320,7 @@ namespace Wintellect.PowerCollections.Tests
         public void RemoveAllCopies()
         {
             var bag1 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
-            int i;
-
-            i = bag1.RemoveAllCopies("Eric"); Assert.AreEqual(0, i);
+            int i = bag1.RemoveAllCopies("Eric"); Assert.AreEqual(0, i);
             bag1.Add("hello");
             bag1.Add("foo");
             bag1.Add(null);

@@ -390,9 +390,7 @@ namespace Wintellect.PowerCollections.Tests
             t.Insert(3, true, out dummy);
             t.Insert(4, true, out dummy);
 
-            bool b;
-
-            b = t.Delete(1, out _);
+            bool b = t.Delete(1, out _);
             Assert.IsTrue(b);
 #if DEBUG
             t.Print();
@@ -454,8 +452,7 @@ namespace Wintellect.PowerCollections.Tests
 
             string[] keys = new string[] { "a2", "a5", "a7", "b", "c", "g", "h", "i", "k", "l", "m", "o", "p", "t" };
             foreach (TestItem item in hash) {
-                int index;
-                index = Array.IndexOf(keys, item.key);
+                int index = Array.IndexOf(keys, item.key);
                 Assert.IsTrue(index >= 0, "key not found in array");
                 keys[index] = null;
             }

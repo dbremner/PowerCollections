@@ -756,9 +756,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void IndexerExceptions()
         {
-            BigList<int> list1;
-
-            list1 = new BigList<int>();
+            BigList<int> list1 = new BigList<int>();
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1[0] = 1);
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => {var unused = list1[0];});
@@ -1246,10 +1244,9 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void MultiCopies()
         {
-            BigList<int> list1;
-
+            
             // Check empty special case.
-            list1 = new BigList<int>(new int[] { 1, 2, 3 }, 0);
+            BigList<int> list1 = new BigList<int>(new int[] { 1, 2, 3 }, 0);
             InterfaceTests.TestListGeneric(list1, new int[0], null);
             list1 = new BigList<int>(new int[] { }, 5);
             InterfaceTests.TestListGeneric(list1, new int[0], null);
@@ -1493,9 +1490,7 @@ namespace Wintellect.PowerCollections.Tests
         public void IndexOf()
         {
             var list = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
-            int index;
-
-            index = list.IndexOf(1);
+            int index = list.IndexOf(1);
             Assert.AreEqual(2, index);
 
             index = list.IndexOf(4);
@@ -1561,9 +1556,7 @@ namespace Wintellect.PowerCollections.Tests
         public void IndexOf2()
         {
             var list = new BigList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9)});
-            int index;
-
-            index = list.IndexOf(new MyDouble(1));
+            int index = list.IndexOf(new MyDouble(1));
             Assert.AreEqual(2, index);
 
             index = list.IndexOf(new MyDouble(1.1));
@@ -1587,9 +1580,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             //                                                                        0  1  2  3  4  5  6  7   8  9 10 11 12 13 14
             var list = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9, 7, 11, 4, 9, 1, 7, 19, 1, 7 });
-            int index;
-
-            index = list.LastIndexOf(1);
+            int index = list.LastIndexOf(1);
             Assert.AreEqual(13, index);
 
             index = list.LastIndexOf(4);
@@ -1649,9 +1640,7 @@ namespace Wintellect.PowerCollections.Tests
         public void LastIndexOf2()
         {
             var list = new BigList<MyDouble>(new MyDouble[] { new MyDouble(4), new MyDouble(8), new MyDouble(1), new MyDouble(1), new MyDouble(4), new MyDouble(9) });
-            int index;
-
-            index = list.LastIndexOf(new MyDouble(1));
+            int index = list.LastIndexOf(new MyDouble(1));
             Assert.AreEqual(3, index);
 
             index = list.LastIndexOf(new MyDouble(1.1));
@@ -1926,9 +1915,7 @@ namespace Wintellect.PowerCollections.Tests
         public void RemoveAll()
         {
             var d_list = new BigList<double>(new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 });
-            ICollection<double> removed;
-
-            removed = d_list.RemoveAll(AbsOver5);
+            ICollection<double> removed = d_list.RemoveAll(AbsOver5);
             InterfaceTests.TestListGeneric(d_list, new double[] { 4.5, 1.2, -0.04, 1.78 }, null);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 7.6, -7.6, 10.11, 187.4 }, true, null);
 
@@ -1995,9 +1982,7 @@ namespace Wintellect.PowerCollections.Tests
         public void BinarySearch2()
         {
             var list = new BigList<String>(new String[] { "foo", "Giraffe", "gorge", "HELLO", "hello", "number", "NUMber", "ooze" });
-            int index;
-
-            index = list.BinarySearch("GIRAFFE", StringComparer.InvariantCultureIgnoreCase);
+            int index = list.BinarySearch("GIRAFFE", StringComparer.InvariantCultureIgnoreCase);
             Assert.AreEqual(1, index);
 
             index = list.BinarySearch("hEllo", StringComparer.InvariantCultureIgnoreCase);

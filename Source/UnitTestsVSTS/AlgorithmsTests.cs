@@ -2007,10 +2007,9 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
             IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
-            IEnumerable<int> result;
-
+            
             // Algorithms work different depending on sizes, so try both ways.
-            result = Algorithms.SetIntersection(enumOdds, enumDigits);
+            IEnumerable<int> result = Algorithms.SetIntersection(enumOdds, enumDigits);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 3, 5, 7, 3, 1, 7, 9, 3 });
 
             result = Algorithms.SetIntersection(enumDigits, enumOdds);
@@ -2027,10 +2026,9 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
             IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
-            IEnumerable<int> result;
-
+            
             // Algorithms work different depending on sizes, so try both ways.
-            result = Algorithms.SetUnion(enumOdds, enumDigits);
+            IEnumerable<int> result = Algorithms.SetUnion(enumOdds, enumDigits);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 1, 1, 1, 2, 2, 3, 3, 3, 4, 5, 5, 6, 7, 7, 7, 7, 7, 7, 8, 9, 11, 11, 13, 15, 17, 17, 19 });
 
             result = Algorithms.SetUnion(enumDigits, enumOdds);
@@ -2047,10 +2045,9 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
             IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
-            IEnumerable<int> result;
-
+            
             // Algorithms work different depending on sizes, so try both ways.
-            result = Algorithms.SetDifference(enumOdds, enumDigits);
+            IEnumerable<int> result = Algorithms.SetDifference(enumOdds, enumDigits);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 1, 1, 11, 11, 13, 15, 17, 17, 19 });
 
             result = Algorithms.SetDifference(enumDigits, enumOdds);
@@ -2069,10 +2066,9 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> enumOdds = EnumerableFromArray(new int[] { 3, 5, 7, 7, 9, 1, 11, 13, 3, 15, 17, 1, 3, 11, 17, 19, 1 });
             IEnumerable<int> enumDigits = EnumerableFromArray(new int[] { 2, 1, 3, 7, 7, 2, 4, 7, 5, 9, 5, 6, 7, 3, 7, 7, 3, 8 });
-            IEnumerable<int> result;
-
+            
             // Algorithms work different depending on sizes, so try both ways.
-            result = Algorithms.SetSymmetricDifference(enumOdds, enumDigits);
+            IEnumerable<int> result = Algorithms.SetSymmetricDifference(enumOdds, enumDigits);
             InterfaceTests.TestEnumerableElementsAnyOrder(result, new int[] { 1, 1, 2, 2, 4, 5, 6, 7, 7, 7, 7, 8, 11, 11, 13, 15, 17, 17, 19 });
 
             result = Algorithms.SetSymmetricDifference(enumDigits, enumOdds);
@@ -2675,9 +2671,7 @@ namespace Wintellect.PowerCollections.Tests
         public void FindFirstIndexWhere()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 3, 4, 9 });
-            int index;
-
-            index = Algorithms.FindFirstIndexWhere(coll1, Odd);
+            int index = Algorithms.FindFirstIndexWhere(coll1, Odd);
             Assert.AreEqual(2, index);
 
             index = Algorithms.FindFirstIndexWhere(coll1, Even);
@@ -2695,9 +2689,7 @@ namespace Wintellect.PowerCollections.Tests
         public void FindLastIndexWhere()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
-            int index;
-
-            index = Algorithms.FindLastIndexWhere(coll1, Odd);
+            int index = Algorithms.FindLastIndexWhere(coll1, Odd);
             Assert.AreEqual(5, index);
 
             index = Algorithms.FindLastIndexWhere(coll1, Even);
@@ -2715,9 +2707,7 @@ namespace Wintellect.PowerCollections.Tests
         public void FindIndicesWhere()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 3, 6, 9 });
-            IEnumerable<int> result;
-
-            result = Algorithms.FindIndicesWhere(coll1, Odd);
+            IEnumerable<int> result = Algorithms.FindIndicesWhere(coll1, Odd);
             InterfaceTests.TestEnumerableElements(result, new int[] { 2, 3, 5 });
 
             result = Algorithms.FindIndicesWhere(coll1, Even);
@@ -2745,9 +2735,7 @@ namespace Wintellect.PowerCollections.Tests
         public void FirstIndexOf()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
-            int index;
-
-            index = Algorithms.FirstIndexOf(coll1, 1);
+            int index = Algorithms.FirstIndexOf(coll1, 1);
             Assert.AreEqual(2, index);
 
             index = Algorithms.FirstIndexOf(coll1, 4);
@@ -2774,9 +2762,7 @@ namespace Wintellect.PowerCollections.Tests
         public void LastIndexOf()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
-            int index;
-
-            index = Algorithms.LastIndexOf(coll1, 1);
+            int index = Algorithms.LastIndexOf(coll1, 1);
             Assert.AreEqual(3, index);
 
             index = Algorithms.LastIndexOf(coll1, 4);
@@ -2803,9 +2789,7 @@ namespace Wintellect.PowerCollections.Tests
         public void IndicesOf()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
-            IEnumerable<int> result;
-
-            result = Algorithms.IndicesOf(coll1, 1);
+            IEnumerable<int> result = Algorithms.IndicesOf(coll1, 1);
             InterfaceTests.TestEnumerableElements(result, new int[] { 2, 3 });
 
             result = Algorithms.IndicesOf(coll1, 4);
@@ -2832,9 +2816,7 @@ namespace Wintellect.PowerCollections.Tests
         public void FirstOneOf1()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
-            int index;
-
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 4, 1 }));
+            int index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 4, 1 }));
             Assert.AreEqual(0, index);
 
             index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 1, 8,9 ,  }));
@@ -2870,9 +2852,7 @@ namespace Wintellect.PowerCollections.Tests
         public void LastOneOf1()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
-            int index;
-
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 4, 1 }));
+            int index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 4, 1 }));
             Assert.AreEqual(4, index);
 
             index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 1, 8 }));
@@ -2908,9 +2888,7 @@ namespace Wintellect.PowerCollections.Tests
         public void AllOneOf1()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
-            IEnumerable<int> result;
-
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 4, 1 }));
+            IEnumerable<int> result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 4, 1 }));
             InterfaceTests.TestEnumerableElements(result, new int[] { 0, 2, 3, 4 });
 
             result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 1, 8 }));
@@ -2946,9 +2924,7 @@ namespace Wintellect.PowerCollections.Tests
         public void FirstOneOf2()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
-            int index;
-
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), AbsDiff2);
+            int index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), AbsDiff2);
             Assert.AreEqual(0, index);
 
             index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 8, 9 }), AbsDiff2);
@@ -2978,9 +2954,7 @@ namespace Wintellect.PowerCollections.Tests
         public void LastOneOf2()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
-            int index;
-
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), AbsDiff2);
+            int index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), AbsDiff2);
             Assert.AreEqual(5, index);
 
             index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 8, 9 }), AbsDiff2);
@@ -3014,9 +2988,7 @@ namespace Wintellect.PowerCollections.Tests
         public void AllOneOf2()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
-            IEnumerable<int> result;
-
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), AbsDiff2);
+            IEnumerable<int> result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 6, 11 }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] { 0, 1, 4, 5 });
 
             result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 3, 8, 9 }), AbsDiff2);
@@ -3046,9 +3018,7 @@ namespace Wintellect.PowerCollections.Tests
         public void SearchForSubsequence()
         {
             IList<char> list1 = new List<char>(Algorithms.TypedAs<char>("banaramamississippiabacabqrstrst"));
-            int index;
-
-            index = Algorithms.SearchForSubsequence(list1, Algorithms.TypedAs<char>("issip"));
+            int index = Algorithms.SearchForSubsequence(list1, Algorithms.TypedAs<char>("issip"));
             Assert.AreEqual(12, index);
 
             index = Algorithms.SearchForSubsequence(list1, Algorithms.TypedAs<char>("b"));
