@@ -321,6 +321,8 @@ namespace Wintellect.PowerCollections.Tests
             bag1.Add("Eric");
             bag1.AddMany(bag1);
             InterfaceTests.TestReadWriteCollectionGeneric(bag1, new string[] { "Eric", "Eric", "foo", "foo" }, false);
+
+            Assert.ThrowsException<ArgumentNullException>(() => bag1.AddMany(null));
         }
 
         [TestMethod]
@@ -350,6 +352,8 @@ namespace Wintellect.PowerCollections.Tests
             count = bag1.RemoveMany(bag1);
             Assert.AreEqual(5, count);
             Assert.AreEqual(0, bag1.Count);
+
+            Assert.ThrowsException<ArgumentNullException>(() => bag1.RemoveMany(null));
         }
 
         [TestMethod]

@@ -1134,6 +1134,8 @@ namespace Wintellect.PowerCollections.Tests
                     Kvp.Of(12, "biff"),
                     Kvp.Of(123, "biff")},
                true);
+
+            Assert.ThrowsException<ArgumentNullException>(() => dict1.AddMany(null));
         }
 
         [TestMethod]
@@ -1157,6 +1159,8 @@ namespace Wintellect.PowerCollections.Tests
                    Kvp.Of(9, "baz"),
                    Kvp.Of(12, "biff") },
                true);
+
+            Assert.ThrowsException<ArgumentNullException>(() => dict1.RemoveMany(null));
         }
 
 	    private void CheckNullKeyException(Exception e) {

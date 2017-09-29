@@ -358,6 +358,8 @@ namespace Wintellect.PowerCollections.Tests
             set1.AddMany(s_array);
 
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new string[] { null, "Clapton", "elmer", "Eric", "FOO", "fudd", "x" }, true, null);
+
+            Assert.ThrowsException<ArgumentNullException>(() => set1.AddMany(null));
         }
 
         [TestMethod]
@@ -386,6 +388,8 @@ namespace Wintellect.PowerCollections.Tests
             count = set1.RemoveMany(set1);
             Assert.AreEqual(5, count);
             Assert.AreEqual(0, set1.Count);
+
+            Assert.ThrowsException<ArgumentNullException>(() => set1.RemoveMany(null));
         }
 
         [TestMethod]
