@@ -1025,15 +1025,15 @@ namespace Wintellect.PowerCollections.Tests
         public void CloneContents()
         {
             var bag1 = new OrderedBag<MyInt>(
-                delegate(MyInt v1, MyInt v2) {
-                if (v1 == null) {
-                    return (v2 == null) ? 0 : -1;
-                }
-                else if (v2 == null)
-                    return 1;
-                else
-                    return v2.value.CompareTo(v1.value);
-            });
+                (MyInt v1, MyInt v2) => {
+                    if (v1 == null) {
+                        return (v2 == null) ? 0 : -1;
+                    }
+                    else if (v2 == null)
+                        return 1;
+                    else
+                        return v2.value.CompareTo(v1.value);
+                });
 
             var mi = new MyInt(9);
             bag1.Add(new MyInt(14));

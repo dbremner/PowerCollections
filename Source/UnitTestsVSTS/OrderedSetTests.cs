@@ -931,7 +931,7 @@ namespace Wintellect.PowerCollections.Tests
         public void CloneContents()
         {
             var set1 = new OrderedSet<MyInt>(
-                delegate (MyInt v1, MyInt v2) {
+                (MyInt v1, MyInt v2) => {
                     if (v1 == null) {
                         return (v2 == null) ? 0 : -1;
                     }

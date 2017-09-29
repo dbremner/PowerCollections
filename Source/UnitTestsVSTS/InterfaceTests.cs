@@ -44,7 +44,7 @@ namespace Wintellect.PowerCollections.Tests {
         public static BinaryPredicate<ICollection<T>> CollectionEquals<T>(BinaryPredicate<T> equals, bool inOrder)
         {
             if (inOrder) {
-                return delegate(ICollection<T> enum1, ICollection<T> enum2) {
+                return (ICollection<T> enum1, ICollection<T> enum2) => {
                     if (enum1 == null || enum2 == null)
                         return (enum1 == enum2);
                     else
@@ -52,7 +52,7 @@ namespace Wintellect.PowerCollections.Tests {
                 };
             }
             else {
-                return delegate(ICollection<T> enum1, ICollection<T> enum2) {
+                return (ICollection<T> enum1, ICollection<T> enum2) => {
                     if (enum1 == null || enum2 == null)
                         return (enum1 == enum2);
 
