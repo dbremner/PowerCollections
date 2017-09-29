@@ -1011,7 +1011,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(dict4.Count == 0 && dict5.Count == 1);
         }
 
-        void CompareClones<K, V>(OrderedMultiDictionary<K, V> d1, OrderedMultiDictionary<K, V> d2)
+        private void CompareClones<K, V>(OrderedMultiDictionary<K, V> d1, OrderedMultiDictionary<K, V> d2)
         {
             IEnumerator<KeyValuePair<K, V>> e1 = d1.KeyValuePairs.GetEnumerator();
             IEnumerator<KeyValuePair<K, V>> e2 = d2.KeyValuePairs.GetEnumerator();
@@ -1109,7 +1109,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        class NotCloneable: IComparable<NotCloneable>
+        private class NotCloneable: IComparable<NotCloneable>
         {
             public int  CompareTo(NotCloneable other)
             {

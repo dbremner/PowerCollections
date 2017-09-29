@@ -3,7 +3,7 @@ namespace Wintellect.PowerCollections.Tests
     /// <summary>
     /// Comparable that compares ints, equating odds with odds and evens with evrents..
     /// </summary>
-    class GOddEvenEquatable : System.IEquatable<GOddEvenEquatable>
+    internal class GOddEvenEquatable : System.IEquatable<GOddEvenEquatable>
     {
         public int val;
 

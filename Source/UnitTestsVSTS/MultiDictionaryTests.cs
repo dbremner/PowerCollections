@@ -916,7 +916,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsNotNull(dict2);
         }
 
-        class FirstLetterComparer : IEqualityComparer<string>
+        private class FirstLetterComparer : IEqualityComparer<string>
         {
             public bool Equals(string x, string y)
             {
@@ -994,7 +994,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(dict3.Count == 0 && dict4.Count == 1);
         }
 
-        void CompareClones<K, V>(MultiDictionary<K, V> d1, MultiDictionary<K, V> d2)
+        private void CompareClones<K, V>(MultiDictionary<K, V> d1, MultiDictionary<K, V> d2)
         {
             IEnumerable<KeyValuePair<K, V>> e1 = d1.KeyValuePairs;
             IEnumerable<KeyValuePair<K, V>> e2 = d2.KeyValuePairs;
@@ -1232,7 +1232,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [Serializable]
-        class UniqueStuff
+        private class UniqueStuff
         {
             public InterfaceTests.Unique[] keys;
             public InterfaceTests.Unique[] values;

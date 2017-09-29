@@ -22,7 +22,7 @@ namespace Wintellect.PowerCollections.Tests
     // A simple read-write list using an array.
     public class ReadWriteArrayList<T> : ListBase<T>
     {
-        T[] array;
+        private T[] array;
 
         public ReadWriteArrayList(T[] items)
         {
@@ -87,7 +87,7 @@ namespace Wintellect.PowerCollections.Tests
     // A simple read-only list using an array.
     public class ReadOnlyArrayList<T> : ReadOnlyListBase<T>
     {
-        T[] array;
+        private T[] array;
 
         public ReadOnlyArrayList(T[] items)
         {
@@ -755,9 +755,9 @@ namespace Wintellect.PowerCollections.Tests
 
         // Just overrides equal -- no comparison, ordering, or hash code.
 #pragma warning disable 659  // missing GetHashCode
-        sealed class MyDouble
+        private sealed class MyDouble
         {
-            double val;
+            private double val;
 
             public MyDouble(double value)
             {

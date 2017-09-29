@@ -5,7 +5,7 @@ namespace Wintellect.PowerCollections.Tests
     /// <summary>
     /// Comparer that compares ints, sorting odds before evens.
     /// </summary>
-    class GOddEvenEqualityComparer : IEqualityComparer<int> {
+    internal class GOddEvenEqualityComparer : IEqualityComparer<int> {
         public bool Equals(int e1, int e2)
         {
             return ((e1 & 1) == (e2 & 1));

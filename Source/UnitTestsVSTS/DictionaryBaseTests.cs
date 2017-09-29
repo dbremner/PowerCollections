@@ -13,7 +13,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Wintellect.PowerCollections.Tests
 {
     // A simple read-only dictionary.
-    class ReadOnlyTestDictionary<TKey, TValue> : ReadOnlyDictionaryBase<TKey, TValue>
+    internal class ReadOnlyTestDictionary<TKey, TValue> : ReadOnlyDictionaryBase<TKey, TValue>
     {
         private TKey[] keys;
         private TValue[] values;
@@ -51,7 +51,7 @@ namespace Wintellect.PowerCollections.Tests
     }
 
     // A simple read-write dictionary.
-    class ReadWriteTestDictionary<TKey, TValue> : DictionaryBase<TKey, TValue>
+    internal class ReadWriteTestDictionary<TKey, TValue> : DictionaryBase<TKey, TValue>
     {
         private List<TKey> keys;
         private List<TValue> values;

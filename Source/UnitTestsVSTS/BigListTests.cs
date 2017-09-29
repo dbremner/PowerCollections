@@ -560,7 +560,7 @@ namespace Wintellect.PowerCollections.Tests
 #endif //DEBUG
         }
 
-        BigList<int> CreateList(int start, int length)
+        private BigList<int> CreateList(int start, int length)
         {
             if (length < 24) {
                 int[] array = new int[length];
@@ -1043,7 +1043,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        void CheckListAndBigList(List<int> l1, BigList<int> l2, Random rand)
+        private void CheckListAndBigList(List<int> l1, BigList<int> l2, Random rand)
         {
             Assert.AreEqual(l1.Count, l2.Count);
 
@@ -1142,7 +1142,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         // Simple class for testing cloning.
-        class MyInt : ICloneable
+        private class MyInt : ICloneable
         {
             public int value;
             public MyInt(int value)
@@ -1171,7 +1171,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        void CompareClones<T>(BigList<T> s1, BigList<T> s2)
+        private void CompareClones<T>(BigList<T> s1, BigList<T> s2)
         {
             IEnumerator<T> e1 = s1.GetEnumerator();
             IEnumerator<T> e2 = s2.GetEnumerator();
@@ -1541,9 +1541,9 @@ namespace Wintellect.PowerCollections.Tests
 
         // Just overrides equal -- no comparison, ordering, or hash code.
 #pragma warning disable 659  // missing GetHashCode
-        sealed class MyDouble
+        private sealed class MyDouble
         {
-            double val;
+            private double val;
 
             public MyDouble(double value)
             {
@@ -2412,7 +2412,7 @@ namespace Wintellect.PowerCollections.Tests
     }
 
     [Serializable]
-    class UniqueStuff
+    private class UniqueStuff
     {
         public InterfaceTests.Unique[] objects;
         public BigList<InterfaceTests.Unique> list;

@@ -4,7 +4,7 @@ namespace Wintellect.PowerCollections.Tests {
     /// <summary>
     /// Comparer that compares ints, sorting odds before evens.
     /// </summary>
-    class OddEvenComparer : IComparer {
+    internal class OddEvenComparer : IComparer {
         public int Compare(object x, object y)
         {
             int e1 = (int)x;

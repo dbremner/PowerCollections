@@ -3,7 +3,7 @@ namespace Wintellect.PowerCollections.Tests
     /// <summary>
     /// Comparer that compares ints, sorting odds before evens.
     /// </summary>
-    class GOddEvenComparer : System.Collections.Generic.IComparer<int>
+    internal class GOddEvenComparer : System.Collections.Generic.IComparer<int>
     {
         public int Compare(int e1, int e2)
         {

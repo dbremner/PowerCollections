@@ -14,7 +14,7 @@ using static Wintellect.PowerCollections.Tests.TestPredicates;
 namespace Wintellect.PowerCollections.Tests
 {
     // A simple read-write collection.
-    class ReadWriteTestCollection<T> : CollectionBase<T>
+    internal class ReadWriteTestCollection<T> : CollectionBase<T>
     {
         private List<T> items;
 
@@ -53,7 +53,7 @@ namespace Wintellect.PowerCollections.Tests
     public class CollectionBaseTests
     {
         // A simple read-only collection.
-        class ReadOnlyTestCollection<T> : ReadOnlyCollectionBase<T>
+        private class ReadOnlyTestCollection<T> : ReadOnlyCollectionBase<T>
         {
             private T[] items;
 

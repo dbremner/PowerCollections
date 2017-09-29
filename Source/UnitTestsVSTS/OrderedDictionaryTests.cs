@@ -20,8 +20,8 @@ namespace Wintellect.PowerCollections.Tests
 	[TestClass]
 	public class OrderedDictionaryTests
 	{
-		const int LENGTH = 1200;			// length of each random array of values.
-		const int ITERATIONS = 80;		// number of iterations
+	    private const int LENGTH = 1200;			// length of each random array of values.
+	    private const int ITERATIONS = 80;		// number of iterations
 		private OrderedDictionary<int,string> dict;
 
 		/// <summary>
@@ -458,7 +458,7 @@ namespace Wintellect.PowerCollections.Tests
 			Assert.IsFalse(dict1.ContainsKey(""));
 		}
 
-		class ComparableClass1: IComparable<ComparableClass1>
+	    private class ComparableClass1: IComparable<ComparableClass1>
 		{
 			public int Value = 0;
 			int IComparable<ComparableClass1>.CompareTo(ComparableClass1 other)
@@ -472,7 +472,7 @@ namespace Wintellect.PowerCollections.Tests
 			}
         }
 
-		class ComparableClass2: IComparable
+	    private class ComparableClass2: IComparable
 		{
 			public int Value = 0;
 			int IComparable.CompareTo(object other)
@@ -654,7 +654,7 @@ namespace Wintellect.PowerCollections.Tests
 		/// <param name="reversed">An IEnumerable enumerating reversed</param>
 		/// <param name="keys">Expected keys in order</param>
 		/// <param name="values">Expected values in order</param>
-		void CheckEnumeration<TKey,TValue> (IEnumerable<KeyValuePair<TKey,TValue>> inorder, IEnumerable<KeyValuePair<TKey,TValue>> reversed,
+		private void CheckEnumeration<TKey,TValue> (IEnumerable<KeyValuePair<TKey,TValue>> inorder, IEnumerable<KeyValuePair<TKey,TValue>> reversed,
 																				TKey[] keys, TValue[] values)
 		{
 			int i = 0;
@@ -775,7 +775,7 @@ namespace Wintellect.PowerCollections.Tests
 
         }
 
-        void CompareClones<K, V>(OrderedDictionary<K, V> d1, OrderedDictionary<K, V> d2)
+	    private void CompareClones<K, V>(OrderedDictionary<K, V> d1, OrderedDictionary<K, V> d2)
         {
             IEnumerator<KeyValuePair<K, V>> e1 = d1.GetEnumerator();
             IEnumerator<KeyValuePair<K, V>> e2 = d2.GetEnumerator();

@@ -21,11 +21,11 @@ namespace Wintellect.PowerCollections.Tests
     public class UtilTests
     {
 #pragma warning disable 649
-        struct StructType {
+        private struct StructType {
             public int i;
         }
 
-        class ClassType {
+        private class ClassType {
             public int i;
         }
 

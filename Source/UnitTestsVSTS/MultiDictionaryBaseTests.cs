@@ -14,10 +14,10 @@ using static Wintellect.PowerCollections.Tests.TestPredicates;
 
 namespace Wintellect.PowerCollections.Tests
 {
-    class ReadWriteTestMultiDictionary<TKey, TValue> : MultiDictionaryBase<TKey, TValue>
+    internal class ReadWriteTestMultiDictionary<TKey, TValue> : MultiDictionaryBase<TKey, TValue>
     {
-        List<TKey> keys;
-        List<List<TValue>> values;
+        private List<TKey> keys;
+        private List<List<TValue>> values;
 
         public ReadWriteTestMultiDictionary(List<TKey> keys, List<List<TValue>> values)
         {
@@ -117,10 +117,10 @@ namespace Wintellect.PowerCollections.Tests
         }
     }
 
-    class ReadOnlyTestMultiDictionary<TKey, TValue> : ReadOnlyMultiDictionaryBase<TKey, TValue>
+    internal class ReadOnlyTestMultiDictionary<TKey, TValue> : ReadOnlyMultiDictionaryBase<TKey, TValue>
     {
-        List<TKey> keys;
-        List<List<TValue>> values;
+        private List<TKey> keys;
+        private List<List<TValue>> values;
 
         public ReadOnlyTestMultiDictionary(List<TKey> keys, List<List<TValue>> values)
         {

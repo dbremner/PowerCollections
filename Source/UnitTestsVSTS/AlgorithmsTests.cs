@@ -3505,7 +3505,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(0, index);
         }
 
-        struct KeyWithOrder<T>: IComparable<KeyWithOrder<T>> where T: IComparable<T>
+        private struct KeyWithOrder<T>: IComparable<KeyWithOrder<T>> where T: IComparable<T>
         {
             public T value;
             public int order;
@@ -3886,7 +3886,7 @@ namespace Wintellect.PowerCollections.Tests
     /// <summary>
     /// Wrapper for IList&lt;T&gt; so that no casting to another interface can be done.
     /// </summary>
-    class IListWrapper<T> : IList<T>
+    internal class IListWrapper<T> : IList<T>
     {
         private IList<T> wrapped;
 
@@ -3971,7 +3971,7 @@ namespace Wintellect.PowerCollections.Tests
     /// <summary>
     /// Wrapped for ICollection&lt;T&gt; so that no casting to another interface can be done.
     /// </summary>
-    class ICollectionWrapper<T> : ICollection<T>
+    internal class ICollectionWrapper<T> : ICollection<T>
     {
         private ICollection<T> wrapped;
 
@@ -4026,7 +4026,7 @@ namespace Wintellect.PowerCollections.Tests
         }
     }
 
-    class Mod2EqualityComparer : IEqualityComparer<int>
+    internal class Mod2EqualityComparer : IEqualityComparer<int>
     {
         public bool Equals(int x, int y)
         {

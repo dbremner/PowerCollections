@@ -5,7 +5,7 @@ namespace Wintellect.PowerCollections.Tests
     /// <summary>
     /// Comparable that compares ints, sorting odds before evens.
     /// </summary>
-    class GOddEvenComparable : IComparable<GOddEvenComparable>
+    internal class GOddEvenComparable : IComparable<GOddEvenComparable>
     {
         public int val;
 

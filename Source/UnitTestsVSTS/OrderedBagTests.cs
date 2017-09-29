@@ -21,7 +21,7 @@ namespace Wintellect.PowerCollections.Tests
     [TestClass]
     public class OrderedBagTests
     {
-        class ComparableClass1 : IComparable<ComparableClass1>
+        private class ComparableClass1 : IComparable<ComparableClass1>
         {
             public int Value = 0;
             int IComparable<ComparableClass1>.CompareTo(ComparableClass1 other)
@@ -35,7 +35,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        class ComparableClass2 : IComparable
+        private class ComparableClass2 : IComparable
         {
             public int Value = 0;
             int IComparable.CompareTo(object other)
@@ -56,7 +56,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         // Not comparable, because the type parameter on ComparableClass is incorrect.
-        class UncomparableClass1 : IComparable<ComparableClass1>
+        private class UncomparableClass1 : IComparable<ComparableClass1>
         {
             public int Value = 0;
             int IComparable<ComparableClass1>.CompareTo(ComparableClass1 other)
@@ -978,7 +978,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         // Simple class for testing cloning.
-        class MyInt : ICloneable
+        private class MyInt : ICloneable
         {
             public int value;
             public MyInt(int value)
@@ -1007,7 +1007,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        void CompareClones<T>(OrderedBag<T> s1, OrderedBag<T> s2)
+        private void CompareClones<T>(OrderedBag<T> s1, OrderedBag<T> s2)
         {
             IEnumerator<T> e1 = s1.GetEnumerator();
             IEnumerator<T> e2 = s2.GetEnumerator();

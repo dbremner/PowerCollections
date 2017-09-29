@@ -12,7 +12,7 @@ using System;
 
 namespace Wintellect.PowerCollections.Tests
 {
-    class MainProgram
+    internal class MainProgram
     {
         public static void Main()
         {

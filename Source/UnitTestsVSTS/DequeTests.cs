@@ -599,7 +599,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         // Simple class for testing cloning.
-        class MyInt : ICloneable
+        private class MyInt : ICloneable
         {
             public int value;
             public MyInt(int value)
@@ -628,7 +628,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        void CompareClones<T>(Deque<T> s1, Deque<T> s2)
+        private void CompareClones<T>(Deque<T> s1, Deque<T> s2)
         {
             IEnumerator<T> e1 = s1.GetEnumerator();
             IEnumerator<T> e2 = s2.GetEnumerator();
@@ -799,7 +799,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [Serializable]
-        class UniqueStuff
+        private class UniqueStuff
         {
             public InterfaceTests.Unique[] objects;
             public Deque<InterfaceTests.Unique> deque;

@@ -733,7 +733,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         // Simple class for testing cloning.
-        class MyInt : ICloneable
+        private class MyInt : ICloneable
         {
             public int value;
             public MyInt(int value)
@@ -762,7 +762,7 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-        void CompareClones<T>(Bag<T> s1, Bag<T> s2)
+        private void CompareClones<T>(Bag<T> s1, Bag<T> s2)
         {
             Assert.AreEqual(s1.Count, s2.Count);
 
@@ -837,7 +837,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         // Strange comparer that uses modulo arithmetic.
-        class ModularComparer : IEqualityComparer<int>
+        private class ModularComparer : IEqualityComparer<int>
         {
             private int mod;
 
@@ -940,7 +940,7 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [Serializable]
-        class UniqueStuff
+        private class UniqueStuff
         {
             public InterfaceTests.Unique[] objects;
             public Bag<InterfaceTests.Unique> bag;

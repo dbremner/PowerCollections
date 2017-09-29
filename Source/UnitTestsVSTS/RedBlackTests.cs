@@ -1110,8 +1110,8 @@ namespace Wintellect.PowerCollections.Tests {
 #endif //DEBUG
         }
 
-        const int LENGTH = 400;			// length of each random array of values.
-        const int ITERATIONS = 30;		// number of iterations
+	    private const int LENGTH = 400;			// length of each random array of values.
+	    private const int ITERATIONS = 30;		// number of iterations
 
 		/// <summary>
 		/// Create a random array of values.

@@ -2,7 +2,7 @@ namespace Wintellect.PowerCollections.Tests {
     /// <summary>
     /// An item type used when testing the RedBlackTree.
     /// </summary>
-    struct TestItem
+    internal struct TestItem
     {
         public TestItem(string key)
         {

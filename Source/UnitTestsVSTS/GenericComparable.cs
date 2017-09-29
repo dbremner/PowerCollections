@@ -2,7 +2,7 @@
 
 namespace Wintellect.PowerCollections.Tests
 {
-    class GenericComparable : IComparable<GenericComparable>
+    internal class GenericComparable : IComparable<GenericComparable>
     {
         private readonly int _value;
         public GenericComparable(int value) => _value = value;
