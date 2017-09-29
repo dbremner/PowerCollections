@@ -1155,6 +1155,9 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadWriteCollectionGeneric(bag1, new int[] { 3, 3, 8, 9, 9, 12 }, true);
             InterfaceTests.TestReadWriteCollectionGeneric(bag2, new int[] { 3, 3, 9, 9, 8, 12 }, true);
             InterfaceTests.TestReadWriteCollectionGeneric(bag3, new int[] { 3, 3, 9, 9, 8, 12 }, true);
+
+            Assert.ThrowsException<ArgumentNullException>(
+                () => new OrderedBag<int>(comparer:null));
         }
 
         [TestMethod]

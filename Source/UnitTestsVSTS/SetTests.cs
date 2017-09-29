@@ -538,6 +538,9 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 3, 8, 9, 12 }, false);
             InterfaceTests.TestReadWriteCollectionGeneric(set2, new int[] { 9, 8, 12 }, false);
+
+            Assert.ThrowsException<ArgumentNullException>(
+                () => new Set<int>(equalityComparer:null));
         }
 
         [TestMethod]

@@ -895,6 +895,15 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        public void Initialize()
+        {
+            Assert.ThrowsException<ArgumentNullException>(
+                () => new MultiDictionary<string, int>(true, null));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => new MultiDictionary<string, int>(true, StringComparer.OrdinalIgnoreCase, null));
+        }
+
+        [TestMethod]
         public void NotComparable1()
         {
             // This should work -- all types are comparable in a hash way via object.Equals and object.GetHashCode.

@@ -942,6 +942,16 @@ namespace Wintellect.PowerCollections.Tests
                 Kvp.Of("queztel", "hello")});
         }
 
+
+        [TestMethod]
+        public void Initialize()
+        {
+            Assert.ThrowsException<ArgumentNullException>(
+                () => new OrderedMultiDictionary<string, int>(true, keyComparer:null));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => new OrderedMultiDictionary<string, int>(true, StringComparer.OrdinalIgnoreCase, null));
+        }
+
         [TestMethod]
         public void NotComparable1()
         {

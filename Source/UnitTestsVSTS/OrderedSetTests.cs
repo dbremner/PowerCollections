@@ -1072,6 +1072,9 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadWriteCollectionGeneric(set1, new int[] { 3, 8, 9, 12 }, true, null);
             InterfaceTests.TestReadWriteCollectionGeneric(set2, new int[] { 3, 9, 8, 12 }, true, null);
             InterfaceTests.TestReadWriteCollectionGeneric(set3, new int[] { 3, 9, 8, 12 }, true, null);
+
+            Assert.ThrowsException<ArgumentNullException>(
+                () => new OrderedSet<int>(comparer: null));
         }
 
 
