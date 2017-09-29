@@ -640,6 +640,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(set2.IsEqualTo(set6));
             Assert.IsFalse(set1.IsEqualTo(set2));
             Assert.IsFalse(set2.IsEqualTo(set1));
+            Assert.ThrowsException<ArgumentNullException>(() => set1.IsEqualTo(null));
         }
 
         [TestMethod]
