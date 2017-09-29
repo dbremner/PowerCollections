@@ -996,16 +996,15 @@ namespace Wintellect.PowerCollections.Tests
 
         private void CompareClones<K, V>(MultiDictionary<K, V> d1, MultiDictionary<K, V> d2)
         {
-            IEnumerable<KeyValuePair<K, V>> e1 = d1.KeyValuePairs;
-            IEnumerable<KeyValuePair<K, V>> e2 = d2.KeyValuePairs;
-            KeyValuePair<K, V>[] pairs1 = Enumerable.ToArray(e1), pairs2 = Enumerable.ToArray(e2);
-            bool[] found = new bool[pairs2.Length];
+            var pairs1 = d1.KeyValuePairs.ToList();
+            var pairs2 = d2.KeyValuePairs.ToList();
+            bool[] found = new bool[pairs2.Count];
 
             // Check that the arrays are equal, but not reference equals (e.g., have been cloned).
-            Assert.IsTrue(pairs1.Length == pairs2.Length);
+            Assert.IsTrue(pairs1.Count == pairs2.Count);
             foreach (KeyValuePair<K, V> p1 in pairs1) {
                 bool f = false;
-                for (int i = 0; i < pairs2.Length; ++i) {
+                for (int i = 0; i < pairs2.Count; ++i) {
                     if (!found[i] && object.Equals(p1.Key, pairs2[i].Key) && object.Equals(p1.Value, pairs2[i].Value)) {
                         found[i] = true;
                         f = true;
@@ -1081,16 +1080,15 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.IsTrue(dict5.Count == dict6.Count);
 
-            IEnumerable<KeyValuePair<CloneableStruct, CloneableStruct>> e1 = dict5.KeyValuePairs;
-            IEnumerable<KeyValuePair<CloneableStruct, CloneableStruct>> e2 = dict6.KeyValuePairs;
-            KeyValuePair<CloneableStruct, CloneableStruct>[] pairs1 = Enumerable.ToArray(e1), pairs2 = Enumerable.ToArray(e2);
-            bool[] found = new bool[pairs2.Length];
+            var pairs1 = dict5.KeyValuePairs.ToList();
+            var pairs2 = dict6.KeyValuePairs.ToList();
+            var found = new bool[pairs2.Count];
 
             // Check that the arrays are equal, but not reference equals (e.g., have been cloned).
-            Assert.IsTrue(pairs1.Length == pairs2.Length);
-            foreach (KeyValuePair<CloneableStruct, CloneableStruct> p1 in pairs1) {
+            Assert.IsTrue(pairs1.Count == pairs2.Count);
+            foreach (var p1 in pairs1) {
                 bool f = false;
-                for (int i = 0; i < pairs2.Length; ++i) {
+                for (int i = 0; i < pairs2.Count; ++i) {
                     if (!found[i] && object.Equals(p1.Key, pairs2[i].Key) && object.Equals(p1.Value, pairs2[i].Value)) {
                         found[i] = true;
                         f = true;
