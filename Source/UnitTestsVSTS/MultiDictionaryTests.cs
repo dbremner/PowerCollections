@@ -183,7 +183,6 @@ namespace Wintellect.PowerCollections.Tests
             CheckAgainstArray(dict, array);
         }
 
-
         [TestMethod]
         public void Add()
         {
@@ -807,7 +806,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(2, dict1["foo"].Count);
             Assert.AreEqual(1, dict1["trail"].Count);
             Assert.AreEqual(0, dict1["nothing"].Count);
-
         }
 
         [TestMethod]
@@ -848,7 +846,6 @@ namespace Wintellect.PowerCollections.Tests
                 new string[] { null, "foo", "hello", "trail" },
                 new string[][] { new string[] { "hello", "hi" }, new string[] { "a", "bar" }, new string[] { null, "sailor" }, new string[] { "mix" } },
                 "zippy", "pinhead", null, null);
-
         }
 
         [TestMethod]
@@ -1104,7 +1101,6 @@ namespace Wintellect.PowerCollections.Tests
                 }
                 Assert.IsTrue(f);
             }
-
         }
 
         [TestMethod]
@@ -1178,7 +1174,6 @@ namespace Wintellect.PowerCollections.Tests
                 }
             });
             Assert.IsTrue(throwNow);
-
         }
 
         [TestMethod]
@@ -1244,7 +1239,6 @@ namespace Wintellect.PowerCollections.Tests
             public MultiDictionary<InterfaceTests.Unique, InterfaceTests.Unique> dict;
         }
 
-
         [TestMethod]
         public void SerializeUnique()
         {
@@ -1257,7 +1251,6 @@ namespace Wintellect.PowerCollections.Tests
             d.values = new InterfaceTests.Unique[] {
                 new InterfaceTests.Unique("a"), new InterfaceTests.Unique("b"), new InterfaceTests.Unique("c"), new InterfaceTests.Unique("d"), new InterfaceTests.Unique("e"), new InterfaceTests.Unique("f"), new InterfaceTests.Unique("g")
             };
-
 
             d.dict = new MultiDictionary<InterfaceTests.Unique, InterfaceTests.Unique>(true) {
                 {d.keys[2], d.values[4]},
@@ -1288,7 +1281,6 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsFalse(object.Equals(result.values[i], d.values[i]));
             }
         }
-
     }
 }
 

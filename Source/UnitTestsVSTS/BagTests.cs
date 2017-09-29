@@ -6,7 +6,6 @@
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
-
 #region Using directives
 
 using System;
@@ -79,7 +78,6 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestCollection((ICollection)bag1, s_array, false);
         }
 
-
         [TestMethod]
         public void GenericICollectionInterface()
         {
@@ -107,7 +105,6 @@ namespace Wintellect.PowerCollections.Tests
                 "Eric",
                 null
             };
-
 
             InterfaceTests.TestReadWriteCollectionGeneric(bag1, new string[] { null, null, "", "Eric", "foo", "foo", "Hello", "Hello", "Hello" }, false);
         }
@@ -663,7 +660,6 @@ namespace Wintellect.PowerCollections.Tests
             bag2 = bag1.Clone();
             Assert.IsFalse(bag2 == bag1);
             Assert.IsTrue(bag1.Count == 0 && bag2.Count == 0);
-
         }
 
         [TestMethod]
@@ -689,7 +685,6 @@ namespace Wintellect.PowerCollections.Tests
             var bag2 = new Bag<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
             bag1.Difference(bag2);
         }
-
 
         [TestMethod]
         public void FailFastEnumerator1()
@@ -736,7 +731,6 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.ThrowsException<InvalidOperationException>((() => InvalidOperation()));
         }
-
 
         // Simple class for testing cloning.
         class MyInt : ICloneable
@@ -829,7 +823,6 @@ namespace Wintellect.PowerCollections.Tests
                 }
                 Assert.AreEqual(bag5.NumberOfCopies(item), found);
             }
-
         }
 
         [TestMethod]
@@ -943,9 +936,7 @@ namespace Wintellect.PowerCollections.Tests
 
             var result = (Bag<string>)InterfaceTests.SerializeRoundTrip(d);
 
-
             InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "elvis", "elvis", "hello", "foo", "foo", "WORLD", null, "7", "8", "9", "1", "2", "3" }, false, StringComparer.InvariantCultureIgnoreCase.Equals);
-
         }
 
         [Serializable]
@@ -954,7 +945,6 @@ namespace Wintellect.PowerCollections.Tests
             public InterfaceTests.Unique[] objects;
             public Bag<InterfaceTests.Unique> bag;
         }
-
 
         [TestMethod]
         public void SerializeUnique()
@@ -988,7 +978,6 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsFalse(object.Equals(result.objects[i], d.objects[i]));
             }
         }
-
 
     }
 }

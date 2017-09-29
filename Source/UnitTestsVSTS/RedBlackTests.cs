@@ -444,7 +444,6 @@ namespace Wintellect.PowerCollections.Tests {
 				Assert.AreEqual(item.key, keys[tree.ElementCount - i - 1], "Keys weren't enumerated in reverse order");
 				++i;
 			}
-
 		}
 
         private void CheckEnumerateRange(RedBlackTree<TestItem> tree, bool useFirst, string first, bool useLast, string last, string[] keys)
@@ -1230,7 +1229,6 @@ namespace Wintellect.PowerCollections.Tests {
 		/// Do this ITER times.
 		/// </summary>
 		[TestMethod] public void DoNothingFindRandom() {
-
             for (int iter = 0; iter < ITERATIONS; ++iter) {
 				tree = new RedBlackTree<TestItem>(new DataComparer());
 				int[] a = CreateRandomArray(iter + 3000, LENGTH, LENGTH / 5, true);
@@ -1468,8 +1466,6 @@ namespace Wintellect.PowerCollections.Tests {
 	        tree = new RedBlackTree<TestItem>(new DataComparer());
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => tree.GetItemByIndex(0));
 	    }
-
     }
-
 }
 

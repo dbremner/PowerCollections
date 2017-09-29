@@ -773,7 +773,6 @@ namespace Wintellect.PowerCollections.Tests
             }
 
 
-
         }
 
         void CompareClones<K, V>(OrderedDictionary<K, V> d1, OrderedDictionary<K, V> d2)
@@ -1257,7 +1256,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreSame(dict5.Comparer, dict5.Clone().Comparer);
         }
 
-
         [TestMethod]
         public void SerializeStrings()
         {
@@ -1314,9 +1312,7 @@ namespace Wintellect.PowerCollections.Tests
                 new string[] { "trackstar", "goofy", "foo", "bar", "GOOfy", "FOO"},
                 new int[] { 19, 11, 16, 99, 110, 19},
                 "zippy", true, null, null);
-
         }
-
     }
 }
 

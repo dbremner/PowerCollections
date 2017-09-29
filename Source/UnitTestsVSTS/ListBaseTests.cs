@@ -214,7 +214,6 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadOnlyList<object>(ro3, s1, null);
             IList ro4 = ArrayList.ReadOnly(new ArrayList());
             InterfaceTests.TestReadOnlyList<object>(ro4, new string[0], null);
-
         }
 
         [TestMethod]
@@ -467,7 +466,6 @@ namespace Wintellect.PowerCollections.Tests
             CheckArray(array2, new string[] { });
         }
 
-
         [TestMethod]
         public void CopyTo1ReadOnly()
         {
@@ -657,7 +655,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(5, list1.FindIndex(3, Even));
             Assert.AreEqual(-1, list1.FindIndex(5, Odd));
 
-
             Assert.AreEqual(2, list1.FindIndex(1, 4, Odd));
             Assert.AreEqual(3, list1.FindIndex(3, 2, Odd));
             Assert.AreEqual(-1, list1.FindIndex(3, 2, Even));
@@ -750,7 +747,6 @@ namespace Wintellect.PowerCollections.Tests
 
             index = list.IndexOf(7, 12, 3);
             Assert.AreEqual(14, index);
-
 
             list = new ReadWriteArrayList<int>(new int[0]);
             index = list.IndexOf(1);
@@ -887,7 +883,6 @@ namespace Wintellect.PowerCollections.Tests
             index = list.LastIndexOf(new MyDouble(8), 4, 3);
             Assert.IsTrue(index < 0);
         }
-
 
         [TestMethod]
         public void FindReadOnly()
@@ -1078,7 +1073,6 @@ namespace Wintellect.PowerCollections.Tests
             index = list.IndexOf(7, 12, 3);
             Assert.AreEqual(14, index);
 
-
             list = new ReadOnlyArrayList<int>(new int[0]);
             index = list.IndexOf(1);
             Assert.AreEqual(-1, index);
@@ -1196,7 +1190,6 @@ namespace Wintellect.PowerCollections.Tests
             index = list.LastIndexOf(new MyDouble(8), 4, 3);
             Assert.IsTrue(index < 0);
         }
-
     }
 }
 

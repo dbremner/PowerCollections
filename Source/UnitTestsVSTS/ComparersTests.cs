@@ -49,8 +49,6 @@ namespace Wintellect.PowerCollections.Tests
             return s1[0] == s2[0];
         }
 
-
-
         [TestMethod]
         public void ComparerFromComparison()
         {

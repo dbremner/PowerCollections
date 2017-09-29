@@ -464,7 +464,6 @@ namespace Wintellect.PowerCollections.Tests
         const int LENGTH = 500;			// length of each random array of values.
         const int ITERATIONS = 30;		    // number of iterations
 
-
         /// <summary>
         /// Create a random array of values.
         /// </summary>
@@ -559,7 +558,6 @@ namespace Wintellect.PowerCollections.Tests
                 }
             }
         }
-
 
         /// <summary>
         /// Insert LENGTH items in random order into the tree and then enumerate them.

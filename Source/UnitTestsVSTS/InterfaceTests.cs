@@ -80,7 +80,6 @@ namespace Wintellect.PowerCollections.Tests {
             }
         }
 
-
        /// <summary>
        /// Test an IEnumerable should contain the given values in order
        /// </summary>
@@ -217,7 +216,6 @@ namespace Wintellect.PowerCollections.Tests {
 			    Assert.ThrowsException<ArgumentException>(() => coll.CopyTo(newKeys, 3));
                 Assert.ThrowsException<ArgumentOutOfRangeException>(() => coll.CopyTo(newKeys, -1));
             }
-
     }
 
         /// /// <summary>
@@ -345,7 +343,6 @@ namespace Wintellect.PowerCollections.Tests {
 
             // Check throws correct exception
             Assert.ThrowsException<NotSupportedException>(() => coll.Remove(default(T)));
-
         }
 
         /// <summary>
@@ -1129,7 +1126,6 @@ namespace Wintellect.PowerCollections.Tests {
                 Assert.ThrowsException<NotSupportedException>(() => coll[0] = default(T));
             }
         }
-
 
         /// <summary>
         /// Test read-only non-generic IList; that should contain the given values, possibly in order. Does not change

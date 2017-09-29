@@ -42,6 +42,5 @@ namespace Wintellect.PowerCollections.Tests
         {
             return val.GetHashCode();
         }
-
     }
 }

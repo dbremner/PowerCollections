@@ -416,7 +416,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.ThrowsException<InvalidOperationException>(() => d.RemoveFromFront());
 
             Assert.ThrowsException<InvalidOperationException>(() => d.RemoveFromBack());
-
         }
 
         [TestMethod]
@@ -797,7 +796,6 @@ namespace Wintellect.PowerCollections.Tests
             var result = (Deque<string>) InterfaceTests.SerializeRoundTrip(d);
 
             InterfaceTests.TestReadWriteListGeneric((IList<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "cool", "elvis", "hello", "foo", "world", "elvis", null, "7", "8", "9", "10", "11", "12" });
-
         }
 
         [Serializable]
@@ -806,7 +804,6 @@ namespace Wintellect.PowerCollections.Tests
             public InterfaceTests.Unique[] objects;
             public Deque<InterfaceTests.Unique> deque;
         }
-
 
         [TestMethod]
         public void SerializeUnique()
@@ -839,6 +836,5 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsFalse(object.Equals(result.objects[i], d.objects[i]));
             }
         }
-
     }
 }

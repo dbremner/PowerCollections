@@ -13,7 +13,6 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 
-
 namespace Wintellect.PowerCollections.Tests
 {
     [TestClass]
@@ -45,7 +44,6 @@ namespace Wintellect.PowerCollections.Tests
             removed = Algorithms.RemoveWhere((ICollection<double>)d_list, Under200);
             InterfaceTests.TestReadWriteCollectionGeneric(removed, new double[] { 4.5, 1.2, 7.6, -0.04, -7.6, 1.78, 10.11, 187.4 }, true);
             Assert.AreEqual(0, d_list.Count);
-
         }
 
         [TestMethod]
@@ -343,7 +341,6 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 = { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" };
             Algorithms.ReplaceInPlace(array1, Length3, "X");
             InterfaceTests.TestEnumerableElements(array1, new string[] { "X", "X", "X", "hello", "hello", "sailor", "X", "X", "hi" });
-
         }
 
         [TestMethod]
@@ -429,7 +426,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(Algorithms.LexicographicalCompare(coll6, coll8) == 0);
             Assert.IsTrue(Algorithms.LexicographicalCompare(coll8, coll6) == 0);
         }
-
 
         [TestMethod]
         public void GetLexicographicalComparer1()
@@ -547,7 +543,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(Algorithms.LexicographicalCompare(coll3, coll7, StringComparer.InvariantCultureIgnoreCase) < 0);
             Assert.IsTrue(Algorithms.LexicographicalCompare(coll7, coll3, StringComparer.InvariantCultureIgnoreCase) > 0);
         }
-
 
         [TestMethod]
         public void GetLexicographicalComparer3()
@@ -670,7 +665,6 @@ namespace Wintellect.PowerCollections.Tests
             maxS = Algorithms.Maximum(coll5);
             Assert.AreEqual("elvis", maxS);
         }
-
 
         [TestMethod]
         public void IndexOfMaximum()
@@ -1403,7 +1397,6 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 =  { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.ReverseInPlace(array1);
             InterfaceTests.TestEnumerableElements(list2, new string[] { "glove", "the", "smell", "baz", "bar", "foo" });
-
         }
 
         [TestMethod]
@@ -1475,7 +1468,6 @@ namespace Wintellect.PowerCollections.Tests
             string[] array1 =  { "foo", "bar", "baz", "smell", "the", "glove" };
             Algorithms.RotateInPlace(array1, -2);
             InterfaceTests.TestEnumerableElements(array1, new string[] { "the", "glove", "foo", "bar", "baz", "smell" });
-
         }
 
         [TestMethod]
@@ -1545,7 +1537,6 @@ namespace Wintellect.PowerCollections.Tests
                 }
         }
 
-
         [TestMethod]
         public void RandomShuffle3()
         {
@@ -1578,7 +1569,6 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsTrue(count[i, j] > (ITER / 6) * 0.97 && count[i, j] < (ITER / 6) * 1.03);
                 }
         }
-
 
         [TestMethod]
         public void RandomShuffle4()
@@ -1646,7 +1636,6 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsTrue(count[i, j] > (ITER / 6) * 0.97 && count[i, j] < (ITER / 6) * 1.03);
                 }
         }
-
 
         [TestMethod]
         public void RandomSubset1()
@@ -1973,7 +1962,6 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsTrue(string.Compare(prev, s, StringComparison.CurrentCultureIgnoreCase) < 0);
             }
             Assert.AreEqual(30, set.Count);
-
         }
 
         [TestMethod]
@@ -2561,7 +2549,6 @@ namespace Wintellect.PowerCollections.Tests
             main[3] = 11;
             InterfaceTests.TestEnumerableElements(range, new int[] { 7, 11, 5, 99 });
 
-
             main = new int[] { 0, 1, 2, 3, 4, 5, 6, 7 };
             range = Algorithms.Range(main, 3, 0);
             range.Add(8);
@@ -2634,7 +2621,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(0, result);
         }
 
-
         [TestMethod]
         public void TryFindLastWhere1()
         {
@@ -2704,7 +2690,6 @@ namespace Wintellect.PowerCollections.Tests
             index = Algorithms.FindFirstIndexWhere(coll2, Odd);
             Assert.AreEqual(-1, index);
         }
-
 
         [TestMethod]
         public void FindLastIndexWhere()
@@ -2785,7 +2770,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(-1, index);
         }
 
-
         [TestMethod]
         public void LastIndexOf()
         {
@@ -2838,7 +2822,6 @@ namespace Wintellect.PowerCollections.Tests
 
             result = Algorithms.IndicesOf(coll1, 11, new Mod2EqualityComparer());
             InterfaceTests.TestEnumerableElements(result, new int[] { 2, 3, 5 });
-
 
             IList<int> coll2 = new BigList<int>();
             result = Algorithms.IndicesOf(coll2, 0);
@@ -2921,7 +2904,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(-1, index);
         }
 
-
         [TestMethod]
         public void AllOneOf1()
         {
@@ -2959,7 +2941,6 @@ namespace Wintellect.PowerCollections.Tests
             result = Algorithms.IndicesOfMany(coll2, EnumerableFromArray(new int[] { 3, 7, 9 }));
             InterfaceTests.TestEnumerableElements(result, new int[] {  });
         }
-
 
         [TestMethod]
         public void FirstOneOf2()
@@ -3028,7 +3009,6 @@ namespace Wintellect.PowerCollections.Tests
         private bool AbsDiff2(int x, int y) {
             return Math.Abs(x - y) == 2;
         }
-
 
         [TestMethod]
         public void AllOneOf2()
@@ -3121,7 +3101,6 @@ namespace Wintellect.PowerCollections.Tests
 
             index = Algorithms.SearchForSubsequence(list4, EnumerableFromArray(new int[] { }));
             Assert.AreEqual(0, index);
-
         }
 
         [TestMethod]
@@ -3347,7 +3326,6 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-
         [TestMethod]
         public void SortInPlace4()
         {
@@ -3559,7 +3537,6 @@ namespace Wintellect.PowerCollections.Tests
             KeyWithOrder<int>[] array = new KeyWithOrder<int>[SIZE];
 
             for (int iter = 0; iter < ITER; ++iter) {
-
                 for (int i = 0; i < SIZE; ++i) {
                     array[i] = new KeyWithOrder<int>(rand.Next(MAX), i);
                 }
@@ -3612,7 +3589,6 @@ namespace Wintellect.PowerCollections.Tests
             KeyWithOrder<int>[] array = new KeyWithOrder<int>[SIZE];
 
             for (int iter = 0; iter < ITER; ++iter) {
-
                 for (int i = 0; i < SIZE; ++i) {
                     array[i] = new KeyWithOrder<int>(rand.Next(MAX), i);
                 }
@@ -4062,5 +4038,4 @@ namespace Wintellect.PowerCollections.Tests
             return (obj & 1).GetHashCode();
         }
     }
-
 }

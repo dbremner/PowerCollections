@@ -151,7 +151,6 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestCollection((ICollection)bag1, s_array, true);
         }
 
-
         [TestMethod]
         public void GenericICollectionInterface()
         {
@@ -260,7 +259,6 @@ namespace Wintellect.PowerCollections.Tests
 
             var bag2 = new OrderedBag<string>(StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestReadOnlyListGeneric(bag2.AsList(), new string[] { }, null);
-
         }
 
         [TestMethod]
@@ -356,7 +354,6 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElements(bag1.GetEqualItems("silly"), new string[] {  });
             InterfaceTests.TestEnumerableElements(bag1.GetEqualItems("ERic"), new string[] { "Eric", "eric", "ERIC", "eric" });
         }
-
 
         [TestMethod]
         public void ToArray()
@@ -796,7 +793,6 @@ namespace Wintellect.PowerCollections.Tests
             var bag2 = new OrderedBag<string>(new string[] { "bada", "bing" }, StringComparer.InvariantCulture);
             bag1.Difference(bag2);
         }
-
 
         [TestMethod]
         public void NotComparable1()
@@ -1292,7 +1288,6 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result,
                 new string[] { null, null, "1", "10", "11", "12", "2", "3", "4", "5", "6", "7", "8", "9", "cool", "eLVIs", "elvis", "foo", "hello", "Hello", "WORLD" }, true);
         }
-
 
     }
 }

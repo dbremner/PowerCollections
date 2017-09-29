@@ -21,6 +21,5 @@ namespace Wintellect.PowerCollections.Tests {
         {
             return string.Format("Key:{0} Data:{1}", key, data);
         }
-
     }
 }

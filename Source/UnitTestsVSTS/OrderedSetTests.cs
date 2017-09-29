@@ -6,7 +6,6 @@
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
-
 #region Using directives
 
 using System;
@@ -141,7 +140,6 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestCollection((ICollection) set1, s_array, true);
         }
 
-
         [TestMethod]
         public void GenericICollectionInterface()
         {
@@ -248,7 +246,6 @@ namespace Wintellect.PowerCollections.Tests
 
             var set2 = new OrderedSet<string>(StringComparer.InvariantCultureIgnoreCase);
             InterfaceTests.TestReadOnlyListGeneric(set2.AsList(), new string[] { }, null);
-
         }
 
         [TestMethod]
@@ -298,7 +295,6 @@ namespace Wintellect.PowerCollections.Tests
             b = set1.Remove("eRic"); Assert.IsFalse(b);
             set1.Clear();
             b = set1.Remove(""); Assert.IsFalse(b);
-
         }
 
         [TestMethod]
@@ -322,7 +318,6 @@ namespace Wintellect.PowerCollections.Tests
             b = set1.TryGetItem(null, out s); Assert.IsTrue(b); Assert.IsNull(s);
             set1.Clear();
             b = set1.TryGetItem("foo", out s); Assert.IsFalse(b); Assert.IsNull(s);
-
         }
 
         [TestMethod]
@@ -718,7 +713,6 @@ namespace Wintellect.PowerCollections.Tests
             set1.Difference(set2);
         }
 
-
         [TestMethod]
         public void NotComparable1()
         {
@@ -895,7 +889,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(set1.Contains(4));
         }
 
-
         // Simple class for testing cloning.
         class MyInt : ICloneable
         {
@@ -997,7 +990,6 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.IsFalse(e1.Current.Identical(e2.Current));
             }
 
-
         }
 
         [TestMethod]
@@ -1060,7 +1052,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(set4.Comparer.Compare(7, 6) < 0);
         }
 
-
         [TestMethod]
         public void Initialize()
         {
@@ -1078,7 +1069,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.ThrowsException<ArgumentNullException>(
                 () => new OrderedSet<int>(comparer: null));
         }
-
 
         [TestMethod]
         public void Smallest()
@@ -1183,9 +1173,7 @@ namespace Wintellect.PowerCollections.Tests
             var result = (OrderedSet<string>)InterfaceTests.SerializeRoundTrip(d);
 
             InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result, new string[] { null, "1", "10", "11", "12", "2", "3", "4", "5", "6", "7", "8", "9", "cool", "elvis", "foo", "hello", "world" }, true, StringComparer.InvariantCultureIgnoreCase.Equals);
-
         }
-
 
     }
 }

@@ -125,7 +125,6 @@ namespace Wintellect.PowerCollections.Tests
             s = coll6.ToString();
             Assert.AreEqual("{1,2,3}", s);
 
-
         }
 
         [TestMethod]
@@ -255,7 +254,6 @@ namespace Wintellect.PowerCollections.Tests
             coll1.Add(4);
             InterfaceTests.TestReadonlyCollectionGeneric(coll2, new int[] { 4 }, true, null);
         }
-
     }
 }
 

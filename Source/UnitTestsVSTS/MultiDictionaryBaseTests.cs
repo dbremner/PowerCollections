@@ -601,7 +601,6 @@ namespace Wintellect.PowerCollections.Tests
             CheckOrderedMultiDictionaryContents(dict, s_array, i_array, "foo", 113, null, null);
         }
 
-
         [TestMethod]
         public void ReplaceMany()
         {
@@ -769,8 +768,6 @@ namespace Wintellect.PowerCollections.Tests
 
             s = dict6.DebuggerDisplayString();
             Assert.AreEqual("{foo1bar->(0), foo2bar->(0,1), foo3bar->(0,1,2), foo4bar->(0,1,2,3), foo5bar->(0,1,2,3,4), foo6bar->(0,1,2,3,4,5), foo7bar->(0,1,2,3,4,5,6), foo8bar->(0,1,2,3,4,5,6,7), foo9bar->(0,1,2,3,4,5,6,7,8), foo10bar->(0,1,2,3,4,5,6,7,8,9), foo11bar->(0,1,2,3,4,5,6,7,8,9,10), ...}", s);
-
         }
-
     }
 }

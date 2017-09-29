@@ -77,7 +77,6 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestCollection((ICollection)set1, s_array, false);
         }
 
-
         [TestMethod]
         public void GenericICollectionInterface()
         {
@@ -156,7 +155,6 @@ namespace Wintellect.PowerCollections.Tests
             b = set1.Remove("eRic"); Assert.IsFalse(b);
             set1.Clear();
             b = set1.Remove(""); Assert.IsFalse(b);
-
         }
 
         [TestMethod]
@@ -180,7 +178,6 @@ namespace Wintellect.PowerCollections.Tests
             b = set1.TryGetItem(null, out s); Assert.IsTrue(b); Assert.IsNull(s);
             set1.Clear();
             b = set1.TryGetItem("foo", out s); Assert.IsFalse(b); Assert.IsNull(s);
-
         }
 
         [TestMethod]
@@ -316,7 +313,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(set1.Count == 0 && set2.Count == 0);
         }
 
-
         // Simple class for testing cloning.
         class MyInt : ICloneable
         {
@@ -365,8 +361,6 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-
-
         [TestMethod]
         public void CloneContents()
         {
@@ -407,7 +401,6 @@ namespace Wintellect.PowerCollections.Tests
                 }
                 Assert.AreEqual(1, found);
             }
-
         }
 
         [TestMethod]
@@ -865,7 +858,6 @@ namespace Wintellect.PowerCollections.Tests
             var result = (Set<string>)InterfaceTests.SerializeRoundTrip(d);
 
             InterfaceTests.TestReadWriteCollectionGeneric((ICollection<string>)result, new string[] { "1", "2", "3", "4", "5", "6", "cool", "elvis", "hello", "foo", "world", null, "7", "8", "9", "10", "11", "12" }, false);
-
         }
 
         [Serializable]
@@ -874,7 +866,6 @@ namespace Wintellect.PowerCollections.Tests
             public InterfaceTests.Unique[] objects;
             public Set<InterfaceTests.Unique> set;
         }
-
 
         [TestMethod]
         public void SerializeUnique()
@@ -907,7 +898,6 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsFalse(object.Equals(result.objects[i], d.objects[i]));
             }
         }
-
 
     }
 }

@@ -222,7 +222,6 @@ namespace Wintellect.PowerCollections.Tests
             CheckAgainstArray(dict, array);
         }
 
-
         [TestMethod]
         public void Add()
         {
@@ -334,7 +333,6 @@ namespace Wintellect.PowerCollections.Tests
                             new KeyValuePair<string,double>("foo",9.8)
                             });
         }
-
 
         [TestMethod]
         public void Replace()
@@ -748,7 +746,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsTrue(pairs.Contains(Kvp.Of("3A", "baz")));
             Assert.IsTrue(pairs.Contains(Kvp.Of("6a", "foo")));
             Assert.IsFalse(pairs.Contains(Kvp.Of("7A", "bar")));
-
         }
 
         [TestMethod]
@@ -848,7 +845,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(2, dict1["foo"].Count);
             Assert.AreEqual(1, dict1["trail"].Count);
             Assert.AreEqual(0, dict1["nothing"].Count);
-
         }
 
         [TestMethod]
@@ -889,7 +885,6 @@ namespace Wintellect.PowerCollections.Tests
                 new string[] { null, "foo", "hello", "trail" },
                 new string[][] { new string[] { "hello", "hi" }, new string[] { "a", "bar" }, new string[] { null, "sailor" }, new string[] { "mix" } },
                 "zippy", "pinhead", null, null);
-
         }
 
         [TestMethod]
@@ -941,7 +936,6 @@ namespace Wintellect.PowerCollections.Tests
                 Kvp.Of("qubert", "dinosaur"),
                 Kvp.Of("queztel", "hello")});
         }
-
 
         [TestMethod]
         public void Initialize()
@@ -1139,7 +1133,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.ThrowsException<InvalidOperationException>(() => dict1.CloneContents());
         }
 
-
         [TestMethod]
         public void FailFastEnumerator()
         {
@@ -1191,7 +1184,6 @@ namespace Wintellect.PowerCollections.Tests
                 }
             });
             Assert.AreEqual(2, iter);
-
         }
 
         [TestMethod]
@@ -1257,7 +1249,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreSame(dict4.ValueComparer, dict4.Clone().ValueComparer);
             Assert.AreSame(dict5.ValueComparer, dict5.Clone().ValueComparer);
         }
-
 
         // Check the contents of a Multi-Dictionary non-destructively. Keys and Values must be in order.
         internal static void CheckView<TKey, TValue>(OrderedMultiDictionary<TKey, TValue>.View dict, TKey[] keys, TValue[][] values, TKey nonKey, TValue nonValue, bool cantAddNonKey, BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
@@ -1433,7 +1424,6 @@ namespace Wintellect.PowerCollections.Tests
                 new string[] { "S", "gib", "foo" },
                 new double[][] { new double[] { -9 }, new double[] { 1.1, 7.1 }, new double[] { -1.2, 3.5, 8.8 } },
                 "bar", 9.8, true, null, null);
-
         }
 
         [TestMethod]
@@ -1482,7 +1472,6 @@ namespace Wintellect.PowerCollections.Tests
                 new string[] { "foo", "bar", null },
                 new double[][] { new double[] { -1.2, 3.5, 8.8 }, new double[] { 9.8 }, new double[] { 5.5, 11.1 } },
                 "gib", 1.1, true, null, null);
-
         }
 
         [TestMethod]
@@ -1521,7 +1510,6 @@ namespace Wintellect.PowerCollections.Tests
                 new string[] { "bar", "foo", "gib" },
                 new double[][] { new double[] { 9.8 }, new double[] { -1.2, 3.5, 8.8 }, new double[] { 1.1, 7.1 } },
                 "Speedo", -14, true, null, null);
-
 
             CheckView(dict1.Range(null, true, "S", true).Reversed(),
                 new string[] {"S", "gib", "foo", "bar", null },
@@ -1662,8 +1650,6 @@ namespace Wintellect.PowerCollections.Tests
                 new double[][] { new double[] { 1.4 }, new double[] { 0.9, 1.4 }, new double[] { 7, 7 }, new double[] { 11, 12, 13 }, new double[] { -9.5 } },
                 "zippy", 123, StringComparer.InvariantCultureIgnoreCase.Equals, null);
         }
-
     }
-
 }
 

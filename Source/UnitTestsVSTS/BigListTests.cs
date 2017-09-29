@@ -140,7 +140,6 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.AreEqual(i++, x);
         }
 
-
         [TestMethod]
         public void CreateFromEnumerable2()
         {
@@ -575,7 +574,6 @@ namespace Wintellect.PowerCollections.Tests
             }
         }
 
-
         [TestMethod]
         public void GetRange()
         {
@@ -634,7 +632,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(int.MinValue, 1));
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => list1.GetRange(int.MaxValue, 1));
-
         }
 
         [TestMethod]
@@ -668,7 +665,6 @@ namespace Wintellect.PowerCollections.Tests
                 Assert.AreEqual(i, list3[i]);
         }
 
-
         [TestMethod]
         public void Indexer()
         {
@@ -697,7 +693,6 @@ namespace Wintellect.PowerCollections.Tests
             }
             for (i = 44; i < 88; ++i)
                 Assert.AreEqual(i * 2, list1[i]);
-
 
             list1 = new BigList<int>();
             list2 = new BigList<int>();
@@ -975,7 +970,6 @@ namespace Wintellect.PowerCollections.Tests
                 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124,
                 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 187, 188, 189,
                 190, 191, 192, 193, 194, 195, 196, 197, 198 });
-
         }
 
         [TestMethod]
@@ -1029,7 +1023,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(40, list1.Count);
             for (int i = 0; i < 40; ++i)
                 Assert.AreEqual(i % 20, list1[i]);
-
 
             list1.Clear();
             for (int i = 0; i < 20; ++i)
@@ -1249,7 +1242,6 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.ThrowsException<InvalidOperationException>(() => list1.CloneContents());
         }
-
 
         [TestMethod]
         public void MultiCopies()
@@ -1541,7 +1533,6 @@ namespace Wintellect.PowerCollections.Tests
 
             index = list.IndexOf(7, 12, 3);
             Assert.AreEqual(14, index);
-
 
             list = new BigList<int>();
             index = list.IndexOf(1);
@@ -2022,7 +2013,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.AreEqual(0, index);
         }
 
-
         [TestMethod]
         public void Sort1()
         {
@@ -2171,8 +2161,6 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElements(list, new int[] { 1, 1, 2 });
         }
 
-
-
         [TestMethod]
         public void TooLarge()
         {
@@ -2239,7 +2227,6 @@ namespace Wintellect.PowerCollections.Tests
 
                 if (iter == 113)
                     Console.WriteLine("bad stuff about to happen");   */
-
 
                 switch (rand.Next(22)) {
                 case 0:
@@ -2422,7 +2409,6 @@ namespace Wintellect.PowerCollections.Tests
         var result = (BigList<string>)InterfaceTests.SerializeRoundTrip(d);
 
         InterfaceTests.TestReadWriteListGeneric((IList<string>)result, new string[] { "cool", "elvis", "hello", "foo", "world", "elvis", null, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
-
     }
 
     [Serializable]
@@ -2431,7 +2417,6 @@ namespace Wintellect.PowerCollections.Tests
         public InterfaceTests.Unique[] objects;
         public BigList<InterfaceTests.Unique> list;
     }
-
 
     [TestMethod]
     public void SerializeUnique1()
@@ -2487,7 +2472,6 @@ namespace Wintellect.PowerCollections.Tests
                     Assert.IsFalse(object.Equals(result.objects[i], d.objects[i]));
             }
         }
-
 }
 }
 
