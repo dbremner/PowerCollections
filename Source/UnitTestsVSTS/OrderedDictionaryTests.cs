@@ -769,7 +769,6 @@ namespace Wintellect.PowerCollections.Tests
             {
                 return value.ToString();
             }
-
         }
 
 	    private void CompareClones<K, V>(OrderedDictionary<K, V> d1, OrderedDictionary<K, V> d2)
