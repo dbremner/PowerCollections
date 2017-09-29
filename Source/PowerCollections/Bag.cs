@@ -605,6 +605,9 @@ namespace Wintellect.PowerCollections
         /// <exception cref="InvalidOperationException">This bag and <paramref name="otherBag"/> don't use the same method for comparing items.</exception>
         public bool IsSubsetOf(Bag<T> otherBag)
         {
+            if (otherBag == null) {
+                throw new ArgumentNullException(nameof(otherBag));
+            }
             return otherBag.IsSupersetOf(this);
         }
 
@@ -620,6 +623,9 @@ namespace Wintellect.PowerCollections
         /// <exception cref="InvalidOperationException">This bag and <paramref name="otherBag"/> don't use the same method for comparing items.</exception>
         public bool IsProperSubsetOf(Bag<T> otherBag)
         {
+            if (otherBag == null) {
+                throw new ArgumentNullException(nameof(otherBag));
+            }
             return otherBag.IsProperSupersetOf(this);
         }
 

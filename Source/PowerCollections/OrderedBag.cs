@@ -643,6 +643,9 @@ namespace Wintellect.PowerCollections
         /// <exception cref="ArgumentNullException"><paramref name="otherBag"/> is null.</exception>
         public bool IsSubsetOf(OrderedBag<T> otherBag)
         {
+            if (otherBag == null) {
+                throw new ArgumentNullException(nameof(otherBag));
+            }
             return otherBag.IsSupersetOf(this);
         }
 
@@ -660,6 +663,9 @@ namespace Wintellect.PowerCollections
         /// <exception cref="ArgumentNullException"><paramref name="otherBag"/> is null.</exception>
         public bool IsProperSubsetOf(OrderedBag<T> otherBag)
         {
+            if (otherBag == null) {
+                throw new ArgumentNullException(nameof(otherBag));
+            }
             return otherBag.IsProperSupersetOf(this);
         }
 

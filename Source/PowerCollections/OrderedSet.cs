@@ -588,6 +588,9 @@ namespace Wintellect.PowerCollections
         /// <exception cref="InvalidOperationException">This set and <paramref name="otherSet"/> don't use the same method for comparing items.</exception>
         public bool IsSubsetOf(OrderedSet<T> otherSet)
         {
+            if (otherSet == null) {
+                throw new ArgumentNullException(nameof(otherSet));
+            }
             return otherSet.IsSupersetOf(this);
         }
 
@@ -605,6 +608,9 @@ namespace Wintellect.PowerCollections
         /// <exception cref="InvalidOperationException">This set and <paramref name="otherSet"/> don't use the same method for comparing items.</exception>
         public bool IsProperSubsetOf(OrderedSet<T> otherSet)
         {
+            if (otherSet == null) {
+                throw new ArgumentNullException(nameof(otherSet));
+            }
             return otherSet.IsProperSupersetOf(this);
         }
 
