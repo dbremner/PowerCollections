@@ -260,6 +260,13 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        public void InsertRange()
+        {
+            var deque = new Deque<string>();
+            Assert.ThrowsException<ArgumentNullException>(() => deque.InsertRange(1, null));
+        }
+
+        [TestMethod]
         public void RemoveAt()
         {
             var d = new Deque<string>();
@@ -419,6 +426,8 @@ namespace Wintellect.PowerCollections.Tests
             deque1.AddManyToFront(new string[] { "Q", "R", "S" });
             deque1.AddManyToBack(new string[] { "L", "M", "N", "O" });
             InterfaceTests.TestReadWriteListGeneric(deque1, new string[] { "Q", "R", "S", "A", "B", "C", "D", "L", "M", "N", "O" });
+            Assert.ThrowsException<ArgumentNullException>(() => deque1.AddManyToFront(null));
+            Assert.ThrowsException<ArgumentNullException>(() => deque1.AddManyToBack(null));
         }
 
         [TestMethod]
