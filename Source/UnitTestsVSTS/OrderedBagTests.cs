@@ -697,6 +697,12 @@ namespace Wintellect.PowerCollections.Tests
             Assert.ThrowsException<ArgumentNullException>(() => set1.IsSubsetOf(null));
 
             Assert.ThrowsException<ArgumentNullException>(() => set1.IsProperSubsetOf(null));
+
+            Assert.ThrowsException<ArgumentNullException>(() => set1.IsSupersetOf(null));
+
+            var set6 = new OrderedBag<string>(StringComparer.CurrentCulture);
+            var set7 = new OrderedBag<string>(StringComparer.OrdinalIgnoreCase);
+            Assert.ThrowsException<InvalidOperationException>(() => set6.IsSupersetOf(set7));
         }
 
         [TestMethod]
