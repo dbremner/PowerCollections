@@ -11,10 +11,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-// Everything should be CLS compliant.
-[assembly: CLSCompliant(true)]
-
-
 namespace Wintellect.PowerCollections {
     /// <summary>
     /// Algorithms contains a number of static methods that implement

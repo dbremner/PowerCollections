@@ -6,8 +6,10 @@
 // contained in the file "License.txt" accompanying this file.
 //******************************
 
+using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 // Make internals of this library available to the unit test framework.
 // NOTE: If you are building the PowerCollections with your own key you will need to change the public key below.
@@ -29,7 +31,12 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyProduct("Power Collections")]
 [assembly: AssemblyCopyright("Copyright (c) 2004-2007, Wintellect")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]
+
+// Everything should be CLS compliant.
+[assembly: CLSCompliant(true)]
+
+[assembly: ComVisible(false)]
 
 //
 // Version information for an assembly consists of the following four values:
