@@ -25,6 +25,7 @@ namespace Wintellect.PowerCollections
     /// <typeparam name="TKey">The key type of the dictionary.</typeparam>
     /// <typeparam name="TValue">The value type of the dictionary.</typeparam>
     [Serializable]
+    // ReSharper disable once UseNameofExpression
     [DebuggerDisplay("{DebuggerDisplayString()}")]
     public abstract class ReadOnlyDictionaryBase<TKey, TValue> : ReadOnlyCollectionBase<KeyValuePair<TKey, TValue>>,
                                                                                                   IDictionary<TKey, TValue>, IDictionary

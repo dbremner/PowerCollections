@@ -27,6 +27,7 @@ namespace Wintellect.PowerCollections
     /// </remarks>
     /// <typeparam name="T">The item type of the collection.</typeparam>
     [Serializable]
+    // ReSharper disable once UseNameofExpression
     [DebuggerDisplay("{DebuggerDisplayString()}")]
     public abstract class CollectionBase<T> : ICollection<T>, ICollection, IReadOnlyCollection<T>
     {
