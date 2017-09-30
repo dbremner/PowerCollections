@@ -892,13 +892,17 @@ namespace Wintellect.PowerCollections {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            int index = 0;
-            foreach (T item in list) {
-                if (predicate(item)) {
-                    yield return index;
+            IEnumerable<int> GenerateIndexes() {
+                int index = 0;
+                foreach (T item in list) {
+                    if (predicate(item)) {
+                        yield return index;
+                    }
+                    ++index;
                 }
-                ++index;
             }
+
+            return GenerateIndexes();
         }
 
         /// <summary>
@@ -1216,17 +1220,20 @@ namespace Wintellect.PowerCollections {
             if (equalityComparer == null)
                 throw new ArgumentNullException(nameof(equalityComparer));
 
-            // Create a set of the items we are looking for, for efficient lookup.
-            var setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
-
-            // Scan the list
-            int index = 0;
-            foreach (T x in list) {
-                if (setToLookFor.Contains(x)) {
-                    yield return index;
+            IEnumerable<int> GenerateIndexes() {
+                // Create a set of the items we are looking for, for efficient lookup.
+                var setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
+                // Scan the list
+                int index = 0;
+                foreach (T x in list) {
+                    if (setToLookFor.Contains(x)) {
+                        yield return index;
+                    }
+                    ++index;
                 }
-                ++index;
             }
+
+            return GenerateIndexes();
         }
 
         /// <summary>
@@ -1250,18 +1257,22 @@ namespace Wintellect.PowerCollections {
             if (predicate == null)
                 throw new ArgumentNullException(nameof(predicate));
 
-            // Scan the list for the items.
-            var itemsToLookForList = itemsToLookFor.ToList();
-            int index = 0;
-            foreach (T x in list) {
-                foreach (T y in itemsToLookForList) {
-                    if (predicate(x, y)) {
-                        yield return index;
+            IEnumerable<int> GenerateIndexes() {
+                // Scan the list for the items.
+                var itemsToLookForList = itemsToLookFor.ToList();
+                int index = 0;
+                foreach (T x in list) {
+                    foreach (T y in itemsToLookForList) {
+                        if (predicate(x, y)) {
+                            yield return index;
+                        }
                     }
-                }
 
-                ++index;
+                    ++index;
+                }
             }
+
+            return GenerateIndexes();
         }
 
         /// <summary>

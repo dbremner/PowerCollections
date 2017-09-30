@@ -2921,6 +2921,19 @@ namespace Wintellect.PowerCollections.Tests
         }
 
         [TestMethod]
+        public void IndicesOfManyNullArguments()
+        {
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.IndicesOfMany(default(IList<int>), null));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.IndicesOfMany(new int[0], null));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.IndicesOfMany(new int[0], new int[0], equalityComparer:null));
+            Assert.ThrowsException<ArgumentNullException>(
+                () => Algorithms.IndicesOfMany(new int[0], new int[0], predicate:null));
+        }
+
+        [TestMethod]
         public void FirstOneOf2()
         {
             IList<int> coll1 = new BigList<int>(new int[] { 4, 8, 1, 1, 4, 9 });
