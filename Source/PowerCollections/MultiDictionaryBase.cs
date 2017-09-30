@@ -106,6 +106,9 @@ namespace Wintellect.PowerCollections
         /// <param name="values">A collection of values to associate with <paramref name="key"/>.</param>
         public virtual void AddMany(TKey key, IEnumerable<TValue> values)
         {
+            if (values == null) {
+                throw new ArgumentNullException(nameof(values));
+            }
             foreach (TValue value in values)
                 Add(key, value);
         }
@@ -153,6 +156,9 @@ namespace Wintellect.PowerCollections
         /// <returns>The number of values that were present and removed. </returns>
         public virtual int RemoveMany(TKey key, IEnumerable<TValue> values)
         {
+            if (values == null) {
+                throw new ArgumentNullException(nameof(values));
+            }
             int countRemoved = 0;
 
             foreach (TValue val in values) {
@@ -171,6 +177,9 @@ namespace Wintellect.PowerCollections
         /// <returns>The number of keys from the collection that were present and removed.</returns>
         public int RemoveMany(IEnumerable<TKey> keyCollection)
         {
+            if (keyCollection == null) {
+                throw new ArgumentNullException(nameof(keyCollection));
+            }
             int count = 0;
             foreach (TKey key in keyCollection) {
                 if (Remove(key))
