@@ -155,21 +155,21 @@ namespace Wintellect.PowerCollections {
         /// when interfacing older, non-generic collections to newer code that uses generic interfaces.
         /// </summary>
         /// <remarks>Some collections implement both generic and non-generic interfaces. For efficiency,
-        /// this method will first attempt to cast <paramref name="untypedCollection"/> to IEnumerable&lt;T&gt;. 
+        /// this method will first attempt to cast <paramref name="enumerable"/> to IEnumerable&lt;T&gt;. 
         /// If that succeeds, it is returned; otherwise, a wrapper object is created.</remarks>
         /// <typeparam name="T">The item type of the wrapper collection.</typeparam>
-        /// <param name="untypedCollection">An untyped collection. This collection should only contain
+        /// <param name="enumerable">An untyped collection. This collection should only contain
         /// items of type <typeparamref name="T"/> or a type derived from it. </param>
-        /// <returns>A generic IEnumerable&lt;T&gt; wrapper around <paramref name="untypedCollection"/>. 
-        /// If <paramref name="untypedCollection"/> is null, then null is returned.</returns>
-        public static IEnumerable<T> TypedAs<T>(IEnumerable untypedCollection)
+        /// <returns>A generic IEnumerable&lt;T&gt; wrapper around <paramref name="enumerable"/>. 
+        /// If <paramref name="enumerable"/> is null, then null is returned.</returns>
+        public static IEnumerable<T> TypedAs<T>(IEnumerable enumerable)
         {
-            if (untypedCollection == null)
+            if (enumerable == null)
                 return null;
-            else if (untypedCollection is IEnumerable<T> enumerable)
-                return enumerable;
+            else if (enumerable is IEnumerable<T> typedEnumerable)
+                return typedEnumerable;
             else
-                return untypedCollection.Cast<T>();
+                return enumerable.Cast<T>();
         }
 
         /// <summary>
@@ -181,24 +181,24 @@ namespace Wintellect.PowerCollections {
         /// when interfacing older, non-generic collections to newer code that uses generic interfaces.
         /// </summary>
         /// <remarks><para>Some collections implement both generic and non-generic interfaces. For efficiency,
-        /// this method will first attempt to cast <paramref name="untypedCollection"/> to ICollection&lt;T&gt;. 
+        /// this method will first attempt to cast <paramref name="collection"/> to ICollection&lt;T&gt;. 
         /// If that succeeds, it is returned; otherwise, a wrapper object is created.</para>
         /// <para>Unlike the generic interface, the non-generic ICollection interfaces does
         /// not contain methods for adding or removing items from the collection. For this reason,
         /// the returned ICollection&lt;T&gt; will be read-only.</para></remarks>
         /// <typeparam  name="T">The item type of the wrapper collection.</typeparam>
-        /// <param name="untypedCollection">An untyped collection. This collection should only contain
+        /// <param name="collection">An untyped collection. This collection should only contain
         /// items of type <typeparamref  name="T"/> or a type derived from it. </param>
-        /// <returns>A generic ICollection&lt;T&gt; wrapper around <paramref name="untypedCollection"/>.
-        /// If <paramref name="untypedCollection"/> is null, then null is returned.</returns>
-        public static ICollection<T> TypedAs<T>(ICollection untypedCollection)
+        /// <returns>A generic ICollection&lt;T&gt; wrapper around <paramref name="collection"/>.
+        /// If <paramref name="collection"/> is null, then null is returned.</returns>
+        public static ICollection<T> TypedAs<T>(ICollection collection)
         {
-            if (untypedCollection == null)
+            if (collection == null)
                 return null;
-            else if (untypedCollection is ICollection<T> collection)
-                return collection;
+            else if (collection is ICollection<T> typedCollection)
+                return typedCollection;
             else
-                return new TypedCollection<T>(untypedCollection);
+                return new TypedCollection<T>(collection);
         }
 
         /// <summary>
@@ -210,21 +210,21 @@ namespace Wintellect.PowerCollections {
         /// when interfacing older, non-generic lists to newer code that uses generic interfaces.
         /// </summary>
         /// <remarks>Some collections implement both generic and non-generic interfaces. For efficiency,
-        /// this method will first attempt to cast <paramref name="untypedList"/> to IList&lt;T&gt;. 
+        /// this method will first attempt to cast <paramref name="list"/> to IList&lt;T&gt;. 
         /// If that succeeds, it is returned; otherwise, a wrapper object is created.</remarks>
         /// <typeparam name="T">The item type of the wrapper list.</typeparam>
-        /// <param name="untypedList">An untyped list. This list should only contain
+        /// <param name="list">An untyped list. This list should only contain
         /// items of type <typeparamref name="T"/> or a type derived from it. </param>
-        /// <returns>A generic IList&lt;T&gt; wrapper around <paramref name="untypedList"/>.
-        /// If <paramref name="untypedList"/> is null, then null is returned.</returns>
-        public static IList<T> TypedAs<T>(IList untypedList)
+        /// <returns>A generic IList&lt;T&gt; wrapper around <paramref name="list"/>.
+        /// If <paramref name="list"/> is null, then null is returned.</returns>
+        public static IList<T> TypedAs<T>(IList list)
         {
-            if (untypedList == null)
+            if (list == null)
                 return null;
-            else if (untypedList is IList<T> list)
-                return list;
+            else if (list is IList<T> typedList)
+                return typedList;
             else
-                return new TypedList<T>(untypedList);
+                return new TypedList<T>(list);
         }
 
         /// <summary>
@@ -234,20 +234,20 @@ namespace Wintellect.PowerCollections {
         /// This method is useful when interfacing generic interfaces with older code that uses non-generic interfaces.
         /// </summary>
         /// <remarks>Many generic collections already implement the non-generic interfaces directly. This
-        /// method will first attempt to simply cast <paramref name="typedCollection"/> to ICollection. If that
+        /// method will first attempt to simply cast <paramref name="collection"/> to ICollection. If that
         /// succeeds, it is returned; if it fails, then a wrapper object is created.</remarks>
         /// <typeparam name="T">The item type of the underlying collection.</typeparam>
-        /// <param name="typedCollection">A typed collection to wrap.</param>
-        /// <returns>A non-generic ICollection wrapper around <paramref name="typedCollection"/>.
-        /// If <paramref name="typedCollection"/> is null, then null is returned.</returns>
-        public static ICollection Untyped<T>(ICollection<T> typedCollection)
+        /// <param name="collection">A typed collection to wrap.</param>
+        /// <returns>A non-generic ICollection wrapper around <paramref name="collection"/>.
+        /// If <paramref name="collection"/> is null, then null is returned.</returns>
+        public static ICollection Untyped<T>(ICollection<T> collection)
         {
-            if (typedCollection == null)
+            if (collection == null)
                 return null;
-            else if (typedCollection is ICollection collection)
-                return collection;
+            else if (collection is ICollection untypedCollection)
+                return untypedCollection;
             else
-                return new UntypedCollection<T>(typedCollection);
+                return new UntypedCollection<T>(collection);
         }
 
         /// <summary>
@@ -4058,128 +4058,128 @@ namespace Wintellect.PowerCollections {
         }
 
         /// <summary>
-        /// Copies all of the items from the collection <paramref name="source"/> to the list <paramref name="dest"/>, starting
-        /// at the index <paramref name="destIndex"/>. If necessary, the size of the destination list is expanded.
+        /// Copies all of the items from the collection <paramref name="source"/> to the list <paramref name="destination"/>, starting
+        /// at the index <paramref name="destinationIndex"/>. If necessary, the size of the destination list is expanded.
         /// </summary>
         /// <param name="source">The collection that provide the source items. </param>
-        /// <param name="dest">The list to store the items into.</param>
-        /// <param name="destIndex">The index to begin copying items to.</param>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destIndex"/> is negative or 
-        /// greater than <paramref name="dest"/>.Count.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="dest"/> is null.</exception>
-        public static void Copy<T>(IEnumerable<T> source, IList<T> dest, int destIndex)
+        /// <param name="destination">The list to store the items into.</param>
+        /// <param name="destinationIndex">The index to begin copying items to.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destinationIndex"/> is negative or 
+        /// greater than <paramref name="destination"/>.Count.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="destination"/> is null.</exception>
+        public static void Copy<T>(IEnumerable<T> source, IList<T> destination, int destinationIndex)
         {
-            Copy(source, dest, destIndex, int.MaxValue);
+            Copy(source, destination, destinationIndex, int.MaxValue);
         }
 
         /// <summary>
-        /// Copies all of the items from the collection <paramref name="source"/> to the array <paramref name="dest"/>, starting
-        /// at the index <paramref name="destIndex"/>. 
+        /// Copies all of the items from the collection <paramref name="source"/> to the array <paramref name="destination"/>, starting
+        /// at the index <paramref name="destinationIndex"/>. 
         /// </summary>
         /// <param name="source">The collection that provide the source items. </param>
-        /// <param name="dest">The array to store the items into.</param>
-        /// <param name="destIndex">The index to begin copying items to.</param>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destIndex"/> is negative or 
-        /// greater than <paramref name="dest"/>.Length.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="dest"/> is null.</exception>
+        /// <param name="destination">The array to store the items into.</param>
+        /// <param name="destinationIndex">The index to begin copying items to.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destinationIndex"/> is negative or 
+        /// greater than <paramref name="destination"/>.Length.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="destination"/> is null.</exception>
         /// <exception cref="ArgumentException">The collection has more items than will fit into the array. In this case, the array
         /// has been filled with as many items as fit before the exception is thrown.</exception>
-        public static void Copy<T>(IEnumerable<T> source, T[] dest, int destIndex)
+        public static void Copy<T>(IEnumerable<T> source, T[] destination, int destinationIndex)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            if (dest == null)
-                throw new ArgumentNullException(nameof(dest));
+            if (destination == null)
+                throw new ArgumentNullException(nameof(destination));
 
-            if (destIndex < 0 || destIndex > dest.Length)
-                throw new ArgumentOutOfRangeException(nameof(destIndex));
+            if (destinationIndex < 0 || destinationIndex > destination.Length)
+                throw new ArgumentOutOfRangeException(nameof(destinationIndex));
 
             using (IEnumerator<T> sourceEnum = source.GetEnumerator()) {
                 // Overwrite items to the end of the destination array. If we hit the end, throw.
                 while (sourceEnum.MoveNext()) {
-                    if (destIndex >= dest.Length)
-                        throw new ArgumentException(Strings.ArrayTooSmall, nameof(dest));
-                    dest[destIndex++] = sourceEnum.Current;
+                    if (destinationIndex >= destination.Length)
+                        throw new ArgumentException(Strings.ArrayTooSmall, nameof(destination));
+                    destination[destinationIndex++] = sourceEnum.Current;
                 }
             }
         }
 
         /// <summary>
-        /// Copies at most <paramref name="count"/> items from the collection <paramref name="source"/> to the list <paramref name="dest"/>, starting
-        /// at the index <paramref name="destIndex"/>. If necessary, the size of the destination list is expanded. The source collection must not be
+        /// Copies at most <paramref name="count"/> items from the collection <paramref name="source"/> to the list <paramref name="destination"/>, starting
+        /// at the index <paramref name="destinationIndex"/>. If necessary, the size of the destination list is expanded. The source collection must not be
         /// the destination list or part thereof.
         /// </summary>
         /// <param name="source">The collection that provide the source items. </param>
-        /// <param name="dest">The list to store the items into.</param>
-        /// <param name="destIndex">The index to begin copying items to.</param>
+        /// <param name="destination">The list to store the items into.</param>
+        /// <param name="destinationIndex">The index to begin copying items to.</param>
         /// <param name="count">The maximum number of items to copy.</param>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destIndex"/> is negative or 
-        /// greater than <paramref name="dest"/>.Count</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destinationIndex"/> is negative or 
+        /// greater than <paramref name="destination"/>.Count</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="dest"/> is null.</exception>
-        public static void Copy<T>(IEnumerable<T> source, IList<T> dest, int destIndex, int count)
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="destination"/> is null.</exception>
+        public static void Copy<T>(IEnumerable<T> source, IList<T> destination, int destinationIndex, int count)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            if (dest == null)
-                throw new ArgumentNullException(nameof(dest));
-            if (dest.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, nameof(dest));
+            if (destination == null)
+                throw new ArgumentNullException(nameof(destination));
+            if (destination.IsReadOnly)
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(destination));
 
-            int destCount = dest.Count;
+            int destCount = destination.Count;
 
-            if (destIndex < 0 || destIndex > destCount)
-                throw new ArgumentOutOfRangeException(nameof(destIndex));
+            if (destinationIndex < 0 || destinationIndex > destCount)
+                throw new ArgumentOutOfRangeException(nameof(destinationIndex));
             if (count < 0)
                 throw new ArgumentOutOfRangeException(nameof(count));
 
             using (IEnumerator<T> sourceEnum = source.GetEnumerator()) {
                 // First, overwrite items to the end of the destination list.
-                while (destIndex < destCount && count > 0 && sourceEnum.MoveNext()) {
-                    dest[destIndex++] = sourceEnum.Current;
+                while (destinationIndex < destCount && count > 0 && sourceEnum.MoveNext()) {
+                    destination[destinationIndex++] = sourceEnum.Current;
                     --count;
                 }
 
                 // Second, insert items until done.
                 while (count > 0 && sourceEnum.MoveNext()) {
-                    dest.Insert(destCount++, sourceEnum.Current);
+                    destination.Insert(destCount++, sourceEnum.Current);
                     --count;
                 }
             }
         }
 
         /// <summary>
-        /// Copies at most <paramref name="count"/> items from the collection <paramref name="source"/> to the array <paramref name="dest"/>, starting
-        /// at the index <paramref name="destIndex"/>. The source collection must not be
+        /// Copies at most <paramref name="count"/> items from the collection <paramref name="source"/> to the array <paramref name="destination"/>, starting
+        /// at the index <paramref name="destinationIndex"/>. The source collection must not be
         /// the destination array or part thereof.
         /// </summary>
         /// <param name="source">The collection that provide the source items. </param>
-        /// <param name="dest">The array to store the items into.</param>
-        /// <param name="destIndex">The index to begin copying items to.</param>
+        /// <param name="destination">The array to store the items into.</param>
+        /// <param name="destinationIndex">The index to begin copying items to.</param>
         /// <param name="count">The maximum number of items to copy. The array must be large enought to fit this number of items.</param>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destIndex"/> is negative or 
-        /// greater than <paramref name="dest"/>.Length.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative or <paramref name="destIndex"/> + <paramref name="count"/>
-        /// is greater than <paramref name="dest"/>.Length.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="dest"/> is null.</exception>
-        public static void Copy<T>(IEnumerable<T> source, T[] dest, int destIndex, int count)
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destinationIndex"/> is negative or 
+        /// greater than <paramref name="destination"/>.Length.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative or <paramref name="destinationIndex"/> + <paramref name="count"/>
+        /// is greater than <paramref name="destination"/>.Length.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="destination"/> is null.</exception>
+        public static void Copy<T>(IEnumerable<T> source, T[] destination, int destinationIndex, int count)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            if (dest == null)
-                throw new ArgumentNullException(nameof(dest));
+            if (destination == null)
+                throw new ArgumentNullException(nameof(destination));
 
-            int destCount = dest.Length;
+            int destCount = destination.Length;
 
-            if (destIndex < 0 || destIndex > destCount)
-                throw new ArgumentOutOfRangeException(nameof(destIndex));
-            if (count < 0 || destIndex + count > destCount)
+            if (destinationIndex < 0 || destinationIndex > destCount)
+                throw new ArgumentOutOfRangeException(nameof(destinationIndex));
+            if (count < 0 || destinationIndex + count > destCount)
                 throw new ArgumentOutOfRangeException(nameof(count));
 
             using (IEnumerator<T> sourceEnum = source.GetEnumerator()) {
                 // First, overwrite items to the end of the destination array.
-                while (destIndex < destCount && count > 0 && sourceEnum.MoveNext()) {
-                    dest[destIndex++] = sourceEnum.Current;
+                while (destinationIndex < destCount && count > 0 && sourceEnum.MoveNext()) {
+                    destination[destinationIndex++] = sourceEnum.Current;
                     --count;
                 }
             }
@@ -4187,44 +4187,44 @@ namespace Wintellect.PowerCollections {
 
         /// <summary>
         /// Copies <paramref name="count"/> items from the list <paramref name="source"/>, starting at the index <paramref name="sourceIndex"/>, 
-        /// to the list <paramref name="dest"/>, starting at the index <paramref name="destIndex"/>. If necessary, the size of the destination list is expanded.
+        /// to the list <paramref name="destination"/>, starting at the index <paramref name="destinationIndex"/>. If necessary, the size of the destination list is expanded.
         /// The source and destination lists may be the same.
         /// </summary>
         /// <param name="source">The collection that provide the source items. </param>
         /// <param name="sourceIndex">The index within <paramref name="source"/>to begin copying items from.</param>
-        /// <param name="dest">The list to store the items into.</param>
-        /// <param name="destIndex">The index within <paramref name="dest"/>to begin copying items to.</param>
+        /// <param name="destination">The list to store the items into.</param>
+        /// <param name="destinationIndex">The index within <paramref name="destination"/>to begin copying items to.</param>
         /// <param name="count">The maximum number of items to copy.</param>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="sourceIndex"/> is negative or 
         /// greater than <paramref name="source"/>.Count</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destIndex"/> is negative or 
-        /// greater than <paramref name="dest"/>.Count</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destinationIndex"/> is negative or 
+        /// greater than <paramref name="destination"/>.Count</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative or too large.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="dest"/> is null.</exception>
-        public static void Copy<T>(IList<T> source, int sourceIndex, IList<T> dest, int destIndex, int count)
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="destination"/> is null.</exception>
+        public static void Copy<T>(IList<T> source, int sourceIndex, IList<T> destination, int destinationIndex, int count)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            if (dest == null)
-                throw new ArgumentNullException(nameof(dest));
-            if (dest.IsReadOnly)
-                throw new ArgumentException(Strings.ListIsReadOnly, nameof(dest));
+            if (destination == null)
+                throw new ArgumentNullException(nameof(destination));
+            if (destination.IsReadOnly)
+                throw new ArgumentException(Strings.ListIsReadOnly, nameof(destination));
 
             int sourceCount = source.Count;
-            int destCount = dest.Count;
+            int destCount = destination.Count;
 
             if (sourceIndex < 0 || sourceIndex >= sourceCount)
                 throw new ArgumentOutOfRangeException(nameof(sourceIndex));
-            if (destIndex < 0 || destIndex > destCount)
-                throw new ArgumentOutOfRangeException(nameof(destIndex));
+            if (destinationIndex < 0 || destinationIndex > destCount)
+                throw new ArgumentOutOfRangeException(nameof(destinationIndex));
             if (count < 0)
                 throw new ArgumentOutOfRangeException(nameof(count));
             if (count > sourceCount - sourceIndex)
                 count = sourceCount - sourceIndex;
 
-            if (source == dest && sourceIndex > destIndex) {
+            if (source == destination && sourceIndex > destinationIndex) {
                 while (count > 0) {
-                    dest[destIndex++] = source[sourceIndex++];
+                    destination[destinationIndex++] = source[sourceIndex++];
                     --count;
                 }
             }
@@ -4232,22 +4232,22 @@ namespace Wintellect.PowerCollections {
                 int si, di;
 
                 // First, insert any items needed at the end
-                if (destIndex + count > destCount) {
-                    int numberToInsert = destIndex + count - destCount;
+                if (destinationIndex + count > destCount) {
+                    int numberToInsert = destinationIndex + count - destCount;
                     si = sourceIndex + (count - numberToInsert);
                     di = destCount;
                     count -= numberToInsert;
                     while (numberToInsert > 0) {
-                        dest.Insert(di++, source[si++]);
+                        destination.Insert(di++, source[si++]);
                         --numberToInsert;
                     }
                 }
                    
                 // Do the copy, from end to beginning in case of overlap.
                 si = sourceIndex + count - 1;
-                di = destIndex + count - 1;
+                di = destinationIndex + count - 1;
                 while (count > 0) {
-                    dest[di--] = source[si--];
+                    destination[di--] = source[si--];
                     --count;
                 }
             }
@@ -4255,35 +4255,35 @@ namespace Wintellect.PowerCollections {
 
         /// <summary>
         /// Copies <paramref name="count"/> items from the list or array <paramref name="source"/>, starting at the index <paramref name="sourceIndex"/>, 
-        /// to the array <paramref name="dest"/>, starting at the index <paramref name="destIndex"/>. 
+        /// to the array <paramref name="destination"/>, starting at the index <paramref name="destinationIndex"/>. 
         /// The source may be the same as the destination array.
         /// </summary>
         /// <param name="source">The list or array that provide the source items. </param>
         /// <param name="sourceIndex">The index within <paramref name="source"/>to begin copying items from.</param>
-        /// <param name="dest">The array to store the items into.</param>
-        /// <param name="destIndex">The index within <paramref name="dest"/>to begin copying items to.</param>
+        /// <param name="destination">The array to store the items into.</param>
+        /// <param name="destinationIndex">The index within <paramref name="destination"/>to begin copying items to.</param>
         /// <param name="count">The maximum number of items to copy. The destination array must be large enough to hold this many items.</param>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="sourceIndex"/> is negative or 
         /// greater than <paramref name="source"/>.Count</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destIndex"/> is negative or 
-        /// greater than <paramref name="dest"/>.Length</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="destinationIndex"/> is negative or 
+        /// greater than <paramref name="destination"/>.Length</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is negative or too large.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="dest"/> is null.</exception>
-        public static void Copy<T>(IList<T> source, int sourceIndex, T[] dest, int destIndex, int count)
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="destination"/> is null.</exception>
+        public static void Copy<T>(IList<T> source, int sourceIndex, T[] destination, int destinationIndex, int count)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
-            if (dest == null)
-                throw new ArgumentNullException(nameof(dest));
+            if (destination == null)
+                throw new ArgumentNullException(nameof(destination));
 
             int sourceCount = source.Count;
-            int destCount = dest.Length;
+            int destCount = destination.Length;
 
             if (sourceIndex < 0 || sourceIndex >= sourceCount)
                 throw new ArgumentOutOfRangeException(nameof(sourceIndex));
-            if (destIndex < 0 || destIndex > destCount)
-                throw new ArgumentOutOfRangeException(nameof(destIndex));
-            if (count < 0 || destIndex + count > destCount)
+            if (destinationIndex < 0 || destinationIndex > destCount)
+                throw new ArgumentOutOfRangeException(nameof(destinationIndex));
+            if (count < 0 || destinationIndex + count > destCount)
                 throw new ArgumentOutOfRangeException(nameof(count));
 
             if (count > sourceCount - sourceIndex)
@@ -4291,13 +4291,13 @@ namespace Wintellect.PowerCollections {
 
             if (source is T[] array) {
                 // Array.Copy is probably faster, and also handles any overlapping issues.
-                Array.Copy(array, sourceIndex, dest, destIndex, count);
+                Array.Copy(array, sourceIndex, destination, destinationIndex, count);
             }
             else {
                 int si = sourceIndex;
-                int di = destIndex;
+                int di = destinationIndex;
                 while (count > 0) {
-                    dest[di++] = source[si++];
+                    destination[di++] = source[si++];
                     --count;
                 }
             }

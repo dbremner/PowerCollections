@@ -363,20 +363,20 @@ namespace Wintellect.PowerCollections
         /// <remarks>
         /// <para>Changing the number of copies takes approximately constant time, regardless of the number of items in the bag.</para></remarks>
         /// <param name="item">The item to change the number of copies of. This may or may not already be present in the bag.</param>
-        /// <param name="numCopies">The new number of copies of the item.</param>
-        public void ChangeNumberOfCopies(T item, int numCopies)
+        /// <param name="numberOfCopies">The new number of copies of the item.</param>
+        public void ChangeNumberOfCopies(T item, int numberOfCopies)
         {
-            if (numCopies == 0)
+            if (numberOfCopies == 0)
                 RemoveAllCopies(item);
             else {
                 KeyValuePair<T, int> dummy, existing, newPair;
                 if (hash.Find(NewPair(item), false, out existing)) {
-                    count += numCopies - existing.Value;
-                    newPair = NewPair(existing.Key, numCopies);
+                    count += numberOfCopies - existing.Value;
+                    newPair = NewPair(existing.Key, numberOfCopies);
                 }
                 else {
-                    count += numCopies;
-                    newPair = NewPair(item, numCopies);
+                    count += numberOfCopies;
+                    newPair = NewPair(item, numberOfCopies);
                 }
                 hash.Insert(newPair, true, out dummy);
             }
