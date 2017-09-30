@@ -3682,15 +3682,15 @@ namespace Wintellect.PowerCollections.Tests
 
         private class OddEvenComparer : IComparer<int>
         {
-            public int Compare(int e1, int e2)
+            public int Compare(int x, int y)
             {
-                if ((e1 & 1) == 1 && (e2 & 1) == 0)
+                if ((x & 1) == 1 && (y & 1) == 0)
                     return -1;
-                else if ((e1 & 1) == 0 && (e2 & 1) == 1)
+                else if ((x & 1) == 0 && (y & 1) == 1)
                     return 1;
-                else if (e1 < e2)
+                else if (x < y)
                     return -1;
-                else if (e1 > e2)
+                else if (x > y)
                     return 1;
                 else
                     return 0;

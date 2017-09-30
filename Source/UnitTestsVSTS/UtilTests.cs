@@ -53,11 +53,11 @@ namespace Wintellect.PowerCollections.Tests
                 return value == other.value && tweak == other.tweak;
             }
 
-            public override bool Equals(object other)
+            public override bool Equals(object obj)
             {
-                if (! (other is CloneableStruct))
+                if (! (obj is CloneableStruct))
                     return false;
-                var o = (CloneableStruct)other;
+                var o = (CloneableStruct)obj;
 
                 return (o.value == value);
             }

@@ -14,10 +14,10 @@ namespace Wintellect.PowerCollections.Tests
             val = v;
         }
 
-        public int CompareTo(object other)
+        public int CompareTo(object obj)
         {
             int e1 = val;
-            int e2 = ((OddEvenComparable)other).val;
+            int e2 = ((OddEvenComparable)obj).val;
             if ((e1 & 1) == 1 && (e2 & 1) == 0)
                 return -1;
             else if ((e1 & 1) == 0 && (e2 & 1) == 1)

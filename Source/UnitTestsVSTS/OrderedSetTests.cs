@@ -38,10 +38,10 @@ namespace Wintellect.PowerCollections.Tests
         private class ComparableClass2 : IComparable
         {
             public readonly int Value = 0;
-            int IComparable.CompareTo(object other)
+            int IComparable.CompareTo(object obj)
             {
-                if (other is ComparableClass2) {
-                    var o = (ComparableClass2)other;
+                if (obj is ComparableClass2) {
+                    var o = (ComparableClass2)obj;
 
                     if (Value > o.Value)
                         return 1;
@@ -51,7 +51,7 @@ namespace Wintellect.PowerCollections.Tests
                         return 0;
                 }
                 else
-                    throw new ArgumentException(Strings.ArgOfWrongType, nameof(other));
+                    throw new ArgumentException(Strings.ArgOfWrongType, nameof(obj));
             }
         }
 

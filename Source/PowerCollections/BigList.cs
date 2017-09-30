@@ -804,20 +804,20 @@ namespace Wintellect.PowerCollections
         /// <para>This method can be used to apply an algorithm to a portion of a list. For example:</para>
         /// <code>Algorithms.ReverseInPlace(list.Range(3, 6))</code>
         /// will reverse the 6 items beginning at index 3.</remarks>
-        /// <param name="index">The starting index of the view.</param>
+        /// <param name="start">The starting index of the view.</param>
         /// <param name="count">The number of items in the view.</param>
         /// <returns>A list that is a view onto the given sub-list. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> or <paramref name="count"/> is negative.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="index"/> + <paramref name="count"/> is greater than the
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="start"/> or <paramref name="count"/> is negative.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="start"/> + <paramref name="count"/> is greater than the
         /// size of this list.</exception>
-        public sealed override IList<T> Range(int index, int count)
+        public sealed override IList<T> Range(int start, int count)
         {
-            if (index < 0 || index > this.Count || (index == this.Count && count != 0))
-                throw new ArgumentOutOfRangeException(nameof(index));
-            if (count < 0 || count > this.Count || count + index > this.Count)
+            if (start < 0 || start > this.Count || (start == this.Count && count != 0))
+                throw new ArgumentOutOfRangeException(nameof(start));
+            if (count < 0 || count > this.Count || count + start > this.Count)
                 throw new ArgumentOutOfRangeException(nameof(count));
 
-            return new BigListRange(this, index, count);
+            return new BigListRange(this, start, count);
         }
 
         /// <summary>

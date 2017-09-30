@@ -136,12 +136,12 @@ namespace Wintellect.PowerCollections
         /// <summary>
         /// Determines if this dictionary contains the given key and all of the values associated with that key..
         /// </summary>
-        /// <param name="pair">A key and collection of values to search for.</param>
-        /// <returns>True if the dictionary has associated all of the values in <paramref name="pair"/>.Value with <paramref name="pair"/>.Key.</returns>
-        public override bool Contains(KeyValuePair<TKey, ICollection<TValue>> pair)
+        /// <param name="item">A key and collection of values to search for.</param>
+        /// <returns>True if the dictionary has associated all of the values in <paramref name="item"/>.Value with <paramref name="item"/>.Key.</returns>
+        public override bool Contains(KeyValuePair<TKey, ICollection<TValue>> item)
         {
-            foreach (TValue val in pair.Value) {
-                if (!Contains(pair.Key, val))
+            foreach (TValue val in item.Value) {
+                if (!Contains(item.Key, val))
                     return false;
             }
 

@@ -140,11 +140,11 @@ namespace Wintellect.PowerCollections
         /// Removes a set of values from a given key. If all values associated with a key are
         /// removed, then the key is removed also.
         /// </summary>
-        /// <param name="pair">A KeyValuePair contains a key and a set of values to remove from that key.</param>
+        /// <param name="item">A KeyValuePair contains a key and a set of values to remove from that key.</param>
         /// <returns>True if at least one values was found and removed.</returns>
-        public override bool Remove(KeyValuePair<TKey,ICollection<TValue>> pair)
+        public override bool Remove(KeyValuePair<TKey,ICollection<TValue>> item)
         {
- 	        return RemoveMany(pair.Key, pair.Value) > 0;  
+ 	        return RemoveMany(item.Key, item.Value) > 0;  
         }
 
         /// <summary>
@@ -235,12 +235,12 @@ namespace Wintellect.PowerCollections
         /// <summary>
         /// Determines if this dictionary contains the given key and all of the values associated with that key..
         /// </summary>
-        /// <param name="pair">A key and collection of values to search for.</param>
-        /// <returns>True if the dictionary has associated all of the values in <paramref name="pair"/>.Value with <paramref name="pair"/>.Key.</returns>
-        public override bool Contains(KeyValuePair<TKey,ICollection<TValue>> pair)
+        /// <param name="item">A key and collection of values to search for.</param>
+        /// <returns>True if the dictionary has associated all of the values in <paramref name="item"/>.Value with <paramref name="item"/>.Key.</returns>
+        public override bool Contains(KeyValuePair<TKey,ICollection<TValue>> item)
         {
-            foreach (TValue val in pair.Value) {
-                if (! Contains(pair.Key, val))
+            foreach (TValue val in item.Value) {
+                if (! Contains(item.Key, val))
                     return false;
             }
 

@@ -6,14 +6,14 @@ namespace Wintellect.PowerCollections.Tests
     /// Comparer that compares ints, sorting odds before evens.
     /// </summary>
     internal class GOddEvenEqualityComparer : IEqualityComparer<int> {
-        public bool Equals(int e1, int e2)
+        public bool Equals(int x, int y)
         {
-            return ((e1 & 1) == (e2 & 1));
+            return ((x & 1) == (y & 1));
         }
 
-        public int GetHashCode(int i)
+        public int GetHashCode(int obj)
         {
-            return i;
+            return obj;
         }
 
         public override bool Equals(object obj)
