@@ -75,10 +75,7 @@ namespace Wintellect.PowerCollections
         /// <param name="comparer">An instance of IComparer&lt;T&gt; that will be used to compare items.</param>
         public OrderedBag(IComparer<T> comparer)
         {
-            if (comparer == null)
-                throw new ArgumentNullException(nameof(comparer));
-
-            this.comparer = comparer;
+            this.comparer = comparer ?? throw new ArgumentNullException(nameof(comparer));
             tree = new RedBlackTree<T>(comparer);
         }
 

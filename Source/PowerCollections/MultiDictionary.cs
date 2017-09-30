@@ -167,14 +167,9 @@ namespace Wintellect.PowerCollections
         /// <param name="valueEqualityComparer">An IEqualityComparer&lt;TValue&gt; instance that will be used to compare values.</param>
         public MultiDictionary(bool allowDuplicateValues, IEqualityComparer<TKey> keyEqualityComparer, IEqualityComparer<TValue> valueEqualityComparer)
         {
-            if (keyEqualityComparer == null)
-                throw new ArgumentNullException(nameof(keyEqualityComparer));
-            if (valueEqualityComparer == null)
-                throw new ArgumentNullException(nameof(valueEqualityComparer));
-
             this.allowDuplicateValues = allowDuplicateValues;
-            this.keyEqualityComparer = keyEqualityComparer;
-            this.valueEqualityComparer = valueEqualityComparer;
+            this.keyEqualityComparer = keyEqualityComparer ?? throw new ArgumentNullException(nameof(keyEqualityComparer));
+            this.valueEqualityComparer = valueEqualityComparer ?? throw new ArgumentNullException(nameof(valueEqualityComparer));
             this.equalityComparer = new KeyAndValuesEqualityComparer(keyEqualityComparer);
             this.hash = new Hash<KeyAndValues>(equalityComparer);
         }

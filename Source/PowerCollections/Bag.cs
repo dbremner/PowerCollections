@@ -90,10 +90,7 @@ namespace Wintellect.PowerCollections
         /// <param name="equalityComparer">An instance of IEqualityComparer&lt;T&gt; that will be used to compare items.</param>
         public Bag(IEqualityComparer<T> equalityComparer)
         {
-            if (equalityComparer == null)
-                throw new ArgumentNullException(nameof(equalityComparer));
-
-            this.keyEqualityComparer = equalityComparer;
+            this.keyEqualityComparer = equalityComparer ?? throw new ArgumentNullException(nameof(equalityComparer));
             this.equalityComparer = Comparers.EqualityComparerKeyValueFromComparerKey<T, int>(equalityComparer);
             this.hash = new Hash<KeyValuePair<T, int>>(this.equalityComparer);
         }

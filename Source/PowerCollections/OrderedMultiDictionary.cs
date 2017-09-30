@@ -239,14 +239,9 @@ namespace Wintellect.PowerCollections
         /// <param name="valueComparer">An IComparer&lt;TValue&gt; instance that will be used to compare values.</param>
         public OrderedMultiDictionary(bool allowDuplicateValues, IComparer<TKey> keyComparer, IComparer<TValue> valueComparer)
         {
-            if (keyComparer == null)
-                throw new ArgumentNullException(nameof(keyComparer));
-            if (valueComparer == null)
-                throw new ArgumentNullException(nameof(valueComparer));
-
             this.allowDuplicateValues = allowDuplicateValues;
-            this.keyComparer = keyComparer;
-            this.valueComparer = valueComparer;
+            this.keyComparer = keyComparer ?? throw new ArgumentNullException(nameof(keyComparer));
+            this.valueComparer = valueComparer ?? throw new ArgumentNullException(nameof(valueComparer));
             this.comparer = Comparers.ComparerPairFromKeyValueComparers(keyComparer, valueComparer);
             this.tree = new RedBlackTree<KeyValuePair<TKey, TValue>>(this.comparer);
         }

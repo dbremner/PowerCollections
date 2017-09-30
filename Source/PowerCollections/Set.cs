@@ -56,10 +56,7 @@ namespace Wintellect.PowerCollections
         /// <param name="equalityComparer">An instance of IEqualityComparer&lt;T&gt; that will be used to compare items.</param>
         public Set(IEqualityComparer<T> equalityComparer)
         {
-            if (equalityComparer == null)
-                throw new ArgumentNullException(nameof(equalityComparer));
-
-            this.equalityComparer = equalityComparer;
+            this.equalityComparer = equalityComparer ?? throw new ArgumentNullException(nameof(equalityComparer));
             hash = new Hash<T>(equalityComparer);
         }
 
