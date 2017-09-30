@@ -3155,14 +3155,14 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<int> enum3 = EnumerableFromArray(new int[] { 2, 6, 15, 29 });
             IEnumerable<int> merged = Algorithms.MergeSorted(enum1, enum2, enum3);
             IEnumerable<int> sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3));
-            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, sorted.ToArray());
 
             enum1 = EnumerableFromArray(new int[] { 1, 7, 9, 11, 13, 1002 });
             enum2 = Enumerable.Empty<int>();
             enum3 = EnumerableFromArray(new int[] { 15, 17, 19});
             merged = Algorithms.MergeSorted(enum1, enum2, enum3);
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3));
-            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, sorted.ToArray());
 
             enum1 = Enumerable.Empty<int>();
             enum2 = Enumerable.Empty<int>();
@@ -3186,16 +3186,16 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<int> enum4 = Algorithms.Sort((IEnumerable<int>)a4);
             merged = Algorithms.MergeSorted(enum1, enum2, enum3, enum4);
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3, enum4));
-            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, sorted.ToArray());
 
             enum1 = EnumerableFromArray(new int[] { 3, 6, 7, 7, 8, 10, 17, 18 });
             enum2 = EnumerableFromArray(new int[] { 7, 9, 17, 18, 19, 27 });
             merged = Algorithms.MergeSorted(enum1, enum2);
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2));
-            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, sorted.ToArray());
 
             merged = Algorithms.MergeSorted(enum1);
-            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(enum1));
+            InterfaceTests.TestEnumerableElements(merged, enum1.ToArray());
 
             merged = Algorithms.MergeSorted<int>();
             InterfaceTests.TestEnumerableElements(merged, new int[] {});
@@ -3216,7 +3216,7 @@ namespace Wintellect.PowerCollections.Tests
             enum4 = Algorithms.Sort((IEnumerable<int>)a4, comp);
             merged = Algorithms.MergeSorted(comp, enum1, enum2, enum3, enum4);
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3, enum4), comp);
-            InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
+            InterfaceTests.TestEnumerableElements(merged, sorted.ToArray());
 
             IEnumerable<string> str1 = EnumerableFromArray(new string[] { "foo", "fiddle", "g1", "igloo"});
             IEnumerable<string> str2 = EnumerableFromArray(new string[] { "fast", "gross", "g3", "horse", "splurge" });
@@ -3240,7 +3240,7 @@ namespace Wintellect.PowerCollections.Tests
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(rand.Next(MAX));
-                int[] copy = Enumerable.ToArray(list);
+                int[] copy = list.ToArray();
 
                 Algorithms.SortInPlace(list);
                 Array.Sort(copy);
@@ -3262,7 +3262,7 @@ namespace Wintellect.PowerCollections.Tests
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(rand.NextDouble() - 0.5);
-                double[] copy = Enumerable.ToArray(list);
+                double[] copy = list.ToArray();
 
                 Algorithms.SortInPlace(list, AbsComp);
                 Array.Sort(copy, AbsComp);
@@ -3287,7 +3287,7 @@ namespace Wintellect.PowerCollections.Tests
                 int size = rand.Next(SIZE);
                 for (int i = 0; i < size; ++i)
                     list.Add(strings[rand.Next(strings.Length)]);
-                string[] copy = Enumerable.ToArray(list);
+                string[] copy = list.ToArray();
 
                 Algorithms.SortInPlace(list, comp);
                 Array.Sort(copy, comp);
@@ -3310,7 +3310,7 @@ namespace Wintellect.PowerCollections.Tests
                 for (int i = 0; i < size; ++i)
                     array[i] = rand.NextDouble() - 0.5;
                 IList<double> list = new List<double> (array);
-                double[] copy = Enumerable.ToArray(list);
+                double[] copy = list.ToArray();
 
                 Algorithms.SortInPlace(list, AbsComp);
                 Array.Sort(copy, AbsComp);

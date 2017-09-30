@@ -56,7 +56,7 @@ namespace Wintellect.PowerCollections.Tests {
                     if (enum1 == null || enum2 == null)
                         return (enum1 == enum2);
 
-                    T[] expected = Enumerable.ToArray(enum2);
+                    T[] expected = enum2.ToArray();
                     bool[] found = new bool[expected.Length];
                     int i = 0;
                     foreach (T item in enum1) {
