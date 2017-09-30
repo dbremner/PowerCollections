@@ -565,36 +565,36 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(1, Enumerable.FirstOrDefault(list1, Odd));
+            Assert.AreEqual(1, list1.FirstOrDefault(Odd));
             found = list1.TryFind(Odd, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(1, result);
 
-            Assert.AreEqual(4, Enumerable.FirstOrDefault(list1, Even));
+            Assert.AreEqual(4, list1.FirstOrDefault(Even));
             found = list1.TryFind(Even, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(4, result);
 
-            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Over10));
+            Assert.AreEqual(0, list1.FirstOrDefault(Over10));
             found = list1.TryFind(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadWriteArrayList<int>(new int[] { 4, 0, 1, 3, 4, 9 });
 
-            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Under3));
+            Assert.AreEqual(0, list1.FirstOrDefault(Under3));
             found = list1.TryFind(Under3, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Over10));
+            Assert.AreEqual(0, list1.FirstOrDefault(Over10));
             found = list1.TryFind(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadWriteArrayList<int>(new int[0]);
 
-            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Under3));
+            Assert.AreEqual(0, list1.FirstOrDefault(Under3));
             found = list1.TryFind(Under3, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
@@ -607,36 +607,36 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(9, Enumerable.LastOrDefault(list1, Odd));
+            Assert.AreEqual(9, list1.LastOrDefault(Odd));
             found = list1.TryFindLast(Odd, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(9, result);
 
-            Assert.AreEqual(2, Enumerable.LastOrDefault(list1, Even));
+            Assert.AreEqual(2, list1.LastOrDefault(Even));
             found = list1.TryFindLast(Even, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(2, result);
 
-            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Over10));
+            Assert.AreEqual(0, list1.LastOrDefault(Over10));
             found = list1.TryFindLast(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadWriteArrayList<int>(new int[] { 4, 8, 1, 3, 0, 9 });
 
-            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Under3));
+            Assert.AreEqual(0, list1.LastOrDefault(Under3));
             found = list1.TryFindLast(Under3, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Over10));
+            Assert.AreEqual(0, list1.LastOrDefault(Over10));
             found = list1.TryFindLast(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadWriteArrayList<int>(new int[0]);
 
-            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Under3));
+            Assert.AreEqual(0, list1.LastOrDefault(Under3));
             found = list1.TryFindLast(Under3, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
@@ -883,36 +883,36 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(1, Enumerable.FirstOrDefault(list1, Odd));
+            Assert.AreEqual(1, list1.FirstOrDefault(Odd));
             found = list1.TryFind(Odd, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(1, result);
 
-            Assert.AreEqual(4, Enumerable.FirstOrDefault(list1, Even));
+            Assert.AreEqual(4, list1.FirstOrDefault(Even));
             found = list1.TryFind(Even, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(4, result);
 
-            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Over10));
+            Assert.AreEqual(0, list1.FirstOrDefault(Over10));
             found = list1.TryFind(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadOnlyArrayList<int>(new int[] { 4, 0, 1, 3, 4, 9 });
 
-            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Under3));
+            Assert.AreEqual(0, list1.FirstOrDefault(Under3));
             found = list1.TryFind(Under3, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Over10));
+            Assert.AreEqual(0, list1.FirstOrDefault(Over10));
             found = list1.TryFind(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadOnlyArrayList<int>(new int[0]);
 
-            Assert.AreEqual(0, Enumerable.FirstOrDefault(list1, Under3));
+            Assert.AreEqual(0, list1.FirstOrDefault(Under3));
             found = list1.TryFind(Under3, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
@@ -925,36 +925,36 @@ namespace Wintellect.PowerCollections.Tests
             bool found;
             int result;
 
-            Assert.AreEqual(9, Enumerable.LastOrDefault(list1, Odd));
+            Assert.AreEqual(9, list1.LastOrDefault(Odd));
             found = list1.TryFindLast(Odd, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(9, result);
 
-            Assert.AreEqual(2, Enumerable.LastOrDefault(list1, Even));
+            Assert.AreEqual(2, list1.LastOrDefault(Even));
             found = list1.TryFindLast(Even, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(2, result);
 
-            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Over10));
+            Assert.AreEqual(0, list1.LastOrDefault(Over10));
             found = list1.TryFindLast(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadOnlyArrayList<int>(new int[] { 4, 8, 1, 3, 0, 9 });
 
-            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Under3));
+            Assert.AreEqual(0, list1.LastOrDefault(Under3));
             found = list1.TryFindLast(Under3, out result);
             Assert.IsTrue(found);
             Assert.AreEqual(0, result);
 
-            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Over10));
+            Assert.AreEqual(0, list1.LastOrDefault(Over10));
             found = list1.TryFindLast(Over10, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
             list1 = new ReadOnlyArrayList<int>(new int[0]);
 
-            Assert.AreEqual(0, Enumerable.LastOrDefault(list1, Under3));
+            Assert.AreEqual(0, list1.LastOrDefault(Under3));
             found = list1.TryFindLast(Under3, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
