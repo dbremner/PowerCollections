@@ -151,6 +151,7 @@ namespace Wintellect.PowerCollections
         /// must be thrown
         /// </summary>
         /// <param name="startStamp">changeStamp at the start of the enumeration.</param>
+        // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Global
         internal void CheckEnumerationStamp(int startStamp)
         {
             if (startStamp != changeStamp) {
