@@ -528,9 +528,9 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(dict1.ContainsKey("foo"));
             Assert.IsFalse(dict1.ContainsKey("z"));
             Assert.IsFalse(dict1.ContainsKey(null));
-            Assert.AreEqual(0, Enumerable.Count(dict1.Keys));
-            Assert.AreEqual(0, Enumerable.Count(dict1.Values));
-            Assert.AreEqual(0, Enumerable.Count(dict1.KeyValuePairs));
+            Assert.AreEqual(0, dict1.Keys.Count);
+            Assert.AreEqual(0, dict1.Values.Count);
+            Assert.AreEqual(0, dict1.KeyValuePairs.Count);
 
             CheckOrderedMultiDictionaryContents(dict1, new string[0], new int[0][], "foo", 4, null, null);
         }
