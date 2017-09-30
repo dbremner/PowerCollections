@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Util.WrapEnumerable.cs" />
     <None Include="app.config" />
     <None Include="CreateNewKey.pfx" />
