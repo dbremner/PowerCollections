@@ -750,7 +750,7 @@ namespace Wintellect.PowerCollections
             {
                 if (values == null)
                     return false;
-                TValue[] valueArray = Enumerable.ToArray(values);
+                TValue[] valueArray = values.ToArray();
 
                 foreach (ICollection<TValue> v in this) {
                     if (v.Count != valueArray.Length)

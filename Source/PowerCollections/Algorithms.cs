@@ -1312,7 +1312,7 @@ namespace Wintellect.PowerCollections {
                 throw new ArgumentNullException(nameof(predicate));
 
             // Put the pattern into an array for performance (don't keep allocating enumerators).
-            var patternArray = Enumerable.ToList(pattern);
+            var patternArray = pattern.ToList();
 
             int listCount = list.Count, patternCount = patternArray.Count;
             if (patternCount == 0)
@@ -2007,7 +2007,7 @@ namespace Wintellect.PowerCollections {
             if (randomGenerator == null)
                 throw new ArgumentNullException(nameof(randomGenerator));
 
-            T[] array = Enumerable.ToArray(collection);
+            T[] array = collection.ToArray();
 
             int count = array.Length;
             for (int i = count - 1; i >= 1; --i) {
@@ -2155,7 +2155,7 @@ namespace Wintellect.PowerCollections {
             if (collection == null)
                 throw new ArgumentNullException(nameof(collection));
 
-            T[] array = Enumerable.ToArray(collection);
+            T[] array = collection.ToArray();
 
             if (array.Length == 0)
                 yield break;
@@ -2243,7 +2243,7 @@ namespace Wintellect.PowerCollections {
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            T[] array = Enumerable.ToArray(collection);
+            T[] array = collection.ToArray();
             int length = array.Length;
             if (length == 0)
                 yield break;
@@ -2614,7 +2614,7 @@ namespace Wintellect.PowerCollections {
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            T[] array = Enumerable.ToArray(collection);
+            T[] array = collection.ToArray();
 
             Array.Sort(array, comparer);
             return array;
@@ -2832,7 +2832,7 @@ namespace Wintellect.PowerCollections {
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            T[] array = Enumerable.ToArray(collection);
+            T[] array = collection.ToArray();
 
             StableSortInPlace(Algorithms.ReadWriteList(array), comparer);
             return array;

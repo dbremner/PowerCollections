@@ -659,7 +659,7 @@ namespace Wintellect.PowerCollections
                         return (T) (((ICloneable) item).Clone());
                 }
 
-                return new BigList<T>(Enumerable.Select(this, Converter));
+                return new BigList<T>(this.Select(Converter));
             }
         }
 
