@@ -466,15 +466,6 @@ namespace Wintellect.PowerCollections
         }
 
         /// <summary>
-        /// Returns whether the list is read only. This implementation always returns true.
-        /// </summary>
-        /// <value>Alway true, indicating that the list is read-only.</value>
-        public bool IsReadOnly
-        {
-            get { return true; }
-        }
-
-        /// <summary>
         /// Searches the list for the first item that compares equal to <paramref name="value"/>.
         /// If one is found, it is removed. Otherwise, the list is unchanged.  This implementation throws a NotSupportedException
         /// indicating that the list is read-only.

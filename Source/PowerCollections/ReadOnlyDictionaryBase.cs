@@ -283,15 +283,6 @@ namespace Wintellect.PowerCollections
         }
 
         /// <summary>
-        /// Returns if this dictionary is read-only. 
-        /// </summary>
-        /// <value>Always returns true.</value>
-        public bool IsReadOnly
-        {
-            get { return true; }
-        }
-
-        /// <summary>
         /// Returns a collection of all the keys in the dictionary. The values in this collection will
         /// be enumerated in the same order as the (overridden) GetEnumerator method.
         /// </summary>
