@@ -221,7 +221,7 @@ namespace Wintellect.PowerCollections.Tests
 
             Assert.IsTrue(Algorithms.EqualCollections(Algorithms.Concatenate(coll1, new string[0], coll2, coll3, coll1),
                 new string[] { "hello", "there", "sailor", "eric", "clapton", "abc", "ghi", "xyz", "hello", "there", "sailor" }));
-            Assert.AreEqual(0, Enumerable.ToArray(Algorithms.Concatenate<string>()).Length);
+            Assert.AreEqual(0, Algorithms.Concatenate<string>().Count());
             Assert.IsTrue(Algorithms.EqualCollections(Algorithms.Concatenate(coll3),
                 new string[] { "abc", "ghi", "xyz" }));
         }
