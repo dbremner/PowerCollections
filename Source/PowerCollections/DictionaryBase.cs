@@ -327,7 +327,7 @@ namespace Wintellect.PowerCollections
         /// Returns whether this dictionary is fixed size. This implemented always returns false.
         /// </summary>
         /// <value>Always returns false.</value>
-        bool IDictionary.IsFixedSize
+        public bool IsFixedSize
         {
             get { return false; }
         }
@@ -336,7 +336,7 @@ namespace Wintellect.PowerCollections
         /// Returns if this dictionary is read-only. This implementation always returns false.
         /// </summary>
         /// <value>Always returns false.</value>
-        bool IDictionary.IsReadOnly
+        public bool IsReadOnly
         {
             get { return false; }
         }

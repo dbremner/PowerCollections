@@ -460,7 +460,7 @@ namespace Wintellect.PowerCollections
         /// Returns whether the list is a fixed size. This implementation always returns true.
         /// </summary>
         /// <value>Alway true, indicating that the list is fixed size.</value>
-        bool IList.IsFixedSize
+        public bool IsFixedSize
         {
             get { return true; }
         }
@@ -469,7 +469,7 @@ namespace Wintellect.PowerCollections
         /// Returns whether the list is read only. This implementation always returns true.
         /// </summary>
         /// <value>Alway true, indicating that the list is read-only.</value>
-        bool IList.IsReadOnly
+        public bool IsReadOnly
         {
             get { return true; }
         }

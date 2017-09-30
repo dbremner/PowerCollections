@@ -167,7 +167,7 @@ namespace Wintellect.PowerCollections
         /// of readOnly that was provided to the constructor.
         /// </summary>
         /// <value>Always true.</value>
-        bool ICollection<T>.IsReadOnly
+        public bool IsReadOnly
         {
             get { return true; }
         }
@@ -226,7 +226,7 @@ namespace Wintellect.PowerCollections
         /// Indicates whether the collection is synchronized.
         /// </summary>
         /// <value>Always returns false, indicating that the collection is not synchronized.</value>
-        bool ICollection.IsSynchronized
+        public bool IsSynchronized
         {
             get { return false; }
         }

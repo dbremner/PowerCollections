@@ -516,7 +516,7 @@ namespace Wintellect.PowerCollections
         /// Returns whether the list is a fixed size. This implementation always returns false.
         /// </summary>
         /// <value>Alway false, indicating that the list is not fixed size.</value>
-        bool IList.IsFixedSize
+        public bool IsFixedSize
         {
             get { return false; }
         }
