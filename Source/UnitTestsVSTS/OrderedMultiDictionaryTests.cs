@@ -1013,24 +1013,23 @@ namespace Wintellect.PowerCollections.Tests
 
         private void CompareClones<K, V>(OrderedMultiDictionary<K, V> d1, OrderedMultiDictionary<K, V> d2)
         {
-            IEnumerator<KeyValuePair<K, V>> e1 = d1.KeyValuePairs.GetEnumerator();
-            IEnumerator<KeyValuePair<K, V>> e2 = d2.KeyValuePairs.GetEnumerator();
+            using (IEnumerator<KeyValuePair<K, V>> e2 = d2.KeyValuePairs.GetEnumerator(),
+                e1 = d1.KeyValuePairs.GetEnumerator()) {
+                while (e1.MoveNext()) {
+                    e2.MoveNext();
+                    if (e1.Current.Key == null)
+                        Assert.IsNull(e2.Current.Key);
+                    else {
+                        Assert.IsTrue(e1.Current.Key.Equals(e2.Current.Key));
+                        Assert.IsFalse(object.ReferenceEquals(e1.Current.Key, e2.Current.Key));
+                    }
 
-            // Check that the dictionaries are equal, but not reference equals (e.g., have been cloned).
-            while (e1.MoveNext()) {
-                e2.MoveNext();
-                if (e1.Current.Key == null)
-                    Assert.IsNull(e2.Current.Key);
-                else {
-                    Assert.IsTrue(e1.Current.Key.Equals(e2.Current.Key));
-                    Assert.IsFalse(object.ReferenceEquals(e1.Current.Key, e2.Current.Key));
-                }
-
-                if (e1.Current.Value == null)
-                    Assert.IsNull(e2.Current.Value);
-                else {
-                    Assert.IsTrue(e1.Current.Value.Equals(e2.Current.Value));
-                    Assert.IsFalse(object.ReferenceEquals(e1.Current.Value, e2.Current.Value));
+                    if (e1.Current.Value == null)
+                        Assert.IsNull(e2.Current.Value);
+                    else {
+                        Assert.IsTrue(e1.Current.Value.Equals(e2.Current.Value));
+                        Assert.IsFalse(object.ReferenceEquals(e1.Current.Value, e2.Current.Value));
+                    }
                 }
             }
         }

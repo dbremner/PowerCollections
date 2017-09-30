@@ -1081,36 +1081,37 @@ namespace Wintellect.PowerCollections
         {
             CheckConsistentComparison(otherBag);
             var result = new OrderedBag<T>(comparer);
-            IEnumerator<T> enum1 = this.GetEnumerator(), enum2 = otherBag.GetEnumerator();
+            using (IEnumerator<T> enum1 = GetEnumerator(), enum2 = otherBag.GetEnumerator())
+            {
+                bool valid1 = enum1.MoveNext();
+                bool valid2 = enum2.MoveNext();
+                int compare;
+                for (;;) {
+                    // Which item is smaller? The end (!valid) is considered larger than any item.
+                    if (! valid1) {
+                        if (! valid2)
+                            break;
+                        compare = 1;
+                    }
+                    else if (! valid2)
+                        compare = -1;
+                    else 
+                        compare = comparer.Compare(enum1.Current, enum2.Current);
 
-            bool valid1 = enum1.MoveNext();
-            bool valid2 = enum2.MoveNext();
-            int compare;
-            for (;;) {
-                // Which item is smaller? The end (!valid) is considered larger than any item.
-                if (! valid1) {
-                    if (! valid2)
-                        break;
-                    compare = 1;
-                }
-                else if (! valid2)
-                    compare = -1;
-                else 
-                    compare = comparer.Compare(enum1.Current, enum2.Current);
-
-                // If equal, move through both bags without adding. Otherwise, add the smaller item and advance
-                // just through that bag.
-                if (compare == 0) {
-                    valid1 = enum1.MoveNext();
-                    valid2 = enum2.MoveNext();
-                }
-                else if (compare < 0) {
-                    result.Add(enum1.Current);
-                    valid1 = enum1.MoveNext();
-                }
-                else { // compare > 0
-                    result.Add(enum2.Current);
-                    valid2 = enum2.MoveNext();
+                    // If equal, move through both bags without adding. Otherwise, add the smaller item and advance
+                    // just through that bag.
+                    if (compare == 0) {
+                        valid1 = enum1.MoveNext();
+                        valid2 = enum2.MoveNext();
+                    }
+                    else if (compare < 0) {
+                        result.Add(enum1.Current);
+                        valid1 = enum1.MoveNext();
+                    }
+                    else { // compare > 0
+                        result.Add(enum2.Current);
+                        valid2 = enum2.MoveNext();
+                    }
                 }
             }
 
