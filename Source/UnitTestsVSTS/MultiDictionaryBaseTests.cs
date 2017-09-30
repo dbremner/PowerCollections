@@ -9,6 +9,7 @@
 // Still need additional tests on ReadOnlyMultiDictionaryBase.
 
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Wintellect.PowerCollections.Tests.TestPredicates;
 
@@ -499,9 +500,9 @@ namespace Wintellect.PowerCollections.Tests
             ReadWriteTestMultiDictionary<string, int> dict = CreateTestReadWriteDictionary();
 
             dict.AddMany("Rules", AlgorithmsTests.EnumerableFromArray(new int[] { 9, -8, 18 }));
-            dict.AddMany("World", AlgorithmsTests.EnumerableFromArray(new int[] { }));
+            dict.AddMany("World", Enumerable.Empty<int>());
             dict.AddMany("Bizzle", AlgorithmsTests.EnumerableFromArray(new int[] { 3, 2, 1 }));
-            dict.AddMany("Dazzle", AlgorithmsTests.EnumerableFromArray(new int[] { }));
+            dict.AddMany("Dazzle", Enumerable.Empty<int>());
 
             string[] s_array = new string[] { "Eric", "Clapton", "Rules", "The", "World", "Bizzle" };
             int[][] i_array = new int[][] {

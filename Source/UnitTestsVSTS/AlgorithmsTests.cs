@@ -201,7 +201,7 @@ namespace Wintellect.PowerCollections.Tests
         public void CountEqual()
         {
             IEnumerable<string> coll1 = EnumerableFromArray(new string[] { "foo", "bar", "eric", "Eric", "BAR", "ERIC", "eric" });
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[0]);
+            var coll2 = Enumerable.Empty<int>();
 
             Assert.AreEqual(1, Algorithms.CountEqual(coll1, "foo"));
             Assert.AreEqual(2, Algorithms.CountEqual(coll1, "eric"));
@@ -229,7 +229,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Replace1()
         {
-            IEnumerable<string> enum1 = EnumerableFromArray(new string[0]);
+            var enum1 = Enumerable.Empty<string>();
             IEnumerable<string> enum2 = EnumerableFromArray(new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar" });
 
             IEnumerable<string> result1 = Algorithms.Replace(enum1, "foo", "bar");
@@ -254,7 +254,7 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void Replace2()
         {
-            IEnumerable<string> enum1 = EnumerableFromArray(new string[0]);
+            var enum1 = Enumerable.Empty<string>();
             IEnumerable<string> enum2 = EnumerableFromArray(new string[] { "foo", "bar", "FOO", "hello", "hello", "sailor", "foo", "bar", "hi" });
 
             IEnumerable<string> result1 = Algorithms.Replace(enum1, IsFoo, "bar");
@@ -363,8 +363,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void EqualCollections1()
         {
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
-            IEnumerable<string> coll2 = EnumerableFromArray(new string[0]);
+            var coll1 = Enumerable.Empty<string>();
+            var coll2 = Enumerable.Empty<string>();
             IEnumerable<string> coll3 = EnumerableFromArray(new string[] { "hello", "there" });
             IEnumerable<string> coll4 = EnumerableFromArray(new string[] { "hello", "there", "sailor" });
             IEnumerable<string> coll5 = EnumerableFromArray(new string[] { "Hello", "There", "Sailor" });
@@ -387,7 +387,7 @@ namespace Wintellect.PowerCollections.Tests
                 return x <= y;
             }
 
-            IEnumerable<int> coll1 = EnumerableFromArray(new int[0]);
+            var coll1 = Enumerable.Empty<int>();
             IEnumerable<int> coll2 = EnumerableFromArray(new int[] { 4, 8, 1 });
             IEnumerable<int> coll3 = EnumerableFromArray(new int[] { 7, 19, 3 });
             IEnumerable<int> coll4 = EnumerableFromArray(new int[] { 7, 19, 3, 11 });
@@ -401,8 +401,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void LexicographicalCompare1()
         {
-            IEnumerable<int> coll1 = EnumerableFromArray(new int[0]);
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[0]);
+            var coll1 = Enumerable.Empty<int>();
+            var coll2 = Enumerable.Empty<int>();
             IEnumerable<int> coll3 = EnumerableFromArray(new int[] { 4, 8, 1 });
             IEnumerable<int> coll4 = EnumerableFromArray(new int[] { 4, 8, 3 });
             IEnumerable<int> coll5 = EnumerableFromArray(new int[] { 3, 8, 2 });
@@ -430,8 +430,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetLexicographicalComparer1()
         {
-            IEnumerable<int> coll1 = EnumerableFromArray(new int[0]);
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[0]);
+            var coll1 = Enumerable.Empty<int>();
+            var coll2 = Enumerable.Empty<int>();
             IEnumerable<int> coll3 = EnumerableFromArray(new int[] { 4, 8, 1 });
             IEnumerable<int> coll4 = EnumerableFromArray(new int[] { 4, 8, 3 });
             IEnumerable<int> coll5 = EnumerableFromArray(new int[] { 3, 8, 2 });
@@ -461,8 +461,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void LexicographicalCompare2()
         {
-            IEnumerable<int> coll1 = EnumerableFromArray(new int[0]);
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[0]);
+            var coll1 = Enumerable.Empty<int>();
+            var coll2 = Enumerable.Empty<int>();
             IEnumerable<int> coll3 = EnumerableFromArray(new int[] { 4, 8, 1 });
             IEnumerable<int> coll4 = EnumerableFromArray(new int[] { 4, 8, 3 });
             IEnumerable<int> coll5 = EnumerableFromArray(new int[] { 5, 8, 2 });
@@ -490,8 +490,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetLexicographicalComparer2()
         {
-            IEnumerable<int> coll1 = EnumerableFromArray(new int[0]);
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[0]);
+            var coll1 = Enumerable.Empty<int>();
+            var coll2 = Enumerable.Empty<int>();
             IEnumerable<int> coll3 = EnumerableFromArray(new int[] { 4, 8, 1 });
             IEnumerable<int> coll4 = EnumerableFromArray(new int[] { 4, 8, 3 });
             IEnumerable<int> coll5 = EnumerableFromArray(new int[] { 5, 8, 2 });
@@ -521,8 +521,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void LexicographicalCompare3()
         {
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
-            IEnumerable<string> coll2 = EnumerableFromArray(new string[0]);
+            var coll1 = Enumerable.Empty<string>();
+            var coll2 = Enumerable.Empty<string>();
             IEnumerable<string> coll3 = EnumerableFromArray(new string[] { "eric", "foo", "a" });
             IEnumerable<string> coll4 = EnumerableFromArray(new string[] { "Eric", "Foo", "a"});
             IEnumerable<string> coll5 = EnumerableFromArray(new string[] { "Eric", "B", "c" });
@@ -547,8 +547,8 @@ namespace Wintellect.PowerCollections.Tests
         [TestMethod]
         public void GetLexicographicalComparer3()
         {
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
-            IEnumerable<string> coll2 = EnumerableFromArray(new string[0]);
+            var coll1 = Enumerable.Empty<string>();
+            var coll2 = Enumerable.Empty<string>();
             IEnumerable<string> coll3 = EnumerableFromArray(new string[] { "eric", "foo", "a" });
             IEnumerable<string> coll4 = EnumerableFromArray(new string[] { "Eric", "Foo", "a" });
             IEnumerable<string> coll5 = EnumerableFromArray(new string[] { "Eric", "B", "c" });
@@ -628,7 +628,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             // Empty collection.
             string maxS;
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
+            var coll1 = Enumerable.Empty<string>();
 
             Assert.ThrowsException<InvalidOperationException>(
                 () => {var unused = Algorithms.Maximum(coll1);});
@@ -711,7 +711,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             // Empty collection.
             string minS;
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
+            var coll1 = Enumerable.Empty<string>();
 
             Assert.ThrowsException<InvalidOperationException>(
                 () => {var unused = Algorithms.Minimum(coll1);});
@@ -899,7 +899,7 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<string> coll1 = EnumerableFromArray(new string[] { "foo", "foo", "foo", "big", "foo", "super", "super", null, null, null, "hello", "there", "sailor", "sailor" });
             InterfaceTests.TestEnumerableElements(Algorithms.RemoveDuplicates(coll1), new string[] { "foo", "big", "foo", "super", null, "hello", "there", "sailor" });
 
-            IEnumerable<string> coll2 = EnumerableFromArray(new string[] {  });
+            var coll2 = Enumerable.Empty<string>();
             InterfaceTests.TestEnumerableElements(Algorithms.RemoveDuplicates(coll2), new string[] {  });
 
             IEnumerable<string> coll3 = EnumerableFromArray(new string[] { "foo"});
@@ -917,7 +917,7 @@ namespace Wintellect.PowerCollections.Tests
             IEnumerable<string> coll11 = EnumerableFromArray(new string[] { "foo", "Foo", "FOO", "big", "foo", "SUPER", "super", null, null, null, "hello", "there", "sailor", "sailor" });
             InterfaceTests.TestEnumerableElements(Algorithms.RemoveDuplicates(coll11, StringComparer.InvariantCultureIgnoreCase), new string[] { "foo", "big", "foo", "SUPER", null, "hello", "there", "sailor" });
 
-            IEnumerable<string> coll12 = EnumerableFromArray(new string[] { });
+            var coll12 = Enumerable.Empty<string>();
             InterfaceTests.TestEnumerableElements(Algorithms.RemoveDuplicates(coll12, StringComparer.InvariantCultureIgnoreCase), new string[] { });
 
             IEnumerable<string> coll13 = EnumerableFromArray(new string[] { "foo" });
@@ -1156,7 +1156,7 @@ namespace Wintellect.PowerCollections.Tests
             Algorithms.Copy(enum1, list1, 3);
             InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            IEnumerable<string> enum2 = EnumerableFromArray(new string[0]);
+            var enum2 = Enumerable.Empty<string>();
             Algorithms.Copy(enum2, list1, 1);
             InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
@@ -1184,7 +1184,7 @@ namespace Wintellect.PowerCollections.Tests
             Algorithms.Copy(enum1, array1, 3);
             InterfaceTests.TestEnumerableElements(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            IEnumerable<string> enum2 = EnumerableFromArray(new string[0]);
+            var enum2 = Enumerable.Empty<string>();
             Algorithms.Copy(enum2, array1, 1);
             InterfaceTests.TestEnumerableElements(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
@@ -1200,7 +1200,7 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElements(array1, new string[] { "hello", "Sailor", "b1", "b2", "b3", "b4" });
 
             string[] array2 = {};
-            Algorithms.Copy(EnumerableFromArray(new string[0]), array2, 0);
+            Algorithms.Copy(Enumerable.Empty<string>(), array2, 0);
             InterfaceTests.TestEnumerableElements(array2, new string[] { });
         }
 
@@ -1212,7 +1212,7 @@ namespace Wintellect.PowerCollections.Tests
             Algorithms.Copy(enum1, list1, 3, 2);
             InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            IEnumerable<string> enum2 = EnumerableFromArray(new string[0]);
+            var enum2 = Enumerable.Empty<string>();
             Algorithms.Copy(enum2, list1, 1, 5);
             InterfaceTests.TestListGeneric(list1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
@@ -1243,7 +1243,7 @@ namespace Wintellect.PowerCollections.Tests
             Algorithms.Copy(enum1, array1, 3, 2);
             InterfaceTests.TestEnumerableElements(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
-            IEnumerable<string> enum2 = EnumerableFromArray(new string[0]);
+            var enum2 = Enumerable.Empty<string>();
             Algorithms.Copy(enum2, array1, 1, 5);
             InterfaceTests.TestEnumerableElements(array1, new string[] { "foo", "bar", "baz", "hello", "Sailor", "glove" });
 
@@ -1475,7 +1475,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             const int ITER = 100000;
 
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
+            var coll1 = Enumerable.Empty<string>();
             string[] result1 = Algorithms.RandomShuffle(coll1);
             InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
@@ -1508,7 +1508,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             const int ITER = 100000;
 
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
+            var coll1 = Enumerable.Empty<string>();
             string[] result1 = Algorithms.RandomShuffle(coll1, new Random(167));
             InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
@@ -1642,7 +1642,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             const int ITER = 100000;
 
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
+            var coll1 = Enumerable.Empty<string>();
             string[] result1 = Algorithms.RandomSubset(coll1, 0);
             InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
@@ -1689,7 +1689,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             const int ITER = 100000;
 
-            IEnumerable<string> coll1 = EnumerableFromArray(new string[0]);
+            var coll1 = Enumerable.Empty<string>();
             string[] result1 = Algorithms.RandomSubset(coll1, 0, new Random(181));
             InterfaceTests.TestEnumerableElements(result1, new string[0]);
 
@@ -2084,7 +2084,7 @@ namespace Wintellect.PowerCollections.Tests
         public void DisjointSets()
         {
             IEnumerable<int> set1 = EnumerableFromArray(new int[] { 13, 11, 16, 16, 17, 16, 18, 11, 19, 16, 19 });
-            IEnumerable<int> set2 = EnumerableFromArray(new int[0]);
+            var set2 = Enumerable.Empty<int>();
             IEnumerable<int> set3 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
             IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
             IEnumerable<int> set5 = EnumerableFromArray(new int[] { 7, 3, 6, 7 });
@@ -2121,7 +2121,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
             IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
-            IEnumerable<int> set3 = EnumerableFromArray(new int[0]);
+            var set3 = Enumerable.Empty<int>();
             IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
             IEnumerable<int> set5 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
 
@@ -2159,7 +2159,7 @@ namespace Wintellect.PowerCollections.Tests
 
             IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
             IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
-            IEnumerable<int> set3 = EnumerableFromArray(new int[0]);
+            var set3 = Enumerable.Empty<int>();
             IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
             IEnumerable<int> set5 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
 
@@ -2209,7 +2209,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
             IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
-            IEnumerable<int> set3 = EnumerableFromArray(new int[0]);
+            var set3 = Enumerable.Empty<int>();
             IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
             IEnumerable<int> set5 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
 
@@ -2251,7 +2251,7 @@ namespace Wintellect.PowerCollections.Tests
         {
             IEnumerable<int> set1 = EnumerableFromArray(new int[] { 1, 3, 6, 9, 3, 1, 6 });
             IEnumerable<int> set2 = EnumerableFromArray(new int[] { 9, 3, 6, 9, 1, 6 });
-            IEnumerable<int> set3 = EnumerableFromArray(new int[0]);
+            var set3 = Enumerable.Empty<int>();
             IEnumerable<int> set4 = EnumerableFromArray(new int[] { 6, 9, 6, 9, 1 });
             IEnumerable<int> set5 = EnumerableFromArray(new int[] { 6, 6, 1, 9, 9 });
 
@@ -2298,7 +2298,7 @@ namespace Wintellect.PowerCollections.Tests
 
             InterfaceTests.TestEnumerableElementsAnyOrder(Algorithms.CartesianProduct(first, second), expected);
 
-            second = EnumerableFromArray(new string[0]);
+            second = Enumerable.Empty<string>();
             InterfaceTests.TestEnumerableElementsAnyOrder(Algorithms.CartesianProduct(first, second), new (int, string)[0]);
         }
 
@@ -2611,7 +2611,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[] { });
+            var coll2 = Enumerable.Empty<int>();
             found = Algorithms.TryFindFirstWhere(coll2, Odd, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
@@ -2636,7 +2636,7 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
 
-            IEnumerable<int> coll2 = EnumerableFromArray(new int[] { });
+            var coll2 = Enumerable.Empty<int>();
             found = Algorithms.TryFindLastWhere(coll2, Odd, out result);
             Assert.IsFalse(found);
             Assert.AreEqual(0, result);
@@ -2834,7 +2834,7 @@ namespace Wintellect.PowerCollections.Tests
             index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 7, 11 }));
             Assert.AreEqual(-1, index);
 
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { }));
+            index = Algorithms.FirstIndexOfMany(coll1, Enumerable.Empty<int>());
             Assert.AreEqual(-1, index);
 
             index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 11, 14 }), new Mod2EqualityComparer());
@@ -2870,7 +2870,7 @@ namespace Wintellect.PowerCollections.Tests
             index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 3, 7, 11 }));
             Assert.AreEqual(-1, index);
 
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { }));
+            index = Algorithms.LastIndexOfMany(coll1, Enumerable.Empty<int>());
             Assert.AreEqual(-1, index);
 
             index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 11, 14 }), new Mod2EqualityComparer());
@@ -2906,7 +2906,7 @@ namespace Wintellect.PowerCollections.Tests
             result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 3, 7, 11 }));
             InterfaceTests.TestEnumerableElements(result, new int[] { });
 
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { }));
+            result = Algorithms.IndicesOfMany(coll1, Enumerable.Empty<int>());
             InterfaceTests.TestEnumerableElements(result, new int[] { });
 
             result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 11, 14 }), new Mod2EqualityComparer());
@@ -2942,7 +2942,7 @@ namespace Wintellect.PowerCollections.Tests
             index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { 13, 5, 0 }), AbsDiff2);
             Assert.AreEqual(-1, index);
 
-            index = Algorithms.FirstIndexOfMany(coll1, EnumerableFromArray(new int[] { }), AbsDiff2);
+            index = Algorithms.FirstIndexOfMany(coll1, Enumerable.Empty<int>(), AbsDiff2);
             Assert.AreEqual(-1, index);
 
             IList<int> coll2 = new BigList<int>();
@@ -2972,7 +2972,7 @@ namespace Wintellect.PowerCollections.Tests
             index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { 13, 5, 0 }), AbsDiff2);
             Assert.AreEqual(-1, index);
 
-            index = Algorithms.LastIndexOfMany(coll1, EnumerableFromArray(new int[] { }), AbsDiff2);
+            index = Algorithms.LastIndexOfMany(coll1, Enumerable.Empty<int>(), AbsDiff2);
             Assert.AreEqual(-1, index);
 
             IList<int> coll2 = new BigList<int>();
@@ -3006,7 +3006,7 @@ namespace Wintellect.PowerCollections.Tests
             result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { 13, 5, 0 }), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] {  });
 
-            result = Algorithms.IndicesOfMany(coll1, EnumerableFromArray(new int[] { }), AbsDiff2);
+            result = Algorithms.IndicesOfMany(coll1, Enumerable.Empty<int>(), AbsDiff2);
             InterfaceTests.TestEnumerableElements(result, new int[] {  });
 
             IList<int> coll2 = new BigList<int>();
@@ -3069,7 +3069,7 @@ namespace Wintellect.PowerCollections.Tests
             index = Algorithms.SearchForSubsequence(list4, EnumerableFromArray(new int[] { 3, 4, 5 }));
             Assert.AreEqual(-1, index);
 
-            index = Algorithms.SearchForSubsequence(list4, EnumerableFromArray(new int[] { }));
+            index = Algorithms.SearchForSubsequence(list4, Enumerable.Empty<int>());
             Assert.AreEqual(0, index);
         }
 
@@ -3158,15 +3158,15 @@ namespace Wintellect.PowerCollections.Tests
             InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
 
             enum1 = EnumerableFromArray(new int[] { 1, 7, 9, 11, 13, 1002 });
-            enum2 = EnumerableFromArray(new int[] { });
+            enum2 = Enumerable.Empty<int>();
             enum3 = EnumerableFromArray(new int[] { 15, 17, 19});
             merged = Algorithms.MergeSorted(enum1, enum2, enum3);
             sorted = Algorithms.Sort(Algorithms.Concatenate(enum1, enum2, enum3));
             InterfaceTests.TestEnumerableElements(merged, Enumerable.ToArray(sorted));
 
-            enum1 = EnumerableFromArray(new int[] {  });
-            enum2 = EnumerableFromArray(new int[] { });
-            enum3 = EnumerableFromArray(new int[] { });
+            enum1 = Enumerable.Empty<int>();
+            enum2 = Enumerable.Empty<int>();
+            enum3 = Enumerable.Empty<int>();
             merged = Algorithms.MergeSorted(enum1, enum2, enum3);
             InterfaceTests.TestEnumerableElements(merged, new int [] {});
 
@@ -3735,11 +3735,11 @@ namespace Wintellect.PowerCollections.Tests
             s = Algorithms.ToString(coll2, true, "[[", "; ", "]]");
             Assert.AreEqual("[[Hello; Goodbye; null; Clapton; Rules]]", s);
 
-            IEnumerable<string> coll3 = EnumerableFromArray(new string[0]);
+            var coll3 = Enumerable.Empty<string>();
             s = Algorithms.ToString(coll3);
             Assert.AreEqual("{}", s);
 
-            IEnumerable<string> coll4 = EnumerableFromArray(new string[0]);
+            var coll4 = Enumerable.Empty<string>();
             s = Algorithms.ToString(coll4, false, "[[", "; ", "]]");
             Assert.AreEqual("[[]]", s);
 
