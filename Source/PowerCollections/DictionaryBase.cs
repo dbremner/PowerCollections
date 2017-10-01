@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace Wintellect.PowerCollections
@@ -157,7 +158,7 @@ namespace Wintellect.PowerCollections
         /// <returns>An IIDictionary&lt;TKey,TValue&gt; that provides read-only access to the dictionary.</returns>
         public virtual new IDictionary<TKey,TValue> AsReadOnly()
         {
-            return Algorithms.ReadOnly(this);
+            return new ReadOnlyDictionary<TKey, TValue>(this);
         }
 
 

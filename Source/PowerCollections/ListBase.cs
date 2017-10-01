@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Wintellect.PowerCollections
@@ -175,7 +176,7 @@ namespace Wintellect.PowerCollections
         /// <returns>An IList&lt;T&gt; that provides read-only access to the list.</returns>
         public virtual new IList<T> AsReadOnly()
         {
-            return Algorithms.ReadOnly(this);
+            return new ReadOnlyCollection<T>(this);
         }
 
         /// <summary>
