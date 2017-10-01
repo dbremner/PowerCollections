@@ -98,15 +98,7 @@ namespace Wintellect.PowerCollections
         /// is inappropriate.</remarks>
         /// <param name="item">The item to check for in the collection.</param>
         /// <returns>True if the collection contains <paramref name="item"/>, false otherwise.</returns>
-        public virtual bool Contains(T item)
-        {
-            IEqualityComparer<T> equalityComparer = EqualityComparer<T>.Default;
-            foreach (T i in this) {
-                if (equalityComparer.Equals(i, item))
-                    return true;
-            }
-            return false;
-        }
+        public abstract bool Contains(T item);
 
         /// <summary>
         /// Copies all the items in the collection into an array. Implemented by

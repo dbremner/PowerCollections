@@ -43,6 +43,11 @@ namespace Wintellect.PowerCollections.Tests
             return items.Remove(item);
         }
 
+        public override bool Contains(T item)
+        {
+            return items.Contains(item);
+        }
+
         public override void Clear()
         {
             items.Clear();
