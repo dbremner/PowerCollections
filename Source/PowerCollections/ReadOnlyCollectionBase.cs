@@ -251,13 +251,7 @@ namespace Wintellect.PowerCollections
         /// by the derived classes to enumerate the members of the collection.
         /// </summary>
         /// <returns>An IEnumerator that can be used to iterate the collection.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            foreach (T item in this) {
-                yield return item;
-            }
-        }
-
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
         #endregion
 
         /// <summary>
