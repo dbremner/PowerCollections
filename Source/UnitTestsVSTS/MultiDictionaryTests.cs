@@ -18,7 +18,7 @@ namespace Wintellect.PowerCollections.Tests
     using MyInt = OrderedDictionaryTests.MyInt;
 
     [TestClass]
-    public class MultiDictionaryTests
+    public partial class MultiDictionaryTests
     {
         // Check the contents of a Multi-Dictionary non-destructively. Keys and Values must be in order.
         internal static void CheckMultiDictionaryContents<TKey, TValue>(MultiDictionary<TKey, TValue> dict, TKey[] keys, TValue[][] values, TKey nonKey, TValue nonValue, BinaryPredicate<TKey> keyEquals, BinaryPredicate<TValue> valueEquals)
@@ -916,33 +916,6 @@ namespace Wintellect.PowerCollections.Tests
             Assert.IsNotNull(dict2);
         }
 
-        private class FirstLetterComparer : IEqualityComparer<string>
-        {
-            public bool Equals(string x, string y)
-            {
-                if (x == null)
-                    return y == null;
-                else if (x.Length == 0)
-                    return (y != null && y.Length == 0);
-                else {
-                    if (y == null || y.Length == 0)
-                        return false;
-                    else
-                        return x[0] == y[0];
-                }
-            }
-
-            public int GetHashCode(string obj)
-            {
-                if (obj == null)
-                    return 0x12383;
-                else if (obj.Length == 0)
-                    return 17;
-                else
-                    return obj[0].GetHashCode();
-            }
-        }
-
         [TestMethod]
         public void Clone()
         {
@@ -1014,27 +987,6 @@ namespace Wintellect.PowerCollections.Tests
                     }
                 }
                 Assert.IsTrue(f);
-            }
-        }
-
-        private class MyIntComparer : IEqualityComparer<MyInt>
-        {
-            public bool Equals(MyInt x, MyInt y)
-            {
-                if (x == null)
-                    return y == null;
-                else if (y == null)
-                    return x == null;
-                else
-                    return x.value == y.value;
-            }
-
-            public int GetHashCode(MyInt obj)
-            {
-                if (obj == null)
-                    return 0x42834E;
-                else
-                    return obj.value.GetHashCode();
             }
         }
 

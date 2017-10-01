@@ -14,22 +14,9 @@ namespace Wintellect.PowerCollections.Tests
 {
     // A class for testing the "Hash" class.
     [TestClass]
-    public class HashTests
+    public partial class HashTests
     {
         internal Hash<TestItem> hash;
-
-        internal class DataComparer : System.Collections.Generic.IEqualityComparer<TestItem>
-        {
-            public bool Equals(TestItem x, TestItem y)
-            {
-                return string.Equals(x.key, y.key);
-            }
-
-            public int GetHashCode(TestItem obj)
-            {
-                return obj.key.GetHashCode();
-            }
-        }
 
         /// <summary>
         /// Insert a key and print/validate the hash.

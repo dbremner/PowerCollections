@@ -84,6 +84,7 @@
     <Compile Include="AlgorithmsTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="BagTests.cs" />
+    <Compile Include="BagTests.ModularComparer.cs" />
     <Compile Include="BigListTests.cs" />
     <Compile Include="CollectionBaseTests.cs" />
     <Compile Include="GenericComparable.cs" />
@@ -95,12 +96,18 @@
     <Compile Include="GOddEvenEqualityComparer.cs" />
     <Compile Include="GOddEvenEquatable.cs" />
     <Compile Include="HashTests.cs" />
+    <Compile Include="HashTests.DataComparer.cs" />
+    <Compile Include="ICollectionWrapper.cs" />
+    <Compile Include="IListWrapper.cs" />
     <Compile Include="InterfaceTests.cs" />
     <Compile Include="Kvp.cs" />
     <Compile Include="ListBaseTests.cs" />
     <Compile Include="MainProgram.cs" />
+    <Compile Include="Mod2EqualityComparer.cs" />
     <Compile Include="MultiDictionaryBaseTests.cs" />
     <Compile Include="MultiDictionaryTests.cs" />
+    <Compile Include="MultiDictionaryTests.FirstLetterComparer.cs" />
+    <Compile Include="MultiDictionaryTests.MyIntComparer.cs" />
     <Compile Include="NotCloneable.cs" />
     <Compile Include="OddEvenComparable.cs" />
     <Compile Include="OddEvenComparer.cs" />
@@ -111,6 +118,7 @@
     <Compile Include="OrderedSetTests.cs" />
     <Compile Include="RedBlackTests.cs" />
     <Compile Include="SetTests.cs" />
+    <Compile Include="SetTests.ModularComparer.cs" />
     <Compile Include="TestItem.cs" />
     <Compile Include="TestPredicates.cs" />
     <Compile Include="UncomparableClass2.cs" />

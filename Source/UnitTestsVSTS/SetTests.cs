@@ -16,7 +16,7 @@ using static Wintellect.PowerCollections.Tests.UtilTests;
 namespace Wintellect.PowerCollections.Tests
 {
     [TestClass]
-    public class SetTests
+    public partial class SetTests
     {
         [TestMethod]
         public void RandomAddDelete()
@@ -410,27 +410,6 @@ namespace Wintellect.PowerCollections.Tests
             };
 
             Assert.ThrowsException<InvalidOperationException>(() => set1.CloneContents());
-        }
-
-        // Strange comparer that uses modulo arithmetic.
-        private class ModularComparer: IEqualityComparer<int>
-        {
-            private readonly int mod;
-
-            public ModularComparer(int mod)
-            {
-                this.mod = mod;
-            }
-
-            public bool Equals(int x, int y)
-            {
-                return (x % mod) == (y % mod);
-            }
-
-            public int GetHashCode(int obj)
-            {
-                return (obj % mod).GetHashCode();
-            }
         }
 
         [TestMethod]
