@@ -52,6 +52,11 @@ namespace Wintellect.PowerCollections.Tests
         {
             items.Clear();
         }
+
+        public ICollection<T> AsReadOnly()
+        {
+            return Algorithms.ReadOnly(this);
+        }
     }
 
     [TestClass]

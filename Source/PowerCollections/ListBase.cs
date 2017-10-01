@@ -174,7 +174,7 @@ namespace Wintellect.PowerCollections
         /// changes to the list will be reflected in the view.
         /// </summary>
         /// <returns>An IList&lt;T&gt; that provides read-only access to the list.</returns>
-        public virtual new IList<T> AsReadOnly()
+        public virtual IList<T> AsReadOnly()
         {
             return new ReadOnlyCollection<T>(this);
         }

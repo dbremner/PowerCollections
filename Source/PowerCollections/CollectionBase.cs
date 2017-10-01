@@ -163,18 +163,6 @@ namespace Wintellect.PowerCollections
             get { return false; }
         }
 
-        /// <summary>
-        /// Provides a read-only view of this collection. The returned ICollection&lt;T&gt; provides
-        /// a view of the collection that prevents modifications to the collection. Use the method to provide
-        /// access to the collection without allowing changes. Since the returned object is just a view,
-        /// changes to the collection will be reflected in the view.
-        /// </summary>
-        /// <returns>An ICollection&lt;T&gt; that provides read-only access to the collection.</returns>
-        public virtual ICollection<T> AsReadOnly()
-        {
-            return Algorithms.ReadOnly(this);
-        }
-
         #endregion
 
         #region Delegate operations
