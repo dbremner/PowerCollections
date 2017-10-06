@@ -156,7 +156,7 @@ namespace Wintellect.PowerCollections
         /// changes to the dictionary will be reflected in the view.
         /// </summary>
         /// <returns>An IIDictionary&lt;TKey,TValue&gt; that provides read-only access to the dictionary.</returns>
-        public virtual IDictionary<TKey,TValue> AsReadOnly()
+        public IDictionary<TKey,TValue> AsReadOnly()
         {
             return new ReadOnlyDictionary<TKey, TValue>(this);
         }
